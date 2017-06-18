@@ -1,0 +1,52 @@
+#header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  padding: 10px 0px 10px 25px;
+  flex: 0 0 50px;
+
+  .title {
+    font-size: 1.5em;
+    margin-right: 20px;
+    padding-bottom: 2px;
+    color: @darkBlueGrey;
+  }
+
+  .fa-bars {
+    font-size: 20px;
+    margin-right: 20px;
+    color: @darkBlueGrey;
+    cursor: pointer;
+  }
+  
+  .fa-bars:hover {
+    transform: rotate(90deg);
+    transition: .25s;
+  }
+  
+  input {
+    width: 140px;
+    padding: 5px 5px 5px 25px;
+  }
+  
+  .fa-search{
+    position: relative;
+    left: -164px;
+    color: @darkGrey;
+    font-size: .9em;
+  }
+  
+}
+
+@media (min-width: @screen-sm-min) {
+
+  #header input {
+    width: 200px;  
+  }
+  
+  #header .fa-search {
+    left: -224px;  
+  }
+
+}

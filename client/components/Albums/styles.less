@@ -1,7 +1,18 @@
 #albums {
   display: flex;
-  flex-wrap : wrap;
-  padding: 25px 10px 10px 25px;
-  overflow: scroll;
   overflow-x: hidden;
+  flex-direction: column;
+  flex-wrap : nowrap;
+  padding: 25px;
+}
+
+
+@media (min-width: @screen-sm-min) {
+
+  #albums {
+    flex-direction: row;
+    flex-wrap : wrap;
+    padding: 5px 10px 10px 25px;
+  }
+
 }

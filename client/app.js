@@ -6,11 +6,8 @@ import 'normalize.css';
 import 'font-awesome/css/font-awesome.css';
 import './styles/styles.less';
 
-import Sign from "./components/Sign/Sign";
-import Albums from "./components/Albums/Albums";
-
-import albumsMock from "./mock/albums";
+import Gallery from "./containers/Gallery/Gallery";
 
 const root = document.getElementById('root');
 
-ReactDOM.render(<Albums albums={albumsMock} />, root);
+ReactDOM.render(<Gallery />, root);
