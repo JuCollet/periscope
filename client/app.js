@@ -7,4 +7,4 @@ import './styles/styles.less';
 
 const root = document.getElementById('root');
 
-ReactDOM.render(<h1>Hello, World!</h1>, root);
+//ReactDOM.render(<h1>Hello, World!</h1>, root);

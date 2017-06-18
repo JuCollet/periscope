@@ -10603,11 +10603,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var root = document.getElementById('root');
 
-_reactDom2.default.render(_react2.default.createElement(
-  'h1',
-  null,
-  'Hello, World!'
-), root);
+//ReactDOM.render(<h1>Hello, World!</h1>, root);
 
 /***/ }),
 /* 93 */
@@ -23816,7 +23812,7 @@ exports = module.exports = __webpack_require__(52)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:400,700);", ""]);
 
 // module
-exports.push([module.i, "#sign-wrapper {\n  height: 100%;\n  display: flex;\n  background-color: red;\n}\nh1 {\n  color: red;\n}\nhtml,\nbody,\n#root {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n  overflow: hidden;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n", ""]);
+exports.push([module.i, "input {\n  height: 30px;\n  padding-left: 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\ninput:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign-wrapper {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 30px 0px;\n    width: 350px;\n    height: 390px;\n    border-radius: 7px;\n    text-align: center;\n    background-color: #FFFFFF;\n    box-shadow: 1px 1px 4px 3px #FAFAFA;\n  }\n}\nhtml,\nbody,\n#root {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n  overflow: hidden;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n", ""]);
 
 // exports
 
