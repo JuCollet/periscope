@@ -29,7 +29,13 @@ module.exports = {
                 loader : "style-loader!css-loader"
             }, {
                 test : /\.(png|jpeg|gif|svg)$/,
-                loader: 'file-loader?name=/img/[name].[ext]'
+                loader: 'file-loader?name=/client/dist/[name].[ext]'
+            }, {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                loader: "url-loader?limit=10000&mimetype=application/font-woff&name=/client/dist/[name].[ext]" 
+            }, {
+                test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+                loader: "file-loader?name=/client/dist/[name].[ext]"
             }
         ]
     }
