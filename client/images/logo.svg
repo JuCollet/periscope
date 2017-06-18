@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <defs>
+    <clipPath id="tower"><rect x="75" y="100" width="50" height="100"/></clipPath>
+    <clipPath id="sky"><circle r="100" cx="100" cy="100"/></clipPath>
+  </defs>
+
+  <circle id="sky" r="100" cx="100" cy="100" fill="#DFEFF7"/>
+  <circle id="cloud1" r="25" cx="-25" cy="50" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <circle id="cloud2" r="30" cx="-50" cy="50" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <circle id="cloud3" r="20" cx="-65" cy="52" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <circle id="cloud4" r="20" cx="270" cy="135" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <circle id="cloud5" r="30" cx="250" cy="135" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <circle id="cloud6" r="20" cx="230" cy="137" fill="#F9FDFF" clip-path="url(#sky)"/>
+  <rect id="tower" x="75" y="100" width="50" height="100" fill="#687177" clip-path="url(#sky)" />
+  <circle id="shadow" r="75" cx="90" cy="90" fill="#494F54" clip-path="url(#tower)"/>
+  <circle id="head" r="50" cx="100" cy="100" fill="#939597" />
+  <circle id="eye" r="30" cx="100" cy="100" fill="#404041" />
+  <circle id="bigflare" r="10" cx="80" cy="80" fill="#D1D2D4" fill-opacity=".5"/>
+  <circle id="smallflare" r="5" cx="120" cy="120" fill="#F1F1F2" fill-opacity=".3"/>
+
+  <animate xlink:href="#cloud1" attributeName="cx" from="-25" to="375" dur="43s" begin="10s" repeatCount="indefinite" fill="freeze" />
+  <animate xlink:href="#cloud2" attributeName="cx" from="-50" to="350" dur="43s" begin="10s" repeatCount="indefinite" fill="freeze" />
+  <animate xlink:href="#cloud3" attributeName="cx" from="-75" to="325" dur="43s" begin="10s" repeatCount="indefinite" fill="freeze" />
+  <animate xlink:href="#cloud4" attributeName="cx" from="345" to="-30" dur="50s" begin="15s" repeatCount="indefinite" fill="freeze" />
+  <animate xlink:href="#cloud5" attributeName="cx" from="325" to="-50" dur="50s" begin="15s" repeatCount="indefinite" fill="freeze" />
+  <animate xlink:href="#cloud6" attributeName="cx" from="305" to="-70" dur="50s" begin="15s" repeatCount="indefinite" fill="freeze" />
+
+  <animate xlink:href="#eye" id="eye-close" attributeName="r" from="30" to="27" dur="3s" begin="5s;eye-open.end+15s" fill="freeze"/>
+  <animate xlink:href="#eye" id="eye-shut" attributeName="r" from="30" to="0" dur=".02s" begin="eye-open.end+2s" fill="freeze"/>
+  <animate xlink:href="#eye" id="eye-shut-open" attributeName="r" from="0" to="30" dur=".1s" begin="eye-shut.end+0s" fill="freeze"/>
+  <animate xlink:href="#eye" id="eye-open" attributeName="r" from="27" to="30" dur="2s" begin="eye-close.end+5s" fill="freeze"/>
+  <animate xlink:href="#eye" id="eye-bottom" attributeName="cy" from="100" to="105" dur="3s" begin="eye-close.end+1s" fill="freeze"/>
+  <animate xlink:href="#eye" id="eye-top" attributeName="cy" from="105" to="100" dur="2s" begin="eye-bottom.end+2s" fill="freeze"/>
+
+</svg>
