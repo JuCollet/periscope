@@ -1,6 +1,35 @@
+button {
+  display: inline-block;
+  outline: none;
+  padding: 10px 15px 7px 15px;
+  border: 1px solid @darkGrey;
+  border-radius: 3px;
+  
+  background-color: #FFFFFF;
+  
+  text-transform: uppercase;
+  text-align: center;
+  color: @darkGrey;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.button-anim:hover{
+  animation-name: buttonAnim;
+  animation-duration: .15s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+@keyframes buttonAnim {
+  from{box-shadow: inset 0px 0px 0px 0px #DADADA;border: 1px solid @darkGrey;}
+  to{box-shadow: inset 100px 0px 0px 0px @green;background-color:@green;border: 1px solid @green;color:#FFFFFF;}
+}
+
 input {
-  height: 30px;
-  padding-left: 10px;
+  width: 100%;
+  padding: 10px 5px 10px 10px;
   border-radius: 3px;
   border: 0;
   background-color: @lightGrey;
