@@ -1,0 +1,20 @@
+{
+  "name": "Periscope Media Manager",
+  "short_name": "Periscope",
+  "icons": [{
+        "src": "../images/icon/lowres.png",
+        "sizes": "64x64",
+        "type": "image/webp"
+      }, {
+        "src": "../images/icon/hd_small.png",
+        "sizes": "64x64"
+      }, {
+        "src": "../images/icon/hd_hi.png",
+        "sizes": "128x128",
+        "density": 2
+      }],
+  "scope": "./",
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
