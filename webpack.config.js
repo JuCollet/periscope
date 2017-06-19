@@ -2,7 +2,8 @@ var webpack = require("webpack");
 
 module.exports = {
     entry : {
-        app: './client/app.js'
+        app: './client/app.js',
+        vendors: ['react','react-dom']
     },
     output : {
         filename : './client/dist/bundle.js',
@@ -38,5 +39,11 @@ module.exports = {
                 loader: "file-loader?name=/client/dist/[name].[ext]"
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+            filename: './client/dist/bundle.vendor.js'
+        })
+    ]
 };
