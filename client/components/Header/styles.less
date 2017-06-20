@@ -1,21 +1,25 @@
 #header {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  bottom: 0px;
+  z-index: 999;
   display: flex;
   align-items: center;
-  position: relative;
-  height: 40px;
-  padding: 10px 0px 10px 25px;
+  background-color: #FFFFFF;
+  box-shadow: -1px -1px 3px 2px rgba(100,100,100,.1);
+  
+  padding: 10px 20px 10px 20px;
   flex: 0 0 50px;
 
   .title {
-    font-size: 1.5em;
-    margin-right: 20px;
-    padding-bottom: 2px;
-    color: @darkBlueGrey;
+    display: none;
   }
 
   .fa-bars {
     font-size: 20px;
-    margin-right: 20px;
+    margin-right: 5px;
     color: @darkBlueGrey;
     cursor: pointer;
   }
@@ -25,14 +29,21 @@
     transition: .25s;
   }
   
+  #header-search {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+  }
+  
   input {
-    width: 140px;
+    width: 100%;
     padding: 5px 5px 5px 25px;
   }
   
   .fa-search{
     position: relative;
-    left: -164px;
+    left: 20px;
     color: @darkGrey;
     font-size: .9em;
   }
@@ -40,13 +51,36 @@
 }
 
 @media (min-width: @screen-sm-min) {
+  
+  #header {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    top: 0px;
+    box-shadow: 1px 1px 3px 2px rgba(100,100,100,.1);
+  
+    .title {
+      display: inline-block;
+      font-size: 1.5em;
+      margin-right: 10px;
+      padding-bottom: 4px;
+      color: @darkBlueGrey;
+    }
+
+    .fa-bars {
+      margin-right: 20px;
+    }
+    
+  }
 
   #header input {
-    width: 200px;  
+    min-width: 200px;
+    width: 20%;  
   }
   
   #header .fa-search {
-    left: -224px;  
+    left: 20px;  
   }
 
 }

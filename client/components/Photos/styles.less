@@ -1,0 +1,40 @@
+#photos {
+    overflow-x: hidden;
+    padding: 20px 20px 70px 20px;
+    
+    column-count: 2;
+    column-gap: 5px;
+    
+    img {
+      margin-bottom: 2px;
+      width: 100%;
+      height: auto;
+    }
+  
+}
+
+
+@media (min-width: @screen-sm-min) {
+
+  #photos {
+    column-count: 3;
+    padding: 80px 20px 10px 20px;
+  }
+
+}
+
+@media (min-width: @screen-md-min) {
+
+  #photos {
+    column-count: 5;
+  }
+
+}
+
+@media (min-width: @screen-lg-min) {
+
+  #photos {
+    column-count: 6;
+  }
+
+}
