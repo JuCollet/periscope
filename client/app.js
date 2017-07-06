@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import promise from "redux-promise";
 
@@ -12,20 +12,21 @@ import './styles/styles.less';
 
 import reducers from "./reducers";
 
+import LogIn from "./containers/Login/Login";
 import Gallery from "./containers/Gallery/Gallery";
-import Sign from "./components/Sign/Sign";
 
-const storeWithMiddleware = applyMiddleware()(createStore);
-
-const root = document.getElementById('root');
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(
+    applyMiddleware(promise)
+));
 
 ReactDOM.render(
-    <Provider store={storeWithMiddleware(reducers)}>
+    <Provider store={store}>
         <BrowserRouter>
             <div className="container">
-                <Route exact path="/" component={Sign} />
+                <Route exact path="/" component={LogIn} />
                 <Route path="/gallery" component={Gallery} />
             </div>
         </BrowserRouter>
     </Provider>, 
-    root);
+    document.getElementById('root'));

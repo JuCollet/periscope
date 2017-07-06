@@ -1,8 +1,6 @@
 'use strict';
 
 import React from "react";
-import PropTypes from 'prop-types';
-//import 'font-awesome/css/font-awesome.css';
 
 
 const Header = props => {

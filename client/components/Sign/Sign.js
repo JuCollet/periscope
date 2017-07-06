@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 export default class Sign extends Component {
-    
-    static PropTypes = {
-        username : PropTypes.string.isRequired,
-        password : PropTypes.string.isRequired
-    }
     
     render () {
         return (

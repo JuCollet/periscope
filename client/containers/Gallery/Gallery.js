@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import Sidemenu from "../../components/Sidemenu/Sidemenu";
 import Header from "../../components/Header/Header";
