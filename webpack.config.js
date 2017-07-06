@@ -3,15 +3,15 @@ var webpack = require("webpack");
 module.exports = {
     entry : {
         app: './client/app.js',
-        vendors: ['react','react-dom']
+        vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom']
     },
     output : {
-        filename : './client/dist/bundle.js',
-        path : __dirname
+        filename : 'bundle.js',
+        path : __dirname+"/dist"
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: './client/dist',
+        contentBase: __dirname + '/dist',
         host: process.env.IP,
         port: process.env.PORT,
         "public": "periscope-julesbe.c9users.io"
@@ -30,20 +30,14 @@ module.exports = {
                 loader : "style-loader!css-loader"
             }, {
                 test : /\.(png|jpeg|gif|svg)$/,
-                loader: 'file-loader?name=/client/dist/[name].[ext]'
-            }, {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                loader: "url-loader?limit=10000&mimetype=application/font-woff&name=/client/dist/[name].[ext]" 
-            }, {
-                test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                loader: "file-loader?name=/client/dist/[name].[ext]"
+                loader: 'file-loader?name=[name].[ext]'
             }
         ]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
-            filename: './client/dist/bundle.vendor.js'
+            filename: 'bundle.vendor.js'
         })
     ]
 };

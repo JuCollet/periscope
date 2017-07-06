@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Sidemenu from "../../components/Sidemenu/Sidemenu";
@@ -14,7 +15,8 @@ export default class Gallery extends Component {
         return (
             <div id="gallery" className="container">
                 <Header />
-                <Photos photos={photosMock}/>
+                <Route path="/gallery/albums" render={ () => <Albums albums={albumsMock} /> }/>
+                <Route path="/gallery/photos" render={ () => <Photos photos={photosMock} /> }/>
             </div>
         );
     }
