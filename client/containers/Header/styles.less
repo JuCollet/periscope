@@ -45,6 +45,16 @@
   
 }
 
+.header-up {
+  transition: .3s;
+  bottom: 60px !important;
+}
+
+.header-down {
+  transition: .3s;
+  bottom: 0px !important;
+}
+
 @media (min-width: @screen-sm-min) {
   
   #header {
@@ -76,6 +86,11 @@
   
   #header .fa-search {
     left: 20px;  
+  }
+  
+  .header-up {
+    transition: .3s;
+    bottom: unset;
   }
 
 }

@@ -14,10 +14,9 @@ const Card = props => {
   return (
     <div className="card">
       <div className="card-img-wrapper">
-        <div className="card-img" style={cardStyle}>
+        <div className="card-img" style={cardStyle}></div>
           {newBadge}
-          <div className="card-img-infos">{props.album.photos.length} Photos</div>
-        </div>
+          <div className="card-img-infos">{props.album.photos.length} Photos</div>           
       </div>
       <div className="card-body">
         <div className="card-body-title">{props.album.title}</div>

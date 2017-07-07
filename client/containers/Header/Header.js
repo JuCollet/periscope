@@ -12,8 +12,11 @@ class Header extends Component {
   }
   
   render(){
+    
+    const headerUpClass = this.props.menu.open ? 'header-up' : 'header-down';
+
     return (
-      <div id="header">
+      <div id="header" className={headerUpClass}>
         <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
         <span className="title">Periscope</span>
         <div id="header-search">
@@ -30,4 +33,10 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({toggleMenu}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+function mapStateToProps(state){
+  return {
+    menu : state.menu
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -6,22 +6,20 @@
     border-radius: 4px;
     background-color: red;
     background-color: #FFFFFF;
-    box-shadow: 1px 1px 7px @mediumGrey;
+    box-shadow: 1px 1px 5px @mediumGrey;
     cursor: pointer;
     
     .card-img-wrapper {
         position: relative;
-        float:left;
+        float: left;
         overflow: hidden;
         height: 150px;
         width: 40%;
         border-radius : 4px 0px 0px 4px;
         background-color: @lightGrey;
-        
+        text-align: right;
+
         .card-img {
-            display: flex;
-            align-items: flex-end;
-            flex-direction: row-reverse;
             width: 100%;
             height: 100%;
             background-size: cover;
@@ -29,9 +27,12 @@
         }
         
         .card-img-infos {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
             padding: 6px;
-            margin-right: 7px;
-            margin-bottom: 7px;
+            top: -32px;
+            right: 10px;
             border-radius: 3px;
             
             background-color: @veryDarkGrey;
@@ -70,11 +71,14 @@
 }
 
 .card:hover {
-    box-shadow: 0px 0px 5px @mediumGrey;
+    
+    box-shadow: 2px 2px 5px @mediumGrey;
+    
     .card-img {
         transform: scale(1.1);
         transition: .5s transform;
     }
+    
 } // End card:hover
 
 
