@@ -1,4 +1,4 @@
-import { USER_LOGIN } from '../actiontypes/index';
+import { USER_LOGIN } from '../actiontypes/';
 
 export default function(state = {}, action){
     
