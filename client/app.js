@@ -25,7 +25,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div className="container">
                 <Route exact path="/" component={LogIn} />
-                <Route path="/gallery" component={Gallery} />
+                <Route path="/gallery/" component={Gallery} />
             </div>
         </BrowserRouter>
     </Provider>, 
