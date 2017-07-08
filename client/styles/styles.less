@@ -2,14 +2,13 @@
 
 @import "_form";
 @import "_margin";
-@import "_fontColor";
 @import "../containers/Login/styles.less";
 @import "../containers/Header/styles.less";
 @import "../containers/Sidemenu/styles.less";
 @import "../containers/Upload/styles.less";
-@import "../components/Photos/styles.less";
-@import "../components/Albums/styles.less";
-@import "../components/Albums/Cards/styles.less";
+@import "../components/Gallery/Photos/styles.less";
+@import "../components/Gallery/Albums/styles.less";
+@import "../components/Gallery/Albums/Cards/styles.less";
 
 @screen-sm-min: 768px;
 @screen-md-min: 992px;
@@ -23,6 +22,10 @@
 @darkBlueGrey: #5A646E;
 @green: #4EE898;
 @red: #FF3F00;
+
+
+// BASE //
+
 
 html, body, #root, .container {
     height: 100%;
@@ -60,10 +63,83 @@ h3 {
     font-size: 1.5em;
 }
 
+// MODULES //
+
 .wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.contentBox {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+    padding-bottom: 40px;
+
+    .contentBox-image {
+        width: 17vw;
+        border-radius: 5px;
+    }   
+    .contentBox-body {
+        padding-left: 0px;
+        min-width: 70vw;
+    }
+    
+    input, textarea {
+        width: 70vw;
+    }
+    
+}
+
+@media (min-width: @screen-sm-min){
+    .contentBox {
+        padding-top: 55px;
+        padding-bottom: unset;
+        flex-direction: row;
+        
+        .contentBox-body {
+            padding-left: 40px;
+            min-width: 50vw;
+        }
+        
+        input, textarea {
+            width: 50vw;
+        }
+        
+    }
+}
+
+.tagsDisplay {
+    min-height: 25px;
+    
+    span {
+        margin-right: 5px;
+        padding: 3px 7px;
+        border-radius: 3px;
+        background-color: @mediumGrey;
+        color: white;    
+    }
+    
+}
+
+
+// STATES //
+
+.txt-darkBlueGrey {
+    color: @darkBlueGrey;
+}
+
+.txt-mediumGrey {
+    color: @mediumGrey;
+}
+
+.bkg-darkBlueGrey {
+    background-color: @darkBlueGrey;
+}
+
+.bkg-veryDarkGrey {
+    background-color: @veryDarkGrey;
 }
