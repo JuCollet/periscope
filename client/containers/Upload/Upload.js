@@ -3,14 +3,34 @@ import { Field, reduxForm } from 'redux-form';
 
 class Upload extends Component {
     
+    constructor(props){
+        super(props);
+        this.state = {tags:["tags"]};
+        this.renderTags = this.renderTags.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
     
     renderInput(field){
         return(
             <div>
-                <input placeholder={field.placeholder}></input>
+                <input placeholder={field.placeholder} {...field.input}></input>
                 <i className="fa fa-check"></i>
             </div>
         );
+    }
+    
+    renderTags(values){
+        if(values){
+            const tags = values.currentTarget.value.replace(/ /g,'').split(",");
+            this.setState({
+                tags:tags.length === 1 && tags[0] === "" ? ["tags"] : tags
+            });
+        }
+    }
+    
+    onSubmit(data){
+        console.log(data);
+        console.log(this.state.tags)
     }
     
     render(){
@@ -21,25 +41,30 @@ class Upload extends Component {
                     </div>
                     <div className="contentBox-body">
                         <h2>Nouvel album</h2>
-                        <form>
+                        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                             <div className="input-group">
                                 <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
                             </div>
                             <br/>
                             <div className="input-group">
-                                <input placeholder="Photographe"></input><i className="fa fa-check"></i>
+                                <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
                             </div>
                             <br/>
                             <div className="input-group">
-                                <textarea rows="3" placeholder="Description"></textarea>
+                                <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
                             </div>
                             <br/>
                             <div className="input-group">
-                                <input placeholder="Tags"></input><i className="fa fa-check"></i>
+                                <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
                             </div>
                             <br/>
                             <div className="tagsDisplay">
-                                <span>Hello</span>
+                            {this.renderTags()}
+                                {this.state.tags.map((tag, index) => {
+                                    return (
+                                        <span key={index}>#{tag}</span>
+                                    );
+                                })}
                             </div>
                             <br/>
                             <button className="small-button small-button-anim" type="submit">Envoyer</button>
@@ -52,7 +77,8 @@ class Upload extends Component {
 }
 
 function validate(values){
-    
+    const errors = {}
+    return errors;
 };
 
 export default reduxForm({
