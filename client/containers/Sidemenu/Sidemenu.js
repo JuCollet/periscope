@@ -14,7 +14,7 @@ class Sidemenu extends Component {
 
     return (
       <div id="sidemenu" className={toggleMenuClass}>
-        <i className="fa fa-bars" aria-hidden="true" onClick={_ => this.props.toggleMenu()}></i>
+        <i className="fa fa-times" aria-hidden="true" onClick={_ => this.props.toggleMenu()}></i>
         <h2>Periscope</h2>
         <ul className="bigList">
           <li><NavLink to="/gallery/albums/" onClick={_ => this.props.toggleMenu()}>Gallerie</NavLink></li>

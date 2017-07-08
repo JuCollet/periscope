@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
 import { userLogin } from "../../actions/user_login";
 import { connect } from "react-redux";
+import { Link } from"react-router-dom";
 
 class LogIn extends Component {
     
@@ -35,7 +36,8 @@ class LogIn extends Component {
                     <Field className="small-input margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
                     <button className="small-button small-button-anim" type="submit">Sign in</button>
                 </form>
-                <p className="mediumGrey">I forgot my password</p>
+                <br/>
+                <Link to="/" className="mediumGrey txt-isVeryLight">I forgot my password</Link>
             </div>
         );
     }

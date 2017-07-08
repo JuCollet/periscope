@@ -22,14 +22,18 @@
 
     z-index: 9999;
 
-    .fa-bars {
+    .fa {
         display: block;
         position: absolute;
         right: 20px;
         top: 20px;
-        color: @darkBlueGrey;
+        color: @mediumGrey;
         font-size: 20px;
         cursor: pointer;
+    }
+    
+    .fa:hover {
+        color: @darkGrey;   
     }
     
     h2 {
@@ -42,23 +46,12 @@
     transition: .3s;
     left: 0px;
     box-shadow: 1px 1px 3px 2px rgba(100,100,100,.1);
-    
-    .fa-bars {
-        transform: rotate(90deg);
-        transition: .3s;
-    }
 }
 
 .sidemenu-close {
-    transition-delay: .3s;
     transition-duration: .2s;
     left: -330px;
     box-shadow: none;
-    
-    .fa-bars {
-        transform: rotate(0deg);
-        transition: .3s;
-    }
 }
 
 @media (max-width: @screen-sm-min) {
