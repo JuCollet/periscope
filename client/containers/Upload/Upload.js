@@ -11,10 +11,13 @@ class Upload extends Component {
     }
     
     renderInput(field){
+        
+        const { meta : {touched, error, pristine } } = field;
+        
         return(
             <div>
                 <input placeholder={field.placeholder} {...field.input}></input>
-                <i className="fa fa-check"></i>
+                {touched && error ?  <i className="fa fa-times txt-red"></i> : touched && pristine ? <i className="fa fa-times txt-red"></i> : touched ? <i className="fa fa-check txt-green"></i> : ""}
             </div>
         );
     }
@@ -30,7 +33,7 @@ class Upload extends Component {
     
     onSubmit(data){
         console.log(data);
-        console.log(this.state.tags)
+        console.log(this.state.tags);
     }
     
     render(){
@@ -72,14 +75,17 @@ class Upload extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
 function validate(values){
-    const errors = {}
+    const errors = {};
+    if(values.albumName && values.albumName.length < 3){
+        errors.albumName = "Trop court";
+    }    
     return errors;
-};
+}
 
 export default reduxForm({
   validate,
