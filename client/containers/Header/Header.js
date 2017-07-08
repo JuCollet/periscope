@@ -21,7 +21,7 @@ class Header extends Component {
         <span className="title">Periscope</span>
         <div id="header-search">
           <i className="fa fa-search"></i>
-          <input type="text"></input>
+          <input className="small-input" type="text"></input>
         </div>
       </div>
       );  

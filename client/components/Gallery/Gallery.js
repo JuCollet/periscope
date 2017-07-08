@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Sidemenu from "../../containers/Sidemenu/Sidemenu";
 import Header from "../../containers/Header/Header";
+import Upload from "../../containers/Upload/Upload";
 import Albums from "../../components/Albums/Albums";
 import Photos from "../../components/Photos/Photos";
 import albumsMock from "../../mock/albums";
@@ -17,6 +18,7 @@ export default class Gallery extends Component {
                 <Header />
                 <Route path="/gallery/albums" render={ () => <Albums albums={albumsMock} /> }/>
                 <Route path="/gallery/photos" render={ () => <Photos photos={photosMock} /> }/>
+                <Route path="/gallery/upload" component={Upload} />
             </div>
         );
     }

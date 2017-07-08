@@ -6,6 +6,7 @@
 @import "../containers/Login/styles.less";
 @import "../containers/Header/styles.less";
 @import "../containers/Sidemenu/styles.less";
+@import "../containers/Upload/styles.less";
 @import "../components/Photos/styles.less";
 @import "../components/Albums/styles.less";
 @import "../components/Albums/Cards/styles.less";
@@ -34,6 +35,17 @@ html, body, #root, .container {
 
 a {
   text-decoration: none;
+  color: @darkBlueGrey;
+}
+
+a:hover {
+    color: @veryDarkGrey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0px;
+    margin: 0px 0px 20px 0px;
+    color: @darkBlueGrey;
 }
 
 h1 {
@@ -46,4 +58,12 @@ h2 {
 
 h3 {
     font-size: 1.5em;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

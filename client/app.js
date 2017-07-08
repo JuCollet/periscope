@@ -14,6 +14,7 @@ import reducers from "./reducers";
 
 import LogIn from "./containers/Login/Login";
 import Gallery from "./components/Gallery/Gallery";
+import Upload from "./containers/Upload/Upload"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(

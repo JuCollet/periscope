@@ -27,13 +27,13 @@ class LogIn extends Component {
         const { handleSubmit } = this.props;
         
         return (
-            <div id="sign-wrapper">
+            <div className="wrapper">
                 <form id="sign" onSubmit={handleSubmit(this.onSubmit)}>
                     <img src="img/logo.svg" width="150" alt="Logo Periscope"/>
                     <h1 className="margin-md-bottom margin-sm-top darkBlueGrey">Periscope</h1>
-                    <Field className="margin-md-bottom" name="username" type="text" placeholder="Login" ariaLabel="username" component={this.renderField} />
-                    <Field className="margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
-                    <button className="button-anim" type="submit">Sign in</button>
+                    <Field className="small-input margin-md-bottom" name="username" type="text" placeholder="Login" ariaLabel="username" component={this.renderField} />
+                    <Field className="small-input margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
+                    <button className="small-button small-button-anim" type="submit">Sign in</button>
                 </form>
                 <p className="mediumGrey">I forgot my password</p>
             </div>

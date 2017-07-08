@@ -1,4 +1,4 @@
-button {
+.small-button {
   display: inline-block;
   outline: none;
   padding: 10px 15px 7px 15px;
@@ -15,7 +15,7 @@ button {
   cursor: pointer;
 }
 
-.button-anim:hover{
+.small-button-anim:hover{
   animation-name: buttonAnim;
   animation-duration: .15s;
   animation-fill-mode: forwards;
@@ -27,7 +27,7 @@ button {
   to{box-shadow: inset 100px 0px 0px 0px @green;background-color:@green;border: 1px solid @green;color:#FFFFFF;}
 }
 
-input {
+.small-input {
   width: 100%;
   padding: 10px 5px 10px 10px;
   border-radius: 3px;
@@ -37,7 +37,64 @@ input {
   font-size: 16px;
 }
 
-input:focus {
+.small-input:focus {
   outline: none;
   background-color: darken(@lightGrey, 5%);
+}
+
+
+.input-group {
+  display: inline-block;
+  position: relative;
+  padding: 0px;
+  margin-bottom: 15px;
+  
+  input {
+    padding: 0px 30px 10px 0px;
+    outline: none;
+    
+    border-width: 0px 0px 2px 0px;
+    border-color: @lightGrey;
+    
+    font-size: 1.2em;
+    color: @darkBlueGrey;
+  }
+  
+  input:focus {
+    
+    border-color: @mediumGrey;
+  
+  }
+  
+  .fa {
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    
+    font-size: 1.2em;
+    color: @green;
+  }
+  
+  textarea {
+    padding: 15px;
+    border: 2px solid @lightGrey;
+    border-radius: 3px;
+    outline: none;
+    resize: none;
+    font-size: 1.2em;
+    color: @darkBlueGrey;
+  }
+  
+  textarea:focus {
+    border-color: @mediumGrey;
+  }
+  
+}
+
+#tagsDisplay span {
+  margin-right: 5px;
+  padding: 3px 7px;
+  border-radius: 3px;
+  background-color: @mediumGrey;
+  color: white;
 }
