@@ -9,7 +9,7 @@ const Albums = props => {
   return (
     <div id="albums">
       {props.albums.map(function(album, index){
-        return <NavLink to='/gallery/photos' key={index}><Card album={album} /></NavLink>;
+        return <NavLink to='/app/photos' key={index}><Card album={album} /></NavLink>;
       })}
     </div>
     );

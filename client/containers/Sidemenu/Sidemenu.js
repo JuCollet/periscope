@@ -17,9 +17,9 @@ class Sidemenu extends Component {
         <i className="fa fa-times" aria-hidden="true" onClick={_ => this.props.toggleMenu()}></i>
         <h2>Periscope</h2>
         <ul className="bigList">
-          <li><NavLink to="/gallery/albums/" onClick={_ => this.props.toggleMenu()}>Gallerie</NavLink></li>
-          <li><NavLink to="/gallery/upload/" onClick={_ => this.props.toggleMenu()}>Créer un album</NavLink></li>
-          <li><NavLink to="/gallery/account/" onClick={_ => this.props.toggleMenu()}>Mon compte</NavLink></li>
+          <li><NavLink to="/app/albums/" onClick={_ => this.props.toggleMenu()}>Gallerie</NavLink></li>
+          <li><NavLink to="/app/upload/" onClick={_ => this.props.toggleMenu()}>Créer un album</NavLink></li>
+          <li><NavLink to="/app/account/" onClick={_ => this.props.toggleMenu()}>Mon compte</NavLink></li>
           <li>Déconnexion</li>
         </ul>
       </div>

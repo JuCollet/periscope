@@ -19,7 +19,7 @@ class LogIn extends Component {
     }
     
     onSubmit(data){
-        this.props.userLogin(data, _ => {this.props.history.push('/gallery/albums')});
+        this.props.userLogin(data, _ => {this.props.history.push('/app/albums')});
         this.props.reset();
     }
     
