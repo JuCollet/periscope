@@ -6,9 +6,10 @@
 @import "../containers/Header/styles.less";
 @import "../containers/Sidemenu/styles.less";
 @import "../containers/Upload/styles.less";
-@import "../containers/Photos/styles.less";
-@import "../containers/Albums/styles.less";
-@import "../containers/Albums/Cards/styles.less";
+@import "../components/Photos/styles.less";
+@import "../components/Photo/styles.less";
+@import "../components/Albums/styles.less";
+@import "../components/Albums/Cards/styles.less";
 
 @screen-sm-min: 768px;
 @screen-md-min: 992px;
@@ -66,7 +67,11 @@ h3 {
 // MODULES //
 
 .wrapper {
-    height: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top:0px;
+    bottom:0px;
     padding: 20px 20px 80px 20px;
 }
 
@@ -132,6 +137,7 @@ h3 {
     padding: 3px 7px;
     border-radius: 3px;
     background-color: @mediumGrey;
+    font-size: .9em;
     color: white;    
 }
 

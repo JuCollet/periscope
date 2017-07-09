@@ -12,17 +12,19 @@ import './styles/styles.less';
 
 import reducers from "./reducers";
 
-import Sidemenu from "./containers/Sidemenu/Sidemenu";
-import Header from "./containers/Header/Header";
-
-import Albums from "./containers/Albums/Albums";
-import Photos from "./containers/Photos/Photos";
 import albumsMock from "./mock/albums";
 import photosMock from "./mock/photos";
+
+import Sidemenu from "./containers/Sidemenu/Sidemenu";
+import Header from "./containers/Header/Header";
 
 import LogIn from "./containers/Login/Login";
 import Upload from "./containers/Upload/Upload";
 import Account from "./containers/Account/Account";
+
+import Albums from "./components/Albums/Albums";
+import Photos from "./components/Photos/Photos";
+import Photo from "./components/Photo/Photo";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(
@@ -40,6 +42,7 @@ ReactDOM.render(
                 <Route path="/app/Account" component={Account} />
                 <Route path="/app/albums" render={ () => <Albums albums={albumsMock} /> } />
                 <Route path="/app/photos" render={ () => <Photos photos={photosMock} /> } />
+                <Route path="/app/photo/:id" component={Photo} />
             </div>
         </BrowserRouter>
     </Provider>, 
