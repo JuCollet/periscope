@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Account extends Component {
     render(){
         return (
-            <div className="wrapper">
+            <div className="wrapper-flex-center">
                 <div className="contentBox">
                     <div className="contentBox-image bkg-darkBlueGrey">
                     </div>

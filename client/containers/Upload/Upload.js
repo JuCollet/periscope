@@ -38,7 +38,7 @@ class Upload extends Component {
     
     render(){
         return(
-            <div className="wrapper">
+            <div className="wrapper-flex-center">
                 <div className="contentBox">
                     <div className="contentBox-image bkg-darkBlueGrey">
                     </div>
@@ -61,11 +61,11 @@ class Upload extends Component {
                                 <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
                             </div>
                             <br/>
-                            <div className="tagsDisplay">
+                            <div className="UploadTagsDisplay">
                             {this.renderTags()}
                                 {this.state.tags.map((tag, index) => {
                                     return (
-                                        <span key={index}>#{tag}</span>
+                                        <span className="tag" key={index}>#{tag}</span>
                                     );
                                 })}
                             </div>
