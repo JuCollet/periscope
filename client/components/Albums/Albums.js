@@ -1,18 +1,44 @@
 'use strict';
 
-import React from "react";
-import { Route, NavLink } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route, NavLink } from "react-router-dom";
+import { albumsFetch } from "../../actions/albums_fetch";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import _ from "lodash";
 
 import Card from "./Cards/Cards"
 
-const Albums = props => {
-  return (
-    <div id="albums">
-      {props.albums.map(function(album, index){
-        return <NavLink to='/app/photos' key={index}><Card album={album} /></NavLink>;
-      })}
-    </div>
-    );
-};
+class Albums extends Component {
+  
+  componentDidMount(){
+    this.props.albumsFetch();
+  }
+  
+  renderCard(){
+    return _.map(this.props.albums, album => {
+      return <NavLink to='/app/photos' key={album._id}><Card album={album} /></NavLink>;
+    });
+  }
 
-export default Albums;
+  render(){
+    return (
+      <div id="albums">
+        {this.renderCard()}
+      </div>
+    );  
+  }
+  
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ albumsFetch }, dispatch);
+}
+
+function mapStateToProps(state){
+  return {
+    albums : state.albums
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Albums);

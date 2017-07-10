@@ -19,7 +19,7 @@ const Card = props => {
           <div className="card-img-infos">{props.album.photos.length} Photos</div>           
       </div>
       <div className="card-body">
-        <div className="card-body-title">{props.album.title}</div>
+        <div className="card-body-title">{props.album.name}</div>
         <div className="card-body-text">{props.album.description}</div>
       </div>
       <div className="card-buttons">

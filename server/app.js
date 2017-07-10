@@ -11,9 +11,13 @@ require('./db');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, '/../dist')));
-
 app.use('/albums', albumRouter);
+
+app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
+});
 
 app.listen(process.env.PORT || 8080, function(){
   console.log('Server running');
