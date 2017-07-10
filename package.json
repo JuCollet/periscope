@@ -33,8 +33,10 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
+    "mongoose": "^4.11.1",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
