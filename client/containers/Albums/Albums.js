@@ -1,13 +1,13 @@
 'use strict';
 
 import React, { Component } from "react";
-import { Route, NavLink } from "react-router-dom";
-import { albumsFetch } from "../../actions/albums_fetch";
+import { NavLink } from "react-router-dom";
+import { albumsFetch } from "../../actions/albums";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-import Card from "./Cards/Cards"
+import Card from "../../components/Cards/Cards";
 
 class Albums extends Component {
   

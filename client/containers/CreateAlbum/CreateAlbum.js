@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createAlbum } from '../../actions/albums';
+import { bindActionCreators } from 'redux'; 
 
 class Upload extends Component {
     
@@ -32,8 +35,15 @@ class Upload extends Component {
     }
     
     onSubmit(data){
-        console.log(data);
-        console.log(this.state.tags);
+        const newAlbum = {
+            name: data.albumName,
+            photographer: data.photographerName,
+            description: data.description,
+            tags: this.state.tags
+        };
+        this.props.createAlbum(newAlbum, _ => {
+            this.props.history.push('/app/albums');
+        });
     }
     
     render(){
@@ -43,7 +53,7 @@ class Upload extends Component {
                     <div className="contentBox-image bkg-darkBlueGrey">
                     </div>
                     <div className="contentBox-body">
-                        <h2>Nouvel album</h2>
+                        <h2>Créer un album</h2>
                         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                             <div className="input-group">
                                 <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
@@ -87,7 +97,11 @@ function validate(values){
     return errors;
 }
 
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ createAlbum }, dispatch);
+}
+
 export default reduxForm({
   validate,
   form: 'uploadForm'
-})(Upload);
+})(connect(null, mapDispatchToProps)(Upload));

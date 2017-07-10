@@ -19,10 +19,10 @@ import Sidemenu from "./containers/Sidemenu/Sidemenu";
 import Header from "./containers/Header/Header";
 
 import LogIn from "./containers/Login/Login";
-import Upload from "./containers/Upload/Upload";
+import CreateAlbum from "./containers/CreateAlbum/CreateAlbum";
 import Account from "./containers/Account/Account";
+import Albums from "./containers/Albums/Albums";
 
-import Albums from "./components/Albums/Albums";
 import Photos from "./components/Photos/Photos";
 import Photo from "./components/Photo/Photo";
 
@@ -38,7 +38,7 @@ ReactDOM.render(
                 <Route exact path="/" component={LogIn} />
                 <Route path="/app/" component={Header} />
                 <Route path="/app/" component={Sidemenu} />
-                <Route path="/app/Upload" component={Upload} />
+                <Route path="/app/Upload" component={CreateAlbum} />
                 <Route path="/app/Account" component={Account} />
                 <Route path="/app/albums" render={ () => <Albums albums={albumsMock} /> } />
                 <Route path="/app/photos" render={ () => <Photos photos={photosMock} /> } />

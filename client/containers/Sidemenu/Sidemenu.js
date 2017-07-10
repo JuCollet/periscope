@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { toggleMenu } from "../../actions/menu_toggle";
+import { toggleMenu } from "../../actions/menu";
 
 class Sidemenu extends Component {
   

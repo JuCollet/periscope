@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
-import { userLogin } from "../../actions/user_login";
+import { userLogin } from "../../actions/user";
 import { connect } from "react-redux";
 import { Link } from"react-router-dom";
 
