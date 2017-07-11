@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 
 import Loading from "../../components/Loading/Loading";
-import Card from "../../components/Cards/Cards";
+import Card from "../Cards/Cards";
 
 class Albums extends Component {
   
@@ -16,6 +16,13 @@ class Albums extends Component {
     this.props.albumsFetch();
   }
   
+  isEmpty(obj){
+    for(var key in obj){
+      if(obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  }
+
   renderCard(){
     return _.map(this.props.albums, album => {
       return <NavLink to={`/app/photos/${album._id}`} key={album._id}><Card album={album} /></NavLink>;
@@ -24,7 +31,7 @@ class Albums extends Component {
 
   render(){
 
-    if(!this.props.albums){
+    if(this.isEmpty(this.props.albums)){
       return <Loading />;
     }
     

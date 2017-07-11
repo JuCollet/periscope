@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { albumFetch } from "../../actions/albums";
-import Loading from "../Loading/Loading";
-import Tags from "../Tags/Tags";
+import Loading from "../../components/Loading/Loading";
+import Tags from "../../components/Tags/Tags";
 
 class Photos extends Component {
   
@@ -18,7 +18,7 @@ class Photos extends Component {
     const { album } = this.props;
     
     if(!album){
-      return <Loading />
+      return <Loading />;
     }
     
     return (

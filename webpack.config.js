@@ -4,7 +4,7 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry : {
-        app: './client/app.js',
+        app: './client/index.js',
         vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom']
     },
     output : {
