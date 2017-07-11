@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createAlbum } from '../../actions/albums';
-import { bindActionCreators } from 'redux'; 
+import { bindActionCreators } from 'redux';
+import Tags from "../../components/Tags/Tags";
 
 class Upload extends Component {
     
@@ -12,6 +13,10 @@ class Upload extends Component {
         this.errors = {errors:false};
         this.renderTags = this.renderTags.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+    
+    componentWillReceiveProps(){
+        this.renderTags();
     }
     
     renderInput(field){
@@ -73,12 +78,7 @@ class Upload extends Component {
                             </div>
                             <br/>
                             <div className="UploadTagsDisplay">
-                            {this.renderTags()}
-                                {this.state.tags.map((tag, index) => {
-                                    return (
-                                        <span className="tag" key={index}>#{tag}</span>
-                                    );
-                                })}
+                            <Tags tags={this.state.tags} />
                             </div>
                             <br/>
                             <button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button>

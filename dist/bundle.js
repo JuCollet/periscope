@@ -10854,6 +10854,10 @@ var _Loading = __webpack_require__(114);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
+var _Tags = __webpack_require__(583);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10905,21 +10909,7 @@ var Photos = function (_Component) {
           { className: "albumDescription" },
           album.description
         ),
-        _react2.default.createElement(
-          "span",
-          { className: "tag" },
-          "#Hestia"
-        ),
-        _react2.default.createElement(
-          "span",
-          { className: "tag" },
-          "#Solidarit\xE9"
-        ),
-        _react2.default.createElement(
-          "span",
-          { className: "tag" },
-          "#Solitude"
-        ),
+        _react2.default.createElement(_Tags2.default, { tags: album.tags }),
         _react2.default.createElement("hr", { className: "albumHr" }),
         _react2.default.createElement(
           "div",
@@ -11082,7 +11072,7 @@ var Albums = function (_Component) {
       return _lodash2.default.map(this.props.albums, function (album) {
         return _react2.default.createElement(
           _reactRouterDom.NavLink,
-          { to: "/app/photos", key: album._id },
+          { to: "/app/photos/" + album._id, key: album._id },
           _react2.default.createElement(_Cards2.default, { album: album })
         );
       });
@@ -11146,6 +11136,10 @@ var _albums = __webpack_require__(68);
 
 var _redux = __webpack_require__(11);
 
+var _Tags = __webpack_require__(583);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11170,6 +11164,11 @@ var Upload = function (_Component) {
     }
 
     _createClass(Upload, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps() {
+            this.renderTags();
+        }
+    }, {
         key: 'renderInput',
         value: function renderInput(field) {
             var _field$meta = field.meta,
@@ -11260,15 +11259,7 @@ var Upload = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'UploadTagsDisplay' },
-                                this.renderTags(),
-                                this.state.tags.map(function (tag, index) {
-                                    return _react2.default.createElement(
-                                        'span',
-                                        { className: 'tag', key: index },
-                                        '#',
-                                        tag
-                                    );
-                                })
+                                _react2.default.createElement(_Tags2.default, { tags: this.state.tags })
                             ),
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
@@ -13957,6 +13948,44 @@ exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: n
 
 // exports
 
+
+/***/ }),
+
+/***/ 583:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lodash = __webpack_require__(121);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+
+    return _react2.default.createElement(
+        "div",
+        null,
+        props.tags.map(function (tag, index) {
+            return _react2.default.createElement(
+                "span",
+                { className: "tag", key: index },
+                "#",
+                tag
+            );
+        })
+    );
+};
 
 /***/ }),
 

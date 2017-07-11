@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { albumFetch } from "../../actions/albums";
 import Loading from "../Loading/Loading";
+import Tags from "../Tags/Tags";
 
 class Photos extends Component {
   
@@ -25,9 +26,7 @@ class Photos extends Component {
         <span className="albumTitle">{album.name}</span>
         <span className="albumPhotographer">par {album.photographer}</span>
         <span className="albumDescription">{album.description}</span>
-        <span className="tag">#Hestia</span>
-        <span className="tag">#Solidarité</span>
-        <span className="tag">#Solitude</span>
+        <Tags tags={album.tags} />
         <hr className="albumHr" />
         <div id="photos">
           {this.props.album.photos.map(function(photo, index){

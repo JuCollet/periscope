@@ -18,7 +18,7 @@ class Albums extends Component {
   
   renderCard(){
     return _.map(this.props.albums, album => {
-      return <NavLink to='/app/photos' key={album._id}><Card album={album} /></NavLink>;
+      return <NavLink to={`/app/photos/${album._id}`} key={album._id}><Card album={album} /></NavLink>;
     });
   }
 
