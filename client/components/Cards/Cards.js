@@ -28,6 +28,8 @@ class Card extends Component {
     let data = new FormData();
     
     for (let i = 0; i < dt.files.length; i++) {
+      console.log(dt.files[i].type)
+      if(dt.files[i].type === "")
       data.append('photos', dt.files[i], dt.files[i].name);
     }
     

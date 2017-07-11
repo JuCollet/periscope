@@ -9,6 +9,7 @@
 @import "../components/Photos/styles.less";
 @import "../components/Photo/styles.less";
 @import "../components/Cards/styles.less";
+@import "../components/Notification/styles.less";
 @import "../containers/Albums/styles.less";
 
 @screen-sm-min: 768px;
@@ -66,32 +67,6 @@ h3 {
 
 // MODULES //
 
-.wrapper {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top:0px;
-    bottom:0px;
-    padding: 20px 20px 80px 20px;
-}
-
-@media (min-width: @screen-sm-min){
-    
-    .wrapper {
-        padding-bottom: 0px;
-        padding: 80px 20px 20px 20px;  
-    }
-
-}
-
-.wrapper-flex-center {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .contentBox {
     display: flex;
     flex-direction: column;
@@ -131,6 +106,39 @@ h3 {
     }
 }
 
+.loadingBar {
+	height: 15px;
+	width: 150px;
+	margin-top: 10px;
+
+	span {
+        display:inline-block;
+    	height:100%;
+    	width:100%;
+		border-radius: 20px;
+    	background-color: darken(@green, 20%);	    
+		background-image: linear-gradient(
+    		-45deg,
+    		@green 25%,
+    		transparent 25%,
+    		transparent 50%,
+    		@green 50%,
+    		@green 75%,
+    		transparent 75%,
+    		transparent
+	    );
+    	background-size:50px 50px;
+    	animation:move 2s linear infinite;
+	}
+	
+    @keyframes move{
+        0% {background-position: 0 0;}
+        100% {background-position: 50px 50px;}
+    }
+
+}
+
+
 .tag {
     display: inline-block;
     margin: 0px 5px 5px 0px;
@@ -141,6 +149,33 @@ h3 {
     color: white;    
 }
 
+.wrapper {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top:0px;
+    bottom:0px;
+    padding: 20px 20px 80px 20px;
+}
+
+@media (min-width: @screen-sm-min){
+    
+    .wrapper {
+        padding-bottom: 0px;
+        padding: 80px 20px 20px 20px;  
+    }
+
+}
+
+.wrapper-flex-center {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 // STATES //
 
@@ -150,6 +185,10 @@ h3 {
 
 .txt-isVeryLight {
     opacity: .3;
+}
+
+.txt-white {
+    color: white;
 }
 
 .txt-green {
@@ -166,6 +205,14 @@ h3 {
 
 .txt-mediumGrey {
     color: @mediumGrey;
+}
+
+.bkg-green {
+    background-color: @green;
+}
+
+.bkg-lightGrey {
+    background-color: @lightGrey;
 }
 
 .bkg-darkBlueGrey {

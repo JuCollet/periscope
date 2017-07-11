@@ -30,7 +30,7 @@ class LogIn extends Component {
         return (
             <div className="wrapper-flex-center">
                 <form id="sign" onSubmit={handleSubmit(this.onSubmit)}>
-                    <img src="img/logo.svg" width="150" alt="Logo Periscope"/>
+                    <img src="/img/logo.svg" width="150" alt="Logo Periscope"/>
                     <h1 className="margin-md-bottom margin-sm-top darkBlueGrey">Periscope</h1>
                     <Field className="small-input margin-md-bottom" name="username" type="text" placeholder="Login" ariaLabel="username" component={this.renderField} />
                     <Field className="small-input margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />

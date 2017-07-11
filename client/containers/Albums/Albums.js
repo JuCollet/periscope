@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from "lodash";
 
+import Loading from "../../components/Loading/Loading";
 import Card from "../../components/Cards/Cards";
 
 class Albums extends Component {
@@ -22,6 +23,13 @@ class Albums extends Component {
   }
 
   render(){
+    
+    console.log(this.props.albums)
+    
+    if(!this.props.albums){
+      return <Loading />;
+    }
+    
     return (
       <div id="albums">
         {this.renderCard()}
