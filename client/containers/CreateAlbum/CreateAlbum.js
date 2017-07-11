@@ -9,6 +9,7 @@ class Upload extends Component {
     constructor(props){
         super(props);
         this.state = {tags:["tags"]};
+        this.errors = {errors:false};
         this.renderTags = this.renderTags.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -80,7 +81,7 @@ class Upload extends Component {
                                 })}
                             </div>
                             <br/>
-                            <button className="small-button small-button-anim" type="submit">Envoyer</button>
+                            <button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button>
                         </form>
                     </div>
                 </div>
@@ -91,9 +92,12 @@ class Upload extends Component {
 
 function validate(values){
     const errors = {};
-    if(values.albumName && values.albumName.length < 3){
-        errors.albumName = "Trop court";
-    }    
+    if(!values.albumName || values.albumName && values.albumName.length < 3){
+        errors.albumName = "Erreur";
+    }
+    if(!values.photographerName || values.photographerName && values.photographerName.length < 3){
+        errors.photographerName = "Erreur";
+    }   
     return errors;
 }
 

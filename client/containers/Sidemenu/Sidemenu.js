@@ -14,12 +14,12 @@ class Sidemenu extends Component {
 
     return (
       <div id="sidemenu" className={toggleMenuClass}>
-        <i className="fa fa-times" aria-hidden="true" onClick={_ => this.props.toggleMenu()}></i>
+        <i className="fa fa-times" aria-hidden="true" onClick={ _ => this.props.toggleMenu() }></i>
         <h2>Periscope</h2>
         <ul className="bigList">
-          <li><NavLink to="/app/albums/" onClick={_ => this.props.toggleMenu()}>Gallerie</NavLink></li>
-          <li><NavLink to="/app/upload/" onClick={_ => this.props.toggleMenu()}>Créer un album</NavLink></li>
-          <li><NavLink to="/app/account/" onClick={_ => this.props.toggleMenu()}>Mon compte</NavLink></li>
+          <li><NavLink to="/app/albums/" onClick={ _ => this.props.toggleMenu() }>Gallerie</NavLink></li>
+          <li><NavLink to="/app/upload/" onClick={ _ => this.props.toggleMenu() }>Créer une collection</NavLink></li>
+          <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
           <li>Déconnexion</li>
         </ul>
       </div>

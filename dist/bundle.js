@@ -1,17 +1,85 @@
 webpackJsonp([0],{
 
+/***/ 112:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.albumsFetch = albumsFetch;
+exports.createAlbum = createAlbum;
+
+var _axios = __webpack_require__(227);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actiontypes = __webpack_require__(31);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
+
+function albumsFetch() {
+
+    var albums = _axios2.default.get(baseUrl);
+
+    return {
+        type: _actiontypes.ALBUMS_FETCH,
+        payload: albums
+    };
+}
+
+function createAlbum(album, cb) {
+
+    var createdAlbum = _axios2.default.post(baseUrl, album).then(function (_) {
+        return cb();
+    });
+
+    return {
+        type: _actiontypes.ALBUM_CREATE,
+        payload: createdAlbum
+    };
+}
+
+/***/ }),
+
 /***/ 113:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.toggleMenu = toggleMenu;
+
+var _actiontypes = __webpack_require__(31);
+
+function toggleMenu() {
+    return {
+        type: _actiontypes.TOGGLE_MENU,
+        payload: null
+    };
+}
+
+/***/ }),
+
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 var settle = __webpack_require__(234);
 var buildURL = __webpack_require__(237);
 var parseHeaders = __webpack_require__(243);
 var isURLSameOrigin = __webpack_require__(241);
-var createError = __webpack_require__(116);
+var createError = __webpack_require__(117);
 var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(236);
 
 module.exports = function xhrAdapter(config) {
@@ -182,7 +250,7 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,7 +277,7 @@ module.exports = Cancel;
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -221,7 +289,7 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -246,7 +314,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,7 +332,7 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -347,7 +415,7 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9785,7 +9853,7 @@ LazyWrapper.prototype.clone=lazyClone;LazyWrapper.prototype.reverse=lazyReverse;
 lodash.prototype.at=wrapperAt;lodash.prototype.chain=wrapperChain;lodash.prototype.commit=wrapperCommit;lodash.prototype.next=wrapperNext;lodash.prototype.plant=wrapperPlant;lodash.prototype.reverse=wrapperReverse;lodash.prototype.toJSON=lodash.prototype.valueOf=lodash.prototype.value=wrapperValue;// Add lazy aliases.
 lodash.prototype.first=lodash.prototype.head;if(symIterator){lodash.prototype[symIterator]=wrapperToIterator;}return lodash;};/*--------------------------------------------------------------------------*/// Export lodash.
 var _=runInContext();// Some AMD build optimizers, like r.js, check for condition patterns like:
-if("function"=='function'&&_typeof(__webpack_require__(204))=='object'&&__webpack_require__(204)){// Expose Lodash on the global object to prevent errors when Lodash is
+if("function"=='function'&&_typeof(__webpack_require__(205))=='object'&&__webpack_require__(205)){// Expose Lodash on the global object to prevent errors when Lodash is
 // loaded by a script tag in the presence of an AMD loader.
 // See http://requirejs.org/docs/errors.html#mismatch for more details.
 // Use `_.noConflict` to remove Lodash from the global object.
@@ -9801,7 +9869,7 @@ root._=_;}}).call(undefined);
 
 /***/ }),
 
-/***/ 12:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9809,7 +9877,7 @@ root._=_;}}).call(undefined);
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(117);
+var bind = __webpack_require__(118);
 var isBuffer = __webpack_require__(245);
 
 /*global toString:true*/
@@ -10110,7 +10178,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 197:
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10348,7 +10416,7 @@ module.exports = isArguments;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -10708,7 +10776,7 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10920,11 +10988,292 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(15);
+var _reactRouterDom = __webpack_require__(30);
+
+var _albums = __webpack_require__(112);
+
+var _redux = __webpack_require__(12);
 
 var _reactRedux = __webpack_require__(10);
 
-var _menu = __webpack_require__(586);
+var _lodash = __webpack_require__(120);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _Cards = __webpack_require__(222);
+
+var _Cards2 = _interopRequireDefault(_Cards);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Albums = function (_Component) {
+  _inherits(Albums, _Component);
+
+  function Albums() {
+    _classCallCheck(this, Albums);
+
+    return _possibleConstructorReturn(this, (Albums.__proto__ || Object.getPrototypeOf(Albums)).apply(this, arguments));
+  }
+
+  _createClass(Albums, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.albumsFetch();
+    }
+  }, {
+    key: "renderCard",
+    value: function renderCard() {
+      return _lodash2.default.map(this.props.albums, function (album) {
+        return _react2.default.createElement(
+          _reactRouterDom.NavLink,
+          { to: "/app/photos", key: album._id },
+          _react2.default.createElement(_Cards2.default, { album: album })
+        );
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { id: "albums" },
+        this.renderCard()
+      );
+    }
+  }]);
+
+  return Albums;
+}(_react.Component);
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({ albumsFetch: _albums.albumsFetch }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    albums: state.albums
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Albums);
+
+/***/ }),
+
+/***/ 210:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reduxForm = __webpack_require__(47);
+
+var _reactRedux = __webpack_require__(10);
+
+var _albums = __webpack_require__(112);
+
+var _redux = __webpack_require__(12);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Upload = function (_Component) {
+    _inherits(Upload, _Component);
+
+    function Upload(props) {
+        _classCallCheck(this, Upload);
+
+        var _this = _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).call(this, props));
+
+        _this.state = { tags: ["tags"] };
+        _this.errors = { errors: false };
+        _this.renderTags = _this.renderTags.bind(_this);
+        _this.onSubmit = _this.onSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Upload, [{
+        key: 'renderInput',
+        value: function renderInput(field) {
+            var _field$meta = field.meta,
+                touched = _field$meta.touched,
+                error = _field$meta.error,
+                pristine = _field$meta.pristine;
+
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('input', _extends({ placeholder: field.placeholder }, field.input)),
+                touched && error ? _react2.default.createElement('i', { className: 'fa fa-times txt-red' }) : touched && pristine ? _react2.default.createElement('i', { className: 'fa fa-times txt-red' }) : touched ? _react2.default.createElement('i', { className: 'fa fa-check txt-green' }) : ""
+            );
+        }
+    }, {
+        key: 'renderTags',
+        value: function renderTags(values) {
+            if (values) {
+                var tags = values.currentTarget.value.replace(/ /g, '').split(",");
+                this.setState({
+                    tags: tags.length === 1 && tags[0] === "" ? ["tags"] : tags
+                });
+            }
+        }
+    }, {
+        key: 'onSubmit',
+        value: function onSubmit(data) {
+            var _this2 = this;
+
+            var newAlbum = {
+                name: data.albumName,
+                photographer: data.photographerName,
+                description: data.description,
+                tags: this.state.tags
+            };
+            this.props.createAlbum(newAlbum, function (_) {
+                _this2.props.history.push('/app/albums');
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'wrapper-flex-center' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'contentBox' },
+                    _react2.default.createElement('div', { className: 'contentBox-image bkg-darkBlueGrey' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'contentBox-body' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            'Cr\xE9er un album'
+                        ),
+                        _react2.default.createElement(
+                            'form',
+                            { onSubmit: this.props.handleSubmit(this.onSubmit) },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                _react2.default.createElement(_reduxForm.Field, { name: 'albumName', placeholder: 'Nom de l\'album', component: this.renderInput })
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                _react2.default.createElement(_reduxForm.Field, { name: 'photographerName', placeholder: 'Nom du photographe', component: this.renderInput })
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                _react2.default.createElement(_reduxForm.Field, { name: 'description', component: function component(field) {
+                                        return _react2.default.createElement('textarea', _extends({ rows: '3', placeholder: 'Description' }, field.input));
+                                    } })
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                _react2.default.createElement(_reduxForm.Field, { name: 'tags', placeholder: 'Tags', onChange: this.renderTags, component: this.renderInput })
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'UploadTagsDisplay' },
+                                this.renderTags(),
+                                this.state.tags.map(function (tag, index) {
+                                    return _react2.default.createElement(
+                                        'span',
+                                        { className: 'tag', key: index },
+                                        '#',
+                                        tag
+                                    );
+                                })
+                            ),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'button',
+                                { disabled: !this.props.valid, className: 'small-button small-button-anim', type: 'submit' },
+                                'Envoyer'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Upload;
+}(_react.Component);
+
+function validate(values) {
+    var errors = {};
+    if (!values.albumName || values.albumName && values.albumName.length < 3) {
+        errors.albumName = "Erreur";
+    }
+    if (!values.photographerName || values.photographerName && values.photographerName.length < 3) {
+        errors.photographerName = "Erreur";
+    }
+    return errors;
+}
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ createAlbum: _albums.createAlbum }, dispatch);
+}
+
+exports.default = (0, _reduxForm.reduxForm)({
+    validate: validate,
+    form: 'uploadForm'
+})((0, _reactRedux.connect)(null, mapDispatchToProps)(Upload));
+
+/***/ }),
+
+/***/ 211:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(12);
+
+var _reactRedux = __webpack_require__(10);
+
+var _menu = __webpack_require__(113);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10992,7 +11341,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 210:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11012,9 +11361,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reduxForm = __webpack_require__(47);
 
-var _redux = __webpack_require__(15);
+var _redux = __webpack_require__(12);
 
-var _user = __webpack_require__(584);
+var _user = __webpack_require__(220);
 
 var _reactRedux = __webpack_require__(10);
 
@@ -11116,7 +11465,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 211:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11132,13 +11481,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(15);
+var _redux = __webpack_require__(12);
 
 var _reactRouterDom = __webpack_require__(30);
 
 var _reactRedux = __webpack_require__(10);
 
-var _menu = __webpack_require__(586);
+var _menu = __webpack_require__(113);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11197,7 +11546,7 @@ var Sidemenu = function (_Component) {
               { to: "/app/upload/", onClick: function onClick(_) {
                   return _this2.props.toggleMenu();
                 } },
-              "Cr\xE9er un album"
+              "Cr\xE9er une collection"
             )
           ),
           _react2.default.createElement(
@@ -11240,7 +11589,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11384,7 +11733,7 @@ module.exports = albumsMock;
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11492,7 +11841,7 @@ module.exports = photosMock;
 
 /***/ }),
 
-/***/ 215:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11502,7 +11851,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redux = __webpack_require__(15);
+var _redux = __webpack_require__(12);
 
 var _reduxForm = __webpack_require__(47);
 
@@ -11531,7 +11880,7 @@ exports.default = rootReducer;
 
 /***/ }),
 
-/***/ 216:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11579,7 +11928,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 217:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -11593,7 +11942,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(203)(content, options);
+var update = __webpack_require__(204)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11611,7 +11960,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -11625,7 +11974,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(203)(content, options);
+var update = __webpack_require__(204)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11639,6 +11988,35 @@ if(false) {
 	}
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 220:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.userLogin = userLogin;
+
+var _actiontypes = __webpack_require__(31);
+
+var _users = __webpack_require__(223);
+
+function userLogin(user, cb) {
+
+    if (user.username === _users.usersMock.login && user.password === _users.usersMock.password) {
+        cb();
+    }
+
+    return {
+        type: _actiontypes.USER_LOGIN,
+        payload: _users.usersMock
+    };
 }
 
 /***/ }),
@@ -11659,43 +12037,43 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = __webpack_require__(10);
 
-var _redux = __webpack_require__(15);
+var _redux = __webpack_require__(12);
 
 var _reactRouterDom = __webpack_require__(30);
 
-var _reduxPromise = __webpack_require__(216);
+var _reduxPromise = __webpack_require__(217);
 
 var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
+__webpack_require__(219);
+
 __webpack_require__(218);
 
-__webpack_require__(217);
-
-var _reducers = __webpack_require__(215);
+var _reducers = __webpack_require__(216);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _albums = __webpack_require__(213);
+var _albums = __webpack_require__(214);
 
 var _albums2 = _interopRequireDefault(_albums);
 
-var _photos = __webpack_require__(214);
+var _photos = __webpack_require__(215);
 
 var _photos2 = _interopRequireDefault(_photos);
 
-var _Sidemenu = __webpack_require__(211);
+var _Sidemenu = __webpack_require__(213);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
-var _Header = __webpack_require__(209);
+var _Header = __webpack_require__(211);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Login = __webpack_require__(210);
+var _Login = __webpack_require__(212);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _CreateAlbum = __webpack_require__(587);
+var _CreateAlbum = __webpack_require__(210);
 
 var _CreateAlbum2 = _interopRequireDefault(_CreateAlbum);
 
@@ -11703,7 +12081,7 @@ var _Account = __webpack_require__(208);
 
 var _Account2 = _interopRequireDefault(_Account);
 
-var _Albums = __webpack_require__(582);
+var _Albums = __webpack_require__(209);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
@@ -11744,6 +12122,153 @@ _reactDom2.default.render(_react2.default.createElement(
         )
     )
 ), document.getElementById('root'));
+
+/***/ }),
+
+/***/ 222:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Card = function (_Component) {
+  _inherits(Card, _Component);
+
+  function Card() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Card);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Card.__proto__ || Object.getPrototypeOf(Card)).call.apply(_ref, [this].concat(args))), _this), _this.cardStyle = function (_) {
+      if (_this.props.album.photos.length > 0) {
+        return { backgroundImage: 'url(' + _this.props.album.photos[0].thumbUrl + ')' };
+      } else {
+        return { backgroundImage: 'url(/img/nophoto.png)' };
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Card, [{
+    key: 'onDragOver',
+    value: function onDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add("dragUploadDragOver");
+      console.log(this.props.album._id);
+    }
+  }, {
+    key: 'onDragLeave',
+    value: function onDragLeave(e) {
+      e.currentTarget.classList.remove("dragUploadDragOver");
+    }
+  }, {
+    key: 'onDrop',
+    value: function onDrop(e) {
+      e.preventDefault();
+      var dt = e.dataTransfer;
+      var data = new FormData();
+
+      for (var i = 0; i < dt.files.length; i++) {
+        data.append('photos', dt.files[i], dt.files[i].name);
+      }
+
+      e.currentTarget.classList.remove("dragUploadDragOver");
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      // 86400000ms = 1 day;
+      var date = new Date(this.props.album.updatedAt);
+      var newBadge = Date.now() - date.getTime() < 86400000 ? _react2.default.createElement(
+        'div',
+        { className: 'card-img-infos red' },
+        'NEW'
+      ) : "";
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'card' },
+        _react2.default.createElement(
+          'div',
+          { id: 'dropzone', onDrop: function onDrop(e) {
+              return _this2.onDrop(e);
+            }, onDragOver: function onDragOver(e) {
+              return _this2.onDragOver(e);
+            }, onDragLeave: function onDragLeave(e) {
+              return _this2.onDragLeave(e);
+            } },
+          _react2.default.createElement(
+            'div',
+            { className: 'dropLimits' },
+            _react2.default.createElement('i', { className: 'fa fa-paper-plane' })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'card-img-wrapper' },
+          _react2.default.createElement('div', { className: 'card-img', style: this.cardStyle() }),
+          newBadge,
+          _react2.default.createElement(
+            'div',
+            { className: 'card-img-infos' },
+            this.props.album.photos.length,
+            ' Photos'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'card-body' },
+          _react2.default.createElement(
+            'div',
+            { className: 'card-body-title' },
+            this.props.album.name
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'card-body-text' },
+            this.props.album.description
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'card-buttons' },
+          _react2.default.createElement('i', { className: 'fa fa-heart' }),
+          _react2.default.createElement('i', { className: 'fa fa-arrow-down' }),
+          _react2.default.createElement('i', { className: 'fa fa-share-alt' })
+        )
+      );
+    }
+  }]);
+
+  return Card;
+}(_react.Component);
+
+exports.default = Card;
 
 /***/ }),
 
@@ -11789,7 +12314,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(31);
 
-var _lodash = __webpack_require__(119);
+var _lodash = __webpack_require__(120);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -11867,8 +12392,8 @@ module.exports = __webpack_require__(228);
 "use strict";
 
 
-var utils = __webpack_require__(12);
-var bind = __webpack_require__(117);
+var utils = __webpack_require__(13);
+var bind = __webpack_require__(118);
 var Axios = __webpack_require__(230);
 var defaults = __webpack_require__(68);
 
@@ -11903,9 +12428,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(114);
+axios.Cancel = __webpack_require__(115);
 axios.CancelToken = __webpack_require__(229);
-axios.isCancel = __webpack_require__(115);
+axios.isCancel = __webpack_require__(116);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -11926,7 +12451,7 @@ module.exports.default = axios;
 "use strict";
 
 
-var Cancel = __webpack_require__(114);
+var Cancel = __webpack_require__(115);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -11991,7 +12516,7 @@ module.exports = CancelToken;
 
 
 var defaults = __webpack_require__(68);
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 var InterceptorManager = __webpack_require__(231);
 var dispatchRequest = __webpack_require__(232);
 var isAbsoluteURL = __webpack_require__(240);
@@ -12083,7 +12608,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -12142,9 +12667,9 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 var transformData = __webpack_require__(235);
-var isCancel = __webpack_require__(115);
+var isCancel = __webpack_require__(116);
 var defaults = __webpack_require__(68);
 
 /**
@@ -12238,7 +12763,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var createError = __webpack_require__(116);
+var createError = __webpack_require__(117);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -12265,7 +12790,7 @@ module.exports = function settle(resolve, reject, response) {
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 /**
  * Transform the data for a request or a response
@@ -12334,7 +12859,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 function encode(val) {
   return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
@@ -12422,7 +12947,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -12505,7 +13030,7 @@ module.exports = function isAbsoluteURL(url) {
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 module.exports = utils.isStandardBrowserEnv() ?
 
@@ -12575,7 +13100,7 @@ function nonStandardBrowserEnv() {
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -12594,7 +13119,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 
 /**
  * Parse headers into an object
@@ -12766,7 +13291,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Available under MIT license <https://lodash.com/license>
  */
 var baseFor = __webpack_require__(561),
-    isArguments = __webpack_require__(197),
+    isArguments = __webpack_require__(198),
     keysIn = __webpack_require__(562);
 
 /** `Object#toString` result references. */
@@ -12935,7 +13460,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var isArguments = __webpack_require__(197),
+var isArguments = __webpack_require__(198),
     isArray = __webpack_require__(563);
 
 /** Used to detect unsigned integer values. */
@@ -13347,12 +13872,12 @@ module.exports = function (css) {
 /***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(118)(undefined);
+exports = module.exports = __webpack_require__(119)(undefined);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  animation-name: buttonAnim;\n  animation-duration: .15s;\n  animation-fill-mode: forwards;\n  animation-timing-function: ease-in;\n}\n@keyframes buttonAnim {\n  from {\n    box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  background-color: #FFFFFF;\n  box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: flex;\n  align-items: center;\n  flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu .fa:hover {\n  color: #777777;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  transition: .3s;\n  left: 0px;\n  box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  transition-duration: .2s;\n  left: -330px;\n  box-shadow: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    box-shadow: none;\n  }\n  .sidemenu-open {\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  column-count: 2;\n  column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 100px);\n}\n.PhotoCenter {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.card {\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: red;\n  background-color: #FFFFFF;\n  box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  transform: scale(1.1);\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: flex;\n  overflow-x: hidden;\n  flex-direction: column;\n  flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper {\n    padding-bottom: 0px;\n    padding: 80px 20px 20px 20px;\n  }\n}\n.wrapper-flex-center {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.contentBox {\n  display: flex;\n  flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n", ""]);
+exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  animation-name: buttonAnim;\n  animation-duration: .15s;\n  animation-fill-mode: forwards;\n  animation-timing-function: ease-in;\n}\n@keyframes buttonAnim {\n  from {\n    box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  background-color: #FFFFFF;\n  box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: flex;\n  align-items: center;\n  flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu .fa:hover {\n  color: #777777;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  transition: .3s;\n  left: 0px;\n  box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  transition-duration: .2s;\n  left: -330px;\n  box-shadow: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    box-shadow: none;\n  }\n  .sidemenu-open {\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  column-count: 2;\n  column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 100px);\n}\n.PhotoCenter {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: red;\n  background-color: #FFFFFF;\n  box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  transform: scale(1.1);\n  transition: .5s transform;\n}\n#dropzone {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 150px;\n  border-radius: 4px 4px 0px 0px;\n}\n#dropzone .dropLimits {\n  visibility: hidden;\n}\n.dragUploadDragOver {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragOver .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: absolute;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #efefef;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragOver .dropLimits .fa {\n  position: absolute;\n  pointer-events: none;\n  color: #efefef;\n  font-size: 3em;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: flex;\n  overflow-x: hidden;\n  flex-direction: column;\n  flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    flex-direction: row;\n    flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper {\n    padding-bottom: 0px;\n    padding: 80px 20px 20px 20px;\n  }\n}\n.wrapper-flex-center {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.contentBox {\n  display: flex;\n  flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n", ""]);
 
 // exports
 
@@ -13362,7 +13887,7 @@ exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: n
 /***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(118)(undefined);
+exports = module.exports = __webpack_require__(119)(undefined);
 // imports
 
 
@@ -13374,464 +13899,13 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ 582:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(30);
-
-var _albums = __webpack_require__(585);
-
-var _redux = __webpack_require__(15);
-
-var _reactRedux = __webpack_require__(10);
-
-var _lodash = __webpack_require__(119);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Cards = __webpack_require__(583);
-
-var _Cards2 = _interopRequireDefault(_Cards);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Albums = function (_Component) {
-  _inherits(Albums, _Component);
-
-  function Albums() {
-    _classCallCheck(this, Albums);
-
-    return _possibleConstructorReturn(this, (Albums.__proto__ || Object.getPrototypeOf(Albums)).apply(this, arguments));
-  }
-
-  _createClass(Albums, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.albumsFetch();
-    }
-  }, {
-    key: "renderCard",
-    value: function renderCard() {
-      return _lodash2.default.map(this.props.albums, function (album) {
-        return _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { to: "/app/photos", key: album._id },
-          _react2.default.createElement(_Cards2.default, { album: album })
-        );
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { id: "albums" },
-        this.renderCard()
-      );
-    }
-  }]);
-
-  return Albums;
-}(_react.Component);
-
-function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ albumsFetch: _albums.albumsFetch }, dispatch);
-}
-
-function mapStateToProps(state) {
-  return {
-    albums: state.albums
-  };
-}
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Albums);
-
-/***/ }),
-
-/***/ 583:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Card = function Card(props) {
-
-  var cardStyle = function cardStyle(_) {
-    if (props.album.photos.length > 0) {
-      return { backgroundImage: 'url(' + props.album.photos[0].thumbUrl + ')' };
-    } else {
-      return { backgroundImage: 'url(/img/nophoto.png)' };
-    }
-  };
-
-  // 86400000ms = 1 day;
-  var date = new Date(props.album.updatedAt);
-  var newBadge = Date.now() - date.getTime() < 86400000 ? _react2.default.createElement(
-    'div',
-    { className: 'card-img-infos red' },
-    'NEW'
-  ) : "";
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'card' },
-    _react2.default.createElement(
-      'div',
-      { className: 'card-img-wrapper' },
-      _react2.default.createElement('div', { className: 'card-img', style: cardStyle() }),
-      newBadge,
-      _react2.default.createElement(
-        'div',
-        { className: 'card-img-infos' },
-        props.album.photos.length,
-        ' Photos'
-      )
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'card-body' },
-      _react2.default.createElement(
-        'div',
-        { className: 'card-body-title' },
-        props.album.name
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'card-body-text' },
-        props.album.description
-      )
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'card-buttons' },
-      _react2.default.createElement('i', { className: 'fa fa-heart' }),
-      _react2.default.createElement('i', { className: 'fa fa-arrow-down' }),
-      _react2.default.createElement('i', { className: 'fa fa-share-alt' })
-    )
-  );
-};
-
-exports.default = Card;
-
-/***/ }),
-
-/***/ 584:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.userLogin = userLogin;
-
-var _actiontypes = __webpack_require__(31);
-
-var _users = __webpack_require__(223);
-
-function userLogin(user, cb) {
-
-    if (user.username === _users.usersMock.login && user.password === _users.usersMock.password) {
-        cb();
-    }
-
-    return {
-        type: _actiontypes.USER_LOGIN,
-        payload: _users.usersMock
-    };
-}
-
-/***/ }),
-
-/***/ 585:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.albumsFetch = albumsFetch;
-exports.createAlbum = createAlbum;
-
-var _axios = __webpack_require__(227);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _actiontypes = __webpack_require__(31);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
-
-function albumsFetch() {
-
-    var albums = _axios2.default.get(baseUrl);
-
-    return {
-        type: _actiontypes.ALBUMS_FETCH,
-        payload: albums
-    };
-}
-
-function createAlbum(album, cb) {
-
-    var createdAlbum = _axios2.default.post(baseUrl, album).then(function (_) {
-        return cb();
-    });
-
-    return {
-        type: _actiontypes.ALBUM_CREATE,
-        payload: createdAlbum
-    };
-}
-
-/***/ }),
-
-/***/ 586:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.toggleMenu = toggleMenu;
-
-var _actiontypes = __webpack_require__(31);
-
-function toggleMenu() {
-    return {
-        type: _actiontypes.TOGGLE_MENU,
-        payload: null
-    };
-}
-
-/***/ }),
-
-/***/ 587:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reduxForm = __webpack_require__(47);
-
-var _reactRedux = __webpack_require__(10);
-
-var _albums = __webpack_require__(585);
-
-var _redux = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Upload = function (_Component) {
-    _inherits(Upload, _Component);
-
-    function Upload(props) {
-        _classCallCheck(this, Upload);
-
-        var _this = _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).call(this, props));
-
-        _this.state = { tags: ["tags"] };
-        _this.renderTags = _this.renderTags.bind(_this);
-        _this.onSubmit = _this.onSubmit.bind(_this);
-        return _this;
-    }
-
-    _createClass(Upload, [{
-        key: 'renderInput',
-        value: function renderInput(field) {
-            var _field$meta = field.meta,
-                touched = _field$meta.touched,
-                error = _field$meta.error,
-                pristine = _field$meta.pristine;
-
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('input', _extends({ placeholder: field.placeholder }, field.input)),
-                touched && error ? _react2.default.createElement('i', { className: 'fa fa-times txt-red' }) : touched && pristine ? _react2.default.createElement('i', { className: 'fa fa-times txt-red' }) : touched ? _react2.default.createElement('i', { className: 'fa fa-check txt-green' }) : ""
-            );
-        }
-    }, {
-        key: 'renderTags',
-        value: function renderTags(values) {
-            if (values) {
-                var tags = values.currentTarget.value.replace(/ /g, '').split(",");
-                this.setState({
-                    tags: tags.length === 1 && tags[0] === "" ? ["tags"] : tags
-                });
-            }
-        }
-    }, {
-        key: 'onSubmit',
-        value: function onSubmit(data) {
-            var _this2 = this;
-
-            var newAlbum = {
-                name: data.albumName,
-                photographer: data.photographerName,
-                description: data.description,
-                tags: this.state.tags
-            };
-            this.props.createAlbum(newAlbum, function (_) {
-                _this2.props.history.push('/app/albums');
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'wrapper-flex-center' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'contentBox' },
-                    _react2.default.createElement('div', { className: 'contentBox-image bkg-darkBlueGrey' }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'contentBox-body' },
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            'Cr\xE9er un album'
-                        ),
-                        _react2.default.createElement(
-                            'form',
-                            { onSubmit: this.props.handleSubmit(this.onSubmit) },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'input-group' },
-                                _react2.default.createElement(_reduxForm.Field, { name: 'albumName', placeholder: 'Nom de l\'album', component: this.renderInput })
-                            ),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'input-group' },
-                                _react2.default.createElement(_reduxForm.Field, { name: 'photographerName', placeholder: 'Nom du photographe', component: this.renderInput })
-                            ),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'input-group' },
-                                _react2.default.createElement(_reduxForm.Field, { name: 'description', component: function component(field) {
-                                        return _react2.default.createElement('textarea', _extends({ rows: '3', placeholder: 'Description' }, field.input));
-                                    } })
-                            ),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'input-group' },
-                                _react2.default.createElement(_reduxForm.Field, { name: 'tags', placeholder: 'Tags', onChange: this.renderTags, component: this.renderInput })
-                            ),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'UploadTagsDisplay' },
-                                this.renderTags(),
-                                this.state.tags.map(function (tag, index) {
-                                    return _react2.default.createElement(
-                                        'span',
-                                        { className: 'tag', key: index },
-                                        '#',
-                                        tag
-                                    );
-                                })
-                            ),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'button',
-                                { className: 'small-button small-button-anim', type: 'submit' },
-                                'Envoyer'
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Upload;
-}(_react.Component);
-
-function validate(values) {
-    var errors = {};
-    if (values.albumName && values.albumName.length < 3) {
-        errors.albumName = "Trop court";
-    }
-    return errors;
-}
-
-function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ createAlbum: _albums.createAlbum }, dispatch);
-}
-
-exports.default = (0, _reduxForm.reduxForm)({
-    validate: validate,
-    form: 'uploadForm'
-})((0, _reactRedux.connect)(null, mapDispatchToProps)(Upload));
-
-/***/ }),
-
 /***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 var normalizeHeaderName = __webpack_require__(242);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -13848,10 +13922,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(113);
+    adapter = __webpack_require__(114);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(113);
+    adapter = __webpack_require__(114);
   }
   return adapter;
 }
