@@ -4,9 +4,9 @@ const mongoose = require('mongoose'),
       Schema = mongoose.Schema;
 
 const photoSchema = new mongoose.Schema({
-    thumbUrl : String,
-    mediumUrl : String,
-    originalUrl : String,
+    thumb : String,
+    medium : String,
+    original : String,
     rating : {
         type: Number,
         max: 5,

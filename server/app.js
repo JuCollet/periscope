@@ -4,6 +4,7 @@ const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
       albumRouter = require('./routes/albums'),
+      uploadRouter = require('./routes/upload'),
       app = express();
 
 require('./db');
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/albums', albumRouter);
+app.use('/upload', uploadRouter);
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 

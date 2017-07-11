@@ -1,12 +1,13 @@
 'use strict';
 
 import React, { Component } from "react";
+import axios from "axios";
 
 class Card extends Component {
   
   cardStyle = _ => {
     if(this.props.album.photos.length > 0){
-      return { backgroundImage: 'url(' + this.props.album.photos[0].thumbUrl + ')'};
+      return { backgroundImage: 'url(' + this.props.album.photos[0].thumb + ')'};
     } else {
       return { backgroundImage: 'url(/img/nophoto.png)'};
     }
@@ -28,10 +29,20 @@ class Card extends Component {
     let data = new FormData();
     
     for (let i = 0; i < dt.files.length; i++) {
-      console.log(dt.files[i].type)
-      if(dt.files[i].type === "")
+      if(dt.files[i].type === "image/jpeg")
       data.append('photos', dt.files[i], dt.files[i].name);
     }
+    
+    axios({
+      url: '/upload/'+this.props.album._id,
+      method: 'put',
+      data: data,
+      headers:{'Content-Type':'multipart/form-data'}
+    }).then(function(err){
+      if(err)console.log(err);
+    }).catch(function(err){
+      if(err)console.log(err);
+    });    
     
     e.currentTarget.classList.remove("dragUploadDragOver");
     
