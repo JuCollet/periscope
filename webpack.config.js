@@ -1,4 +1,6 @@
-var webpack = require("webpack");
+const webpack = require("webpack");
+const autoprefixer = require('autoprefixer');
+
 
 module.exports = {
     entry : {
@@ -24,7 +26,7 @@ module.exports = {
                 loader : 'babel-loader'
             }, {
                 test : /\.less$/,
-                loader : "style-loader!css-loader!less-loader"
+                use: ["style-loader", "css-loader", "postcss-loader", "less-loader"]
             }, {
                 test : /\.css$/,
                 loader : "style-loader!css-loader"
