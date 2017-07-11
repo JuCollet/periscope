@@ -25,7 +25,6 @@ import Albums from "./containers/Albums/Albums";
 
 import Photos from "./components/Photos/Photos";
 import Photo from "./components/Photo/Photo";
-import Loading from "./components/Loading/Loading";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(
@@ -41,9 +40,8 @@ ReactDOM.render(
                 <Route path="/app/" component={Sidemenu} />
                 <Route path="/app/Upload" component={CreateAlbum} />
                 <Route path="/app/Account" component={Account} />
-                <Route path="/app/Loading" component={Loading} />
                 <Route path="/app/albums" render={ () => <Albums albums={albumsMock} /> } />
-                <Route path="/app/photos" render={ () => <Photos photos={photosMock} /> } />
+                <Route path="/app/photos/:id" component={Photos} />
                 <Route path="/app/photo/:id" component={Photo} />
             </div>
         </BrowserRouter>

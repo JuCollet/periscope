@@ -1,51 +1,5 @@
 webpackJsonp([0],{
 
-/***/ 112:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.albumsFetch = albumsFetch;
-exports.createAlbum = createAlbum;
-
-var _axios = __webpack_require__(227);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _actiontypes = __webpack_require__(31);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
-
-function albumsFetch() {
-
-    var albums = _axios2.default.get(baseUrl);
-
-    return {
-        type: _actiontypes.ALBUMS_FETCH,
-        payload: albums
-    };
-}
-
-function createAlbum(album, cb) {
-
-    var createdAlbum = _axios2.default.post(baseUrl, album).then(function (_) {
-        return cb();
-    });
-
-    return {
-        type: _actiontypes.ALBUM_CREATE,
-        payload: createdAlbum
-    };
-}
-
-/***/ }),
-
 /***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72,15 +26,51 @@ function toggleMenu() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Notification;
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Notification(props) {
+    return _react2.default.createElement(
+        'div',
+        { className: 'wrapper-flex-center' },
+        _react2.default.createElement(
+            'h2',
+            null,
+            'Chargement...'
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'loadingBar' },
+            _react2.default.createElement('span', null)
+        )
+    );
+}
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var settle = __webpack_require__(234);
-var buildURL = __webpack_require__(237);
-var parseHeaders = __webpack_require__(243);
-var isURLSameOrigin = __webpack_require__(241);
-var createError = __webpack_require__(117);
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(236);
+var settle = __webpack_require__(235);
+var buildURL = __webpack_require__(238);
+var parseHeaders = __webpack_require__(244);
+var isURLSameOrigin = __webpack_require__(242);
+var createError = __webpack_require__(118);
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(237);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -173,7 +163,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(239);
+      var cookies = __webpack_require__(240);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -250,7 +240,7 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -277,7 +267,7 @@ module.exports = Cancel;
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -289,13 +279,13 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(233);
+var enhanceError = __webpack_require__(234);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -314,7 +304,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -332,7 +322,7 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -415,7 +405,7 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9853,7 +9843,7 @@ LazyWrapper.prototype.clone=lazyClone;LazyWrapper.prototype.reverse=lazyReverse;
 lodash.prototype.at=wrapperAt;lodash.prototype.chain=wrapperChain;lodash.prototype.commit=wrapperCommit;lodash.prototype.next=wrapperNext;lodash.prototype.plant=wrapperPlant;lodash.prototype.reverse=wrapperReverse;lodash.prototype.toJSON=lodash.prototype.valueOf=lodash.prototype.value=wrapperValue;// Add lazy aliases.
 lodash.prototype.first=lodash.prototype.head;if(symIterator){lodash.prototype[symIterator]=wrapperToIterator;}return lodash;};/*--------------------------------------------------------------------------*/// Export lodash.
 var _=runInContext();// Some AMD build optimizers, like r.js, check for condition patterns like:
-if("function"=='function'&&_typeof(__webpack_require__(205))=='object'&&__webpack_require__(205)){// Expose Lodash on the global object to prevent errors when Lodash is
+if("function"=='function'&&_typeof(__webpack_require__(206))=='object'&&__webpack_require__(206)){// Expose Lodash on the global object to prevent errors when Lodash is
 // loaded by a script tag in the presence of an AMD loader.
 // See http://requirejs.org/docs/errors.html#mismatch for more details.
 // Use `_.noConflict` to remove Lodash from the global object.
@@ -9877,8 +9867,8 @@ root._=_;}}).call(undefined);
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(118);
-var isBuffer = __webpack_require__(245);
+var bind = __webpack_require__(119);
+var isBuffer = __webpack_require__(246);
 
 /*global toString:true*/
 
@@ -10178,7 +10168,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10416,7 +10406,7 @@ module.exports = isArguments;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -10462,7 +10452,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(578);
+var	fixUrls = __webpack_require__(579);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -10776,7 +10766,7 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10786,7 +10776,7 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 206:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10838,7 +10828,7 @@ exports.default = Photos;
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10848,62 +10838,118 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(10);
+
+var _redux = __webpack_require__(11);
+
+var _albums = __webpack_require__(68);
+
+var _Loading = __webpack_require__(114);
+
+var _Loading2 = _interopRequireDefault(_Loading);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Photos = function Photos(props) {
-  return _react2.default.createElement(
-    "div",
-    { className: "wrapper" },
-    _react2.default.createElement(
-      "span",
-      { className: "albumTitle" },
-      "Accompagnement \xE0 domicile"
-    ),
-    _react2.default.createElement(
-      "span",
-      { className: "albumPhotographer" },
-      "par Julien Collet"
-    ),
-    _react2.default.createElement(
-      "span",
-      { className: "albumDescription" },
-      "Typewriter offal fanny pack schlitz letterpress, subway tile deep v yuccie. Master cleanse shabby chic post-ironic skateboard thundercats, mixtape meditation knausgaard VHS."
-    ),
-    _react2.default.createElement(
-      "span",
-      { className: "tag" },
-      "#Hestia"
-    ),
-    _react2.default.createElement(
-      "span",
-      { className: "tag" },
-      "#Solidarit\xE9"
-    ),
-    _react2.default.createElement(
-      "span",
-      { className: "tag" },
-      "#Solitude"
-    ),
-    _react2.default.createElement("hr", { className: "albumHr" }),
-    _react2.default.createElement(
-      "div",
-      { id: "photos" },
-      props.photos.map(function (photo, index) {
-        return _react2.default.createElement("img", { src: photo.medium, key: index });
-      })
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.default = Photos;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Photos = function (_Component) {
+  _inherits(Photos, _Component);
+
+  function Photos() {
+    _classCallCheck(this, Photos);
+
+    return _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).apply(this, arguments));
+  }
+
+  _createClass(Photos, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.albumFetch(this.props.match.params.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var album = this.props.album;
+
+
+      if (!album) {
+        return _react2.default.createElement(_Loading2.default, null);
+      }
+
+      return _react2.default.createElement(
+        "div",
+        { className: "wrapper" },
+        _react2.default.createElement(
+          "span",
+          { className: "albumTitle" },
+          album.name
+        ),
+        _react2.default.createElement(
+          "span",
+          { className: "albumPhotographer" },
+          "par ",
+          album.photographer
+        ),
+        _react2.default.createElement(
+          "span",
+          { className: "albumDescription" },
+          album.description
+        ),
+        _react2.default.createElement(
+          "span",
+          { className: "tag" },
+          "#Hestia"
+        ),
+        _react2.default.createElement(
+          "span",
+          { className: "tag" },
+          "#Solidarit\xE9"
+        ),
+        _react2.default.createElement(
+          "span",
+          { className: "tag" },
+          "#Solitude"
+        ),
+        _react2.default.createElement("hr", { className: "albumHr" }),
+        _react2.default.createElement(
+          "div",
+          { id: "photos" },
+          this.props.album.photos.map(function (photo, index) {
+            return _react2.default.createElement("img", { src: photo.medium, key: index });
+          })
+        )
+      );
+    }
+  }]);
+
+  return Photos;
+}(_react.Component);
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({ albumFetch: _albums.albumFetch }, dispatch);
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+    album: state.albums[ownProps.match.params.id]
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Photos);
 
 /***/ }),
 
-/***/ 208:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10972,7 +11018,7 @@ exports.default = Account;
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10990,21 +11036,21 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(30);
 
-var _albums = __webpack_require__(112);
+var _albums = __webpack_require__(68);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(10);
 
-var _lodash = __webpack_require__(120);
+var _lodash = __webpack_require__(121);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Loading = __webpack_require__(583);
+var _Loading = __webpack_require__(114);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Cards = __webpack_require__(222);
+var _Cards = __webpack_require__(223);
 
 var _Cards2 = _interopRequireDefault(_Cards);
 
@@ -11045,8 +11091,6 @@ var Albums = function (_Component) {
     key: "render",
     value: function render() {
 
-      console.log(this.props.albums);
-
       if (!this.props.albums) {
         return _react2.default.createElement(_Loading2.default, null);
       }
@@ -11076,7 +11120,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 210:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11098,9 +11142,9 @@ var _reduxForm = __webpack_require__(47);
 
 var _reactRedux = __webpack_require__(10);
 
-var _albums = __webpack_require__(112);
+var _albums = __webpack_require__(68);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11264,7 +11308,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 211:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11280,7 +11324,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(10);
 
@@ -11352,7 +11396,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 212:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11372,9 +11416,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reduxForm = __webpack_require__(47);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
-var _user = __webpack_require__(220);
+var _user = __webpack_require__(221);
 
 var _reactRedux = __webpack_require__(10);
 
@@ -11476,7 +11520,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11492,7 +11536,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 var _reactRouterDom = __webpack_require__(30);
 
@@ -11600,7 +11644,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11744,7 +11788,7 @@ module.exports = albumsMock;
 
 /***/ }),
 
-/***/ 215:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11852,7 +11896,7 @@ module.exports = photosMock;
 
 /***/ }),
 
-/***/ 216:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11862,19 +11906,19 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 var _reduxForm = __webpack_require__(47);
 
-var _reducer_user = __webpack_require__(226);
+var _reducer_user = __webpack_require__(227);
 
 var _reducer_user2 = _interopRequireDefault(_reducer_user);
 
-var _reducer_albums = __webpack_require__(224);
+var _reducer_albums = __webpack_require__(225);
 
 var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 
-var _reducer_menu = __webpack_require__(225);
+var _reducer_menu = __webpack_require__(226);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
 
@@ -11891,7 +11935,7 @@ exports.default = rootReducer;
 
 /***/ }),
 
-/***/ 217:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11911,7 +11955,7 @@ var _extends = Object.assign || function (target) {
 
 exports['default'] = promiseMiddleware;
 
-var _fluxStandardAction = __webpack_require__(559);
+var _fluxStandardAction = __webpack_require__(560);
 
 function isPromise(val) {
   return val && typeof val.then === 'function';
@@ -11939,13 +11983,13 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 218:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(579);
+var content = __webpack_require__(580);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -11953,7 +11997,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(204)(content, options);
+var update = __webpack_require__(205)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -11971,13 +12015,13 @@ if(false) {
 
 /***/ }),
 
-/***/ 219:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(580);
+var content = __webpack_require__(581);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -11985,7 +12029,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(204)(content, options);
+var update = __webpack_require__(205)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12003,7 +12047,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 220:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12016,7 +12060,7 @@ exports.userLogin = userLogin;
 
 var _actiontypes = __webpack_require__(31);
 
-var _users = __webpack_require__(223);
+var _users = __webpack_require__(224);
 
 function userLogin(user, cb) {
 
@@ -12032,7 +12076,7 @@ function userLogin(user, cb) {
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12048,65 +12092,61 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = __webpack_require__(10);
 
-var _redux = __webpack_require__(12);
+var _redux = __webpack_require__(11);
 
 var _reactRouterDom = __webpack_require__(30);
 
-var _reduxPromise = __webpack_require__(217);
+var _reduxPromise = __webpack_require__(218);
 
 var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
-__webpack_require__(218);
-
 __webpack_require__(219);
 
-var _reducers = __webpack_require__(216);
+__webpack_require__(220);
+
+var _reducers = __webpack_require__(217);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _albums = __webpack_require__(214);
+var _albums = __webpack_require__(215);
 
 var _albums2 = _interopRequireDefault(_albums);
 
-var _photos = __webpack_require__(215);
+var _photos = __webpack_require__(216);
 
 var _photos2 = _interopRequireDefault(_photos);
 
-var _Sidemenu = __webpack_require__(213);
+var _Sidemenu = __webpack_require__(214);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
-var _Header = __webpack_require__(211);
+var _Header = __webpack_require__(212);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Login = __webpack_require__(212);
+var _Login = __webpack_require__(213);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _CreateAlbum = __webpack_require__(210);
+var _CreateAlbum = __webpack_require__(211);
 
 var _CreateAlbum2 = _interopRequireDefault(_CreateAlbum);
 
-var _Account = __webpack_require__(208);
+var _Account = __webpack_require__(209);
 
 var _Account2 = _interopRequireDefault(_Account);
 
-var _Albums = __webpack_require__(209);
+var _Albums = __webpack_require__(210);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
-var _Photos = __webpack_require__(207);
+var _Photos = __webpack_require__(208);
 
 var _Photos2 = _interopRequireDefault(_Photos);
 
-var _Photo = __webpack_require__(206);
+var _Photo = __webpack_require__(207);
 
 var _Photo2 = _interopRequireDefault(_Photo);
-
-var _Loading = __webpack_require__(583);
-
-var _Loading2 = _interopRequireDefault(_Loading);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12127,13 +12167,10 @@ _reactDom2.default.render(_react2.default.createElement(
             _react2.default.createElement(_reactRouterDom.Route, { path: '/app/', component: _Sidemenu2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/app/Upload', component: _CreateAlbum2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/app/Account', component: _Account2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/app/Loading', component: _Loading2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/app/albums', render: function render() {
                     return _react2.default.createElement(_Albums2.default, { albums: _albums2.default });
                 } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/app/photos', render: function render() {
-                    return _react2.default.createElement(_Photos2.default, { photos: _photos2.default });
-                } }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/app/photos/:id', component: _Photos2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/app/photo/:id', component: _Photo2.default })
         )
     )
@@ -12141,7 +12178,7 @@ _reactDom2.default.render(_react2.default.createElement(
 
 /***/ }),
 
-/***/ 222:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12289,7 +12326,7 @@ exports.default = Card;
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12307,7 +12344,7 @@ var usersMock = exports.usersMock = {
 
 /***/ }),
 
-/***/ 224:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12317,13 +12354,17 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var action = arguments[1];
 
     switch (action.type) {
         case _actiontypes.ALBUMS_FETCH:
             return _lodash2.default.mapKeys(action.payload.data, "_id");
+        case _actiontypes.ALBUM_FETCH:
+            return _extends({}, state, _defineProperty({}, action.payload.data._id, action.payload.data));
         default:
             return state;
     }
@@ -12331,15 +12372,17 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(31);
 
-var _lodash = __webpack_require__(120);
+var _lodash = __webpack_require__(121);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /***/ }),
 
-/***/ 225:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12366,7 +12409,7 @@ var _actiontypes = __webpack_require__(31);
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12393,26 +12436,26 @@ var _actiontypes = __webpack_require__(31);
 
 /***/ }),
 
-/***/ 227:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(228);
-
-/***/ }),
-
 /***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+module.exports = __webpack_require__(229);
+
+/***/ }),
+
+/***/ 229:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var utils = __webpack_require__(13);
-var bind = __webpack_require__(118);
-var Axios = __webpack_require__(230);
-var defaults = __webpack_require__(68);
+var bind = __webpack_require__(119);
+var Axios = __webpack_require__(231);
+var defaults = __webpack_require__(69);
 
 /**
  * Create an instance of Axios
@@ -12445,15 +12488,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(115);
-axios.CancelToken = __webpack_require__(229);
-axios.isCancel = __webpack_require__(116);
+axios.Cancel = __webpack_require__(116);
+axios.CancelToken = __webpack_require__(230);
+axios.isCancel = __webpack_require__(117);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(244);
+axios.spread = __webpack_require__(245);
 
 module.exports = axios;
 
@@ -12462,13 +12505,13 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(115);
+var Cancel = __webpack_require__(116);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -12526,18 +12569,18 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(68);
+var defaults = __webpack_require__(69);
 var utils = __webpack_require__(13);
-var InterceptorManager = __webpack_require__(231);
-var dispatchRequest = __webpack_require__(232);
-var isAbsoluteURL = __webpack_require__(240);
-var combineURLs = __webpack_require__(238);
+var InterceptorManager = __webpack_require__(232);
+var dispatchRequest = __webpack_require__(233);
+var isAbsoluteURL = __webpack_require__(241);
+var combineURLs = __webpack_require__(239);
 
 /**
  * Create a new instance of Axios
@@ -12619,7 +12662,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12678,16 +12721,16 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(13);
-var transformData = __webpack_require__(235);
-var isCancel = __webpack_require__(116);
-var defaults = __webpack_require__(68);
+var transformData = __webpack_require__(236);
+var isCancel = __webpack_require__(117);
+var defaults = __webpack_require__(69);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -12745,7 +12788,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12774,13 +12817,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(117);
+var createError = __webpack_require__(118);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -12801,7 +12844,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12828,7 +12871,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12870,7 +12913,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12938,7 +12981,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12958,7 +13001,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13018,7 +13061,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13041,7 +13084,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13111,7 +13154,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13130,7 +13173,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 243:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13176,7 +13219,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13211,7 +13254,7 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13253,11 +13296,12 @@ Object.defineProperty(exports, "__esModule", {
 var USER_LOGIN = exports.USER_LOGIN = "user_login";
 var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
 var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
+var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
 var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
 
 /***/ }),
 
-/***/ 559:
+/***/ 560:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13271,7 +13315,7 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { 'default': obj };
 }
 
-var _lodashIsplainobject = __webpack_require__(560);
+var _lodashIsplainobject = __webpack_require__(561);
 
 var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -13291,7 +13335,7 @@ function isError(action) {
 
 /***/ }),
 
-/***/ 560:
+/***/ 561:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13307,9 +13351,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var baseFor = __webpack_require__(561),
-    isArguments = __webpack_require__(198),
-    keysIn = __webpack_require__(562);
+var baseFor = __webpack_require__(562),
+    isArguments = __webpack_require__(199),
+    keysIn = __webpack_require__(563);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -13404,7 +13448,7 @@ module.exports = isPlainObject;
 
 /***/ }),
 
-/***/ 561:
+/***/ 562:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13461,7 +13505,7 @@ module.exports = baseFor;
 
 /***/ }),
 
-/***/ 562:
+/***/ 563:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13477,8 +13521,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var isArguments = __webpack_require__(198),
-    isArray = __webpack_require__(563);
+var isArguments = __webpack_require__(199),
+    isArray = __webpack_require__(564);
 
 /** Used to detect unsigned integer values. */
 var reIsUint = /^\d+$/;
@@ -13602,7 +13646,7 @@ module.exports = keysIn;
 
 /***/ }),
 
-/***/ 563:
+/***/ 564:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13790,7 +13834,7 @@ module.exports = isArray;
 
 /***/ }),
 
-/***/ 578:
+/***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13886,10 +13930,10 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 579:
+/***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(119)(undefined);
+exports = module.exports = __webpack_require__(120)(undefined);
 // imports
 
 
@@ -13901,22 +13945,22 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ 580:
+/***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(119)(undefined);
+exports = module.exports = __webpack_require__(120)(undefined);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu .fa:hover {\n  color: #777777;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 100px);\n}\n.PhotoCenter {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: red;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n#dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 150px;\n  border-radius: 4px 4px 0px 0px;\n}\n#dropzone .dropLimits {\n  visibility: hidden;\n}\n.dragUploadDragOver {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragOver .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragOver .dropLimits .fa {\n  position: absolute;\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 3em;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper {\n    padding-bottom: 0px;\n    padding: 80px 20px 20px 20px;\n  }\n}\n.wrapper-flex-center {\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n", ""]);
+exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  z-index: 99999;\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu .fa:hover {\n  color: #777777;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 100px);\n}\n.PhotoCenter {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: red;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n#dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 150px;\n  border-radius: 4px 4px 0px 0px;\n}\n#dropzone .dropLimits {\n  visibility: hidden;\n}\n.dragUploadDragOver {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragOver .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragOver .dropLimits .fa {\n  position: absolute;\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 3em;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper {\n    padding-bottom: 0px;\n    padding: 80px 20px 20px 20px;\n  }\n}\n.wrapper-flex-center {\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 583:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13925,41 +13969,62 @@ exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: n
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = Notification;
+exports.albumsFetch = albumsFetch;
+exports.albumFetch = albumFetch;
+exports.createAlbum = createAlbum;
 
-var _react = __webpack_require__(1);
+var _axios = __webpack_require__(228);
 
-var _react2 = _interopRequireDefault(_react);
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actiontypes = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Notification(props) {
-    return _react2.default.createElement(
-        'div',
-        { className: 'wrapper-flex-center' },
-        _react2.default.createElement(
-            'h2',
-            null,
-            'Chargement...'
-        ),
-        _react2.default.createElement(
-            'div',
-            { className: 'loadingBar' },
-            _react2.default.createElement('span', null)
-        )
-    );
-};
+var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
+
+function albumsFetch() {
+
+    var albums = _axios2.default.get(baseUrl);
+
+    return {
+        type: _actiontypes.ALBUMS_FETCH,
+        payload: albums
+    };
+}
+
+function albumFetch(id) {
+
+    var album = _axios2.default.get(baseUrl + id);
+
+    return {
+        type: _actiontypes.ALBUM_FETCH,
+        payload: album
+    };
+}
+
+function createAlbum(album, cb) {
+
+    var createdAlbum = _axios2.default.post(baseUrl, album).then(function (_) {
+        return cb();
+    });
+
+    return {
+        type: _actiontypes.ALBUM_CREATE,
+        payload: createdAlbum
+    };
+}
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var normalizeHeaderName = __webpack_require__(242);
+var normalizeHeaderName = __webpack_require__(243);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -13975,10 +14040,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(114);
+    adapter = __webpack_require__(115);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(114);
+    adapter = __webpack_require__(115);
   }
   return adapter;
 }
@@ -14046,4 +14111,4 @@ module.exports = defaults;
 
 /***/ })
 
-},[221]);
+},[222]);

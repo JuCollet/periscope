@@ -1,24 +1,53 @@
 'use strict';
 
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { albumFetch } from "../../actions/albums";
+import Loading from "../Loading/Loading";
 
-const Photos = props => {
-  return (
-    <div className="wrapper">
-      <span className="albumTitle">Accompagnement à domicile</span>
-      <span className="albumPhotographer">par Julien Collet</span>
-      <span className="albumDescription">Typewriter offal fanny pack schlitz letterpress, subway tile deep v yuccie. Master cleanse shabby chic post-ironic skateboard thundercats, mixtape meditation knausgaard VHS.</span>
-      <span className="tag">#Hestia</span>
-      <span className="tag">#Solidarité</span>
-      <span className="tag">#Solitude</span>
-      <hr className="albumHr" />
-      <div id="photos">
-        {props.photos.map(function(photo, index){
-          return <img src={photo.medium} key={index}/>;
-        })}
+class Photos extends Component {
+  
+  componentDidMount(){
+    this.props.albumFetch(this.props.match.params.id);
+  }
+  
+  render(){
+    
+    const { album } = this.props;
+    
+    if(!album){
+      return <Loading />
+    }
+    
+    return (
+      <div className="wrapper">
+        <span className="albumTitle">{album.name}</span>
+        <span className="albumPhotographer">par {album.photographer}</span>
+        <span className="albumDescription">{album.description}</span>
+        <span className="tag">#Hestia</span>
+        <span className="tag">#Solidarité</span>
+        <span className="tag">#Solitude</span>
+        <hr className="albumHr" />
+        <div id="photos">
+          {this.props.album.photos.map(function(photo, index){
+            return <img src={photo.medium} key={index}/>;
+          })}
+        </div>
       </div>
-    </div>
-    );
-};
+    );  
+  }
+  
+}
 
-export default Photos;
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ albumFetch }, dispatch);
+}
+
+function mapStateToProps(state, ownProps){
+  return {
+    album : state.albums[ownProps.match.params.id]
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Photos);

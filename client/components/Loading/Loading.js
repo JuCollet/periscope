@@ -8,5 +8,5 @@ export default function Notification(props){
             <h2>Chargement...</h2>
             <div className="loadingBar"><span></span></div>
         </div>
-    )
-};
+    );
+}

@@ -23,9 +23,7 @@ class Albums extends Component {
   }
 
   render(){
-    
-    console.log(this.props.albums)
-    
+
     if(!this.props.albums){
       return <Loading />;
     }

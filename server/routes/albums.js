@@ -19,5 +19,13 @@ albumRouter.route('/')
             res.json(album);
         });
     });
+    
+albumRouter.route('/:id')
+    .get(function(req,res,next){
+        Album.findById(req.params.id, function(err,album){
+            if(err) return next(err);
+            res.json(album);
+        });
+    });
 
 module.exports = albumRouter;
