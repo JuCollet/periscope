@@ -33,8 +33,7 @@ const scaleFinder = function(imgWidth, imgHeight, maxSize, onlyWidth, noResize){
     } else if(onlyWidth){
         return Math.round((maxSize / imgWidth) * 100) / 100;
     } else {
-        return Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 < 1 ? Math.round( (320 / Math.min(imgWidth, imgHeight)) * 100 ) / 100 : 1;        
-        // image.width(), image.height()    
+        return Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 < 1 ? Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 : 1;        
     }
 };
 
@@ -55,7 +54,7 @@ const imgProcess = [
     },
     {
         name : "original",
-        maxSize : null,
+        maxSize : 0,
         quality: 100,
         onlyWidth : false,
         noResize : true
@@ -72,8 +71,10 @@ uploadRouter.route('/:id')
         require('lwip').open(file.path, function(err, image){
             if(err) return next(err);
             
+            let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
+            
             image.batch()
-            .scale(scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth ))          // scale to 75%
+            .scale(scale)
             .toBuffer('jpg', {quality:imgProcess[i].quality}, function(err, buffer){
                 if(err) return next(err);
                 
