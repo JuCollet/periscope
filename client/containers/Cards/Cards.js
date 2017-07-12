@@ -16,7 +16,6 @@ class Card extends Component {
   onDragOver(e){
     e.preventDefault();
     e.currentTarget.classList.add("dragUploadDragOver");
-    console.log(this.props.album._id);
   }
   
   onDragLeave(e){

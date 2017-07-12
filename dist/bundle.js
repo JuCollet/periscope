@@ -2004,7 +2004,6 @@ var Card = function (_Component) {
     value: function onDragOver(e) {
       e.preventDefault();
       e.currentTarget.classList.add("dragUploadDragOver");
-      console.log(this.props.album._id);
     }
   }, {
     key: "onDragLeave",

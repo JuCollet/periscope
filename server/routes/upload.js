@@ -26,14 +26,14 @@ const express = require('express'),
           accessKeyId: process.env.AWS_ACCESS_KEY_ID,
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
       });
-      
+
 const scaleFinder = function(imgWidth, imgHeight, maxSize, onlyWidth, noResize){
     if(noResize){
         return 1;
     } else if(onlyWidth){
         return Math.round((maxSize / imgWidth) * 100) / 100;
     } else {
-        return Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 < 1 ? Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 : 1;        
+        return Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 < 1 ? Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 : 1;
     }
 };
 
@@ -58,61 +58,109 @@ const imgProcess = [
         quality: 100,
         onlyWidth : false,
         noResize : true
-    },        
+    },
 ];
 
 uploadRouter.route('/:id')
 
   .put(upload.array('photos', 50), function(req,res,next){
+
+    const files = req.files;
+    const id = req.params.id;
+    const nbrFiles = files.length;
+    let position = 0;
     
-    req.files.forEach(function(file){
-    
-    for(let i = 0; i < imgProcess.length; i ++){
-        require('lwip').open(file.path, function(err, image){
-            if(err) return next(err);
-            
-            let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
-            
-            image.batch()
-            .scale(scale)
-            .toBuffer('jpg', {quality:imgProcess[i].quality}, function(err, buffer){
+    const imgProcessing = function(nextPosition){
+        
+        let currentFile = files[nextPosition];
+        let processed = 0;
+        
+        for(let i = 0; i < imgProcess.length; i ++){
+        
+            lwip.open(currentFile.path, function(err, image){
                 if(err) return next(err);
                 
-                const params = {
-                    Body: buffer, 
-                    Bucket: "periscopefiles", 
-                    Key: imgProcess[i].name+req.params.id+file.filename,
-                    ACL: 'public-read'
-                };
-
-                s3.putObject(params, function(err, data) {
-                    
-                    if(err) return next(err);
-
-                });
+                // Open file at position x for processing.
+                console.log("processing " + currentFile.path);
                 
-            });
-        
-        });
-        
-    }
-    
-    let newPhoto = {
-        thumb: `${process.env.S3_URL}thumb${req.params.id}${file.filename}`,
-        medium: `${process.env.S3_URL}medium${req.params.id}${file.filename}`,
-        original: `${process.env.S3_URL}original${req.params.id}${file.filename}`,
-    };    
-    
-    Album.findByIdAndUpdate(req.params.id, { $push: { photos: newPhoto }}, function(err, album){
-        if(err) return next(err);
-    });
-    
-    fs.unlink(file.path);
+                let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
+                
+                image.batch()
+                .scale(scale)
+                .toBuffer('jpg', {quality:imgProcess[i].quality}, function(err, buffer){
+                    if(err) return next(err);
+                    
+                    //Once rescaled, put file into a new Buffer
+                    // and increment the images processed counter;
+                    
+                    processed++;
+                    
+                    // Send file to S3
+                    
+                    const params = {
+                        Body: buffer,
+                        Bucket: "periscopefiles",
+                        Key: imgProcess[i].name+id+currentFile.filename,
+                        ACL: 'public-read'
+                    };
+                    
+                    s3.putObject(params, function(err, data) {
+                        if(err) return next(err);
+                        
+                        // When file is sent to S3 and if it was the last one to be processed,
+                        // push the files in the database;
+                        
+                    });
+                    
+                    console.log("processing image "+nextPosition+" version "+imgProcess[i].name)
+                    
+                    if(processed === imgProcess.length){
+                        
+                        // Create a new object with uploaded files links;
+                        
+                        let newPhoto = {
+                            thumb: `${process.env.S3_URL}thumb${id}${currentFile.filename}`,
+                            medium: `${process.env.S3_URL}medium${id}${currentFile.filename}`,
+                            original: `${process.env.S3_URL}original${id}${currentFile.filename}`,
+                        };
 
-    });
-    
+                        // Update the database by pushing the newPhoto object;
+                        
+                        Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, function(err, album){
+                            if(err) return next(err);
+                            
+                        // As the current file as been processed and sent to S3,
+                        // delete the local temp file;
+                        console.log("position = " + position)
+                        console.log("processed = " + processed)
+                        console.log("delete file " + currentFile.path)
+                        fs.unlink(currentFile.path);                                
+                            
+                            // After the files are pushed to the database,
+                            // repeat the processing function for remaining files.
+                            
+                            if(nextPosition < nbrFiles-1){
+                                position++;
+                                imgProcessing(position);    
+                            }
+                            
+                        });
+                        
+                    }
+                    
+                }); // end buffer write
+            
+            }); // end lwip open
+        
+        } // end for loop
+
+    }; // end imgProcessing;
+
+    // First function calling for image with index 0;
+    imgProcessing(position);
+
     res.json({"Photos":"ok"});
-    
+
   });
-  
+
 module.exports = uploadRouter;
