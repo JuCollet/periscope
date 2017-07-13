@@ -76,12 +76,11 @@ uploadRouter.route('/:id')
         let processed = 0;
         
         for(let i = 0; i < imgProcess.length; i ++){
-        
+
             lwip.open(currentFile.path, function(err, image){
                 if(err) return next(err);
                 
-                // Open file at position x for processing.
-                console.log("processing " + currentFile.path);
+                console.log("processing " + currentFile.path + " : "+imgProcess[i].name);
                 
                 let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
                 
@@ -89,9 +88,6 @@ uploadRouter.route('/:id')
                 .scale(scale)
                 .toBuffer('jpg', {quality:imgProcess[i].quality}, function(err, buffer){
                     if(err) return next(err);
-                    
-                    //Once rescaled, put file into a new Buffer
-                    // and increment the images processed counter;
                     
                     processed++;
                     
@@ -106,18 +102,13 @@ uploadRouter.route('/:id')
                     
                     s3.putObject(params, function(err, data) {
                         if(err) return next(err);
-                        
-                        // When file is sent to S3 and if it was the last one to be processed,
-                        // push the files in the database;
-                        
+                        buffer = null;
                     });
                     
-                    console.log("processing image "+nextPosition+" version "+imgProcess[i].name)
-                    
+                    // Check if every image version has been processed;
                     if(processed === imgProcess.length){
                         
                         // Create a new object with uploaded files links;
-                        
                         let newPhoto = {
                             thumb: `${process.env.S3_URL}thumb${id}${currentFile.filename}`,
                             medium: `${process.env.S3_URL}medium${id}${currentFile.filename}`,
@@ -125,20 +116,15 @@ uploadRouter.route('/:id')
                         };
 
                         // Update the database by pushing the newPhoto object;
-                        
                         Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, function(err, album){
                             if(err) return next(err);
                             
-                        // As the current file as been processed and sent to S3,
-                        // delete the local temp file;
-                        console.log("position = " + position)
-                        console.log("processed = " + processed)
-                        console.log("delete file " + currentFile.path)
-                        fs.unlink(currentFile.path);                                
+                            // As the current file as been processed and sent to S3,
+                            // delete the local temp file;
+                            fs.unlink(currentFile.path);                             
                             
-                            // After the files are pushed to the database,
+                            // After the files have been pushed to the database,
                             // repeat the processing function for remaining files.
-                            
                             if(nextPosition < nbrFiles-1){
                                 position++;
                                 imgProcessing(position);    

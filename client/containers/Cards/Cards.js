@@ -1,9 +1,10 @@
 'use strict';
 
 import React, { Component } from "react";
-import axios from "axios";
+import Dropbox from "../Dropbox/Dropbox";
 
-class Card extends Component {
+
+export default class Card extends Component {
   
   cardStyle = _ => {
     if(this.props.album.photos.length > 0){
@@ -12,40 +13,6 @@ class Card extends Component {
       return { backgroundImage: 'url(/img/nophoto.png)'};
     }
   };
-
-  onDragOver(e){
-    e.preventDefault();
-    e.currentTarget.classList.add("dragUploadDragOver");
-  }
-  
-  onDragLeave(e){
-    e.currentTarget.classList.remove("dragUploadDragOver");
-  }
-  
-  onDrop(e){
-    e.preventDefault();
-    const dt = e.dataTransfer;
-    let data = new FormData();
-    
-    for (let i = 0; i < dt.files.length; i++) {
-      if(dt.files[i].type === "image/jpeg")
-      data.append('photos', dt.files[i], dt.files[i].name);
-    }
-    
-    axios({
-      url: '/upload/'+this.props.album._id,
-      method: 'put',
-      data: data,
-      headers:{'Content-Type':'multipart/form-data'}
-    }).then(function(err){
-      if(err)console.log(err);
-    }).catch(function(err){
-      if(err)console.log(err);
-    });    
-    
-    e.currentTarget.classList.remove("dragUploadDragOver");
-    
-  }
 
   render(){
     
@@ -56,11 +23,7 @@ class Card extends Component {
     
     return (
       <div className="card">
-        <div id="dropzone" onDrop={e => this.onDrop(e)} onDragOver={e => this.onDragOver(e)} onDragLeave={e => this.onDragLeave(e)} >
-          <div className="dropLimits">
-            <i className="fa fa-paper-plane"></i>
-          </div>
-        </div>
+        <Dropbox id={this.props.album._id} height={150} />
         <div className="card-img-wrapper">
           <div className="card-img" style={this.cardStyle()}></div>
             {newBadge}
@@ -78,7 +41,4 @@ class Card extends Component {
       </div>
     );  
   }
-
 }
-
-export default Card;
