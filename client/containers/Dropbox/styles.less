@@ -31,10 +31,7 @@
     .dropLimits {
         visibility: visible !important;
         overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
+        position: relative;
         width: calc(~"100% - 30px");
         height: calc(~"100% - 30px");
         border: 2px dotted @mediumGrey;
@@ -42,9 +39,20 @@
         pointer-events: none;
         
         .fa {
+            position: absolute;
+            z-index: 666;
+            top: calc(~"50% - 25px");
+            right: calc(~"50% - 25px");
             pointer-events: none;
             color: @mediumGrey;
-            font-size: 3em;
+            font-size: 50px;
         }
     }
+}
+
+.dropIconAnim {
+    transition: .3s;
+    transform: scale(.7);
+    top: -50px !important;
+    right: -50px !important;
 }

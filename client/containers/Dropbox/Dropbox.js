@@ -18,11 +18,21 @@ class Dropbox extends Component {
   onDrop(e){
     e.preventDefault();
     
+    document.getElementById(`${this.props.id}-icon`).classList.add("dropIconAnim");
+    
     const dt = e.dataTransfer;
     let data = new FormData();
     
     const callback = function(){
-    };  
+      document.getElementById(`${this.props.id}-icon`).classList.remove("dropIconAnim", "fa-paper-plane");
+      document.getElementById(`${this.props.id}-icon`).classList.add("fa-check", "txt-white");
+      setTimeout(_ => {
+        document.getElementById(`${this.props.id}-progress`).style.height = ("0px");
+        document.getElementById(`${this.props.id}-dropzone`).classList.remove("dragUploadDragHover");
+        document.getElementById(`${this.props.id}-icon`).classList.remove("dropIconAnim", "fa-check", "txt-white");
+        document.getElementById(`${this.props.id}-icon`).classList.add("fa-paper-plane");
+      }, 1000);
+    }.bind(this);  
     
     for (let i = 0; i < dt.files.length; i++) {
       if(dt.files[i].type === "image/jpeg")
