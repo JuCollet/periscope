@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { NavLink } from "react-router-dom";
 import { albumFetch } from "../../actions/albums";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
@@ -30,7 +31,7 @@ class Photos extends Component {
         <hr className="albumHr" />
         <div id="photos">
           {this.props.album.photos.map(function(photo, index){
-            return <img src={photo.medium} key={index}/>;
+            return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.medium} /></NavLink>;
           })}
         </div>
       </div>

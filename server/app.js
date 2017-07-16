@@ -12,8 +12,8 @@ require('./db');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/albums', albumRouter);
-app.use('/upload', uploadRouter);
+app.use('/api/albums', albumRouter);
+app.use('/api/upload', uploadRouter);
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 

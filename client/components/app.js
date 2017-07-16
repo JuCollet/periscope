@@ -24,7 +24,7 @@ export default class App extends Component {
                         <Route path="/app/Account" component={Account} />
                         <Route path="/app/albums" component={Albums} />
                         <Route path="/app/photos/:id" component={Photos} />
-                        <Route path="/app/photo/:id" component={Photo} />
+                        <Route path="/app/photo/:albumId/:photoId" component={Photo} />
                     </Switch>
                 </div>
             </BrowserRouter>

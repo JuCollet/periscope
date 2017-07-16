@@ -18,19 +18,25 @@ class Dropbox extends Component {
   onDrop(e){
     e.preventDefault();
     
-    document.getElementById(`${this.props.id}-icon`).classList.add("dropIconAnim");
+    const { id, redirection } = this.props;
+    
+    document.getElementById(`${id}-icon`).classList.add("dropIconAnim");
     
     const dt = e.dataTransfer;
     let data = new FormData();
     
     const callback = function(){
-      document.getElementById(`${this.props.id}-icon`).classList.remove("dropIconAnim", "fa-paper-plane");
-      document.getElementById(`${this.props.id}-icon`).classList.add("fa-check", "txt-white");
+
+      if(this.props.redirection){
+        this.props.history.push(redirection);
+      }
+      document.getElementById(`${id}-icon`).classList.remove("dropIconAnim", "fa-paper-plane");
+      document.getElementById(`${id}-icon`).classList.add("fa-check", "txt-white");
       setTimeout(_ => {
-        document.getElementById(`${this.props.id}-progress`).style.height = ("0px");
-        document.getElementById(`${this.props.id}-dropzone`).classList.remove("dragUploadDragHover");
-        document.getElementById(`${this.props.id}-icon`).classList.remove("dropIconAnim", "fa-check", "txt-white");
-        document.getElementById(`${this.props.id}-icon`).classList.add("fa-paper-plane");
+        document.getElementById(`${id}-progress`).style.height = ("0px");
+        document.getElementById(`${id}-icon`).classList.remove("dropIconAnim", "fa-check", "txt-white");
+        document.getElementById(`${id}-dropzone`).classList.remove("dragUploadDragHover");
+        document.getElementById(`${id}-icon`).classList.add("fa-paper-plane");
       }, 1000);
     }.bind(this);  
     
@@ -39,7 +45,7 @@ class Dropbox extends Component {
       data.append('photos', dt.files[i], dt.files[i].name);
     }
     
-    this.props.fileUpload(data, this.props.id, callback);
+    this.props.fileUpload(data, id, callback);
     
   }
   

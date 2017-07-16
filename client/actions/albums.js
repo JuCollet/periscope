@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE } from "../actiontypes/";
 
-const baseUrl = "http://periscope-julesbe.c9users.io/albums/";
+const baseUrl = "http://periscope-julesbe.c9users.io/api/albums/";
 
 export function albumsFetch(){
 
