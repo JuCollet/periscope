@@ -22,9 +22,17 @@ class Photos extends Component {
             return <Loading />;
         }
         
+        const photo = _.find(album.photos, {"_id":this.props.match.params.photoId});
+        
         return (
+            
+            
             <div className="wrapper PhotoCenter bkg-veryDarkGrey">
-                <img className="PhotoBig" src={_.find(album.photos, {"_id":this.props.match.params.photoId}).medium} />    
+                <img className="PhotoBig" src={photo.medium} />    
+                <div className="photoButtonsBox">
+                    <a href={photo.original} download><div className="photoButton photoButton-left" >Télécharger</div></a>
+                    <div className="photoButton photoButton-right">Infos</div>
+                </div>
             </div>
         );    
     }
@@ -32,7 +40,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({albumFetch}, dispatch)
+    return bindActionCreators({albumFetch}, dispatch);
 }
 
 function mapStateToProps(state, ownProps){

@@ -96,7 +96,7 @@ uploadRouter.route('/:id')
                     const params = {
                         Body: buffer,
                         Bucket: "periscopefiles",
-                        Key: imgProcess[i].name+id+currentFile.filename,
+                        Key: imgProcess[i].name+"-"+id+currentFile.filename,
                         ACL: 'public-read'
                     };
                     

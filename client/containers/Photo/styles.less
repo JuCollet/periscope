@@ -9,3 +9,46 @@
     justify-content: center;
     align-items: center;
 }
+
+.photoButton {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: @veryDarkGrey;
+    opacity: .5;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.photoButton:hover {
+    opacity: 1;
+    border-color: white;
+    background-color: white;
+    color: @veryDarkGrey;
+}
+
+.photoButton-left {
+    float: left;
+    border-radius: 3px 0px 0px 3px;
+    border-width: 1px 0px 1px 1px;
+}
+
+.photoButton-right {
+    border-radius: 0px 3px 3px 0px;
+    border-width: 1px 1px 1px 1px;
+}
+
+.photoButtonsBox {
+    position: absolute;
+    bottom: 100px;
+}
+
+@media (min-width: @screen-sm-min){
+
+    .photoButtonsBox {
+        bottom: 40px;
+    }
+    
+}
