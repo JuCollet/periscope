@@ -1,0 +1,31 @@
+.photoInfoBox {
+    flex-direction: column;
+    position: absolute;
+    padding: 40px;
+    width: 70vw;
+    height: 70vh;
+    border-radius: 4px;
+    transform: rotateY(-90deg);
+    transition: .4s;
+    
+    .fa {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5em;
+        color: @mediumGrey;
+        transition: .2s;
+        cursor:pointer;
+    }
+    
+    .fa:hover {
+        color: @darkGrey;
+    }    
+    
+}
+
+.photoInfoBoxRotation {
+    transition: .4s;
+    transition-delay: .4s;
+    transform: rotateY(0deg);
+}

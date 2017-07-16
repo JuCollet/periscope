@@ -2,6 +2,13 @@
     max-width: calc(~"100vw - 40px");
     max-height: calc(~"100vh - 100px");
     border-radius: 4px;
+    transition: .4s;
+    transition-delay: .4s;
+}
+
+.PhotoBigRotation {
+    transition : .4s;
+    transform: rotateY(90deg);
 }
 
 .PhotoCenter {
@@ -43,6 +50,7 @@
 .photoButtonsBox {
     position: absolute;
     bottom: 100px;
+    transition: .4s;
 }
 
 @media (min-width: @screen-sm-min){
