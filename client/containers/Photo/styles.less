@@ -1,62 +1,33 @@
 .PhotoBig {
     max-width: calc(~"100vw - 40px");
-    max-height: calc(~"100vh - 100px");
+    max-height: calc(~"100vh - 200px");
     border-radius: 4px;
-    transition: .4s;
-    transition-delay: .4s;
+    transition: .3s;
+    transition-delay: .3s;
 }
 
 .PhotoBigRotation {
-    transition : .4s;
+    transition : .3s;
     transform: rotateY(90deg);
 }
 
-.PhotoCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.photoButton {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: @veryDarkGrey;
-    opacity: .5;
-    border-color: white;
-    border-style: solid;
-    color: white;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-.photoButton:hover {
-    opacity: 1;
-    border-color: white;
-    background-color: white;
-    color: @veryDarkGrey;
-}
-
-.photoButton-left {
-    float: left;
-    border-radius: 3px 0px 0px 3px;
-    border-width: 1px 0px 1px 1px;
-}
-
-.photoButton-right {
-    border-radius: 0px 3px 3px 0px;
-    border-width: 1px 1px 1px 1px;
-}
-
 .photoButtonsBox {
-    position: absolute;
-    bottom: 100px;
+    margin-top: 20px;
     transition: .4s;
-}
-
-@media (min-width: @screen-sm-min){
-
-    .photoButtonsBox {
-        bottom: 40px;
+    
+    i {
+        color: lighten(@veryDarkGrey,30%);
+        margin-right: 20px;
+        font-size: 1em;
+        cursor: pointer;
+    }
+    
+    i:hover {
+        color: @mediumGrey;
+    }
+    
+    span {
+        color: lighten(@veryDarkGrey,30%);
     }
     
 }

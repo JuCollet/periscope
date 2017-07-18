@@ -20,6 +20,7 @@ class Sidemenu extends Component {
           <li><NavLink to="/app/albums/" onClick={ _ => this.props.toggleMenu() }>Gallerie</NavLink></li>
           <li><NavLink to="/app/upload/" onClick={ _ => this.props.toggleMenu() }>Créer une collection</NavLink></li>
           <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
+          <li>Favoris</li>
           <li>Déconnexion</li>
         </ul>
       </div>

@@ -21,20 +21,6 @@
     }
 
     z-index: 9999;
-
-    .fa {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        color: @mediumGrey;
-        font-size: 20px;
-        cursor: pointer;
-    }
-    
-    .fa:hover {
-        color: @darkGrey;   
-    }
     
     h2 {
         color: @darkBlueGrey;
@@ -52,6 +38,20 @@
     transition-duration: .2s;
     left: -330px;
     box-shadow: none;
+}
+
+#sidemenu > .fa {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: @mediumGrey;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#sidemenu > .fa:hover {
+    color: @darkGrey;   
 }
 
 @media (max-width: @screen-sm-min) {

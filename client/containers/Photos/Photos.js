@@ -23,7 +23,7 @@ class Photos extends Component {
     }
     
     return (
-      <div className="wrapper">
+      <div className="wrapper wrapper-padding">
         <span className="albumTitle">{album.name}</span>
         <span className="albumPhotographer">par {album.photographer}</span>
         <span className="albumDescription">{album.description}</span>

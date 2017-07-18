@@ -54,7 +54,7 @@ class Upload extends Component {
     
     render(){
         return(
-            <div className="wrapper-flex-center">
+            <div className="wrapper flex-center">
                 <div className="contentBox">
                     <div className="contentBox-image bkg-darkBlueGrey">
                     </div>

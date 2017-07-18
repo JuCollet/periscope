@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22,42 +22,6 @@ function toggleMenu() {
 
 /***/ }),
 
-/***/ 115:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = Notification;
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Notification(props) {
-    return _react2.default.createElement(
-        'div',
-        { className: 'wrapper-flex-center' },
-        _react2.default.createElement(
-            'h2',
-            null,
-            'Chargement...'
-        ),
-        _react2.default.createElement(
-            'div',
-            { className: 'loadingBar' },
-            _react2.default.createElement('span', null)
-        )
-    );
-}
-
-/***/ }),
-
 /***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -72,7 +36,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(70);
+var _lodash = __webpack_require__(49);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -102,7 +66,7 @@ exports.default = function (props) {
 "use strict";
 
 
-module.exports = __webpack_require__(231);
+module.exports = __webpack_require__(232);
 
 /***/ }),
 
@@ -113,12 +77,12 @@ module.exports = __webpack_require__(231);
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var settle = __webpack_require__(237);
-var buildURL = __webpack_require__(240);
-var parseHeaders = __webpack_require__(246);
-var isURLSameOrigin = __webpack_require__(244);
+var settle = __webpack_require__(238);
+var buildURL = __webpack_require__(241);
+var parseHeaders = __webpack_require__(247);
+var isURLSameOrigin = __webpack_require__(245);
 var createError = __webpack_require__(121);
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(239);
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(240);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -211,7 +175,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(242);
+      var cookies = __webpack_require__(243);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -333,7 +297,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(236);
+var enhanceError = __webpack_require__(237);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -462,7 +426,7 @@ function toComment(sourceMap) {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var bind = __webpack_require__(122);
-var isBuffer = __webpack_require__(248);
+var isBuffer = __webpack_require__(249);
 
 /*global toString:true*/
 
@@ -1046,7 +1010,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(581);
+var	fixUrls = __webpack_require__(582);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1386,9 +1350,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
-var _Sidemenu = __webpack_require__(225);
+var _Sidemenu = __webpack_require__(226);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
@@ -1408,7 +1372,7 @@ var _Albums = __webpack_require__(218);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
-var _Photos = __webpack_require__(224);
+var _Photos = __webpack_require__(225);
 
 var _Photos2 = _interopRequireDefault(_Photos);
 
@@ -1491,7 +1455,7 @@ var _user = __webpack_require__(216);
 
 var _reactRedux = __webpack_require__(9);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1536,7 +1500,7 @@ var LogIn = function (_Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "wrapper-flex-center" },
+                { className: "wrapper flex-center" },
                 _react2.default.createElement(
                     "form",
                     { id: "sign", onSubmit: handleSubmit(this.onSubmit) },
@@ -1603,15 +1567,15 @@ var _redux = __webpack_require__(11);
 
 var _reduxForm = __webpack_require__(47);
 
-var _reducer_user = __webpack_require__(230);
+var _reducer_user = __webpack_require__(231);
 
 var _reducer_user2 = _interopRequireDefault(_reducer_user);
 
-var _reducer_albums = __webpack_require__(228);
+var _reducer_albums = __webpack_require__(229);
 
 var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 
-var _reducer_menu = __webpack_require__(229);
+var _reducer_menu = __webpack_require__(230);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
 
@@ -1648,7 +1612,7 @@ var _extends = Object.assign || function (target) {
 
 exports['default'] = promiseMiddleware;
 
-var _fluxStandardAction = __webpack_require__(562);
+var _fluxStandardAction = __webpack_require__(563);
 
 function isPromise(val) {
   return val && typeof val.then === 'function';
@@ -1682,7 +1646,7 @@ module.exports = exports['default'];
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(582);
+var content = __webpack_require__(583);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1714,7 +1678,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(583);
+var content = __webpack_require__(584);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1796,7 +1760,7 @@ exports.userLogin = userLogin;
 
 var _actiontypes = __webpack_require__(25);
 
-var _users = __webpack_require__(227);
+var _users = __webpack_require__(228);
 
 function userLogin(user, cb) {
 
@@ -1850,7 +1814,7 @@ var Account = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "wrapper-flex-center" },
+                { className: "wrapper flex-center" },
                 _react2.default.createElement(
                     "div",
                     { className: "contentBox" },
@@ -1897,19 +1861,19 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(68);
+var _albums = __webpack_require__(48);
 
 var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _lodash = __webpack_require__(70);
+var _lodash = __webpack_require__(49);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Loading = __webpack_require__(115);
+var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -2124,7 +2088,7 @@ var _reduxForm = __webpack_require__(47);
 
 var _reactRedux = __webpack_require__(9);
 
-var _albums = __webpack_require__(68);
+var _albums = __webpack_require__(48);
 
 var _redux = __webpack_require__(11);
 
@@ -2206,7 +2170,7 @@ var Upload = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'wrapper-flex-center' },
+                { className: 'wrapper flex-center' },
                 _react2.default.createElement(
                     'div',
                     { className: 'contentBox' },
@@ -2432,7 +2396,7 @@ var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(114);
+var _menu = __webpack_require__(115);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2518,19 +2482,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(9);
 
-var _lodash = __webpack_require__(70);
+var _lodash = __webpack_require__(49);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
 var _redux = __webpack_require__(11);
 
-var _albums = __webpack_require__(68);
+var _albums = __webpack_require__(48);
 
-var _Loading = __webpack_require__(115);
+var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _PhotoInfo = __webpack_require__(587);
+var _PhotoInfo = __webpack_require__(224);
 
 var _PhotoInfo2 = _interopRequireDefault(_PhotoInfo);
 
@@ -2566,10 +2530,8 @@ var Photos = function (_Component) {
         key: "showInfos",
         value: function showInfos() {
             if (this.state.infoOpen) {
+                document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
                 document.getElementsByClassName("photoButtonsBox")[0].style.opacity = "1";
-                setTimeout(function (_) {
-                    document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
-                }, 400);
                 document.getElementsByClassName("PhotoBig")[0].classList.remove("PhotoBigRotation");
                 document.getElementsByClassName("photoInfoBox")[0].classList.remove("photoInfoBoxRotation");
             } else {
@@ -2596,25 +2558,24 @@ var Photos = function (_Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "wrapper PhotoCenter bkg-veryDarkGrey" },
-                _react2.default.createElement(_PhotoInfo2.default, { closeInfoBox: this.showInfos }),
+                { className: "wrapper wrapper-padding flex-center bkg-veryDarkGrey" },
                 _react2.default.createElement("img", { className: "PhotoBig", src: photo.medium }),
+                _react2.default.createElement(_PhotoInfo2.default, { closeInfoBox: this.showInfos }),
                 _react2.default.createElement(
                     "div",
                     { className: "photoButtonsBox" },
                     _react2.default.createElement(
                         "a",
                         { href: photo.original, download: true },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "photoButton photoButton-left" },
-                            "T\xE9l\xE9charger"
-                        )
+                        _react2.default.createElement("i", { className: "fa fa-arrow-down" })
                     ),
+                    _react2.default.createElement("i", { className: "fa fa-heart" }),
+                    _react2.default.createElement("i", { className: "fa fa-share-alt" }),
+                    _react2.default.createElement("i", { className: "fa fa-info-circle", onClick: this.showInfos }),
                     _react2.default.createElement(
-                        "div",
-                        { onClick: this.showInfos, className: "photoButton photoButton-right" },
-                        "Infos"
+                        "span",
+                        null,
+                        "#TAGS"
                     )
                 )
             );
@@ -2645,6 +2606,85 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (props) {
+    return _react2.default.createElement(
+        "div",
+        { className: "bkg-white photoInfoBox" },
+        _react2.default.createElement("i", { className: "fa fa-times", onClick: function onClick(_) {
+                return props.closeInfoBox();
+            } }),
+        _react2.default.createElement(
+            "h2",
+            null,
+            "Infos"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Album name"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Photographe"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Size"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Weight"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Tags"
+        ),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Partager"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Supprimer cette image"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "T\xE9l\xE9charger cette image"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            "Editer les tags"
+        )
+    );
+};
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+
+/***/ 225:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -2658,11 +2698,11 @@ var _reactRedux = __webpack_require__(9);
 
 var _redux = __webpack_require__(11);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(68);
+var _albums = __webpack_require__(48);
 
-var _Loading = __webpack_require__(115);
+var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -2704,7 +2744,7 @@ var Photos = function (_Component) {
 
       return _react2.default.createElement(
         "div",
-        { className: "wrapper" },
+        { className: "wrapper wrapper-padding" },
         _react2.default.createElement(
           "span",
           { className: "albumTitle" },
@@ -2756,7 +2796,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 225:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2774,11 +2814,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(11);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(114);
+var _menu = __webpack_require__(115);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2854,6 +2894,11 @@ var Sidemenu = function (_Component) {
           _react2.default.createElement(
             "li",
             null,
+            "Favoris"
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
             "D\xE9connexion"
           )
         )
@@ -2880,7 +2925,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2890,7 +2935,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(67);
+var _reactDom = __webpack_require__(69);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -2898,7 +2943,7 @@ var _reactRedux = __webpack_require__(9);
 
 var _redux = __webpack_require__(11);
 
-var _reactRouterDom = __webpack_require__(24);
+var _reactRouterDom = __webpack_require__(22);
 
 var _reduxPromise = __webpack_require__(212);
 
@@ -2947,7 +2992,7 @@ _reactDom2.default.render(_react2.default.createElement(
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2965,7 +3010,7 @@ var usersMock = exports.usersMock = {
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2993,7 +3038,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(25);
 
-var _lodash = __webpack_require__(70);
+var _lodash = __webpack_require__(49);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -3003,7 +3048,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3030,7 +3075,7 @@ var _actiontypes = __webpack_require__(25);
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3057,7 +3102,7 @@ var _actiontypes = __webpack_require__(25);
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3065,8 +3110,8 @@ var _actiontypes = __webpack_require__(25);
 
 var utils = __webpack_require__(13);
 var bind = __webpack_require__(122);
-var Axios = __webpack_require__(233);
-var defaults = __webpack_require__(69);
+var Axios = __webpack_require__(234);
+var defaults = __webpack_require__(71);
 
 /**
  * Create an instance of Axios
@@ -3100,14 +3145,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(119);
-axios.CancelToken = __webpack_require__(232);
+axios.CancelToken = __webpack_require__(233);
 axios.isCancel = __webpack_require__(120);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(247);
+axios.spread = __webpack_require__(248);
 
 module.exports = axios;
 
@@ -3116,7 +3161,7 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3180,18 +3225,18 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(69);
+var defaults = __webpack_require__(71);
 var utils = __webpack_require__(13);
-var InterceptorManager = __webpack_require__(234);
-var dispatchRequest = __webpack_require__(235);
-var isAbsoluteURL = __webpack_require__(243);
-var combineURLs = __webpack_require__(241);
+var InterceptorManager = __webpack_require__(235);
+var dispatchRequest = __webpack_require__(236);
+var isAbsoluteURL = __webpack_require__(244);
+var combineURLs = __webpack_require__(242);
 
 /**
  * Create a new instance of Axios
@@ -3273,7 +3318,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3332,16 +3377,16 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(13);
-var transformData = __webpack_require__(238);
+var transformData = __webpack_require__(239);
 var isCancel = __webpack_require__(120);
-var defaults = __webpack_require__(69);
+var defaults = __webpack_require__(71);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -3399,7 +3444,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3428,7 +3473,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3455,7 +3500,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3482,7 +3527,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3524,7 +3569,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3592,7 +3637,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3612,7 +3657,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3672,7 +3717,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 243:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3695,7 +3740,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3765,7 +3810,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3784,7 +3829,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3830,7 +3875,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3865,7 +3910,7 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3913,745 +3958,7 @@ var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
 
 /***/ }),
 
-/***/ 562:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.isFSA = isFSA;
-exports.isError = isError;
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { 'default': obj };
-}
-
-var _lodashIsplainobject = __webpack_require__(563);
-
-var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
-
-var validKeys = ['type', 'payload', 'error', 'meta'];
-
-function isValidKey(key) {
-  return validKeys.indexOf(key) > -1;
-}
-
-function isFSA(action) {
-  return _lodashIsplainobject2['default'](action) && typeof action.type !== 'undefined' && Object.keys(action).every(isValidKey);
-}
-
-function isError(action) {
-  return action.error === true;
-}
-
-/***/ }),
-
-/***/ 563:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * lodash 3.2.0 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-var baseFor = __webpack_require__(564),
-    isArguments = __webpack_require__(201),
-    keysIn = __webpack_require__(565);
-
-/** `Object#toString` result references. */
-var objectTag = '[object Object]';
-
-/**
- * Checks if `value` is object-like.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- */
-function isObjectLike(value) {
-  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
-}
-
-/** Used for native method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objToString = objectProto.toString;
-
-/**
- * The base implementation of `_.forIn` without support for callback
- * shorthands and `this` binding.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Object} Returns `object`.
- */
-function baseForIn(object, iteratee) {
-  return baseFor(object, iteratee, keysIn);
-}
-
-/**
- * Checks if `value` is a plain object, that is, an object created by the
- * `Object` constructor or one with a `[[Prototype]]` of `null`.
- *
- * **Note:** This method assumes objects created by the `Object` constructor
- * have no inherited enumerable properties.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- * }
- *
- * _.isPlainObject(new Foo);
- * // => false
- *
- * _.isPlainObject([1, 2, 3]);
- * // => false
- *
- * _.isPlainObject({ 'x': 0, 'y': 0 });
- * // => true
- *
- * _.isPlainObject(Object.create(null));
- * // => true
- */
-function isPlainObject(value) {
-  var Ctor;
-
-  // Exit early for non `Object` objects.
-  if (!(isObjectLike(value) && objToString.call(value) == objectTag && !isArguments(value)) || !hasOwnProperty.call(value, 'constructor') && (Ctor = value.constructor, typeof Ctor == 'function' && !(Ctor instanceof Ctor))) {
-    return false;
-  }
-  // IE < 9 iterates inherited properties before own properties. If the first
-  // iterated property is an object's own property then there are no inherited
-  // enumerable properties.
-  var result;
-  // In most environments an object's own properties are iterated before
-  // its inherited properties. If the last iterated property is an object's
-  // own property then there are no inherited enumerable properties.
-  baseForIn(value, function (subValue, key) {
-    result = key;
-  });
-  return result === undefined || hasOwnProperty.call(value, result);
-}
-
-module.exports = isPlainObject;
-
-/***/ }),
-
-/***/ 564:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * lodash 3.0.3 (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="npm" -o ./`
- * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-
-/**
- * The base implementation of `baseForIn` and `baseForOwn` which iterates
- * over `object` properties returned by `keysFunc` invoking `iteratee` for
- * each property. Iteratee functions may exit iteration early by explicitly
- * returning `false`.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @param {Function} keysFunc The function to get the keys of `object`.
- * @returns {Object} Returns `object`.
- */
-var baseFor = createBaseFor();
-
-/**
- * Creates a base function for methods like `_.forIn`.
- *
- * @private
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new base function.
- */
-function createBaseFor(fromRight) {
-  return function (object, iteratee, keysFunc) {
-    var index = -1,
-        iterable = Object(object),
-        props = keysFunc(object),
-        length = props.length;
-
-    while (length--) {
-      var key = props[fromRight ? length : ++index];
-      if (iteratee(iterable[key], key, iterable) === false) {
-        break;
-      }
-    }
-    return object;
-  };
-}
-
-module.exports = baseFor;
-
-/***/ }),
-
-/***/ 565:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * lodash 3.0.8 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-var isArguments = __webpack_require__(201),
-    isArray = __webpack_require__(566);
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^\d+$/;
-
-/** Used for native method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used as the [maximum length](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.max_safe_integer)
- * of an array-like value.
- */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  value = typeof value == 'number' || reIsUint.test(value) ? +value : -1;
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return value > -1 && value % 1 == 0 && value < length;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This function is based on [`ToLength`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength).
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- */
-function isLength(value) {
-  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
- * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(1);
- * // => false
- */
-function isObject(value) {
-  // Avoid a V8 JIT bug in Chrome 19-20.
-  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
-  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Creates an array of the own and inherited enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects.
- *
- * @static
- * @memberOf _
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keysIn(new Foo);
- * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
- */
-function keysIn(object) {
-  if (object == null) {
-    return [];
-  }
-  if (!isObject(object)) {
-    object = Object(object);
-  }
-  var length = object.length;
-  length = length && isLength(length) && (isArray(object) || isArguments(object)) && length || 0;
-
-  var Ctor = object.constructor,
-      index = -1,
-      isProto = typeof Ctor == 'function' && Ctor.prototype === object,
-      result = Array(length),
-      skipIndexes = length > 0;
-
-  while (++index < length) {
-    result[index] = index + '';
-  }
-  for (var key in object) {
-    if (!(skipIndexes && isIndex(key, length)) && !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-module.exports = keysIn;
-
-/***/ }),
-
-/***/ 566:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * lodash 3.0.4 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-
-/** `Object#toString` result references. */
-var arrayTag = '[object Array]',
-    funcTag = '[object Function]';
-
-/** Used to detect host constructors (Safari > 5). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/**
- * Checks if `value` is object-like.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- */
-function isObjectLike(value) {
-  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
-}
-
-/** Used for native method references. */
-var objectProto = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var fnToString = Function.prototype.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objToString = objectProto.toString;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' + fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
-
-/* Native method references for those with the same name as other `lodash` methods. */
-var nativeIsArray = getNative(Array, 'isArray');
-
-/**
- * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
- * of an array-like value.
- */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = object == null ? undefined : object[key];
-  return isNative(value) ? value : undefined;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- */
-function isLength(value) {
-  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(function() { return arguments; }());
- * // => false
- */
-var isArray = nativeIsArray || function (value) {
-  return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
-};
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in older versions of Chrome and Safari which return 'function' for regexes
-  // and Safari 8 equivalents which return 'object' for typed array constructors.
-  return isObject(value) && objToString.call(value) == funcTag;
-}
-
-/**
- * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
- * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(1);
- * // => false
- */
-function isObject(value) {
-  // Avoid a V8 JIT bug in Chrome 19-20.
-  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
-  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Checks if `value` is a native function.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
- * @example
- *
- * _.isNative(Array.prototype.push);
- * // => true
- *
- * _.isNative(_);
- * // => false
- */
-function isNative(value) {
-  if (value == null) {
-    return false;
-  }
-  if (isFunction(value)) {
-    return reIsNative.test(fnToString.call(value));
-  }
-  return isObjectLike(value) && reIsHostCtor.test(value);
-}
-
-module.exports = isArray;
-
-/***/ }),
-
-/***/ 581:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-	// get current location
-	var location = typeof window !== "undefined" && window.location;
-
-	if (!location) {
-		throw new Error("fixUrls requires window.location");
-	}
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-		return css;
-	}
-
-	var baseUrl = location.protocol + "//" + location.host;
-	var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
- This regular expression is just a way to recursively match brackets within
- a string.
- 	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-    (  = Start a capturing group
-      (?:  = Start a non-capturing group
-          [^)(]  = Match anything that isn't a parentheses
-          |  = OR
-          \(  = Match a start parentheses
-              (?:  = Start another non-capturing groups
-                  [^)(]+  = Match anything that isn't a parentheses
-                  |  = OR
-                  \(  = Match a start parentheses
-                      [^)(]*  = Match anything that isn't a parentheses
-                  \)  = Match a end parentheses
-              )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-  \)  = Match a close parens
- 	 /gi  = Get all matches, not the first.  Be case insensitive.
-  */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
-			return $1;
-		}).replace(/^'(.*)'$/, function (o, $1) {
-			return $1;
-		});
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-			return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-			//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-/***/ }),
-
-/***/ 582:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(123)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/* Document\n   ========================================================================== */\n\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\nhtml {\n  line-height: 1.15; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Correct the padding in Firefox.\n */\n\nfieldset {\n  padding: 0.35em 0.75em 0.625em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 583:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(123)(undefined);
-// imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
-
-// module
-exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  z-index: 99999;\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu .fa:hover {\n  color: #777777;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  border-radius: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 100px);\n  border-radius: 4px;\n  -webkit-transition: .4s;\n  transition: .4s;\n  -webkit-transition-delay: .4s;\n          transition-delay: .4s;\n}\n.PhotoBigRotation {\n  -webkit-transition: .4s;\n  transition: .4s;\n  -webkit-transform: rotateY(90deg);\n          transform: rotateY(90deg);\n}\n.PhotoCenter {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.photoButton {\n  display: inline-block;\n  padding: 5px 10px;\n  background-color: #1A1A1A;\n  opacity: .5;\n  border-color: white;\n  border-style: solid;\n  color: white;\n  font-weight: 300;\n  cursor: pointer;\n}\n.photoButton:hover {\n  opacity: 1;\n  border-color: white;\n  background-color: white;\n  color: #1A1A1A;\n}\n.photoButton-left {\n  float: left;\n  border-radius: 3px 0px 0px 3px;\n  border-width: 1px 0px 1px 1px;\n}\n.photoButton-right {\n  border-radius: 0px 3px 3px 0px;\n  border-width: 1px 1px 1px 1px;\n}\n.photoButtonsBox {\n  position: absolute;\n  bottom: 100px;\n  -webkit-transition: .4s;\n  transition: .4s;\n}\n@media (min-width: 768px) {\n  .photoButtonsBox {\n    bottom: 40px;\n  }\n}\n.photoInfoBox {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: absolute;\n  padding: 40px;\n  width: 70vw;\n  height: 70vh;\n  border-radius: 4px;\n  -webkit-transform: rotateY(-90deg);\n          transform: rotateY(-90deg);\n  -webkit-transition: .4s;\n  transition: .4s;\n}\n.photoInfoBox .fa {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  font-size: 1.5em;\n  color: #cccccc;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photoInfoBox .fa:hover {\n  color: #777777;\n}\n.photoInfoBoxRotation {\n  -webkit-transition: .4s;\n  transition: .4s;\n  -webkit-transition-delay: .4s;\n          transition-delay: .4s;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg);\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper {\n    padding-bottom: 0px;\n    padding: 80px 20px 20px 20px;\n  }\n}\n.wrapper-flex-center {\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 587:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-exports.default = function (props) {
-    return _react2.default.createElement(
-        "div",
-        { className: "bkg-white photoInfoBox" },
-        _react2.default.createElement("i", { className: "fa fa-times", onClick: function onClick(_) {
-                return props.closeInfoBox();
-            } }),
-        _react2.default.createElement(
-            "h2",
-            null,
-            "Infos"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Album name"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Photographe"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Size"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Weight"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Tags"
-        ),
-        _react2.default.createElement("br", null),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Partager"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Supprimer cette image"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "T\xE9l\xE9charger cette image"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Editer les tags"
-        )
-    );
-};
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-
-/***/ 68:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4708,101 +4015,7 @@ function createAlbum(album, cb) {
 
 /***/ }),
 
-/***/ 69:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(13);
-var normalizeHeaderName = __webpack_require__(245);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(118);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(118);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) {/* Ignore */}
-    }
-    return data;
-  }],
-
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 70:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14254,6 +13467,795 @@ freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(undefined);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45), __webpack_require__(46)(module)))
 
+/***/ }),
+
+/***/ 563:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.isFSA = isFSA;
+exports.isError = isError;
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+var _lodashIsplainobject = __webpack_require__(564);
+
+var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
+
+var validKeys = ['type', 'payload', 'error', 'meta'];
+
+function isValidKey(key) {
+  return validKeys.indexOf(key) > -1;
+}
+
+function isFSA(action) {
+  return _lodashIsplainobject2['default'](action) && typeof action.type !== 'undefined' && Object.keys(action).every(isValidKey);
+}
+
+function isError(action) {
+  return action.error === true;
+}
+
+/***/ }),
+
+/***/ 564:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * lodash 3.2.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var baseFor = __webpack_require__(565),
+    isArguments = __webpack_require__(201),
+    keysIn = __webpack_require__(566);
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/**
+ * Checks if `value` is object-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ */
+function isObjectLike(value) {
+  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
+}
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/**
+ * The base implementation of `_.forIn` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForIn(object, iteratee) {
+  return baseFor(object, iteratee, keysIn);
+}
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * **Note:** This method assumes objects created by the `Object` constructor
+ * have no inherited enumerable properties.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  var Ctor;
+
+  // Exit early for non `Object` objects.
+  if (!(isObjectLike(value) && objToString.call(value) == objectTag && !isArguments(value)) || !hasOwnProperty.call(value, 'constructor') && (Ctor = value.constructor, typeof Ctor == 'function' && !(Ctor instanceof Ctor))) {
+    return false;
+  }
+  // IE < 9 iterates inherited properties before own properties. If the first
+  // iterated property is an object's own property then there are no inherited
+  // enumerable properties.
+  var result;
+  // In most environments an object's own properties are iterated before
+  // its inherited properties. If the last iterated property is an object's
+  // own property then there are no inherited enumerable properties.
+  baseForIn(value, function (subValue, key) {
+    result = key;
+  });
+  return result === undefined || hasOwnProperty.call(value, result);
+}
+
+module.exports = isPlainObject;
+
+/***/ }),
+
+/***/ 565:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * lodash 3.0.3 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * The base implementation of `baseForIn` and `baseForOwn` which iterates
+ * over `object` properties returned by `keysFunc` invoking `iteratee` for
+ * each property. Iteratee functions may exit iteration early by explicitly
+ * returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+/**
+ * Creates a base function for methods like `_.forIn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function (object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+module.exports = baseFor;
+
+/***/ }),
+
+/***/ 566:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * lodash 3.0.8 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+var isArguments = __webpack_require__(201),
+    isArray = __webpack_require__(567);
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^\d+$/;
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used as the [maximum length](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  value = typeof value == 'number' || reIsUint.test(value) ? +value : -1;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return value > -1 && value % 1 == 0 && value < length;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  if (object == null) {
+    return [];
+  }
+  if (!isObject(object)) {
+    object = Object(object);
+  }
+  var length = object.length;
+  length = length && isLength(length) && (isArray(object) || isArguments(object)) && length || 0;
+
+  var Ctor = object.constructor,
+      index = -1,
+      isProto = typeof Ctor == 'function' && Ctor.prototype === object,
+      result = Array(length),
+      skipIndexes = length > 0;
+
+  while (++index < length) {
+    result[index] = index + '';
+  }
+  for (var key in object) {
+    if (!(skipIndexes && isIndex(key, length)) && !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = keysIn;
+
+/***/ }),
+
+/***/ 567:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * lodash 3.0.4 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern modularize exports="npm" -o ./`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/** `Object#toString` result references. */
+var arrayTag = '[object Array]',
+    funcTag = '[object Function]';
+
+/** Used to detect host constructors (Safari > 5). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/**
+ * Checks if `value` is object-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ */
+function isObjectLike(value) {
+  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
+}
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var fnToString = Function.prototype.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' + fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeIsArray = getNative(Array, 'isArray');
+
+/**
+ * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = object == null ? undefined : object[key];
+  return isNative(value) ? value : undefined;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(function() { return arguments; }());
+ * // => false
+ */
+var isArray = nativeIsArray || function (value) {
+  return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
+};
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in older versions of Chrome and Safari which return 'function' for regexes
+  // and Safari 8 equivalents which return 'object' for typed array constructors.
+  return isObject(value) && objToString.call(value) == funcTag;
+}
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+ * @example
+ *
+ * _.isNative(Array.prototype.push);
+ * // => true
+ *
+ * _.isNative(_);
+ * // => false
+ */
+function isNative(value) {
+  if (value == null) {
+    return false;
+  }
+  if (isFunction(value)) {
+    return reIsNative.test(fnToString.call(value));
+  }
+  return isObjectLike(value) && reIsHostCtor.test(value);
+}
+
+module.exports = isArray;
+
+/***/ }),
+
+/***/ 582:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+	// get current location
+	var location = typeof window !== "undefined" && window.location;
+
+	if (!location) {
+		throw new Error("fixUrls requires window.location");
+	}
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+		return css;
+	}
+
+	var baseUrl = location.protocol + "//" + location.host;
+	var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+ This regular expression is just a way to recursively match brackets within
+ a string.
+ 	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+    (  = Start a capturing group
+      (?:  = Start a non-capturing group
+          [^)(]  = Match anything that isn't a parentheses
+          |  = OR
+          \(  = Match a start parentheses
+              (?:  = Start another non-capturing groups
+                  [^)(]+  = Match anything that isn't a parentheses
+                  |  = OR
+                  \(  = Match a start parentheses
+                      [^)(]*  = Match anything that isn't a parentheses
+                  \)  = Match a end parentheses
+              )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+  \)  = Match a close parens
+ 	 /gi  = Get all matches, not the first.  Be case insensitive.
+  */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
+			return $1;
+		}).replace(/^'(.*)'$/, function (o, $1) {
+			return $1;
+		});
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+			return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+			//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+/***/ }),
+
+/***/ 583:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(123)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/* Document\n   ========================================================================== */\n\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\n\nhtml {\n  line-height: 1.15; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in IE.\n */\n\nfigcaption,\nfigure,\nmain { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Correct the padding in Firefox.\n */\n\nfieldset {\n  padding: 0.35em 0.75em 0.625em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * 1. Add the correct display in IE 9-.\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n */\n\ndetails, /* 1 */\nmenu {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Scripting\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n */\n\ncanvas {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in IE.\n */\n\ntemplate {\n  display: none;\n}\n\n/* Hidden\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10-.\n */\n\n[hidden] {\n  display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 584:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(123)(undefined);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
+
+// module
+exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  z-index: 99999;\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .fa:hover {\n  color: #777777;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  border-radius: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .3s;\n          transition-delay: .3s;\n}\n.PhotoBigRotation {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: rotateY(90deg);\n          transform: rotateY(90deg);\n}\n.photoButtonsBox {\n  margin-top: 20px;\n  -webkit-transition: .4s;\n  transition: .4s;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin-right: 20px;\n  font-size: 1em;\n  cursor: pointer;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  color: #676767;\n}\n.photoInfoBox {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: absolute;\n  padding: 40px;\n  width: 70vw;\n  height: 70vh;\n  border-radius: 4px;\n  -webkit-transform: rotateY(-90deg);\n          transform: rotateY(-90deg);\n  -webkit-transition: .3s;\n  transition: .3s;\n}\n.photoInfoBox .fa {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  font-size: 1.5em;\n  color: #cccccc;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photoInfoBox .fa:hover {\n  color: #777777;\n}\n.photoInfoBoxRotation {\n  -webkit-transition: .4s;\n  transition: .4s;\n  -webkit-transition-delay: .4s;\n          transition-delay: .4s;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg);\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n@media (min-width: 768px) {\n  .flex-row {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 70:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Notification;
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Notification(props) {
+    return _react2.default.createElement(
+        'div',
+        { className: 'wrapper flex-center' },
+        _react2.default.createElement(
+            'h2',
+            null,
+            'Chargement...'
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'loadingBar' },
+            _react2.default.createElement('span', null)
+        )
+    );
+}
+
+/***/ }),
+
+/***/ 71:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(13);
+var normalizeHeaderName = __webpack_require__(246);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(118);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(118);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) {/* Ignore */}
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
 /***/ })
 
-},[226]);
+},[227]);

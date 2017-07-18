@@ -158,29 +158,36 @@ h3 {
     right: 0px;
     top:0px;
     bottom:0px;
+}
+
+.wrapper-padding {
     padding: 20px 20px 80px 20px;
 }
 
 @media (min-width: @screen-sm-min){
     
-    .wrapper {
-        padding-bottom: 0px;
+    .wrapper-padding {
         padding: 80px 20px 20px 20px;  
     }
 
 }
 
-.wrapper-flex-center {
-    height: 100%;
+// STATES //
+
+.flex-center {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
+@media (min-width: @screen-sm-min){
+    
+    .flex-row {
+       flex-direction: row;
+    }
 
-
-// STATES //
+}
 
 .txt-isLight {
     opacity: .5;

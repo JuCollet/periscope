@@ -7,6 +7,7 @@ const photoSchema = new mongoose.Schema({
     thumb : String,
     medium : String,
     original : String,
+    tags : [String],
     rating : {
         type: Number,
         max: 5,

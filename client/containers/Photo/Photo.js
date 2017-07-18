@@ -23,10 +23,8 @@ class Photos extends Component {
     
     showInfos(){
         if(this.state.infoOpen){
+            document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
             document.getElementsByClassName("photoButtonsBox")[0].style.opacity = "1";
-            setTimeout(_=>{
-                document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
-            }, 400);
             document.getElementsByClassName("PhotoBig")[0].classList.remove("PhotoBigRotation");
             document.getElementsByClassName("photoInfoBox")[0].classList.remove("photoInfoBoxRotation");            
         } else {
@@ -51,13 +49,16 @@ class Photos extends Component {
         const photo = _.find(album.photos, {"_id":this.props.match.params.photoId});
         
         return (
-            <div className="wrapper PhotoCenter bkg-veryDarkGrey">
+            <div className="wrapper wrapper-padding flex-center bkg-veryDarkGrey">
+                <img className="PhotoBig" src={photo.medium} />
                 <PhotoInfo closeInfoBox={this.showInfos}/>
-                <img className="PhotoBig" src={photo.medium} />    
                 <div className="photoButtonsBox">
-                    <a href={photo.original} download><div className="photoButton photoButton-left" >Télécharger</div></a>
-                    <div onClick={this.showInfos} className="photoButton photoButton-right">Infos</div>
-                </div>
+                    <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
+                    <i className="fa fa-heart"></i>
+                    <i className="fa fa-share-alt"></i>
+                    <i className="fa fa-info-circle" onClick={this.showInfos}></i>
+                    <span>#TAGS</span>
+                </div>                    
             </div>
         );    
     }
