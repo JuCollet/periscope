@@ -1,12 +1,12 @@
 .photoInfoBox {
     flex-direction: column;
     position: absolute;
-    padding: 40px;
-    width: 70vw;
-    height: 70vh;
-    border-radius: 4px;
-    transform: rotateY(-90deg);
-    transition: .3s;
+    padding: 25px;
+    min-height:100%;
+    right: 0;
+    left: 0;
+    top: ~"calc(100% + 60px)";
+    transition: .4s;
     
     .fa {
         position: absolute;
@@ -24,8 +24,19 @@
     
 }
 
-.photoInfoBoxRotation {
+.photoInfoShow {
     transition: .4s;
-    transition-delay: .4s;
-    transform: rotateY(0deg);
+    top: 0px;
+}
+
+@media (min-width: @screen-sm-min) {
+
+    .photoInfoBox {
+        padding: 50px;        
+    }
+
+    .photoInfoShow {
+        top: 60px;
+    }
+    
 }

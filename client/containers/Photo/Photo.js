@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Hammer from "react-hammerjs";
 import _ from "lodash";
 import { bindActionCreators } from "redux";
 import { albumFetch } from "../../actions/albums";
@@ -14,6 +15,8 @@ class Photos extends Component {
         super(props);
         this.state = {infoOpen:false};
         this.showInfos = this.showInfos.bind(this);
+        this.browsePhoto = this.browsePhoto.bind(this);
+        this.getPhotoIndex = this.getPhotoIndex.bind(this);
     }
     
     componentDidMount(){
@@ -24,18 +27,36 @@ class Photos extends Component {
     showInfos(){
         if(this.state.infoOpen){
             document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
-            document.getElementsByClassName("photoButtonsBox")[0].style.opacity = "1";
-            document.getElementsByClassName("PhotoBig")[0].classList.remove("PhotoBigRotation");
-            document.getElementsByClassName("photoInfoBox")[0].classList.remove("photoInfoBoxRotation");            
+            document.getElementsByClassName("PhotoBig")[0].classList.remove("PhotoHide");
+            document.getElementsByClassName("photoInfoBox")[0].classList.remove("photoInfoShow");            
         } else {
-            document.getElementsByClassName("photoButtonsBox")[0].style.opacity = "0";
-            setTimeout(_=>{
-                document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "hidden";
-            }, 400);
-            document.getElementsByClassName("PhotoBig")[0].classList.add("PhotoBigRotation");
-            document.getElementsByClassName("photoInfoBox")[0].classList.add("photoInfoBoxRotation");
+            document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "hidden";
+            document.getElementsByClassName("PhotoBig")[0].classList.add("PhotoHide");
+            document.getElementsByClassName("photoInfoBox")[0].classList.add("photoInfoShow");
         }
         this.setState({infoOpen:!this.state.infoOpen});
+    }
+    
+    getPhotoIndex(){
+        return _.findIndex(this.props.album.photos, {_id : this.props.match.params.photoId});
+    }
+
+    browsePhoto(e){
+        
+        const photoIndex = this.getPhotoIndex();
+        let nextIndex = 0;
+
+        if(e.direction === 2 && photoIndex < this.props.album.photos.length-1){
+            nextIndex = photoIndex + 1;
+        } else if(e.direction === 2 && photoIndex === this.props.album.photos.length-1){
+            nextIndex = 0;
+        }else if(e.direction === 4 && photoIndex > 0){
+            nextIndex = photoIndex -1;
+        } else if(e.direction === 4 && photoIndex === 0){
+            nextIndex = this.props.album.photos.length-1;
+        }        
+        this.props.history.push(`/app/photo/${this.props.album._id}/${this.props.album.photos[nextIndex]._id}`);
+        
     }
 
     render(){
@@ -49,18 +70,22 @@ class Photos extends Component {
         const photo = _.find(album.photos, {"_id":this.props.match.params.photoId});
         
         return (
-            <div className="wrapper wrapper-padding flex-center bkg-veryDarkGrey">
-                <img className="PhotoBig" src={photo.medium} />
+            <div className="wrapper wrapper-padding no-overflow flex-center bkg-veryDarkGrey">
+                <Hammer onSwipe={this.browsePhoto}>
+                    <img className="PhotoBig" src={photo.medium} />
+                </Hammer>
                 <PhotoInfo closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
                     <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
                     <i className="fa fa-heart"></i>
                     <i className="fa fa-share-alt"></i>
                     <i className="fa fa-info-circle" onClick={this.showInfos}></i>
-                    <span>#TAGS</span>
+                    <i className="fa fa-chevron-left" onClick={_=>this.browsePhoto({direction:4})}></i>
+                    <span>{this.getPhotoIndex()+1} / {album.photos.length}</span>
+                    <i className="fa fa-chevron-right" onClick={_=>this.browsePhoto({direction:2})}></i>
                 </div>                    
             </div>
-        );    
+        );
     }
 
 }

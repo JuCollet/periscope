@@ -3,21 +3,20 @@
     max-height: calc(~"100vh - 200px");
     border-radius: 4px;
     transition: .3s;
-    transition-delay: .3s;
+    transition-delay: .1s;
 }
 
-.PhotoBigRotation {
+.PhotoHide {
     transition : .3s;
-    transform: rotateY(90deg);
+    opacity: 0;
 }
 
 .photoButtonsBox {
     margin-top: 20px;
-    transition: .4s;
-    
+
     i {
         color: lighten(@veryDarkGrey,30%);
-        margin-right: 20px;
+        margin: 0px 10px;
         font-size: 1em;
         cursor: pointer;
     }
@@ -27,6 +26,9 @@
     }
     
     span {
+        position: relative;
+        user-select: none;
+        top:-1px;
         color: lighten(@veryDarkGrey,30%);
     }
     

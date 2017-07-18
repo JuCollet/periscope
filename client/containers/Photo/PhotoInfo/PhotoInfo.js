@@ -3,6 +3,7 @@
 import React from "react";
 
 export default function(props){
+    
     return (
         <div className="bkg-white photoInfoBox">
             <i className="fa fa-times" onClick={_ => props.closeInfoBox()}></i>
