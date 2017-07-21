@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../actions/menu";
+import { searchAlbum } from "../../actions/albums";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 class Header extends Component {
   
@@ -12,12 +14,27 @@ class Header extends Component {
     this.scrollToBottom = this.scrollToBottom.bind(this);
   }
   
-  toggleMenu(){
-    this.props.toggleMenu();
+  renderSearchBar(){
+    
+    const { searchFor } = this.props.menu;
+
+    switch(searchFor){
+      case null :
+        return "";
+      case "albums" :
+        return <SearchBar searchForType={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
+      default :
+        return "";
+    }
+    
   }
   
   scrollToBottom(){
     window.scrollTo(0, document.getElementById("root").offsetHeight);
+  }  
+  
+  toggleMenu(){
+    this.props.toggleMenu();
   }
   
   render(){
@@ -28,9 +45,8 @@ class Header extends Component {
       <div id="header" className={headerUpClass}>
         <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
         <span className="title">Periscope</span>
-        <div id="header-option">
-          <i className="fa fa-search"></i>
-          <input className="small-input" type="text" onTouchStart={_=>this.scrollToBottom()}></input>
+        <div className="header-option">
+        {this.renderSearchBar()}
         </div>
       </div>
       );  
@@ -39,7 +55,7 @@ class Header extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({toggleMenu}, dispatch);
+  return bindActionCreators({toggleMenu, searchAlbum}, dispatch);
 }
 
 function mapStateToProps(state){

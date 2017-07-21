@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { albumsFetch } from "../../actions/albums";
+import { toggleSearchBar } from "../../actions/menu";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -14,6 +15,11 @@ class Albums extends Component {
   
   componentDidMount(){
     this.props.albumsFetch();
+    this.props.toggleSearchBar("albums");
+  }
+  
+  componentWillUnmount() {
+    this.props.toggleSearchBar(null);
   }
   
   isEmpty(obj){
@@ -45,7 +51,7 @@ class Albums extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumsFetch }, dispatch);
+  return bindActionCreators({ albumsFetch, toggleSearchBar }, dispatch);
 }
 
 function mapStateToProps(state){

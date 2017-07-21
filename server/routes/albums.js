@@ -76,7 +76,14 @@ albumRouter.route('/')
 
         });
     });
-        
+
+albumRouter.route('/search/')
+    .post(function(req,res,next){
+        Album.find({tags : {$regex : req.body.tags}}, function(err, albums){
+            if(err) return next(err);
+            res.json(albums);
+        })
+    })
     
 albumRouter.route('/:id')
     .get(function(req,res,next){

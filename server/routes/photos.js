@@ -38,9 +38,9 @@ photosRouter.route('/')
         s3.deleteObjects(params, function(err, data){
             if(err) return next(err)
             else {
-                Album.update({_id:req.body.albumId}, {$pull : { photos : {_id : req.body.photoId}}}, function(err, albums){
+                Album.update({_id:req.body.albumId}, {$pull : { photos : {_id : req.body.photoId}}}, function(err, album){
                     if(err) return next(err);
-                    res.json(albums);
+                    res.json(album);
                 });    
             }
             

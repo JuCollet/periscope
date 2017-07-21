@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
 import { albumFetch, deleteAlbum } from "../../actions/albums";
+import { toggleSearchBar } from "../../actions/menu";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
 
@@ -12,6 +13,12 @@ class Photos extends Component {
   
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
+    
+    this.props.toggleSearchBar("photos");
+  }
+  
+  componentWillUnmount(){
+    this.props.toggleSearchBar(null);
   }
   
   deleteAlbum(albumId){
@@ -35,11 +42,11 @@ class Photos extends Component {
         <span className="albumDescription">{album.description}</span>
         <Tags tags={album.tags} />
         <i className="fa fa-trash button-icon" onClick={_ => this.deleteAlbum(album._id)}></i>
-        <i className="fa fa-share-alt button-icon"></i>
+        <i className="fa fa-share-alt-square button-icon"></i>
         <hr className="albumHr" />
         <div id="photos">
           {this.props.album.photos.map(function(photo, index){
-            return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.medium} /></NavLink>;
+            return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.thumb} /></NavLink>;
           })}
         </div>
       </div>
@@ -49,7 +56,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumFetch, deleteAlbum }, dispatch);
+  return bindActionCreators({ albumFetch, deleteAlbum, toggleSearchBar }, dispatch);
 }
 
 function mapStateToProps(state, ownProps){
