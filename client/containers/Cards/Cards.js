@@ -34,7 +34,6 @@ export default class Card extends Component {
           <div className="card-body-text">{this.props.album.description}</div>
         </div>
         <div className="card-buttons">
-          <i className="fa fa-heart"></i>
           <i className="fa fa-arrow-down"></i>
           <i className="fa fa-share-alt"></i>
         </div>

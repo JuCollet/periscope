@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
     entry : {
         app: './client/index.js',
-        vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom']
+        vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom', 'react-hammerjs']
     },
     output : {
         filename : 'bundle.js',

@@ -6,7 +6,7 @@ const baseUrl = "http://periscope-julesbe.c9users.io/albums/";
 export function fileUpload(files, id, callback){
     
     const upload = axios({
-        url: `/upload/${id}`,
+        url: `/api/upload/${id}`,
         method: 'put',
         data: files,
         headers:{'Content-Type':'multipart/form-data'},

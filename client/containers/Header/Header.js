@@ -7,8 +7,17 @@ import { toggleMenu } from "../../actions/menu";
 
 class Header extends Component {
   
+  constructor(props){
+    super(props);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+  
   toggleMenu(){
     this.props.toggleMenu();
+  }
+  
+  scrollToBottom(){
+    window.scrollTo(0, document.getElementById("root").offsetHeight);
   }
   
   render(){
@@ -19,24 +28,24 @@ class Header extends Component {
       <div id="header" className={headerUpClass}>
         <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
         <span className="title">Periscope</span>
-        <div id="header-search">
+        <div id="header-option">
           <i className="fa fa-search"></i>
-          <input className="small-input" type="text"></input>
+          <input className="small-input" type="text" onTouchStart={_=>this.scrollToBottom()}></input>
         </div>
       </div>
       );  
   }
 
-};
+}
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({toggleMenu}, dispatch)
+  return bindActionCreators({toggleMenu}, dispatch);
 }
 
 function mapStateToProps(state){
   return {
     menu : state.menu
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

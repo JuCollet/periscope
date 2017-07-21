@@ -83,6 +83,10 @@ uploadRouter.route('/:id')
                 console.log("processing " + currentFile.path + " : "+imgProcess[i].name);
                 
                 let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
+                const imgInfos = {
+                    width: image.width(),
+                    height: image.height()
+                };
                 
                 image.batch()
                 .scale(scale)
@@ -96,7 +100,7 @@ uploadRouter.route('/:id')
                     const params = {
                         Body: buffer,
                         Bucket: "periscopefiles",
-                        Key: imgProcess[i].name+"-"+id+currentFile.filename,
+                        Key: imgProcess[i].name+id+currentFile.filename,
                         ACL: 'public-read'
                     };
                     
@@ -113,6 +117,8 @@ uploadRouter.route('/:id')
                             thumb: `${process.env.S3_URL}thumb${id}${currentFile.filename}`,
                             medium: `${process.env.S3_URL}medium${id}${currentFile.filename}`,
                             original: `${process.env.S3_URL}original${id}${currentFile.filename}`,
+                            width: imgInfos.width,
+                            height: imgInfos.height
                         };
 
                         // Update the database by pushing the newPhoto object;

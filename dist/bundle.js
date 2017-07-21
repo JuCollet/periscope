@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 115:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22,67 +22,29 @@ function toggleMenu() {
 
 /***/ }),
 
-/***/ 116:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _lodash = __webpack_require__(49);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-    return _react2.default.createElement(
-        "div",
-        null,
-        props.tags.map(function (tag, index) {
-            return _react2.default.createElement(
-                "span",
-                { className: "tag", key: index },
-                "#",
-                tag
-            );
-        })
-    );
-};
-
-/***/ }),
-
-/***/ 117:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(232);
-
-/***/ }),
-
 /***/ 118:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(233);
+
+/***/ }),
+
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var settle = __webpack_require__(238);
-var buildURL = __webpack_require__(241);
-var parseHeaders = __webpack_require__(247);
-var isURLSameOrigin = __webpack_require__(245);
-var createError = __webpack_require__(121);
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(240);
+var settle = __webpack_require__(239);
+var buildURL = __webpack_require__(242);
+var parseHeaders = __webpack_require__(248);
+var isURLSameOrigin = __webpack_require__(246);
+var createError = __webpack_require__(122);
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(241);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -175,7 +137,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(243);
+      var cookies = __webpack_require__(244);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -252,7 +214,7 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -279,7 +241,7 @@ module.exports = Cancel;
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -291,13 +253,13 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(237);
+var enhanceError = __webpack_require__(238);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -316,7 +278,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 /***/ }),
 
-/***/ 122:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -334,7 +296,7 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -425,8 +387,8 @@ function toComment(sourceMap) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(122);
-var isBuffer = __webpack_require__(249);
+var bind = __webpack_require__(123);
+var isBuffer = __webpack_require__(250);
 
 /*global toString:true*/
 
@@ -726,7 +688,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -964,7 +926,7 @@ module.exports = isArguments;
 
 /***/ }),
 
-/***/ 207:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1010,7 +972,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(582);
+var	fixUrls = __webpack_require__(584);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1324,7 +1286,7 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 209:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -1334,7 +1296,7 @@ module.exports = __webpack_amd_options__;
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1352,31 +1314,31 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _Sidemenu = __webpack_require__(226);
+var _Sidemenu = __webpack_require__(227);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
-var _Header = __webpack_require__(222);
+var _Header = __webpack_require__(223);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _CreateAlbum = __webpack_require__(220);
+var _CreateAlbum = __webpack_require__(221);
 
 var _CreateAlbum2 = _interopRequireDefault(_CreateAlbum);
 
-var _Account = __webpack_require__(217);
+var _Account = __webpack_require__(218);
 
 var _Account2 = _interopRequireDefault(_Account);
 
-var _Albums = __webpack_require__(218);
+var _Albums = __webpack_require__(219);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
-var _Photos = __webpack_require__(225);
+var _Photos = __webpack_require__(226);
 
 var _Photos2 = _interopRequireDefault(_Photos);
 
-var _Photo = __webpack_require__(223);
+var _Photo = __webpack_require__(224);
 
 var _Photo2 = _interopRequireDefault(_Photo);
 
@@ -1429,7 +1391,7 @@ exports.default = App;
 
 /***/ }),
 
-/***/ 210:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1451,7 +1413,7 @@ var _reduxForm = __webpack_require__(47);
 
 var _redux = __webpack_require__(11);
 
-var _user = __webpack_require__(216);
+var _user = __webpack_require__(217);
 
 var _reactRedux = __webpack_require__(9);
 
@@ -1553,7 +1515,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 211:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1567,15 +1529,15 @@ var _redux = __webpack_require__(11);
 
 var _reduxForm = __webpack_require__(47);
 
-var _reducer_user = __webpack_require__(231);
+var _reducer_user = __webpack_require__(232);
 
 var _reducer_user2 = _interopRequireDefault(_reducer_user);
 
-var _reducer_albums = __webpack_require__(229);
+var _reducer_albums = __webpack_require__(230);
 
 var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 
-var _reducer_menu = __webpack_require__(230);
+var _reducer_menu = __webpack_require__(231);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
 
@@ -1592,7 +1554,7 @@ exports.default = rootReducer;
 
 /***/ }),
 
-/***/ 212:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1612,7 +1574,7 @@ var _extends = Object.assign || function (target) {
 
 exports['default'] = promiseMiddleware;
 
-var _fluxStandardAction = __webpack_require__(563);
+var _fluxStandardAction = __webpack_require__(565);
 
 function isPromise(val) {
   return val && typeof val.then === 'function';
@@ -1640,13 +1602,13 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(583);
+var content = __webpack_require__(585);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1654,7 +1616,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(207)(content, options);
+var update = __webpack_require__(208)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1672,13 +1634,13 @@ if(false) {
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(584);
+var content = __webpack_require__(586);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1686,7 +1648,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(207)(content, options);
+var update = __webpack_require__(208)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1704,7 +1666,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 215:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1715,7 +1677,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fileUpload = fileUpload;
 
-var _axios = __webpack_require__(117);
+var _axios = __webpack_require__(118);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1728,7 +1690,7 @@ var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
 function fileUpload(files, id, callback) {
 
     var upload = (0, _axios2.default)({
-        url: "/upload/" + id,
+        url: "/api/upload/" + id,
         method: 'put',
         data: files,
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -1747,7 +1709,7 @@ function fileUpload(files, id, callback) {
 
 /***/ }),
 
-/***/ 216:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1760,7 +1722,7 @@ exports.userLogin = userLogin;
 
 var _actiontypes = __webpack_require__(25);
 
-var _users = __webpack_require__(228);
+var _users = __webpack_require__(229);
 
 function userLogin(user, cb) {
 
@@ -1776,7 +1738,7 @@ function userLogin(user, cb) {
 
 /***/ }),
 
-/***/ 217:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1845,7 +1807,7 @@ exports.default = Account;
 
 /***/ }),
 
-/***/ 218:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1863,13 +1825,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(48);
+var _albums = __webpack_require__(49);
 
 var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _lodash = __webpack_require__(49);
+var _lodash = __webpack_require__(50);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -1877,7 +1839,7 @@ var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Cards = __webpack_require__(219);
+var _Cards = __webpack_require__(220);
 
 var _Cards2 = _interopRequireDefault(_Cards);
 
@@ -1955,7 +1917,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 219:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1971,7 +1933,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Dropbox = __webpack_require__(221);
+var _Dropbox = __webpack_require__(222);
 
 var _Dropbox2 = _interopRequireDefault(_Dropbox);
 
@@ -2051,7 +2013,6 @@ var Card = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "card-buttons" },
-          _react2.default.createElement("i", { className: "fa fa-heart" }),
           _react2.default.createElement("i", { className: "fa fa-arrow-down" }),
           _react2.default.createElement("i", { className: "fa fa-share-alt" })
         )
@@ -2066,7 +2027,7 @@ exports.default = Card;
 
 /***/ }),
 
-/***/ 220:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2088,11 +2049,11 @@ var _reduxForm = __webpack_require__(47);
 
 var _reactRedux = __webpack_require__(9);
 
-var _albums = __webpack_require__(48);
+var _albums = __webpack_require__(49);
 
 var _redux = __webpack_require__(11);
 
-var _Tags = __webpack_require__(116);
+var _Tags = __webpack_require__(71);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -2255,7 +2216,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2275,7 +2236,7 @@ var _reactRedux = __webpack_require__(9);
 
 var _redux = __webpack_require__(11);
 
-var _upload = __webpack_require__(215);
+var _upload = __webpack_require__(216);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2376,7 +2337,7 @@ exports.default = (0, _reactRedux.connect)(null, mapDispacthToProps)(Dropbox);
 
 /***/ }),
 
-/***/ 222:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2396,7 +2357,7 @@ var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(115);
+var _menu = __webpack_require__(117);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2409,10 +2370,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Header = function (_Component) {
   _inherits(Header, _Component);
 
-  function Header() {
+  function Header(props) {
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+    _this.scrollToBottom = _this.scrollToBottom.bind(_this);
+    return _this;
   }
 
   _createClass(Header, [{
@@ -2421,8 +2385,14 @@ var Header = function (_Component) {
       this.props.toggleMenu();
     }
   }, {
+    key: "scrollToBottom",
+    value: function scrollToBottom() {
+      window.scrollTo(0, document.getElementById("root").offsetHeight);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
 
       var headerUpClass = this.props.menu.open ? 'header-up' : 'header-down';
 
@@ -2437,9 +2407,11 @@ var Header = function (_Component) {
         ),
         _react2.default.createElement(
           "div",
-          { id: "header-search" },
+          { id: "header-option" },
           _react2.default.createElement("i", { className: "fa fa-search" }),
-          _react2.default.createElement("input", { className: "small-input", type: "text" })
+          _react2.default.createElement("input", { className: "small-input", type: "text", onTouchStart: function onTouchStart(_) {
+              return _this2.scrollToBottom();
+            } })
         )
       );
     }
@@ -2447,8 +2419,6 @@ var Header = function (_Component) {
 
   return Header;
 }(_react.Component);
-
-;
 
 function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({ toggleMenu: _menu.toggleMenu }, dispatch);
@@ -2464,7 +2434,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2482,23 +2452,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(9);
 
-var _reactHammerjs = __webpack_require__(587);
+var _reactHammerjs = __webpack_require__(116);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
-var _lodash = __webpack_require__(49);
+var _lodash = __webpack_require__(50);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
 var _redux = __webpack_require__(11);
 
-var _albums = __webpack_require__(48);
+var _albums = __webpack_require__(49);
 
 var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _PhotoInfo = __webpack_require__(224);
+var _PhotoInfo = __webpack_require__(225);
 
 var _PhotoInfo2 = _interopRequireDefault(_PhotoInfo);
 
@@ -2591,7 +2561,7 @@ var Photos = function (_Component) {
                     { onSwipe: this.browsePhoto },
                     _react2.default.createElement("img", { className: "PhotoBig", src: photo.medium })
                 ),
-                _react2.default.createElement(_PhotoInfo2.default, { closeInfoBox: this.showInfos }),
+                _react2.default.createElement(_PhotoInfo2.default, { album: this.props.album, photo: photo, closeInfoBox: this.showInfos }),
                 _react2.default.createElement(
                     "div",
                     { className: "photoButtonsBox" },
@@ -2638,7 +2608,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 224:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2649,6 +2619,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (props) {
+    var photo = props.photo,
+        album = props.album;
+
 
     return _react2.default.createElement(
         "div",
@@ -2664,48 +2637,83 @@ exports.default = function (props) {
         _react2.default.createElement(
             "p",
             null,
-            "Album name"
+            _react2.default.createElement(
+                "b",
+                null,
+                "Nom de l'album : "
+            ),
+            album.name
         ),
         _react2.default.createElement(
             "p",
             null,
-            "Photographe"
+            _react2.default.createElement(
+                "b",
+                null,
+                "Description : "
+            ),
+            album.description
         ),
         _react2.default.createElement(
             "p",
             null,
-            "Size"
+            _react2.default.createElement(
+                "b",
+                null,
+                "Cr\xE9dit photographique : "
+            ),
+            "\xA9 ",
+            album.photographer
         ),
         _react2.default.createElement(
             "p",
             null,
-            "Weight"
+            _react2.default.createElement(
+                "b",
+                null,
+                "Dimensions : "
+            ),
+            photo.width ? photo.width : "largeur inconnue",
+            " x ",
+            photo.height ? photo.height : "hauteur inconnue"
         ),
-        _react2.default.createElement(
-            "p",
-            null,
-            "Tags"
-        ),
+        _react2.default.createElement(_Tags2.default, { tags: photo.tags }),
         _react2.default.createElement("br", null),
         _react2.default.createElement(
-            "p",
-            null,
-            "Partager"
+            "a",
+            { href: "#" },
+            _react2.default.createElement(
+                "p",
+                null,
+                "Partager"
+            )
         ),
         _react2.default.createElement(
-            "p",
-            null,
-            "Supprimer cette image"
+            "a",
+            { href: "#" },
+            _react2.default.createElement(
+                "p",
+                null,
+                "Supprimer cette image"
+            )
         ),
         _react2.default.createElement(
-            "p",
-            null,
-            "T\xE9l\xE9charger cette image"
+            "a",
+            { href: photo.original, download: true },
+            _react2.default.createElement(
+                "p",
+                null,
+                "T\xE9l\xE9charger cette image"
+            )
         ),
         _react2.default.createElement(
-            "p",
-            null,
-            "Editer les tags"
+            "a",
+            { href: "#" },
+            _react2.default.createElement(
+                "p",
+                null,
+                "Editer les tags"
+            )
         )
     );
 };
@@ -2714,11 +2722,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Tags = __webpack_require__(71);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 
-/***/ 225:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2740,13 +2752,13 @@ var _redux = __webpack_require__(11);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(48);
+var _albums = __webpack_require__(49);
 
 var _Loading = __webpack_require__(70);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Tags = __webpack_require__(116);
+var _Tags = __webpack_require__(71);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -2836,7 +2848,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2858,7 +2870,7 @@ var _reactRouterDom = __webpack_require__(22);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(115);
+var _menu = __webpack_require__(117);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2965,7 +2977,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2975,7 +2987,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(69);
+var _reactDom = __webpack_require__(48);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -2985,23 +2997,23 @@ var _redux = __webpack_require__(11);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _reduxPromise = __webpack_require__(212);
+var _reduxPromise = __webpack_require__(213);
 
 var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
-__webpack_require__(213);
-
 __webpack_require__(214);
 
-var _Login = __webpack_require__(210);
+__webpack_require__(215);
+
+var _Login = __webpack_require__(211);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _app = __webpack_require__(209);
+var _app = __webpack_require__(210);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _reducers = __webpack_require__(211);
+var _reducers = __webpack_require__(212);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -3032,7 +3044,7 @@ _reactDom2.default.render(_react2.default.createElement(
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3050,7 +3062,7 @@ var usersMock = exports.usersMock = {
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3078,7 +3090,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(25);
 
-var _lodash = __webpack_require__(49);
+var _lodash = __webpack_require__(50);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -3088,7 +3100,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3115,7 +3127,7 @@ var _actiontypes = __webpack_require__(25);
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3142,16 +3154,16 @@ var _actiontypes = __webpack_require__(25);
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(13);
-var bind = __webpack_require__(122);
-var Axios = __webpack_require__(234);
-var defaults = __webpack_require__(71);
+var bind = __webpack_require__(123);
+var Axios = __webpack_require__(235);
+var defaults = __webpack_require__(72);
 
 /**
  * Create an instance of Axios
@@ -3184,15 +3196,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(119);
-axios.CancelToken = __webpack_require__(233);
-axios.isCancel = __webpack_require__(120);
+axios.Cancel = __webpack_require__(120);
+axios.CancelToken = __webpack_require__(234);
+axios.isCancel = __webpack_require__(121);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(248);
+axios.spread = __webpack_require__(249);
 
 module.exports = axios;
 
@@ -3201,13 +3213,13 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(119);
+var Cancel = __webpack_require__(120);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -3265,18 +3277,18 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(71);
+var defaults = __webpack_require__(72);
 var utils = __webpack_require__(13);
-var InterceptorManager = __webpack_require__(235);
-var dispatchRequest = __webpack_require__(236);
-var isAbsoluteURL = __webpack_require__(244);
-var combineURLs = __webpack_require__(242);
+var InterceptorManager = __webpack_require__(236);
+var dispatchRequest = __webpack_require__(237);
+var isAbsoluteURL = __webpack_require__(245);
+var combineURLs = __webpack_require__(243);
 
 /**
  * Create a new instance of Axios
@@ -3358,7 +3370,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3417,16 +3429,16 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(13);
-var transformData = __webpack_require__(239);
-var isCancel = __webpack_require__(120);
-var defaults = __webpack_require__(71);
+var transformData = __webpack_require__(240);
+var isCancel = __webpack_require__(121);
+var defaults = __webpack_require__(72);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -3484,7 +3496,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3513,13 +3525,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(121);
+var createError = __webpack_require__(122);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -3540,7 +3552,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3567,7 +3579,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3609,7 +3621,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3677,7 +3689,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3697,7 +3709,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 243:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3757,7 +3769,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3780,7 +3792,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3850,7 +3862,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3869,7 +3881,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3915,7 +3927,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3950,7 +3962,25 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 25:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var USER_LOGIN = exports.USER_LOGIN = "user_login";
+var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
+var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
+var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
+var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
+var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
+
+/***/ }),
+
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3980,25 +4010,7 @@ function isSlowBuffer(obj) {
 
 /***/ }),
 
-/***/ 25:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var USER_LOGIN = exports.USER_LOGIN = "user_login";
-var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
-var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
-var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
-var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
-var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
-
-/***/ }),
-
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4011,7 +4023,7 @@ exports.albumsFetch = albumsFetch;
 exports.albumFetch = albumFetch;
 exports.createAlbum = createAlbum;
 
-var _axios = __webpack_require__(117);
+var _axios = __webpack_require__(118);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -4055,7 +4067,7 @@ function createAlbum(album, cb) {
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13493,7 +13505,7 @@ LazyWrapper.prototype.clone=lazyClone;LazyWrapper.prototype.reverse=lazyReverse;
 lodash.prototype.at=wrapperAt;lodash.prototype.chain=wrapperChain;lodash.prototype.commit=wrapperCommit;lodash.prototype.next=wrapperNext;lodash.prototype.plant=wrapperPlant;lodash.prototype.reverse=wrapperReverse;lodash.prototype.toJSON=lodash.prototype.valueOf=lodash.prototype.value=wrapperValue;// Add lazy aliases.
 lodash.prototype.first=lodash.prototype.head;if(symIterator){lodash.prototype[symIterator]=wrapperToIterator;}return lodash;};/*--------------------------------------------------------------------------*/// Export lodash.
 var _=runInContext();// Some AMD build optimizers, like r.js, check for condition patterns like:
-if("function"=='function'&&_typeof(__webpack_require__(208))=='object'&&__webpack_require__(208)){// Expose Lodash on the global object to prevent errors when Lodash is
+if("function"=='function'&&_typeof(__webpack_require__(209))=='object'&&__webpack_require__(209)){// Expose Lodash on the global object to prevent errors when Lodash is
 // loaded by a script tag in the presence of an AMD loader.
 // See http://requirejs.org/docs/errors.html#mismatch for more details.
 // Use `_.noConflict` to remove Lodash from the global object.
@@ -13509,7 +13521,7 @@ root._=_;}}).call(undefined);
 
 /***/ }),
 
-/***/ 563:
+/***/ 565:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13523,7 +13535,7 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { 'default': obj };
 }
 
-var _lodashIsplainobject = __webpack_require__(564);
+var _lodashIsplainobject = __webpack_require__(566);
 
 var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -13543,7 +13555,7 @@ function isError(action) {
 
 /***/ }),
 
-/***/ 564:
+/***/ 566:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13559,9 +13571,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var baseFor = __webpack_require__(565),
-    isArguments = __webpack_require__(201),
-    keysIn = __webpack_require__(566);
+var baseFor = __webpack_require__(567),
+    isArguments = __webpack_require__(202),
+    keysIn = __webpack_require__(568);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -13656,7 +13668,7 @@ module.exports = isPlainObject;
 
 /***/ }),
 
-/***/ 565:
+/***/ 567:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13713,7 +13725,7 @@ module.exports = baseFor;
 
 /***/ }),
 
-/***/ 566:
+/***/ 568:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13729,8 +13741,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var isArguments = __webpack_require__(201),
-    isArray = __webpack_require__(567);
+var isArguments = __webpack_require__(202),
+    isArray = __webpack_require__(569);
 
 /** Used to detect unsigned integer values. */
 var reIsUint = /^\d+$/;
@@ -13854,7 +13866,7 @@ module.exports = keysIn;
 
 /***/ }),
 
-/***/ 567:
+/***/ 569:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14042,7 +14054,7 @@ module.exports = isArray;
 
 /***/ }),
 
-/***/ 582:
+/***/ 584:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14138,10 +14150,10 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 583:
+/***/ 585:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(123)(undefined);
+exports = module.exports = __webpack_require__(124)(undefined);
 // imports
 
 
@@ -14153,2803 +14165,18 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ 584:
+/***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(123)(undefined);
+exports = module.exports = __webpack_require__(124)(undefined);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  z-index: 99999;\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .fa:hover {\n  color: #777777;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  border-radius: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.PhotoHide {\n  -webkit-transition: .3s;\n  transition: .3s;\n  opacity: 0;\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.photoInfoBox {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: absolute;\n  padding: 25px;\n  min-height: 100%;\n  right: 0;\n  left: 0;\n  top: calc(100% + 60px);\n  -webkit-transition: .4s;\n  transition: .4s;\n}\n.photoInfoBox .fa {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  font-size: 1.5em;\n  color: #cccccc;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photoInfoBox .fa:hover {\n  color: #777777;\n}\n.photoInfoShow {\n  -webkit-transition: .4s;\n  transition: .4s;\n  top: 0px;\n}\n@media (min-width: 768px) {\n  .photoInfoBox {\n    padding: 50px;\n  }\n  .photoInfoShow {\n    top: 60px;\n  }\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.no-overflow {\n  overflow: hidden;\n}\n@media (min-width: 768px) {\n  .flex-row {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
+exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 15px 7px 15px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 16px;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: 100%;\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 16px;\n}\n.small-input:focus {\n  -webkit-transition: .2s;\n  transition: .2s;\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  display: inline-block;\n  position: relative;\n  padding: 0px;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  font-size: 1.1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 30px 10px 0px;\n  outline: none;\n  border-width: 0px 0px 2px 0px;\n  border-color: #efefef;\n  color: #5A646E;\n}\n.input-group input:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  border: 2px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n#sign {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#sign button {\n  margin-bottom: 15px;\n}\n@media (min-width: 992px) {\n  #sign {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    padding: 30px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    text-align: center;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n  }\n  #sign button {\n    margin-bottom: 0px;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .title {\n  display: none;\n}\n#header .fa-bars {\n  z-index: 99999;\n  font-size: 26px;\n  margin-right: 5px;\n  color: #5A646E;\n  cursor: pointer;\n}\n#header #header-option {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n}\n#header input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n#header .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 80px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .title {\n    display: inline-block;\n    font-size: 1.5em;\n    margin-right: 10px;\n    padding-bottom: 4px;\n    color: #5A646E;\n  }\n  #header .fa-bars {\n    font-size: 20px;\n    margin-right: 20px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  #header .fa-search {\n    left: 20px;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n  color: #5A646E;\n}\n#sidemenu h2 {\n  color: #5A646E;\n}\n.sidemenu-open {\n  -webkit-transition: .3s;\n  transition: .3s;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .fa {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .fa:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    padding: 10px 20px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 60px;\n    width: 100%;\n  }\n  #sidemenu h2 {\n    display: none;\n  }\n  #sidemenu ul.bigList {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -80px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.UploadTagsDisplay {\n  float: left;\n  min-height: 25px;\n  width: 50vw;\n  margin-bottom: 15px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n#photos {\n  overflow-x: hidden;\n  padding-bottom: 75px;\n  -webkit-column-count: 2;\n          column-count: 2;\n  -webkit-column-gap: 5px;\n          column-gap: 5px;\n}\n#photos img {\n  margin-bottom: 2px;\n  border-radius: 2px;\n  width: 100%;\n  height: auto;\n}\n@media (min-width: 768px) {\n  #photos {\n    padding-bottom: 0px;\n    -webkit-column-count: 3;\n            column-count: 3;\n  }\n}\n@media (min-width: 992px) {\n  #photos {\n    -webkit-column-count: 5;\n            column-count: 5;\n  }\n}\n@media (min-width: 1200px) {\n  #photos {\n    -webkit-column-count: 6;\n            column-count: 6;\n  }\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.PhotoHide {\n  -webkit-transition: .3s;\n  transition: .3s;\n  opacity: 0;\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.photoInfoBox {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: absolute;\n  padding: 25px;\n  min-height: 100%;\n  right: 0;\n  left: 0;\n  top: calc(100% + 60px);\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoInfoBox .fa {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  font-size: 1.5em;\n  color: #cccccc;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photoInfoBox .fa:hover {\n  color: #777777;\n}\n.photoInfoShow {\n  -webkit-transition: .2s;\n  transition: .2s;\n  top: 0px;\n}\n@media (min-width: 768px) {\n  .photoInfoBox {\n    padding: 50px 30px 30px 65px;\n  }\n  .photoInfoShow {\n    top: 60px;\n  }\n}\n.card {\n  position: relative;\n  display: block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n  cursor: pointer;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    display: block;\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n#albums {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  overflow-x: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n  padding: 20px 20px 70px 20px;\n}\n@media (min-width: 768px) {\n  #albums {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    padding: 85px 10px 10px 25px;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\n@media (min-width: 768px) {\n  overflow: hidden;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #1A1A1A;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px 0px 20px 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.125em;\n}\nh3 {\n  font-size: 1.5em;\n}\n.contentBox {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-height: 50vh;\n  padding-bottom: 40px;\n}\n.contentBox .contentBox-image {\n  width: 17vw;\n  border-radius: 5px;\n}\n.contentBox .contentBox-body {\n  padding-left: 0px;\n  min-width: 70vw;\n}\n.contentBox input,\n.contentBox textarea {\n  width: 70vw;\n}\n@media (min-width: 768px) {\n  .contentBox {\n    padding-top: 55px;\n    padding-bottom: unset;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n  .contentBox .contentBox-body {\n    padding-left: 40px;\n    min-width: 50vw;\n  }\n  .contentBox input,\n  .contentBox textarea {\n    width: 50vw;\n  }\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.wrapper {\n  position: absolute;\n  left: 0px;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.no-overflow {\n  overflow: hidden;\n}\n@media (min-width: 768px) {\n  .flex-row {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n  }\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ 586:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_RESULT__;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/*! Hammer.JS - v2.0.7 - 2016-04-22
- * http://hammerjs.github.io/
- *
- * Copyright (c) 2016 Jorik Tangelder;
- * Licensed under the MIT license */
-(function (window, document, exportName, undefined) {
-    'use strict';
-
-    var VENDOR_PREFIXES = ['', 'webkit', 'Moz', 'MS', 'ms', 'o'];
-    var TEST_ELEMENT = document.createElement('div');
-
-    var TYPE_FUNCTION = 'function';
-
-    var round = Math.round;
-    var abs = Math.abs;
-    var now = Date.now;
-
-    /**
-     * set a timeout with a given scope
-     * @param {Function} fn
-     * @param {Number} timeout
-     * @param {Object} context
-     * @returns {number}
-     */
-    function setTimeoutContext(fn, timeout, context) {
-        return setTimeout(bindFn(fn, context), timeout);
-    }
-
-    /**
-     * if the argument is an array, we want to execute the fn on each entry
-     * if it aint an array we don't want to do a thing.
-     * this is used by all the methods that accept a single and array argument.
-     * @param {*|Array} arg
-     * @param {String} fn
-     * @param {Object} [context]
-     * @returns {Boolean}
-     */
-    function invokeArrayArg(arg, fn, context) {
-        if (Array.isArray(arg)) {
-            each(arg, context[fn], context);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * walk objects and arrays
-     * @param {Object} obj
-     * @param {Function} iterator
-     * @param {Object} context
-     */
-    function each(obj, iterator, context) {
-        var i;
-
-        if (!obj) {
-            return;
-        }
-
-        if (obj.forEach) {
-            obj.forEach(iterator, context);
-        } else if (obj.length !== undefined) {
-            i = 0;
-            while (i < obj.length) {
-                iterator.call(context, obj[i], i, obj);
-                i++;
-            }
-        } else {
-            for (i in obj) {
-                obj.hasOwnProperty(i) && iterator.call(context, obj[i], i, obj);
-            }
-        }
-    }
-
-    /**
-     * wrap a method with a deprecation warning and stack trace
-     * @param {Function} method
-     * @param {String} name
-     * @param {String} message
-     * @returns {Function} A new function wrapping the supplied method.
-     */
-    function deprecate(method, name, message) {
-        var deprecationMessage = 'DEPRECATED METHOD: ' + name + '\n' + message + ' AT \n';
-        return function () {
-            var e = new Error('get-stack-trace');
-            var stack = e && e.stack ? e.stack.replace(/^[^\(]+?[\n$]/gm, '').replace(/^\s+at\s+/gm, '').replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@') : 'Unknown Stack Trace';
-
-            var log = window.console && (window.console.warn || window.console.log);
-            if (log) {
-                log.call(window.console, deprecationMessage, stack);
-            }
-            return method.apply(this, arguments);
-        };
-    }
-
-    /**
-     * extend object.
-     * means that properties in dest will be overwritten by the ones in src.
-     * @param {Object} target
-     * @param {...Object} objects_to_assign
-     * @returns {Object} target
-     */
-    var assign;
-    if (typeof Object.assign !== 'function') {
-        assign = function assign(target) {
-            if (target === undefined || target === null) {
-                throw new TypeError('Cannot convert undefined or null to object');
-            }
-
-            var output = Object(target);
-            for (var index = 1; index < arguments.length; index++) {
-                var source = arguments[index];
-                if (source !== undefined && source !== null) {
-                    for (var nextKey in source) {
-                        if (source.hasOwnProperty(nextKey)) {
-                            output[nextKey] = source[nextKey];
-                        }
-                    }
-                }
-            }
-            return output;
-        };
-    } else {
-        assign = Object.assign;
-    }
-
-    /**
-     * extend object.
-     * means that properties in dest will be overwritten by the ones in src.
-     * @param {Object} dest
-     * @param {Object} src
-     * @param {Boolean} [merge=false]
-     * @returns {Object} dest
-     */
-    var extend = deprecate(function extend(dest, src, merge) {
-        var keys = Object.keys(src);
-        var i = 0;
-        while (i < keys.length) {
-            if (!merge || merge && dest[keys[i]] === undefined) {
-                dest[keys[i]] = src[keys[i]];
-            }
-            i++;
-        }
-        return dest;
-    }, 'extend', 'Use `assign`.');
-
-    /**
-     * merge the values from src in the dest.
-     * means that properties that exist in dest will not be overwritten by src
-     * @param {Object} dest
-     * @param {Object} src
-     * @returns {Object} dest
-     */
-    var merge = deprecate(function merge(dest, src) {
-        return extend(dest, src, true);
-    }, 'merge', 'Use `assign`.');
-
-    /**
-     * simple class inheritance
-     * @param {Function} child
-     * @param {Function} base
-     * @param {Object} [properties]
-     */
-    function inherit(child, base, properties) {
-        var baseP = base.prototype,
-            childP;
-
-        childP = child.prototype = Object.create(baseP);
-        childP.constructor = child;
-        childP._super = baseP;
-
-        if (properties) {
-            assign(childP, properties);
-        }
-    }
-
-    /**
-     * simple function bind
-     * @param {Function} fn
-     * @param {Object} context
-     * @returns {Function}
-     */
-    function bindFn(fn, context) {
-        return function boundFn() {
-            return fn.apply(context, arguments);
-        };
-    }
-
-    /**
-     * let a boolean value also be a function that must return a boolean
-     * this first item in args will be used as the context
-     * @param {Boolean|Function} val
-     * @param {Array} [args]
-     * @returns {Boolean}
-     */
-    function boolOrFn(val, args) {
-        if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) == TYPE_FUNCTION) {
-            return val.apply(args ? args[0] || undefined : undefined, args);
-        }
-        return val;
-    }
-
-    /**
-     * use the val2 when val1 is undefined
-     * @param {*} val1
-     * @param {*} val2
-     * @returns {*}
-     */
-    function ifUndefined(val1, val2) {
-        return val1 === undefined ? val2 : val1;
-    }
-
-    /**
-     * addEventListener with multiple events at once
-     * @param {EventTarget} target
-     * @param {String} types
-     * @param {Function} handler
-     */
-    function addEventListeners(target, types, handler) {
-        each(splitStr(types), function (type) {
-            target.addEventListener(type, handler, false);
-        });
-    }
-
-    /**
-     * removeEventListener with multiple events at once
-     * @param {EventTarget} target
-     * @param {String} types
-     * @param {Function} handler
-     */
-    function removeEventListeners(target, types, handler) {
-        each(splitStr(types), function (type) {
-            target.removeEventListener(type, handler, false);
-        });
-    }
-
-    /**
-     * find if a node is in the given parent
-     * @method hasParent
-     * @param {HTMLElement} node
-     * @param {HTMLElement} parent
-     * @return {Boolean} found
-     */
-    function hasParent(node, parent) {
-        while (node) {
-            if (node == parent) {
-                return true;
-            }
-            node = node.parentNode;
-        }
-        return false;
-    }
-
-    /**
-     * small indexOf wrapper
-     * @param {String} str
-     * @param {String} find
-     * @returns {Boolean} found
-     */
-    function inStr(str, find) {
-        return str.indexOf(find) > -1;
-    }
-
-    /**
-     * split string on whitespace
-     * @param {String} str
-     * @returns {Array} words
-     */
-    function splitStr(str) {
-        return str.trim().split(/\s+/g);
-    }
-
-    /**
-     * find if a array contains the object using indexOf or a simple polyFill
-     * @param {Array} src
-     * @param {String} find
-     * @param {String} [findByKey]
-     * @return {Boolean|Number} false when not found, or the index
-     */
-    function inArray(src, find, findByKey) {
-        if (src.indexOf && !findByKey) {
-            return src.indexOf(find);
-        } else {
-            var i = 0;
-            while (i < src.length) {
-                if (findByKey && src[i][findByKey] == find || !findByKey && src[i] === find) {
-                    return i;
-                }
-                i++;
-            }
-            return -1;
-        }
-    }
-
-    /**
-     * convert array-like objects to real arrays
-     * @param {Object} obj
-     * @returns {Array}
-     */
-    function toArray(obj) {
-        return Array.prototype.slice.call(obj, 0);
-    }
-
-    /**
-     * unique array with objects based on a key (like 'id') or just by the array's value
-     * @param {Array} src [{id:1},{id:2},{id:1}]
-     * @param {String} [key]
-     * @param {Boolean} [sort=False]
-     * @returns {Array} [{id:1},{id:2}]
-     */
-    function uniqueArray(src, key, sort) {
-        var results = [];
-        var values = [];
-        var i = 0;
-
-        while (i < src.length) {
-            var val = key ? src[i][key] : src[i];
-            if (inArray(values, val) < 0) {
-                results.push(src[i]);
-            }
-            values[i] = val;
-            i++;
-        }
-
-        if (sort) {
-            if (!key) {
-                results = results.sort();
-            } else {
-                results = results.sort(function sortUniqueArray(a, b) {
-                    return a[key] > b[key];
-                });
-            }
-        }
-
-        return results;
-    }
-
-    /**
-     * get the prefixed property
-     * @param {Object} obj
-     * @param {String} property
-     * @returns {String|Undefined} prefixed
-     */
-    function prefixed(obj, property) {
-        var prefix, prop;
-        var camelProp = property[0].toUpperCase() + property.slice(1);
-
-        var i = 0;
-        while (i < VENDOR_PREFIXES.length) {
-            prefix = VENDOR_PREFIXES[i];
-            prop = prefix ? prefix + camelProp : property;
-
-            if (prop in obj) {
-                return prop;
-            }
-            i++;
-        }
-        return undefined;
-    }
-
-    /**
-     * get a unique id
-     * @returns {number} uniqueId
-     */
-    var _uniqueId = 1;
-    function uniqueId() {
-        return _uniqueId++;
-    }
-
-    /**
-     * get the window object of an element
-     * @param {HTMLElement} element
-     * @returns {DocumentView|Window}
-     */
-    function getWindowForElement(element) {
-        var doc = element.ownerDocument || element;
-        return doc.defaultView || doc.parentWindow || window;
-    }
-
-    var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
-
-    var SUPPORT_TOUCH = 'ontouchstart' in window;
-    var SUPPORT_POINTER_EVENTS = prefixed(window, 'PointerEvent') !== undefined;
-    var SUPPORT_ONLY_TOUCH = SUPPORT_TOUCH && MOBILE_REGEX.test(navigator.userAgent);
-
-    var INPUT_TYPE_TOUCH = 'touch';
-    var INPUT_TYPE_PEN = 'pen';
-    var INPUT_TYPE_MOUSE = 'mouse';
-    var INPUT_TYPE_KINECT = 'kinect';
-
-    var COMPUTE_INTERVAL = 25;
-
-    var INPUT_START = 1;
-    var INPUT_MOVE = 2;
-    var INPUT_END = 4;
-    var INPUT_CANCEL = 8;
-
-    var DIRECTION_NONE = 1;
-    var DIRECTION_LEFT = 2;
-    var DIRECTION_RIGHT = 4;
-    var DIRECTION_UP = 8;
-    var DIRECTION_DOWN = 16;
-
-    var DIRECTION_HORIZONTAL = DIRECTION_LEFT | DIRECTION_RIGHT;
-    var DIRECTION_VERTICAL = DIRECTION_UP | DIRECTION_DOWN;
-    var DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
-
-    var PROPS_XY = ['x', 'y'];
-    var PROPS_CLIENT_XY = ['clientX', 'clientY'];
-
-    /**
-     * create new input type manager
-     * @param {Manager} manager
-     * @param {Function} callback
-     * @returns {Input}
-     * @constructor
-     */
-    function Input(manager, callback) {
-        var self = this;
-        this.manager = manager;
-        this.callback = callback;
-        this.element = manager.element;
-        this.target = manager.options.inputTarget;
-
-        // smaller wrapper around the handler, for the scope and the enabled state of the manager,
-        // so when disabled the input events are completely bypassed.
-        this.domHandler = function (ev) {
-            if (boolOrFn(manager.options.enable, [manager])) {
-                self.handler(ev);
-            }
-        };
-
-        this.init();
-    }
-
-    Input.prototype = {
-        /**
-         * should handle the inputEvent data and trigger the callback
-         * @virtual
-         */
-        handler: function handler() {},
-
-        /**
-         * bind the events
-         */
-        init: function init() {
-            this.evEl && addEventListeners(this.element, this.evEl, this.domHandler);
-            this.evTarget && addEventListeners(this.target, this.evTarget, this.domHandler);
-            this.evWin && addEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
-        },
-
-        /**
-         * unbind the events
-         */
-        destroy: function destroy() {
-            this.evEl && removeEventListeners(this.element, this.evEl, this.domHandler);
-            this.evTarget && removeEventListeners(this.target, this.evTarget, this.domHandler);
-            this.evWin && removeEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
-        }
-    };
-
-    /**
-     * create new input type manager
-     * called by the Manager constructor
-     * @param {Hammer} manager
-     * @returns {Input}
-     */
-    function createInputInstance(manager) {
-        var Type;
-        var inputClass = manager.options.inputClass;
-
-        if (inputClass) {
-            Type = inputClass;
-        } else if (SUPPORT_POINTER_EVENTS) {
-            Type = PointerEventInput;
-        } else if (SUPPORT_ONLY_TOUCH) {
-            Type = TouchInput;
-        } else if (!SUPPORT_TOUCH) {
-            Type = MouseInput;
-        } else {
-            Type = TouchMouseInput;
-        }
-        return new Type(manager, inputHandler);
-    }
-
-    /**
-     * handle input events
-     * @param {Manager} manager
-     * @param {String} eventType
-     * @param {Object} input
-     */
-    function inputHandler(manager, eventType, input) {
-        var pointersLen = input.pointers.length;
-        var changedPointersLen = input.changedPointers.length;
-        var isFirst = eventType & INPUT_START && pointersLen - changedPointersLen === 0;
-        var isFinal = eventType & (INPUT_END | INPUT_CANCEL) && pointersLen - changedPointersLen === 0;
-
-        input.isFirst = !!isFirst;
-        input.isFinal = !!isFinal;
-
-        if (isFirst) {
-            manager.session = {};
-        }
-
-        // source event is the normalized value of the domEvents
-        // like 'touchstart, mouseup, pointerdown'
-        input.eventType = eventType;
-
-        // compute scale, rotation etc
-        computeInputData(manager, input);
-
-        // emit secret event
-        manager.emit('hammer.input', input);
-
-        manager.recognize(input);
-        manager.session.prevInput = input;
-    }
-
-    /**
-     * extend the data with some usable properties like scale, rotate, velocity etc
-     * @param {Object} manager
-     * @param {Object} input
-     */
-    function computeInputData(manager, input) {
-        var session = manager.session;
-        var pointers = input.pointers;
-        var pointersLength = pointers.length;
-
-        // store the first input to calculate the distance and direction
-        if (!session.firstInput) {
-            session.firstInput = simpleCloneInputData(input);
-        }
-
-        // to compute scale and rotation we need to store the multiple touches
-        if (pointersLength > 1 && !session.firstMultiple) {
-            session.firstMultiple = simpleCloneInputData(input);
-        } else if (pointersLength === 1) {
-            session.firstMultiple = false;
-        }
-
-        var firstInput = session.firstInput;
-        var firstMultiple = session.firstMultiple;
-        var offsetCenter = firstMultiple ? firstMultiple.center : firstInput.center;
-
-        var center = input.center = getCenter(pointers);
-        input.timeStamp = now();
-        input.deltaTime = input.timeStamp - firstInput.timeStamp;
-
-        input.angle = getAngle(offsetCenter, center);
-        input.distance = getDistance(offsetCenter, center);
-
-        computeDeltaXY(session, input);
-        input.offsetDirection = getDirection(input.deltaX, input.deltaY);
-
-        var overallVelocity = getVelocity(input.deltaTime, input.deltaX, input.deltaY);
-        input.overallVelocityX = overallVelocity.x;
-        input.overallVelocityY = overallVelocity.y;
-        input.overallVelocity = abs(overallVelocity.x) > abs(overallVelocity.y) ? overallVelocity.x : overallVelocity.y;
-
-        input.scale = firstMultiple ? getScale(firstMultiple.pointers, pointers) : 1;
-        input.rotation = firstMultiple ? getRotation(firstMultiple.pointers, pointers) : 0;
-
-        input.maxPointers = !session.prevInput ? input.pointers.length : input.pointers.length > session.prevInput.maxPointers ? input.pointers.length : session.prevInput.maxPointers;
-
-        computeIntervalInputData(session, input);
-
-        // find the correct target
-        var target = manager.element;
-        if (hasParent(input.srcEvent.target, target)) {
-            target = input.srcEvent.target;
-        }
-        input.target = target;
-    }
-
-    function computeDeltaXY(session, input) {
-        var center = input.center;
-        var offset = session.offsetDelta || {};
-        var prevDelta = session.prevDelta || {};
-        var prevInput = session.prevInput || {};
-
-        if (input.eventType === INPUT_START || prevInput.eventType === INPUT_END) {
-            prevDelta = session.prevDelta = {
-                x: prevInput.deltaX || 0,
-                y: prevInput.deltaY || 0
-            };
-
-            offset = session.offsetDelta = {
-                x: center.x,
-                y: center.y
-            };
-        }
-
-        input.deltaX = prevDelta.x + (center.x - offset.x);
-        input.deltaY = prevDelta.y + (center.y - offset.y);
-    }
-
-    /**
-     * velocity is calculated every x ms
-     * @param {Object} session
-     * @param {Object} input
-     */
-    function computeIntervalInputData(session, input) {
-        var last = session.lastInterval || input,
-            deltaTime = input.timeStamp - last.timeStamp,
-            velocity,
-            velocityX,
-            velocityY,
-            direction;
-
-        if (input.eventType != INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
-            var deltaX = input.deltaX - last.deltaX;
-            var deltaY = input.deltaY - last.deltaY;
-
-            var v = getVelocity(deltaTime, deltaX, deltaY);
-            velocityX = v.x;
-            velocityY = v.y;
-            velocity = abs(v.x) > abs(v.y) ? v.x : v.y;
-            direction = getDirection(deltaX, deltaY);
-
-            session.lastInterval = input;
-        } else {
-            // use latest velocity info if it doesn't overtake a minimum period
-            velocity = last.velocity;
-            velocityX = last.velocityX;
-            velocityY = last.velocityY;
-            direction = last.direction;
-        }
-
-        input.velocity = velocity;
-        input.velocityX = velocityX;
-        input.velocityY = velocityY;
-        input.direction = direction;
-    }
-
-    /**
-     * create a simple clone from the input used for storage of firstInput and firstMultiple
-     * @param {Object} input
-     * @returns {Object} clonedInputData
-     */
-    function simpleCloneInputData(input) {
-        // make a simple copy of the pointers because we will get a reference if we don't
-        // we only need clientXY for the calculations
-        var pointers = [];
-        var i = 0;
-        while (i < input.pointers.length) {
-            pointers[i] = {
-                clientX: round(input.pointers[i].clientX),
-                clientY: round(input.pointers[i].clientY)
-            };
-            i++;
-        }
-
-        return {
-            timeStamp: now(),
-            pointers: pointers,
-            center: getCenter(pointers),
-            deltaX: input.deltaX,
-            deltaY: input.deltaY
-        };
-    }
-
-    /**
-     * get the center of all the pointers
-     * @param {Array} pointers
-     * @return {Object} center contains `x` and `y` properties
-     */
-    function getCenter(pointers) {
-        var pointersLength = pointers.length;
-
-        // no need to loop when only one touch
-        if (pointersLength === 1) {
-            return {
-                x: round(pointers[0].clientX),
-                y: round(pointers[0].clientY)
-            };
-        }
-
-        var x = 0,
-            y = 0,
-            i = 0;
-        while (i < pointersLength) {
-            x += pointers[i].clientX;
-            y += pointers[i].clientY;
-            i++;
-        }
-
-        return {
-            x: round(x / pointersLength),
-            y: round(y / pointersLength)
-        };
-    }
-
-    /**
-     * calculate the velocity between two points. unit is in px per ms.
-     * @param {Number} deltaTime
-     * @param {Number} x
-     * @param {Number} y
-     * @return {Object} velocity `x` and `y`
-     */
-    function getVelocity(deltaTime, x, y) {
-        return {
-            x: x / deltaTime || 0,
-            y: y / deltaTime || 0
-        };
-    }
-
-    /**
-     * get the direction between two points
-     * @param {Number} x
-     * @param {Number} y
-     * @return {Number} direction
-     */
-    function getDirection(x, y) {
-        if (x === y) {
-            return DIRECTION_NONE;
-        }
-
-        if (abs(x) >= abs(y)) {
-            return x < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
-        }
-        return y < 0 ? DIRECTION_UP : DIRECTION_DOWN;
-    }
-
-    /**
-     * calculate the absolute distance between two points
-     * @param {Object} p1 {x, y}
-     * @param {Object} p2 {x, y}
-     * @param {Array} [props] containing x and y keys
-     * @return {Number} distance
-     */
-    function getDistance(p1, p2, props) {
-        if (!props) {
-            props = PROPS_XY;
-        }
-        var x = p2[props[0]] - p1[props[0]],
-            y = p2[props[1]] - p1[props[1]];
-
-        return Math.sqrt(x * x + y * y);
-    }
-
-    /**
-     * calculate the angle between two coordinates
-     * @param {Object} p1
-     * @param {Object} p2
-     * @param {Array} [props] containing x and y keys
-     * @return {Number} angle
-     */
-    function getAngle(p1, p2, props) {
-        if (!props) {
-            props = PROPS_XY;
-        }
-        var x = p2[props[0]] - p1[props[0]],
-            y = p2[props[1]] - p1[props[1]];
-        return Math.atan2(y, x) * 180 / Math.PI;
-    }
-
-    /**
-     * calculate the rotation degrees between two pointersets
-     * @param {Array} start array of pointers
-     * @param {Array} end array of pointers
-     * @return {Number} rotation
-     */
-    function getRotation(start, end) {
-        return getAngle(end[1], end[0], PROPS_CLIENT_XY) + getAngle(start[1], start[0], PROPS_CLIENT_XY);
-    }
-
-    /**
-     * calculate the scale factor between two pointersets
-     * no scale is 1, and goes down to 0 when pinched together, and bigger when pinched out
-     * @param {Array} start array of pointers
-     * @param {Array} end array of pointers
-     * @return {Number} scale
-     */
-    function getScale(start, end) {
-        return getDistance(end[0], end[1], PROPS_CLIENT_XY) / getDistance(start[0], start[1], PROPS_CLIENT_XY);
-    }
-
-    var MOUSE_INPUT_MAP = {
-        mousedown: INPUT_START,
-        mousemove: INPUT_MOVE,
-        mouseup: INPUT_END
-    };
-
-    var MOUSE_ELEMENT_EVENTS = 'mousedown';
-    var MOUSE_WINDOW_EVENTS = 'mousemove mouseup';
-
-    /**
-     * Mouse events input
-     * @constructor
-     * @extends Input
-     */
-    function MouseInput() {
-        this.evEl = MOUSE_ELEMENT_EVENTS;
-        this.evWin = MOUSE_WINDOW_EVENTS;
-
-        this.pressed = false; // mousedown state
-
-        Input.apply(this, arguments);
-    }
-
-    inherit(MouseInput, Input, {
-        /**
-         * handle mouse events
-         * @param {Object} ev
-         */
-        handler: function MEhandler(ev) {
-            var eventType = MOUSE_INPUT_MAP[ev.type];
-
-            // on start we want to have the left mouse button down
-            if (eventType & INPUT_START && ev.button === 0) {
-                this.pressed = true;
-            }
-
-            if (eventType & INPUT_MOVE && ev.which !== 1) {
-                eventType = INPUT_END;
-            }
-
-            // mouse must be down
-            if (!this.pressed) {
-                return;
-            }
-
-            if (eventType & INPUT_END) {
-                this.pressed = false;
-            }
-
-            this.callback(this.manager, eventType, {
-                pointers: [ev],
-                changedPointers: [ev],
-                pointerType: INPUT_TYPE_MOUSE,
-                srcEvent: ev
-            });
-        }
-    });
-
-    var POINTER_INPUT_MAP = {
-        pointerdown: INPUT_START,
-        pointermove: INPUT_MOVE,
-        pointerup: INPUT_END,
-        pointercancel: INPUT_CANCEL,
-        pointerout: INPUT_CANCEL
-    };
-
-    // in IE10 the pointer types is defined as an enum
-    var IE10_POINTER_TYPE_ENUM = {
-        2: INPUT_TYPE_TOUCH,
-        3: INPUT_TYPE_PEN,
-        4: INPUT_TYPE_MOUSE,
-        5: INPUT_TYPE_KINECT // see https://twitter.com/jacobrossi/status/480596438489890816
-    };
-
-    var POINTER_ELEMENT_EVENTS = 'pointerdown';
-    var POINTER_WINDOW_EVENTS = 'pointermove pointerup pointercancel';
-
-    // IE10 has prefixed support, and case-sensitive
-    if (window.MSPointerEvent && !window.PointerEvent) {
-        POINTER_ELEMENT_EVENTS = 'MSPointerDown';
-        POINTER_WINDOW_EVENTS = 'MSPointerMove MSPointerUp MSPointerCancel';
-    }
-
-    /**
-     * Pointer events input
-     * @constructor
-     * @extends Input
-     */
-    function PointerEventInput() {
-        this.evEl = POINTER_ELEMENT_EVENTS;
-        this.evWin = POINTER_WINDOW_EVENTS;
-
-        Input.apply(this, arguments);
-
-        this.store = this.manager.session.pointerEvents = [];
-    }
-
-    inherit(PointerEventInput, Input, {
-        /**
-         * handle mouse events
-         * @param {Object} ev
-         */
-        handler: function PEhandler(ev) {
-            var store = this.store;
-            var removePointer = false;
-
-            var eventTypeNormalized = ev.type.toLowerCase().replace('ms', '');
-            var eventType = POINTER_INPUT_MAP[eventTypeNormalized];
-            var pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
-
-            var isTouch = pointerType == INPUT_TYPE_TOUCH;
-
-            // get index of the event in the store
-            var storeIndex = inArray(store, ev.pointerId, 'pointerId');
-
-            // start and mouse must be down
-            if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
-                if (storeIndex < 0) {
-                    store.push(ev);
-                    storeIndex = store.length - 1;
-                }
-            } else if (eventType & (INPUT_END | INPUT_CANCEL)) {
-                removePointer = true;
-            }
-
-            // it not found, so the pointer hasn't been down (so it's probably a hover)
-            if (storeIndex < 0) {
-                return;
-            }
-
-            // update the event in the store
-            store[storeIndex] = ev;
-
-            this.callback(this.manager, eventType, {
-                pointers: store,
-                changedPointers: [ev],
-                pointerType: pointerType,
-                srcEvent: ev
-            });
-
-            if (removePointer) {
-                // remove from the store
-                store.splice(storeIndex, 1);
-            }
-        }
-    });
-
-    var SINGLE_TOUCH_INPUT_MAP = {
-        touchstart: INPUT_START,
-        touchmove: INPUT_MOVE,
-        touchend: INPUT_END,
-        touchcancel: INPUT_CANCEL
-    };
-
-    var SINGLE_TOUCH_TARGET_EVENTS = 'touchstart';
-    var SINGLE_TOUCH_WINDOW_EVENTS = 'touchstart touchmove touchend touchcancel';
-
-    /**
-     * Touch events input
-     * @constructor
-     * @extends Input
-     */
-    function SingleTouchInput() {
-        this.evTarget = SINGLE_TOUCH_TARGET_EVENTS;
-        this.evWin = SINGLE_TOUCH_WINDOW_EVENTS;
-        this.started = false;
-
-        Input.apply(this, arguments);
-    }
-
-    inherit(SingleTouchInput, Input, {
-        handler: function TEhandler(ev) {
-            var type = SINGLE_TOUCH_INPUT_MAP[ev.type];
-
-            // should we handle the touch events?
-            if (type === INPUT_START) {
-                this.started = true;
-            }
-
-            if (!this.started) {
-                return;
-            }
-
-            var touches = normalizeSingleTouches.call(this, ev, type);
-
-            // when done, reset the started state
-            if (type & (INPUT_END | INPUT_CANCEL) && touches[0].length - touches[1].length === 0) {
-                this.started = false;
-            }
-
-            this.callback(this.manager, type, {
-                pointers: touches[0],
-                changedPointers: touches[1],
-                pointerType: INPUT_TYPE_TOUCH,
-                srcEvent: ev
-            });
-        }
-    });
-
-    /**
-     * @this {TouchInput}
-     * @param {Object} ev
-     * @param {Number} type flag
-     * @returns {undefined|Array} [all, changed]
-     */
-    function normalizeSingleTouches(ev, type) {
-        var all = toArray(ev.touches);
-        var changed = toArray(ev.changedTouches);
-
-        if (type & (INPUT_END | INPUT_CANCEL)) {
-            all = uniqueArray(all.concat(changed), 'identifier', true);
-        }
-
-        return [all, changed];
-    }
-
-    var TOUCH_INPUT_MAP = {
-        touchstart: INPUT_START,
-        touchmove: INPUT_MOVE,
-        touchend: INPUT_END,
-        touchcancel: INPUT_CANCEL
-    };
-
-    var TOUCH_TARGET_EVENTS = 'touchstart touchmove touchend touchcancel';
-
-    /**
-     * Multi-user touch events input
-     * @constructor
-     * @extends Input
-     */
-    function TouchInput() {
-        this.evTarget = TOUCH_TARGET_EVENTS;
-        this.targetIds = {};
-
-        Input.apply(this, arguments);
-    }
-
-    inherit(TouchInput, Input, {
-        handler: function MTEhandler(ev) {
-            var type = TOUCH_INPUT_MAP[ev.type];
-            var touches = getTouches.call(this, ev, type);
-            if (!touches) {
-                return;
-            }
-
-            this.callback(this.manager, type, {
-                pointers: touches[0],
-                changedPointers: touches[1],
-                pointerType: INPUT_TYPE_TOUCH,
-                srcEvent: ev
-            });
-        }
-    });
-
-    /**
-     * @this {TouchInput}
-     * @param {Object} ev
-     * @param {Number} type flag
-     * @returns {undefined|Array} [all, changed]
-     */
-    function getTouches(ev, type) {
-        var allTouches = toArray(ev.touches);
-        var targetIds = this.targetIds;
-
-        // when there is only one touch, the process can be simplified
-        if (type & (INPUT_START | INPUT_MOVE) && allTouches.length === 1) {
-            targetIds[allTouches[0].identifier] = true;
-            return [allTouches, allTouches];
-        }
-
-        var i,
-            targetTouches,
-            changedTouches = toArray(ev.changedTouches),
-            changedTargetTouches = [],
-            target = this.target;
-
-        // get target touches from touches
-        targetTouches = allTouches.filter(function (touch) {
-            return hasParent(touch.target, target);
-        });
-
-        // collect touches
-        if (type === INPUT_START) {
-            i = 0;
-            while (i < targetTouches.length) {
-                targetIds[targetTouches[i].identifier] = true;
-                i++;
-            }
-        }
-
-        // filter changed touches to only contain touches that exist in the collected target ids
-        i = 0;
-        while (i < changedTouches.length) {
-            if (targetIds[changedTouches[i].identifier]) {
-                changedTargetTouches.push(changedTouches[i]);
-            }
-
-            // cleanup removed touches
-            if (type & (INPUT_END | INPUT_CANCEL)) {
-                delete targetIds[changedTouches[i].identifier];
-            }
-            i++;
-        }
-
-        if (!changedTargetTouches.length) {
-            return;
-        }
-
-        return [
-        // merge targetTouches with changedTargetTouches so it contains ALL touches, including 'end' and 'cancel'
-        uniqueArray(targetTouches.concat(changedTargetTouches), 'identifier', true), changedTargetTouches];
-    }
-
-    /**
-     * Combined touch and mouse input
-     *
-     * Touch has a higher priority then mouse, and while touching no mouse events are allowed.
-     * This because touch devices also emit mouse events while doing a touch.
-     *
-     * @constructor
-     * @extends Input
-     */
-
-    var DEDUP_TIMEOUT = 2500;
-    var DEDUP_DISTANCE = 25;
-
-    function TouchMouseInput() {
-        Input.apply(this, arguments);
-
-        var handler = bindFn(this.handler, this);
-        this.touch = new TouchInput(this.manager, handler);
-        this.mouse = new MouseInput(this.manager, handler);
-
-        this.primaryTouch = null;
-        this.lastTouches = [];
-    }
-
-    inherit(TouchMouseInput, Input, {
-        /**
-         * handle mouse and touch events
-         * @param {Hammer} manager
-         * @param {String} inputEvent
-         * @param {Object} inputData
-         */
-        handler: function TMEhandler(manager, inputEvent, inputData) {
-            var isTouch = inputData.pointerType == INPUT_TYPE_TOUCH,
-                isMouse = inputData.pointerType == INPUT_TYPE_MOUSE;
-
-            if (isMouse && inputData.sourceCapabilities && inputData.sourceCapabilities.firesTouchEvents) {
-                return;
-            }
-
-            // when we're in a touch event, record touches to  de-dupe synthetic mouse event
-            if (isTouch) {
-                recordTouches.call(this, inputEvent, inputData);
-            } else if (isMouse && isSyntheticEvent.call(this, inputData)) {
-                return;
-            }
-
-            this.callback(manager, inputEvent, inputData);
-        },
-
-        /**
-         * remove the event listeners
-         */
-        destroy: function destroy() {
-            this.touch.destroy();
-            this.mouse.destroy();
-        }
-    });
-
-    function recordTouches(eventType, eventData) {
-        if (eventType & INPUT_START) {
-            this.primaryTouch = eventData.changedPointers[0].identifier;
-            setLastTouch.call(this, eventData);
-        } else if (eventType & (INPUT_END | INPUT_CANCEL)) {
-            setLastTouch.call(this, eventData);
-        }
-    }
-
-    function setLastTouch(eventData) {
-        var touch = eventData.changedPointers[0];
-
-        if (touch.identifier === this.primaryTouch) {
-            var lastTouch = { x: touch.clientX, y: touch.clientY };
-            this.lastTouches.push(lastTouch);
-            var lts = this.lastTouches;
-            var removeLastTouch = function removeLastTouch() {
-                var i = lts.indexOf(lastTouch);
-                if (i > -1) {
-                    lts.splice(i, 1);
-                }
-            };
-            setTimeout(removeLastTouch, DEDUP_TIMEOUT);
-        }
-    }
-
-    function isSyntheticEvent(eventData) {
-        var x = eventData.srcEvent.clientX,
-            y = eventData.srcEvent.clientY;
-        for (var i = 0; i < this.lastTouches.length; i++) {
-            var t = this.lastTouches[i];
-            var dx = Math.abs(x - t.x),
-                dy = Math.abs(y - t.y);
-            if (dx <= DEDUP_DISTANCE && dy <= DEDUP_DISTANCE) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    var PREFIXED_TOUCH_ACTION = prefixed(TEST_ELEMENT.style, 'touchAction');
-    var NATIVE_TOUCH_ACTION = PREFIXED_TOUCH_ACTION !== undefined;
-
-    // magical touchAction value
-    var TOUCH_ACTION_COMPUTE = 'compute';
-    var TOUCH_ACTION_AUTO = 'auto';
-    var TOUCH_ACTION_MANIPULATION = 'manipulation'; // not implemented
-    var TOUCH_ACTION_NONE = 'none';
-    var TOUCH_ACTION_PAN_X = 'pan-x';
-    var TOUCH_ACTION_PAN_Y = 'pan-y';
-    var TOUCH_ACTION_MAP = getTouchActionProps();
-
-    /**
-     * Touch Action
-     * sets the touchAction property or uses the js alternative
-     * @param {Manager} manager
-     * @param {String} value
-     * @constructor
-     */
-    function TouchAction(manager, value) {
-        this.manager = manager;
-        this.set(value);
-    }
-
-    TouchAction.prototype = {
-        /**
-         * set the touchAction value on the element or enable the polyfill
-         * @param {String} value
-         */
-        set: function set(value) {
-            // find out the touch-action by the event handlers
-            if (value == TOUCH_ACTION_COMPUTE) {
-                value = this.compute();
-            }
-
-            if (NATIVE_TOUCH_ACTION && this.manager.element.style && TOUCH_ACTION_MAP[value]) {
-                this.manager.element.style[PREFIXED_TOUCH_ACTION] = value;
-            }
-            this.actions = value.toLowerCase().trim();
-        },
-
-        /**
-         * just re-set the touchAction value
-         */
-        update: function update() {
-            this.set(this.manager.options.touchAction);
-        },
-
-        /**
-         * compute the value for the touchAction property based on the recognizer's settings
-         * @returns {String} value
-         */
-        compute: function compute() {
-            var actions = [];
-            each(this.manager.recognizers, function (recognizer) {
-                if (boolOrFn(recognizer.options.enable, [recognizer])) {
-                    actions = actions.concat(recognizer.getTouchAction());
-                }
-            });
-            return cleanTouchActions(actions.join(' '));
-        },
-
-        /**
-         * this method is called on each input cycle and provides the preventing of the browser behavior
-         * @param {Object} input
-         */
-        preventDefaults: function preventDefaults(input) {
-            var srcEvent = input.srcEvent;
-            var direction = input.offsetDirection;
-
-            // if the touch action did prevented once this session
-            if (this.manager.session.prevented) {
-                srcEvent.preventDefault();
-                return;
-            }
-
-            var actions = this.actions;
-            var hasNone = inStr(actions, TOUCH_ACTION_NONE) && !TOUCH_ACTION_MAP[TOUCH_ACTION_NONE];
-            var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y) && !TOUCH_ACTION_MAP[TOUCH_ACTION_PAN_Y];
-            var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X) && !TOUCH_ACTION_MAP[TOUCH_ACTION_PAN_X];
-
-            if (hasNone) {
-                //do not prevent defaults if this is a tap gesture
-
-                var isTapPointer = input.pointers.length === 1;
-                var isTapMovement = input.distance < 2;
-                var isTapTouchTime = input.deltaTime < 250;
-
-                if (isTapPointer && isTapMovement && isTapTouchTime) {
-                    return;
-                }
-            }
-
-            if (hasPanX && hasPanY) {
-                // `pan-x pan-y` means browser handles all scrolling/panning, do not prevent
-                return;
-            }
-
-            if (hasNone || hasPanY && direction & DIRECTION_HORIZONTAL || hasPanX && direction & DIRECTION_VERTICAL) {
-                return this.preventSrc(srcEvent);
-            }
-        },
-
-        /**
-         * call preventDefault to prevent the browser's default behavior (scrolling in most cases)
-         * @param {Object} srcEvent
-         */
-        preventSrc: function preventSrc(srcEvent) {
-            this.manager.session.prevented = true;
-            srcEvent.preventDefault();
-        }
-    };
-
-    /**
-     * when the touchActions are collected they are not a valid value, so we need to clean things up. *
-     * @param {String} actions
-     * @returns {*}
-     */
-    function cleanTouchActions(actions) {
-        // none
-        if (inStr(actions, TOUCH_ACTION_NONE)) {
-            return TOUCH_ACTION_NONE;
-        }
-
-        var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
-        var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
-
-        // if both pan-x and pan-y are set (different recognizers
-        // for different directions, e.g. horizontal pan but vertical swipe?)
-        // we need none (as otherwise with pan-x pan-y combined none of these
-        // recognizers will work, since the browser would handle all panning
-        if (hasPanX && hasPanY) {
-            return TOUCH_ACTION_NONE;
-        }
-
-        // pan-x OR pan-y
-        if (hasPanX || hasPanY) {
-            return hasPanX ? TOUCH_ACTION_PAN_X : TOUCH_ACTION_PAN_Y;
-        }
-
-        // manipulation
-        if (inStr(actions, TOUCH_ACTION_MANIPULATION)) {
-            return TOUCH_ACTION_MANIPULATION;
-        }
-
-        return TOUCH_ACTION_AUTO;
-    }
-
-    function getTouchActionProps() {
-        if (!NATIVE_TOUCH_ACTION) {
-            return false;
-        }
-        var touchMap = {};
-        var cssSupports = window.CSS && window.CSS.supports;
-        ['auto', 'manipulation', 'pan-y', 'pan-x', 'pan-x pan-y', 'none'].forEach(function (val) {
-
-            // If css.supports is not supported but there is native touch-action assume it supports
-            // all values. This is the case for IE 10 and 11.
-            touchMap[val] = cssSupports ? window.CSS.supports('touch-action', val) : true;
-        });
-        return touchMap;
-    }
-
-    /**
-     * Recognizer flow explained; *
-     * All recognizers have the initial state of POSSIBLE when a input session starts.
-     * The definition of a input session is from the first input until the last input, with all it's movement in it. *
-     * Example session for mouse-input: mousedown -> mousemove -> mouseup
-     *
-     * On each recognizing cycle (see Manager.recognize) the .recognize() method is executed
-     * which determines with state it should be.
-     *
-     * If the recognizer has the state FAILED, CANCELLED or RECOGNIZED (equals ENDED), it is reset to
-     * POSSIBLE to give it another change on the next cycle.
-     *
-     *               Possible
-     *                  |
-     *            +-----+---------------+
-     *            |                     |
-     *      +-----+-----+               |
-     *      |           |               |
-     *   Failed      Cancelled          |
-     *                          +-------+------+
-     *                          |              |
-     *                      Recognized       Began
-     *                                         |
-     *                                      Changed
-     *                                         |
-     *                                  Ended/Recognized
-     */
-    var STATE_POSSIBLE = 1;
-    var STATE_BEGAN = 2;
-    var STATE_CHANGED = 4;
-    var STATE_ENDED = 8;
-    var STATE_RECOGNIZED = STATE_ENDED;
-    var STATE_CANCELLED = 16;
-    var STATE_FAILED = 32;
-
-    /**
-     * Recognizer
-     * Every recognizer needs to extend from this class.
-     * @constructor
-     * @param {Object} options
-     */
-    function Recognizer(options) {
-        this.options = assign({}, this.defaults, options || {});
-
-        this.id = uniqueId();
-
-        this.manager = null;
-
-        // default is enable true
-        this.options.enable = ifUndefined(this.options.enable, true);
-
-        this.state = STATE_POSSIBLE;
-
-        this.simultaneous = {};
-        this.requireFail = [];
-    }
-
-    Recognizer.prototype = {
-        /**
-         * @virtual
-         * @type {Object}
-         */
-        defaults: {},
-
-        /**
-         * set options
-         * @param {Object} options
-         * @return {Recognizer}
-         */
-        set: function set(options) {
-            assign(this.options, options);
-
-            // also update the touchAction, in case something changed about the directions/enabled state
-            this.manager && this.manager.touchAction.update();
-            return this;
-        },
-
-        /**
-         * recognize simultaneous with an other recognizer.
-         * @param {Recognizer} otherRecognizer
-         * @returns {Recognizer} this
-         */
-        recognizeWith: function recognizeWith(otherRecognizer) {
-            if (invokeArrayArg(otherRecognizer, 'recognizeWith', this)) {
-                return this;
-            }
-
-            var simultaneous = this.simultaneous;
-            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
-            if (!simultaneous[otherRecognizer.id]) {
-                simultaneous[otherRecognizer.id] = otherRecognizer;
-                otherRecognizer.recognizeWith(this);
-            }
-            return this;
-        },
-
-        /**
-         * drop the simultaneous link. it doesnt remove the link on the other recognizer.
-         * @param {Recognizer} otherRecognizer
-         * @returns {Recognizer} this
-         */
-        dropRecognizeWith: function dropRecognizeWith(otherRecognizer) {
-            if (invokeArrayArg(otherRecognizer, 'dropRecognizeWith', this)) {
-                return this;
-            }
-
-            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
-            delete this.simultaneous[otherRecognizer.id];
-            return this;
-        },
-
-        /**
-         * recognizer can only run when an other is failing
-         * @param {Recognizer} otherRecognizer
-         * @returns {Recognizer} this
-         */
-        requireFailure: function requireFailure(otherRecognizer) {
-            if (invokeArrayArg(otherRecognizer, 'requireFailure', this)) {
-                return this;
-            }
-
-            var requireFail = this.requireFail;
-            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
-            if (inArray(requireFail, otherRecognizer) === -1) {
-                requireFail.push(otherRecognizer);
-                otherRecognizer.requireFailure(this);
-            }
-            return this;
-        },
-
-        /**
-         * drop the requireFailure link. it does not remove the link on the other recognizer.
-         * @param {Recognizer} otherRecognizer
-         * @returns {Recognizer} this
-         */
-        dropRequireFailure: function dropRequireFailure(otherRecognizer) {
-            if (invokeArrayArg(otherRecognizer, 'dropRequireFailure', this)) {
-                return this;
-            }
-
-            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
-            var index = inArray(this.requireFail, otherRecognizer);
-            if (index > -1) {
-                this.requireFail.splice(index, 1);
-            }
-            return this;
-        },
-
-        /**
-         * has require failures boolean
-         * @returns {boolean}
-         */
-        hasRequireFailures: function hasRequireFailures() {
-            return this.requireFail.length > 0;
-        },
-
-        /**
-         * if the recognizer can recognize simultaneous with an other recognizer
-         * @param {Recognizer} otherRecognizer
-         * @returns {Boolean}
-         */
-        canRecognizeWith: function canRecognizeWith(otherRecognizer) {
-            return !!this.simultaneous[otherRecognizer.id];
-        },
-
-        /**
-         * You should use `tryEmit` instead of `emit` directly to check
-         * that all the needed recognizers has failed before emitting.
-         * @param {Object} input
-         */
-        emit: function emit(input) {
-            var self = this;
-            var state = this.state;
-
-            function emit(event) {
-                self.manager.emit(event, input);
-            }
-
-            // 'panstart' and 'panmove'
-            if (state < STATE_ENDED) {
-                emit(self.options.event + stateStr(state));
-            }
-
-            emit(self.options.event); // simple 'eventName' events
-
-            if (input.additionalEvent) {
-                // additional event(panleft, panright, pinchin, pinchout...)
-                emit(input.additionalEvent);
-            }
-
-            // panend and pancancel
-            if (state >= STATE_ENDED) {
-                emit(self.options.event + stateStr(state));
-            }
-        },
-
-        /**
-         * Check that all the require failure recognizers has failed,
-         * if true, it emits a gesture event,
-         * otherwise, setup the state to FAILED.
-         * @param {Object} input
-         */
-        tryEmit: function tryEmit(input) {
-            if (this.canEmit()) {
-                return this.emit(input);
-            }
-            // it's failing anyway
-            this.state = STATE_FAILED;
-        },
-
-        /**
-         * can we emit?
-         * @returns {boolean}
-         */
-        canEmit: function canEmit() {
-            var i = 0;
-            while (i < this.requireFail.length) {
-                if (!(this.requireFail[i].state & (STATE_FAILED | STATE_POSSIBLE))) {
-                    return false;
-                }
-                i++;
-            }
-            return true;
-        },
-
-        /**
-         * update the recognizer
-         * @param {Object} inputData
-         */
-        recognize: function recognize(inputData) {
-            // make a new copy of the inputData
-            // so we can change the inputData without messing up the other recognizers
-            var inputDataClone = assign({}, inputData);
-
-            // is is enabled and allow recognizing?
-            if (!boolOrFn(this.options.enable, [this, inputDataClone])) {
-                this.reset();
-                this.state = STATE_FAILED;
-                return;
-            }
-
-            // reset when we've reached the end
-            if (this.state & (STATE_RECOGNIZED | STATE_CANCELLED | STATE_FAILED)) {
-                this.state = STATE_POSSIBLE;
-            }
-
-            this.state = this.process(inputDataClone);
-
-            // the recognizer has recognized a gesture
-            // so trigger an event
-            if (this.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED | STATE_CANCELLED)) {
-                this.tryEmit(inputDataClone);
-            }
-        },
-
-        /**
-         * return the state of the recognizer
-         * the actual recognizing happens in this method
-         * @virtual
-         * @param {Object} inputData
-         * @returns {Const} STATE
-         */
-        process: function process(inputData) {}, // jshint ignore:line
-
-        /**
-         * return the preferred touch-action
-         * @virtual
-         * @returns {Array}
-         */
-        getTouchAction: function getTouchAction() {},
-
-        /**
-         * called when the gesture isn't allowed to recognize
-         * like when another is being recognized or it is disabled
-         * @virtual
-         */
-        reset: function reset() {}
-    };
-
-    /**
-     * get a usable string, used as event postfix
-     * @param {Const} state
-     * @returns {String} state
-     */
-    function stateStr(state) {
-        if (state & STATE_CANCELLED) {
-            return 'cancel';
-        } else if (state & STATE_ENDED) {
-            return 'end';
-        } else if (state & STATE_CHANGED) {
-            return 'move';
-        } else if (state & STATE_BEGAN) {
-            return 'start';
-        }
-        return '';
-    }
-
-    /**
-     * direction cons to string
-     * @param {Const} direction
-     * @returns {String}
-     */
-    function directionStr(direction) {
-        if (direction == DIRECTION_DOWN) {
-            return 'down';
-        } else if (direction == DIRECTION_UP) {
-            return 'up';
-        } else if (direction == DIRECTION_LEFT) {
-            return 'left';
-        } else if (direction == DIRECTION_RIGHT) {
-            return 'right';
-        }
-        return '';
-    }
-
-    /**
-     * get a recognizer by name if it is bound to a manager
-     * @param {Recognizer|String} otherRecognizer
-     * @param {Recognizer} recognizer
-     * @returns {Recognizer}
-     */
-    function getRecognizerByNameIfManager(otherRecognizer, recognizer) {
-        var manager = recognizer.manager;
-        if (manager) {
-            return manager.get(otherRecognizer);
-        }
-        return otherRecognizer;
-    }
-
-    /**
-     * This recognizer is just used as a base for the simple attribute recognizers.
-     * @constructor
-     * @extends Recognizer
-     */
-    function AttrRecognizer() {
-        Recognizer.apply(this, arguments);
-    }
-
-    inherit(AttrRecognizer, Recognizer, {
-        /**
-         * @namespace
-         * @memberof AttrRecognizer
-         */
-        defaults: {
-            /**
-             * @type {Number}
-             * @default 1
-             */
-            pointers: 1
-        },
-
-        /**
-         * Used to check if it the recognizer receives valid input, like input.distance > 10.
-         * @memberof AttrRecognizer
-         * @param {Object} input
-         * @returns {Boolean} recognized
-         */
-        attrTest: function attrTest(input) {
-            var optionPointers = this.options.pointers;
-            return optionPointers === 0 || input.pointers.length === optionPointers;
-        },
-
-        /**
-         * Process the input and return the state for the recognizer
-         * @memberof AttrRecognizer
-         * @param {Object} input
-         * @returns {*} State
-         */
-        process: function process(input) {
-            var state = this.state;
-            var eventType = input.eventType;
-
-            var isRecognized = state & (STATE_BEGAN | STATE_CHANGED);
-            var isValid = this.attrTest(input);
-
-            // on cancel input and we've recognized before, return STATE_CANCELLED
-            if (isRecognized && (eventType & INPUT_CANCEL || !isValid)) {
-                return state | STATE_CANCELLED;
-            } else if (isRecognized || isValid) {
-                if (eventType & INPUT_END) {
-                    return state | STATE_ENDED;
-                } else if (!(state & STATE_BEGAN)) {
-                    return STATE_BEGAN;
-                }
-                return state | STATE_CHANGED;
-            }
-            return STATE_FAILED;
-        }
-    });
-
-    /**
-     * Pan
-     * Recognized when the pointer is down and moved in the allowed direction.
-     * @constructor
-     * @extends AttrRecognizer
-     */
-    function PanRecognizer() {
-        AttrRecognizer.apply(this, arguments);
-
-        this.pX = null;
-        this.pY = null;
-    }
-
-    inherit(PanRecognizer, AttrRecognizer, {
-        /**
-         * @namespace
-         * @memberof PanRecognizer
-         */
-        defaults: {
-            event: 'pan',
-            threshold: 10,
-            pointers: 1,
-            direction: DIRECTION_ALL
-        },
-
-        getTouchAction: function getTouchAction() {
-            var direction = this.options.direction;
-            var actions = [];
-            if (direction & DIRECTION_HORIZONTAL) {
-                actions.push(TOUCH_ACTION_PAN_Y);
-            }
-            if (direction & DIRECTION_VERTICAL) {
-                actions.push(TOUCH_ACTION_PAN_X);
-            }
-            return actions;
-        },
-
-        directionTest: function directionTest(input) {
-            var options = this.options;
-            var hasMoved = true;
-            var distance = input.distance;
-            var direction = input.direction;
-            var x = input.deltaX;
-            var y = input.deltaY;
-
-            // lock to axis?
-            if (!(direction & options.direction)) {
-                if (options.direction & DIRECTION_HORIZONTAL) {
-                    direction = x === 0 ? DIRECTION_NONE : x < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
-                    hasMoved = x != this.pX;
-                    distance = Math.abs(input.deltaX);
-                } else {
-                    direction = y === 0 ? DIRECTION_NONE : y < 0 ? DIRECTION_UP : DIRECTION_DOWN;
-                    hasMoved = y != this.pY;
-                    distance = Math.abs(input.deltaY);
-                }
-            }
-            input.direction = direction;
-            return hasMoved && distance > options.threshold && direction & options.direction;
-        },
-
-        attrTest: function attrTest(input) {
-            return AttrRecognizer.prototype.attrTest.call(this, input) && (this.state & STATE_BEGAN || !(this.state & STATE_BEGAN) && this.directionTest(input));
-        },
-
-        emit: function emit(input) {
-
-            this.pX = input.deltaX;
-            this.pY = input.deltaY;
-
-            var direction = directionStr(input.direction);
-
-            if (direction) {
-                input.additionalEvent = this.options.event + direction;
-            }
-            this._super.emit.call(this, input);
-        }
-    });
-
-    /**
-     * Pinch
-     * Recognized when two or more pointers are moving toward (zoom-in) or away from each other (zoom-out).
-     * @constructor
-     * @extends AttrRecognizer
-     */
-    function PinchRecognizer() {
-        AttrRecognizer.apply(this, arguments);
-    }
-
-    inherit(PinchRecognizer, AttrRecognizer, {
-        /**
-         * @namespace
-         * @memberof PinchRecognizer
-         */
-        defaults: {
-            event: 'pinch',
-            threshold: 0,
-            pointers: 2
-        },
-
-        getTouchAction: function getTouchAction() {
-            return [TOUCH_ACTION_NONE];
-        },
-
-        attrTest: function attrTest(input) {
-            return this._super.attrTest.call(this, input) && (Math.abs(input.scale - 1) > this.options.threshold || this.state & STATE_BEGAN);
-        },
-
-        emit: function emit(input) {
-            if (input.scale !== 1) {
-                var inOut = input.scale < 1 ? 'in' : 'out';
-                input.additionalEvent = this.options.event + inOut;
-            }
-            this._super.emit.call(this, input);
-        }
-    });
-
-    /**
-     * Press
-     * Recognized when the pointer is down for x ms without any movement.
-     * @constructor
-     * @extends Recognizer
-     */
-    function PressRecognizer() {
-        Recognizer.apply(this, arguments);
-
-        this._timer = null;
-        this._input = null;
-    }
-
-    inherit(PressRecognizer, Recognizer, {
-        /**
-         * @namespace
-         * @memberof PressRecognizer
-         */
-        defaults: {
-            event: 'press',
-            pointers: 1,
-            time: 251, // minimal time of the pointer to be pressed
-            threshold: 9 // a minimal movement is ok, but keep it low
-        },
-
-        getTouchAction: function getTouchAction() {
-            return [TOUCH_ACTION_AUTO];
-        },
-
-        process: function process(input) {
-            var options = this.options;
-            var validPointers = input.pointers.length === options.pointers;
-            var validMovement = input.distance < options.threshold;
-            var validTime = input.deltaTime > options.time;
-
-            this._input = input;
-
-            // we only allow little movement
-            // and we've reached an end event, so a tap is possible
-            if (!validMovement || !validPointers || input.eventType & (INPUT_END | INPUT_CANCEL) && !validTime) {
-                this.reset();
-            } else if (input.eventType & INPUT_START) {
-                this.reset();
-                this._timer = setTimeoutContext(function () {
-                    this.state = STATE_RECOGNIZED;
-                    this.tryEmit();
-                }, options.time, this);
-            } else if (input.eventType & INPUT_END) {
-                return STATE_RECOGNIZED;
-            }
-            return STATE_FAILED;
-        },
-
-        reset: function reset() {
-            clearTimeout(this._timer);
-        },
-
-        emit: function emit(input) {
-            if (this.state !== STATE_RECOGNIZED) {
-                return;
-            }
-
-            if (input && input.eventType & INPUT_END) {
-                this.manager.emit(this.options.event + 'up', input);
-            } else {
-                this._input.timeStamp = now();
-                this.manager.emit(this.options.event, this._input);
-            }
-        }
-    });
-
-    /**
-     * Rotate
-     * Recognized when two or more pointer are moving in a circular motion.
-     * @constructor
-     * @extends AttrRecognizer
-     */
-    function RotateRecognizer() {
-        AttrRecognizer.apply(this, arguments);
-    }
-
-    inherit(RotateRecognizer, AttrRecognizer, {
-        /**
-         * @namespace
-         * @memberof RotateRecognizer
-         */
-        defaults: {
-            event: 'rotate',
-            threshold: 0,
-            pointers: 2
-        },
-
-        getTouchAction: function getTouchAction() {
-            return [TOUCH_ACTION_NONE];
-        },
-
-        attrTest: function attrTest(input) {
-            return this._super.attrTest.call(this, input) && (Math.abs(input.rotation) > this.options.threshold || this.state & STATE_BEGAN);
-        }
-    });
-
-    /**
-     * Swipe
-     * Recognized when the pointer is moving fast (velocity), with enough distance in the allowed direction.
-     * @constructor
-     * @extends AttrRecognizer
-     */
-    function SwipeRecognizer() {
-        AttrRecognizer.apply(this, arguments);
-    }
-
-    inherit(SwipeRecognizer, AttrRecognizer, {
-        /**
-         * @namespace
-         * @memberof SwipeRecognizer
-         */
-        defaults: {
-            event: 'swipe',
-            threshold: 10,
-            velocity: 0.3,
-            direction: DIRECTION_HORIZONTAL | DIRECTION_VERTICAL,
-            pointers: 1
-        },
-
-        getTouchAction: function getTouchAction() {
-            return PanRecognizer.prototype.getTouchAction.call(this);
-        },
-
-        attrTest: function attrTest(input) {
-            var direction = this.options.direction;
-            var velocity;
-
-            if (direction & (DIRECTION_HORIZONTAL | DIRECTION_VERTICAL)) {
-                velocity = input.overallVelocity;
-            } else if (direction & DIRECTION_HORIZONTAL) {
-                velocity = input.overallVelocityX;
-            } else if (direction & DIRECTION_VERTICAL) {
-                velocity = input.overallVelocityY;
-            }
-
-            return this._super.attrTest.call(this, input) && direction & input.offsetDirection && input.distance > this.options.threshold && input.maxPointers == this.options.pointers && abs(velocity) > this.options.velocity && input.eventType & INPUT_END;
-        },
-
-        emit: function emit(input) {
-            var direction = directionStr(input.offsetDirection);
-            if (direction) {
-                this.manager.emit(this.options.event + direction, input);
-            }
-
-            this.manager.emit(this.options.event, input);
-        }
-    });
-
-    /**
-     * A tap is ecognized when the pointer is doing a small tap/click. Multiple taps are recognized if they occur
-     * between the given interval and position. The delay option can be used to recognize multi-taps without firing
-     * a single tap.
-     *
-     * The eventData from the emitted event contains the property `tapCount`, which contains the amount of
-     * multi-taps being recognized.
-     * @constructor
-     * @extends Recognizer
-     */
-    function TapRecognizer() {
-        Recognizer.apply(this, arguments);
-
-        // previous time and center,
-        // used for tap counting
-        this.pTime = false;
-        this.pCenter = false;
-
-        this._timer = null;
-        this._input = null;
-        this.count = 0;
-    }
-
-    inherit(TapRecognizer, Recognizer, {
-        /**
-         * @namespace
-         * @memberof PinchRecognizer
-         */
-        defaults: {
-            event: 'tap',
-            pointers: 1,
-            taps: 1,
-            interval: 300, // max time between the multi-tap taps
-            time: 250, // max time of the pointer to be down (like finger on the screen)
-            threshold: 9, // a minimal movement is ok, but keep it low
-            posThreshold: 10 // a multi-tap can be a bit off the initial position
-        },
-
-        getTouchAction: function getTouchAction() {
-            return [TOUCH_ACTION_MANIPULATION];
-        },
-
-        process: function process(input) {
-            var options = this.options;
-
-            var validPointers = input.pointers.length === options.pointers;
-            var validMovement = input.distance < options.threshold;
-            var validTouchTime = input.deltaTime < options.time;
-
-            this.reset();
-
-            if (input.eventType & INPUT_START && this.count === 0) {
-                return this.failTimeout();
-            }
-
-            // we only allow little movement
-            // and we've reached an end event, so a tap is possible
-            if (validMovement && validTouchTime && validPointers) {
-                if (input.eventType != INPUT_END) {
-                    return this.failTimeout();
-                }
-
-                var validInterval = this.pTime ? input.timeStamp - this.pTime < options.interval : true;
-                var validMultiTap = !this.pCenter || getDistance(this.pCenter, input.center) < options.posThreshold;
-
-                this.pTime = input.timeStamp;
-                this.pCenter = input.center;
-
-                if (!validMultiTap || !validInterval) {
-                    this.count = 1;
-                } else {
-                    this.count += 1;
-                }
-
-                this._input = input;
-
-                // if tap count matches we have recognized it,
-                // else it has began recognizing...
-                var tapCount = this.count % options.taps;
-                if (tapCount === 0) {
-                    // no failing requirements, immediately trigger the tap event
-                    // or wait as long as the multitap interval to trigger
-                    if (!this.hasRequireFailures()) {
-                        return STATE_RECOGNIZED;
-                    } else {
-                        this._timer = setTimeoutContext(function () {
-                            this.state = STATE_RECOGNIZED;
-                            this.tryEmit();
-                        }, options.interval, this);
-                        return STATE_BEGAN;
-                    }
-                }
-            }
-            return STATE_FAILED;
-        },
-
-        failTimeout: function failTimeout() {
-            this._timer = setTimeoutContext(function () {
-                this.state = STATE_FAILED;
-            }, this.options.interval, this);
-            return STATE_FAILED;
-        },
-
-        reset: function reset() {
-            clearTimeout(this._timer);
-        },
-
-        emit: function emit() {
-            if (this.state == STATE_RECOGNIZED) {
-                this._input.tapCount = this.count;
-                this.manager.emit(this.options.event, this._input);
-            }
-        }
-    });
-
-    /**
-     * Simple way to create a manager with a default set of recognizers.
-     * @param {HTMLElement} element
-     * @param {Object} [options]
-     * @constructor
-     */
-    function Hammer(element, options) {
-        options = options || {};
-        options.recognizers = ifUndefined(options.recognizers, Hammer.defaults.preset);
-        return new Manager(element, options);
-    }
-
-    /**
-     * @const {string}
-     */
-    Hammer.VERSION = '2.0.7';
-
-    /**
-     * default settings
-     * @namespace
-     */
-    Hammer.defaults = {
-        /**
-         * set if DOM events are being triggered.
-         * But this is slower and unused by simple implementations, so disabled by default.
-         * @type {Boolean}
-         * @default false
-         */
-        domEvents: false,
-
-        /**
-         * The value for the touchAction property/fallback.
-         * When set to `compute` it will magically set the correct value based on the added recognizers.
-         * @type {String}
-         * @default compute
-         */
-        touchAction: TOUCH_ACTION_COMPUTE,
-
-        /**
-         * @type {Boolean}
-         * @default true
-         */
-        enable: true,
-
-        /**
-         * EXPERIMENTAL FEATURE -- can be removed/changed
-         * Change the parent input target element.
-         * If Null, then it is being set the to main element.
-         * @type {Null|EventTarget}
-         * @default null
-         */
-        inputTarget: null,
-
-        /**
-         * force an input class
-         * @type {Null|Function}
-         * @default null
-         */
-        inputClass: null,
-
-        /**
-         * Default recognizer setup when calling `Hammer()`
-         * When creating a new Manager these will be skipped.
-         * @type {Array}
-         */
-        preset: [
-        // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
-        [RotateRecognizer, { enable: false }], [PinchRecognizer, { enable: false }, ['rotate']], [SwipeRecognizer, { direction: DIRECTION_HORIZONTAL }], [PanRecognizer, { direction: DIRECTION_HORIZONTAL }, ['swipe']], [TapRecognizer], [TapRecognizer, { event: 'doubletap', taps: 2 }, ['tap']], [PressRecognizer]],
-
-        /**
-         * Some CSS properties can be used to improve the working of Hammer.
-         * Add them to this method and they will be set when creating a new Manager.
-         * @namespace
-         */
-        cssProps: {
-            /**
-             * Disables text selection to improve the dragging gesture. Mainly for desktop browsers.
-             * @type {String}
-             * @default 'none'
-             */
-            userSelect: 'none',
-
-            /**
-             * Disable the Windows Phone grippers when pressing an element.
-             * @type {String}
-             * @default 'none'
-             */
-            touchSelect: 'none',
-
-            /**
-             * Disables the default callout shown when you touch and hold a touch target.
-             * On iOS, when you touch and hold a touch target such as a link, Safari displays
-             * a callout containing information about the link. This property allows you to disable that callout.
-             * @type {String}
-             * @default 'none'
-             */
-            touchCallout: 'none',
-
-            /**
-             * Specifies whether zooming is enabled. Used by IE10>
-             * @type {String}
-             * @default 'none'
-             */
-            contentZooming: 'none',
-
-            /**
-             * Specifies that an entire element should be draggable instead of its contents. Mainly for desktop browsers.
-             * @type {String}
-             * @default 'none'
-             */
-            userDrag: 'none',
-
-            /**
-             * Overrides the highlight color shown when the user taps a link or a JavaScript
-             * clickable element in iOS. This property obeys the alpha value, if specified.
-             * @type {String}
-             * @default 'rgba(0,0,0,0)'
-             */
-            tapHighlightColor: 'rgba(0,0,0,0)'
-        }
-    };
-
-    var STOP = 1;
-    var FORCED_STOP = 2;
-
-    /**
-     * Manager
-     * @param {HTMLElement} element
-     * @param {Object} [options]
-     * @constructor
-     */
-    function Manager(element, options) {
-        this.options = assign({}, Hammer.defaults, options || {});
-
-        this.options.inputTarget = this.options.inputTarget || element;
-
-        this.handlers = {};
-        this.session = {};
-        this.recognizers = [];
-        this.oldCssProps = {};
-
-        this.element = element;
-        this.input = createInputInstance(this);
-        this.touchAction = new TouchAction(this, this.options.touchAction);
-
-        toggleCssProps(this, true);
-
-        each(this.options.recognizers, function (item) {
-            var recognizer = this.add(new item[0](item[1]));
-            item[2] && recognizer.recognizeWith(item[2]);
-            item[3] && recognizer.requireFailure(item[3]);
-        }, this);
-    }
-
-    Manager.prototype = {
-        /**
-         * set options
-         * @param {Object} options
-         * @returns {Manager}
-         */
-        set: function set(options) {
-            assign(this.options, options);
-
-            // Options that need a little more setup
-            if (options.touchAction) {
-                this.touchAction.update();
-            }
-            if (options.inputTarget) {
-                // Clean up existing event listeners and reinitialize
-                this.input.destroy();
-                this.input.target = options.inputTarget;
-                this.input.init();
-            }
-            return this;
-        },
-
-        /**
-         * stop recognizing for this session.
-         * This session will be discarded, when a new [input]start event is fired.
-         * When forced, the recognizer cycle is stopped immediately.
-         * @param {Boolean} [force]
-         */
-        stop: function stop(force) {
-            this.session.stopped = force ? FORCED_STOP : STOP;
-        },
-
-        /**
-         * run the recognizers!
-         * called by the inputHandler function on every movement of the pointers (touches)
-         * it walks through all the recognizers and tries to detect the gesture that is being made
-         * @param {Object} inputData
-         */
-        recognize: function recognize(inputData) {
-            var session = this.session;
-            if (session.stopped) {
-                return;
-            }
-
-            // run the touch-action polyfill
-            this.touchAction.preventDefaults(inputData);
-
-            var recognizer;
-            var recognizers = this.recognizers;
-
-            // this holds the recognizer that is being recognized.
-            // so the recognizer's state needs to be BEGAN, CHANGED, ENDED or RECOGNIZED
-            // if no recognizer is detecting a thing, it is set to `null`
-            var curRecognizer = session.curRecognizer;
-
-            // reset when the last recognizer is recognized
-            // or when we're in a new session
-            if (!curRecognizer || curRecognizer && curRecognizer.state & STATE_RECOGNIZED) {
-                curRecognizer = session.curRecognizer = null;
-            }
-
-            var i = 0;
-            while (i < recognizers.length) {
-                recognizer = recognizers[i];
-
-                // find out if we are allowed try to recognize the input for this one.
-                // 1.   allow if the session is NOT forced stopped (see the .stop() method)
-                // 2.   allow if we still haven't recognized a gesture in this session, or the this recognizer is the one
-                //      that is being recognized.
-                // 3.   allow if the recognizer is allowed to run simultaneous with the current recognized recognizer.
-                //      this can be setup with the `recognizeWith()` method on the recognizer.
-                if (session.stopped !== FORCED_STOP && ( // 1
-                !curRecognizer || recognizer == curRecognizer || // 2
-                recognizer.canRecognizeWith(curRecognizer))) {
-                    // 3
-                    recognizer.recognize(inputData);
-                } else {
-                    recognizer.reset();
-                }
-
-                // if the recognizer has been recognizing the input as a valid gesture, we want to store this one as the
-                // current active recognizer. but only if we don't already have an active recognizer
-                if (!curRecognizer && recognizer.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED)) {
-                    curRecognizer = session.curRecognizer = recognizer;
-                }
-                i++;
-            }
-        },
-
-        /**
-         * get a recognizer by its event name.
-         * @param {Recognizer|String} recognizer
-         * @returns {Recognizer|Null}
-         */
-        get: function get(recognizer) {
-            if (recognizer instanceof Recognizer) {
-                return recognizer;
-            }
-
-            var recognizers = this.recognizers;
-            for (var i = 0; i < recognizers.length; i++) {
-                if (recognizers[i].options.event == recognizer) {
-                    return recognizers[i];
-                }
-            }
-            return null;
-        },
-
-        /**
-         * add a recognizer to the manager
-         * existing recognizers with the same event name will be removed
-         * @param {Recognizer} recognizer
-         * @returns {Recognizer|Manager}
-         */
-        add: function add(recognizer) {
-            if (invokeArrayArg(recognizer, 'add', this)) {
-                return this;
-            }
-
-            // remove existing
-            var existing = this.get(recognizer.options.event);
-            if (existing) {
-                this.remove(existing);
-            }
-
-            this.recognizers.push(recognizer);
-            recognizer.manager = this;
-
-            this.touchAction.update();
-            return recognizer;
-        },
-
-        /**
-         * remove a recognizer by name or instance
-         * @param {Recognizer|String} recognizer
-         * @returns {Manager}
-         */
-        remove: function remove(recognizer) {
-            if (invokeArrayArg(recognizer, 'remove', this)) {
-                return this;
-            }
-
-            recognizer = this.get(recognizer);
-
-            // let's make sure this recognizer exists
-            if (recognizer) {
-                var recognizers = this.recognizers;
-                var index = inArray(recognizers, recognizer);
-
-                if (index !== -1) {
-                    recognizers.splice(index, 1);
-                    this.touchAction.update();
-                }
-            }
-
-            return this;
-        },
-
-        /**
-         * bind event
-         * @param {String} events
-         * @param {Function} handler
-         * @returns {EventEmitter} this
-         */
-        on: function on(events, handler) {
-            if (events === undefined) {
-                return;
-            }
-            if (handler === undefined) {
-                return;
-            }
-
-            var handlers = this.handlers;
-            each(splitStr(events), function (event) {
-                handlers[event] = handlers[event] || [];
-                handlers[event].push(handler);
-            });
-            return this;
-        },
-
-        /**
-         * unbind event, leave emit blank to remove all handlers
-         * @param {String} events
-         * @param {Function} [handler]
-         * @returns {EventEmitter} this
-         */
-        off: function off(events, handler) {
-            if (events === undefined) {
-                return;
-            }
-
-            var handlers = this.handlers;
-            each(splitStr(events), function (event) {
-                if (!handler) {
-                    delete handlers[event];
-                } else {
-                    handlers[event] && handlers[event].splice(inArray(handlers[event], handler), 1);
-                }
-            });
-            return this;
-        },
-
-        /**
-         * emit event to the listeners
-         * @param {String} event
-         * @param {Object} data
-         */
-        emit: function emit(event, data) {
-            // we also want to trigger dom events
-            if (this.options.domEvents) {
-                triggerDomEvent(event, data);
-            }
-
-            // no handlers, so skip it all
-            var handlers = this.handlers[event] && this.handlers[event].slice();
-            if (!handlers || !handlers.length) {
-                return;
-            }
-
-            data.type = event;
-            data.preventDefault = function () {
-                data.srcEvent.preventDefault();
-            };
-
-            var i = 0;
-            while (i < handlers.length) {
-                handlers[i](data);
-                i++;
-            }
-        },
-
-        /**
-         * destroy the manager and unbinds all events
-         * it doesn't unbind dom events, that is the user own responsibility
-         */
-        destroy: function destroy() {
-            this.element && toggleCssProps(this, false);
-
-            this.handlers = {};
-            this.session = {};
-            this.input.destroy();
-            this.element = null;
-        }
-    };
-
-    /**
-     * add/remove the css properties as defined in manager.options.cssProps
-     * @param {Manager} manager
-     * @param {Boolean} add
-     */
-    function toggleCssProps(manager, add) {
-        var element = manager.element;
-        if (!element.style) {
-            return;
-        }
-        var prop;
-        each(manager.options.cssProps, function (value, name) {
-            prop = prefixed(element.style, name);
-            if (add) {
-                manager.oldCssProps[prop] = element.style[prop];
-                element.style[prop] = value;
-            } else {
-                element.style[prop] = manager.oldCssProps[prop] || '';
-            }
-        });
-        if (!add) {
-            manager.oldCssProps = {};
-        }
-    }
-
-    /**
-     * trigger dom event
-     * @param {String} event
-     * @param {Object} data
-     */
-    function triggerDomEvent(event, data) {
-        var gestureEvent = document.createEvent('Event');
-        gestureEvent.initEvent(event, true, true);
-        gestureEvent.gesture = data;
-        data.target.dispatchEvent(gestureEvent);
-    }
-
-    assign(Hammer, {
-        INPUT_START: INPUT_START,
-        INPUT_MOVE: INPUT_MOVE,
-        INPUT_END: INPUT_END,
-        INPUT_CANCEL: INPUT_CANCEL,
-
-        STATE_POSSIBLE: STATE_POSSIBLE,
-        STATE_BEGAN: STATE_BEGAN,
-        STATE_CHANGED: STATE_CHANGED,
-        STATE_ENDED: STATE_ENDED,
-        STATE_RECOGNIZED: STATE_RECOGNIZED,
-        STATE_CANCELLED: STATE_CANCELLED,
-        STATE_FAILED: STATE_FAILED,
-
-        DIRECTION_NONE: DIRECTION_NONE,
-        DIRECTION_LEFT: DIRECTION_LEFT,
-        DIRECTION_RIGHT: DIRECTION_RIGHT,
-        DIRECTION_UP: DIRECTION_UP,
-        DIRECTION_DOWN: DIRECTION_DOWN,
-        DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
-        DIRECTION_VERTICAL: DIRECTION_VERTICAL,
-        DIRECTION_ALL: DIRECTION_ALL,
-
-        Manager: Manager,
-        Input: Input,
-        TouchAction: TouchAction,
-
-        TouchInput: TouchInput,
-        MouseInput: MouseInput,
-        PointerEventInput: PointerEventInput,
-        TouchMouseInput: TouchMouseInput,
-        SingleTouchInput: SingleTouchInput,
-
-        Recognizer: Recognizer,
-        AttrRecognizer: AttrRecognizer,
-        Tap: TapRecognizer,
-        Pan: PanRecognizer,
-        Swipe: SwipeRecognizer,
-        Pinch: PinchRecognizer,
-        Rotate: RotateRecognizer,
-        Press: PressRecognizer,
-
-        on: addEventListeners,
-        off: removeEventListeners,
-        each: each,
-        merge: merge,
-        extend: extend,
-        assign: assign,
-        inherit: inherit,
-        bindFn: bindFn,
-        prefixed: prefixed
-    });
-
-    // this prevents errors when Hammer is loaded in the presence of an AMD
-    //  style loader but by script tag, not by the loader.
-    var freeGlobal = typeof window !== 'undefined' ? window : typeof self !== 'undefined' ? self : {}; // jshint ignore:line
-    freeGlobal.Hammer = Hammer;
-
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-            return Hammer;
-        }.call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof module != 'undefined' && module.exports) {
-        module.exports = Hammer;
-    } else {
-        window[exportName] = Hammer;
-    }
-})(window, document, 'Hammer');
-
-/***/ }),
-
-/***/ 587:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var React = __webpack_require__(1);
-var ReactDOM = __webpack_require__(69);
-
-// require('hammerjs') when in a browser. This is safe because Hammer is only
-// invoked in componentDidMount, which is not executed on the server.
-var Hammer = typeof window !== 'undefined' ? __webpack_require__(586) : undefined;
-
-var privateProps = {
-	children: true,
-	direction: true,
-	options: true,
-	recognizeWith: true,
-	vertical: true
-};
-
-/**
- * Hammer Component
- * ================
- */
-
-var handlerToEvent = {
-	action: 'tap press',
-	onDoubleTap: 'doubletap',
-	onPan: 'pan',
-	onPanCancel: 'pancancel',
-	onPanEnd: 'panend',
-	onPanStart: 'panstart',
-	onPinch: 'pinch',
-	onPinchCancel: 'pinchcancel',
-	onPinchEnd: 'pinchend',
-	onPinchIn: 'pinchin',
-	onPinchOut: 'pinchout',
-	onPinchStart: 'pinchstart',
-	onPress: 'press',
-	onPressUp: 'pressup',
-	onRotate: 'rotate',
-	onRotateCancel: 'rotatecancel',
-	onRotateEnd: 'rotateend',
-	onRotateMove: 'rotatemove',
-	onRotateStart: 'rotatestart',
-	onSwipe: 'swipe',
-	onTap: 'tap'
-};
-
-Object.keys(handlerToEvent).forEach(function (i) {
-	privateProps[i] = true;
-});
-
-function updateHammer(hammer, props) {
-	if (props.hasOwnProperty('vertical')) {
-		console.warn('vertical is deprecated, please use `direction` instead');
-	}
-
-	var directionProp = props.direction;
-	if (directionProp || props.hasOwnProperty('vertical')) {
-		direction = directionProp ? directionProp : props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL';
-		hammer.get('pan').set({ direction: Hammer[direction] });
-		hammer.get('swipe').set({ direction: Hammer[direction] });
-	}
-
-	if (props.options) {
-		Object.keys(props.options).forEach(function (option) {
-			if (option === 'recognizers') {
-				Object.keys(props.options.recognizers).forEach(function (gesture) {
-					var recognizer = hammer.get(gesture);
-					recognizer.set(props.options.recognizers[gesture]);
-				}, this);
-			} else {
-				var key = option;
-				var optionObj = {};
-				optionObj[key] = props.options[option];
-				hammer.set(optionObj);
-			}
-		}, this);
-	}
-
-	if (props.recognizeWith) {
-		Object.keys(props.recognizeWith).forEach(function (gesture) {
-			var recognizer = hammer.get(gesture);
-			recognizer.recognizeWith(props.recognizeWith[gesture]);
-		}, this);
-	}
-
-	Object.keys(props).forEach(function (p) {
-		var e = handlerToEvent[p];
-		if (e) {
-			hammer.off(e);
-			hammer.on(e, props[p]);
-		}
-	});
-}
-
-var HammerComponent = React.createClass({
-
-	displayName: 'Hammer',
-
-	propTypes: {
-		className: React.PropTypes.string
-	},
-
-	componentDidMount: function componentDidMount() {
-		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
-		updateHammer(this.hammer, this.props);
-	},
-
-	componentDidUpdate: function componentDidUpdate() {
-		if (this.hammer) {
-			updateHammer(this.hammer, this.props);
-		}
-	},
-
-	componentWillUnmount: function componentWillUnmount() {
-		if (this.hammer) {
-			this.hammer.stop();
-			this.hammer.destroy();
-		}
-		this.hammer = null;
-	},
-
-	render: function render() {
-		var props = {};
-
-		Object.keys(this.props).forEach(function (i) {
-			if (!privateProps[i]) {
-				props[i] = this.props[i];
-			}
-		}, this);
-
-		// Reuse the child provided
-		// This makes it flexible to use whatever element is wanted (div, ul, etc)
-		return React.cloneElement(React.Children.only(this.props.children), props);
-	}
-});
-
-module.exports = HammerComponent;
 
 /***/ }),
 
@@ -16973,7 +14200,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Notification(props) {
     return _react2.default.createElement(
         'div',
-        { className: 'wrapper flex-center' },
+        { className: 'wrapper wrapper-padding flex-center' },
         _react2.default.createElement(
             'h2',
             null,
@@ -16993,10 +14220,48 @@ function Notification(props) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lodash = __webpack_require__(50);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+
+    return _react2.default.createElement(
+        "div",
+        null,
+        props.tags.map(function (tag, index) {
+            return _react2.default.createElement(
+                "span",
+                { className: "tag", key: index },
+                "#",
+                tag
+            );
+        })
+    );
+};
+
+/***/ }),
+
+/***/ 72:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var normalizeHeaderName = __webpack_require__(246);
+var normalizeHeaderName = __webpack_require__(247);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -17012,10 +14277,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(118);
+    adapter = __webpack_require__(119);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(118);
+    adapter = __webpack_require__(119);
   }
   return adapter;
 }
@@ -17083,4 +14348,4 @@ module.exports = defaults;
 
 /***/ })
 
-},[227]);
+},[228]);

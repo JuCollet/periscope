@@ -74,7 +74,7 @@ class Photos extends Component {
                 <Hammer onSwipe={this.browsePhoto}>
                     <img className="PhotoBig" src={photo.medium} />
                 </Hammer>
-                <PhotoInfo closeInfoBox={this.showInfos}/>
+                <PhotoInfo album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
                     <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
                     <i className="fa fa-heart"></i>
