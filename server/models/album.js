@@ -4,6 +4,7 @@ const mongoose = require('mongoose'),
       Schema = mongoose.Schema;
 
 const photoSchema = new mongoose.Schema({
+    filename : String,
     thumb : String,
     medium : String,
     original : String,

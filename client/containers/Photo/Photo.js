@@ -6,6 +6,7 @@ import Hammer from "react-hammerjs";
 import _ from "lodash";
 import { bindActionCreators } from "redux";
 import { albumFetch } from "../../actions/albums";
+import { photoDelete } from "../../actions/photos";
 import Loading from "../../components/Loading/Loading";
 import PhotoInfo from "./PhotoInfo/PhotoInfo";
 
@@ -17,6 +18,7 @@ class Photos extends Component {
         this.showInfos = this.showInfos.bind(this);
         this.browsePhoto = this.browsePhoto.bind(this);
         this.getPhotoIndex = this.getPhotoIndex.bind(this);
+        this.afterPhotoIsDeleted = this.afterPhotoIsDeleted.bind(this);
     }
     
     componentDidMount(){
@@ -58,6 +60,10 @@ class Photos extends Component {
         this.props.history.push(`/app/photo/${this.props.album._id}/${this.props.album.photos[nextIndex]._id}`);
         
     }
+    
+    afterPhotoIsDeleted(){
+        this.props.history.push(`/app/photos/${this.props.album._id}`);
+    }
 
     render(){
         
@@ -74,7 +80,7 @@ class Photos extends Component {
                 <Hammer onSwipe={this.browsePhoto}>
                     <img className="PhotoBig" src={photo.medium} />
                 </Hammer>
-                <PhotoInfo album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
+                <PhotoInfo photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
                     <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
                     <i className="fa fa-heart"></i>
@@ -91,7 +97,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({albumFetch}, dispatch);
+    return bindActionCreators({albumFetch, photoDelete}, dispatch);
 }
 
 function mapStateToProps(state, ownProps){

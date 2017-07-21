@@ -114,6 +114,7 @@ uploadRouter.route('/:id')
                         
                         // Create a new object with uploaded files links;
                         let newPhoto = {
+                            filename: `${id}${currentFile.filename}`,
                             thumb: `${process.env.S3_URL}thumb${id}${currentFile.filename}`,
                             medium: `${process.env.S3_URL}medium${id}${currentFile.filename}`,
                             original: `${process.env.S3_URL}original${id}${currentFile.filename}`,

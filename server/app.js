@@ -5,6 +5,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       albumRouter = require('./routes/albums'),
       uploadRouter = require('./routes/upload'),
+      photosRouter = require('./routes/photos'),
       app = express();
 
 require('./db');
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/albums', albumRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api/photos', photosRouter);
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 

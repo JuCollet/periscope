@@ -19,7 +19,7 @@ export default function(props){
             <Tags tags={photo.tags} />
             <br/>
             <a href="#"><p>Partager</p></a>
-            <a href="#"><p>Supprimer cette image</p></a>
+            <a href="#" onClick={_=>props.photoDelete(album._id, photo._id, photo.filename, props.callback)}><p>Supprimer cette image</p></a>
             <a href={photo.original} download><p>Télécharger cette image</p></a>            
             <a href="#"><p>Editer les tags</p></a>
         </div>
