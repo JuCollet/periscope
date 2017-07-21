@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE } from "../actiontypes/";
+import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE } from "../actiontypes/";
 
 const baseUrl = "http://periscope-julesbe.c9users.io/api/albums/";
 
@@ -33,6 +33,18 @@ export function createAlbum(album, cb){
     return {
         type : ALBUM_CREATE,
         payload: createdAlbum
+    };
+    
+}
+
+export function deleteAlbum(albumId, cb){
+    
+    axios.delete(baseUrl, {data : { albumId }})
+        .then(_=>cb());
+    
+    return {
+        type: ALBUM_DELETE,
+        payload: albumId
     };
     
 }

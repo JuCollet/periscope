@@ -62,7 +62,7 @@ class Photos extends Component {
     }
     
     afterPhotoIsDeleted(){
-        this.props.history.push(`/app/photos/${this.props.album._id}`);
+        this.props.history.go(-2);
     }
 
     render(){

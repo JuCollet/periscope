@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
-import { albumFetch } from "../../actions/albums";
+import { albumFetch, deleteAlbum } from "../../actions/albums";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
 
@@ -12,6 +12,12 @@ class Photos extends Component {
   
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
+  }
+  
+  deleteAlbum(albumId){
+    this.props.deleteAlbum(albumId, _ => {
+      this.props.history.push('/app/albums');
+    });
   }
   
   render(){
@@ -28,6 +34,8 @@ class Photos extends Component {
         <span className="albumPhotographer">par {album.photographer}</span>
         <span className="albumDescription">{album.description}</span>
         <Tags tags={album.tags} />
+        <i className="fa fa-trash button-icon" onClick={_ => this.deleteAlbum(album._id)}></i>
+        <i className="fa fa-share-alt button-icon"></i>
         <hr className="albumHr" />
         <div id="photos">
           {this.props.album.photos.map(function(photo, index){
@@ -41,7 +49,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumFetch }, dispatch);
+  return bindActionCreators({ albumFetch, deleteAlbum }, dispatch);
 }
 
 function mapStateToProps(state, ownProps){

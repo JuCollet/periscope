@@ -6,7 +6,7 @@ import _ from "lodash";
 export default props => {
     
     return (
-        <div>
+        <div className="tags">
             {props.tags.map((tag, index) => {
                 return <span className="tag" key={index}>#{tag}</span>;
             })}

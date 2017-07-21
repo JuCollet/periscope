@@ -11,7 +11,10 @@ export function photoDelete(albumId, photoId, filename, cb){
 
     return {
         type : PHOTO_DELETE,
-        payload : albums
+        payload : {
+            albumId,
+            photoId
+        }
     };
     
 }

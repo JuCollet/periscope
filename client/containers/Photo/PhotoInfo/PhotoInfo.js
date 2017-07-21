@@ -17,7 +17,7 @@ export default function(props){
             <p><b>Crédit photographique : </b>&copy; {album.photographer}</p>
             <p><b>Dimensions : </b>{photo.width ? photo.width : "largeur inconnue"} x {photo.height ? photo.height : "hauteur inconnue"}</p>
             <Tags tags={photo.tags} />
-            <br/>
+            <hr/>
             <a href="#"><p>Partager</p></a>
             <a href="#" onClick={_=>props.photoDelete(album._id, photo._id, photo.filename, props.callback)}><p>Supprimer cette image</p></a>
             <a href={photo.original} download><p>Télécharger cette image</p></a>            
