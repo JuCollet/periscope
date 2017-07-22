@@ -13,7 +13,6 @@ class Photos extends Component {
   
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
-    
     this.props.toggleSearchBar("photos");
   }
   

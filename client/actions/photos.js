@@ -5,9 +5,12 @@ const baseUrl = "http://periscope-julesbe.c9users.io/api/photos/";
 
 export function photoDelete(albumId, photoId, filename, cb){
 
-    const album = axios.delete(baseUrl, { data : {albumId, photoId, filename}}).then(_ => {
-        cb();
-    });
+    const album = axios.put(baseUrl, {albumId, photoId, filename})
+        .then(album => {
+            return album;
+        });
+
+    cb();
 
     return {
         type : PHOTO_DELETE,

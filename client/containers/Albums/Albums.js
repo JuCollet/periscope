@@ -30,6 +30,7 @@ class Albums extends Component {
   }
 
   renderCard(){
+    if(this.isEmpty(this.props.albums)) return "";
     return _.map(this.props.albums, album => {
       return <NavLink to={`/app/photos/${album._id}`} key={album._id}><Card album={album} /></NavLink>;
     });

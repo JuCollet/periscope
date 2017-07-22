@@ -67,12 +67,11 @@ albumRouter.route('/')
     
             s3.deleteObjects(params, function(err, data){
                 if(err) return next(err);
-                res.json({status : "ok"});
             });   
 
-        } else {
-            res.json({status: "ok - no files to delete"});
         }
+        
+        res.json(album);
 
         });
     });

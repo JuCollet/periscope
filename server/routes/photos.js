@@ -16,7 +16,7 @@ const express = require('express'),
       });      
 
 photosRouter.route('/')
-    .delete(function(req,res,next){
+    .put(function(req,res,next){
 
         const params = {
             Bucket: "periscopefiles",
@@ -36,13 +36,11 @@ photosRouter.route('/')
         };
 
         s3.deleteObjects(params, function(err, data){
-            if(err) return next(err)
-            else {
-                Album.update({_id:req.body.albumId}, {$pull : { photos : {_id : req.body.photoId}}}, function(err, album){
-                    if(err) return next(err);
-                    res.json(album);
-                });    
-            }
+            if(err) return next(err);
+            Album.findByIdAndUpdate(req.body.albumId, {$pull : { photos : {_id : req.body.photoId}}}, { new : true }, function(err, album){
+                if(err) return next(err);
+                res.json(album);
+            });    
             
         });
     });

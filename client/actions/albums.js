@@ -40,7 +40,7 @@ export function createAlbum(album, cb){
 export function deleteAlbum(albumId, cb){
     
     axios.delete(baseUrl, {data : { albumId }})
-        .then(_=>cb());
+        .then(album=>cb());
     
     return {
         type: ALBUM_DELETE,

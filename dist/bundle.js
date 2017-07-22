@@ -1,35 +1,5 @@
 webpackJsonp([0],{
 
-/***/ 118:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.toggleMenu = toggleMenu;
-exports.toggleSearchBar = toggleSearchBar;
-
-var _actiontypes = __webpack_require__(23);
-
-function toggleMenu() {
-    return {
-        type: _actiontypes.TOGGLE_MENU,
-        payload: null
-    };
-}
-
-function toggleSearchBar(type) {
-    return {
-        type: _actiontypes.TOGGLE_SEARCHBAR,
-        payload: type
-    };
-}
-
-/***/ }),
-
 /***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37,12 +7,12 @@ function toggleSearchBar(type) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var settle = __webpack_require__(240);
-var buildURL = __webpack_require__(243);
-var parseHeaders = __webpack_require__(249);
-var isURLSameOrigin = __webpack_require__(247);
+var settle = __webpack_require__(241);
+var buildURL = __webpack_require__(244);
+var parseHeaders = __webpack_require__(250);
+var isURLSameOrigin = __webpack_require__(248);
 var createError = __webpack_require__(122);
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(242);
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(243);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -135,7 +105,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(245);
+      var cookies = __webpack_require__(246);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -257,7 +227,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(239);
+var enhanceError = __webpack_require__(240);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -386,7 +356,7 @@ function toComment(sourceMap) {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var bind = __webpack_require__(123);
-var isBuffer = __webpack_require__(251);
+var isBuffer = __webpack_require__(252);
 
 /*global toString:true*/
 
@@ -970,7 +940,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(585);
+var	fixUrls = __webpack_require__(586);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1312,31 +1282,31 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _Sidemenu = __webpack_require__(228);
+var _Sidemenu = __webpack_require__(229);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
-var _Header = __webpack_require__(224);
+var _Header = __webpack_require__(225);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _CreateAlbum = __webpack_require__(222);
+var _CreateAlbum = __webpack_require__(223);
 
 var _CreateAlbum2 = _interopRequireDefault(_CreateAlbum);
 
-var _Account = __webpack_require__(219);
+var _Account = __webpack_require__(220);
 
 var _Account2 = _interopRequireDefault(_Account);
 
-var _Albums = __webpack_require__(220);
+var _Albums = __webpack_require__(221);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
-var _Photos = __webpack_require__(227);
+var _Photos = __webpack_require__(228);
 
 var _Photos2 = _interopRequireDefault(_Photos);
 
-var _Photo = __webpack_require__(225);
+var _Photo = __webpack_require__(226);
 
 var _Photo2 = _interopRequireDefault(_Photo);
 
@@ -1407,7 +1377,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reduxForm = __webpack_require__(47);
+var _reduxForm = __webpack_require__(49);
 
 var _redux = __webpack_require__(11);
 
@@ -1525,17 +1495,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(11);
 
-var _reduxForm = __webpack_require__(47);
+var _reduxForm = __webpack_require__(49);
 
-var _reducer_user = __webpack_require__(233);
+var _reducer_user = __webpack_require__(234);
 
 var _reducer_user2 = _interopRequireDefault(_reducer_user);
 
-var _reducer_albums = __webpack_require__(231);
+var _reducer_albums = __webpack_require__(232);
 
 var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 
-var _reducer_menu = __webpack_require__(232);
+var _reducer_menu = __webpack_require__(233);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
 
@@ -1572,7 +1542,7 @@ var _extends = Object.assign || function (target) {
 
 exports['default'] = promiseMiddleware;
 
-var _fluxStandardAction = __webpack_require__(566);
+var _fluxStandardAction = __webpack_require__(567);
 
 function isPromise(val) {
   return val && typeof val.then === 'function';
@@ -1606,7 +1576,7 @@ module.exports = exports['default'];
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(586);
+var content = __webpack_require__(587);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1638,7 +1608,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(587);
+var content = __webpack_require__(588);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1675,7 +1645,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.photoDelete = photoDelete;
 
-var _axios = __webpack_require__(72);
+var _axios = __webpack_require__(73);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1687,9 +1657,11 @@ var baseUrl = "http://periscope-julesbe.c9users.io/api/photos/";
 
 function photoDelete(albumId, photoId, filename, cb) {
 
-    var album = _axios2.default.delete(baseUrl, { data: { albumId: albumId, photoId: photoId, filename: filename } }).then(function (_) {
-        cb();
+    var album = _axios2.default.put(baseUrl, { albumId: albumId, photoId: photoId, filename: filename }).then(function (album) {
+        return album;
     });
+
+    cb();
 
     return {
         type: _actiontypes.PHOTO_DELETE,
@@ -1710,7 +1682,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fileUpload = fileUpload;
 
-var _axios = __webpack_require__(72);
+var _axios = __webpack_require__(73);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1755,7 +1727,7 @@ exports.userLogin = userLogin;
 
 var _actiontypes = __webpack_require__(23);
 
-var _users = __webpack_require__(230);
+var _users = __webpack_require__(231);
 
 function userLogin(user, cb) {
 
@@ -1772,6 +1744,77 @@ function userLogin(user, cb) {
 /***/ }),
 
 /***/ 219:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _lodash = __webpack_require__(38);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchBar = function (_Component) {
+    _inherits(SearchBar, _Component);
+
+    function SearchBar(props) {
+        _classCallCheck(this, SearchBar);
+
+        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+        _this.searchFor = _lodash2.default.debounce(_this.searchFor, 250).bind(_this);
+        return _this;
+    }
+
+    _createClass(SearchBar, [{
+        key: "searchFor",
+        value: function searchFor(e) {
+            e.persist();
+            this.props.searchForType(e.target.value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "div",
+                { className: "searchBar" },
+                _react2.default.createElement("i", { className: "fa fa-search" }),
+                _react2.default.createElement("input", { className: "small-input", type: "text", onChange: function onChange(e) {
+                        e.persist();_this2.searchFor(e);
+                    }, onTouchStart: function onTouchStart(_) {
+                        return _this2.props.scrollToBottom();
+                    } })
+            );
+        }
+    }]);
+
+    return SearchBar;
+}(_react.Component);
+
+exports.default = SearchBar;
+
+/***/ }),
+
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1840,7 +1883,7 @@ exports.default = Account;
 
 /***/ }),
 
-/***/ 220:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1858,23 +1901,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(49);
+var _albums = __webpack_require__(37);
 
-var _menu = __webpack_require__(118);
+var _menu = __webpack_require__(51);
 
 var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _lodash = __webpack_require__(50);
+var _lodash = __webpack_require__(38);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Loading = __webpack_require__(70);
+var _Loading = __webpack_require__(71);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Cards = __webpack_require__(221);
+var _Cards = __webpack_require__(222);
 
 var _Cards2 = _interopRequireDefault(_Cards);
 
@@ -1917,6 +1960,7 @@ var Albums = function (_Component) {
   }, {
     key: "renderCard",
     value: function renderCard() {
+      if (this.isEmpty(this.props.albums)) return "";
       return _lodash2.default.map(this.props.albums, function (album) {
         return _react2.default.createElement(
           _reactRouterDom.NavLink,
@@ -1958,7 +2002,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1974,7 +2018,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Dropbox = __webpack_require__(223);
+var _Dropbox = __webpack_require__(224);
 
 var _Dropbox2 = _interopRequireDefault(_Dropbox);
 
@@ -2068,7 +2112,7 @@ exports.default = Card;
 
 /***/ }),
 
-/***/ 222:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2086,15 +2130,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reduxForm = __webpack_require__(47);
+var _reduxForm = __webpack_require__(49);
 
 var _reactRedux = __webpack_require__(9);
 
-var _albums = __webpack_require__(49);
+var _albums = __webpack_require__(37);
 
 var _redux = __webpack_require__(11);
 
-var _Tags = __webpack_require__(71);
+var _Tags = __webpack_require__(72);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -2257,7 +2301,7 @@ exports.default = (0, _reduxForm.reduxForm)({
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2378,7 +2422,7 @@ exports.default = (0, _reactRedux.connect)(null, mapDispacthToProps)(Dropbox);
 
 /***/ }),
 
-/***/ 224:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2398,11 +2442,11 @@ var _redux = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(118);
+var _menu = __webpack_require__(51);
 
-var _albums = __webpack_require__(49);
+var _albums = __webpack_require__(37);
 
-var _SearchBar = __webpack_require__(589);
+var _SearchBar = __webpack_require__(219);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -2492,7 +2536,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 225:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2510,25 +2554,25 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(9);
 
-var _reactHammerjs = __webpack_require__(117);
+var _reactHammerjs = __webpack_require__(118);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
-var _lodash = __webpack_require__(50);
+var _lodash = __webpack_require__(38);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
 var _redux = __webpack_require__(11);
 
-var _albums = __webpack_require__(49);
+var _albums = __webpack_require__(37);
 
 var _photos = __webpack_require__(216);
 
-var _Loading = __webpack_require__(70);
+var _Loading = __webpack_require__(71);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _PhotoInfo = __webpack_require__(226);
+var _PhotoInfo = __webpack_require__(227);
 
 var _PhotoInfo2 = _interopRequireDefault(_PhotoInfo);
 
@@ -2603,7 +2647,7 @@ var Photos = function (_Component) {
     }, {
         key: "afterPhotoIsDeleted",
         value: function afterPhotoIsDeleted() {
-            this.props.history.go(-2);
+            this.props.history.go(-1);
         }
     }, {
         key: "render",
@@ -2674,7 +2718,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 226:
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2790,7 +2834,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Tags = __webpack_require__(71);
+var _Tags = __webpack_require__(72);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -2798,7 +2842,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2820,15 +2864,15 @@ var _redux = __webpack_require__(11);
 
 var _reactRouterDom = __webpack_require__(22);
 
-var _albums = __webpack_require__(49);
+var _albums = __webpack_require__(37);
 
-var _menu = __webpack_require__(118);
+var _menu = __webpack_require__(51);
 
-var _Loading = __webpack_require__(70);
+var _Loading = __webpack_require__(71);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Tags = __webpack_require__(71);
+var _Tags = __webpack_require__(72);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -2853,7 +2897,6 @@ var Photos = function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.albumFetch(this.props.match.params.id);
-
       this.props.toggleSearchBar("photos");
     }
   }, {
@@ -2940,7 +2983,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2962,7 +3005,7 @@ var _reactRouterDom = __webpack_require__(22);
 
 var _reactRedux = __webpack_require__(9);
 
-var _menu = __webpack_require__(118);
+var _menu = __webpack_require__(51);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3069,7 +3112,29 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 229:
+/***/ 23:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
+var ALBUM_DELETE = exports.ALBUM_DELETE = "album_delete";
+var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
+var ALBUM_SEARCH = exports.ALBUM_SEARCH = "album_search";
+var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
+var PHOTO_DELETE = exports.PHOTO_DELETE = "photo_delete";
+var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
+var USER_LOGIN = exports.USER_LOGIN = "user_login";
+var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
+var TOGGLE_SEARCHBAR = exports.TOGGLE_SEARCHBAR = "toggle_searchbar";
+
+/***/ }),
+
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3079,7 +3144,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(48);
+var _reactDom = __webpack_require__(50);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -3136,29 +3201,7 @@ _reactDom2.default.render(_react2.default.createElement(
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
-var ALBUM_DELETE = exports.ALBUM_DELETE = "album_delete";
-var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
-var ALBUM_SEARCH = exports.ALBUM_SEARCH = "album_search";
-var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
-var PHOTO_DELETE = exports.PHOTO_DELETE = "photo_delete";
-var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
-var USER_LOGIN = exports.USER_LOGIN = "user_login";
-var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
-var TOGGLE_SEARCHBAR = exports.TOGGLE_SEARCHBAR = "toggle_searchbar";
-
-/***/ }),
-
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3176,7 +3219,7 @@ var usersMock = exports.usersMock = {
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3200,7 +3243,7 @@ exports.default = function () {
         case _actiontypes.ALBUM_DELETE:
             return _lodash2.default.omit(state, action.payload);
         case _actiontypes.PHOTO_DELETE:
-            return _extends({}, state, _defineProperty({}, action.payload._id, action.payload));
+            return _extends({}, state, _defineProperty({}, action.payload.data._id, action.payload.data));
         case _actiontypes.ALBUM_SEARCH:
             return _lodash2.default.mapKeys(action.payload.data, "_id");
         default:
@@ -3210,7 +3253,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(23);
 
-var _lodash = __webpack_require__(50);
+var _lodash = __webpack_require__(38);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -3220,7 +3263,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3251,7 +3294,7 @@ var _actiontypes = __webpack_require__(23);
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3278,7 +3321,7 @@ var _actiontypes = __webpack_require__(23);
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3286,8 +3329,8 @@ var _actiontypes = __webpack_require__(23);
 
 var utils = __webpack_require__(13);
 var bind = __webpack_require__(123);
-var Axios = __webpack_require__(236);
-var defaults = __webpack_require__(73);
+var Axios = __webpack_require__(237);
+var defaults = __webpack_require__(74);
 
 /**
  * Create an instance of Axios
@@ -3321,14 +3364,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(120);
-axios.CancelToken = __webpack_require__(235);
+axios.CancelToken = __webpack_require__(236);
 axios.isCancel = __webpack_require__(121);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(250);
+axios.spread = __webpack_require__(251);
 
 module.exports = axios;
 
@@ -3337,7 +3380,7 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3401,18 +3444,18 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(73);
+var defaults = __webpack_require__(74);
 var utils = __webpack_require__(13);
-var InterceptorManager = __webpack_require__(237);
-var dispatchRequest = __webpack_require__(238);
-var isAbsoluteURL = __webpack_require__(246);
-var combineURLs = __webpack_require__(244);
+var InterceptorManager = __webpack_require__(238);
+var dispatchRequest = __webpack_require__(239);
+var isAbsoluteURL = __webpack_require__(247);
+var combineURLs = __webpack_require__(245);
 
 /**
  * Create a new instance of Axios
@@ -3494,7 +3537,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3553,16 +3596,16 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(13);
-var transformData = __webpack_require__(241);
+var transformData = __webpack_require__(242);
 var isCancel = __webpack_require__(121);
-var defaults = __webpack_require__(73);
+var defaults = __webpack_require__(74);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -3620,7 +3663,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3649,7 +3692,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3676,7 +3719,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3703,7 +3746,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3745,7 +3788,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 243:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3813,7 +3856,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3833,7 +3876,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3893,7 +3936,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3916,7 +3959,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3986,7 +4029,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4005,7 +4048,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4051,7 +4094,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4086,7 +4129,7 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4116,7 +4159,7 @@ function isSlowBuffer(obj) {
 
 /***/ }),
 
-/***/ 49:
+/***/ 37:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4131,7 +4174,7 @@ exports.createAlbum = createAlbum;
 exports.deleteAlbum = deleteAlbum;
 exports.searchAlbum = searchAlbum;
 
-var _axios = __webpack_require__(72);
+var _axios = __webpack_require__(73);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -4175,7 +4218,7 @@ function createAlbum(album, cb) {
 
 function deleteAlbum(albumId, cb) {
 
-    _axios2.default.delete(baseUrl, { data: { albumId: albumId } }).then(function (_) {
+    _axios2.default.delete(baseUrl, { data: { albumId: albumId } }).then(function (album) {
         return cb();
     });
 
@@ -4197,7 +4240,7 @@ function searchAlbum(tags) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13647,11 +13690,41 @@ else if(freeModule){// Export for Node.js.
 (freeModule.exports=_)._=_;// Export for CommonJS support.
 freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45), __webpack_require__(46)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(47), __webpack_require__(48)(module)))
 
 /***/ }),
 
-/***/ 566:
+/***/ 51:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.toggleMenu = toggleMenu;
+exports.toggleSearchBar = toggleSearchBar;
+
+var _actiontypes = __webpack_require__(23);
+
+function toggleMenu() {
+    return {
+        type: _actiontypes.TOGGLE_MENU,
+        payload: null
+    };
+}
+
+function toggleSearchBar(type) {
+    return {
+        type: _actiontypes.TOGGLE_SEARCHBAR,
+        payload: type
+    };
+}
+
+/***/ }),
+
+/***/ 567:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13665,7 +13738,7 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { 'default': obj };
 }
 
-var _lodashIsplainobject = __webpack_require__(567);
+var _lodashIsplainobject = __webpack_require__(568);
 
 var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -13685,7 +13758,7 @@ function isError(action) {
 
 /***/ }),
 
-/***/ 567:
+/***/ 568:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13701,9 +13774,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  * Available under MIT license <https://lodash.com/license>
  */
-var baseFor = __webpack_require__(568),
+var baseFor = __webpack_require__(569),
     isArguments = __webpack_require__(202),
-    keysIn = __webpack_require__(569);
+    keysIn = __webpack_require__(570);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -13798,7 +13871,7 @@ module.exports = isPlainObject;
 
 /***/ }),
 
-/***/ 568:
+/***/ 569:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13855,7 +13928,7 @@ module.exports = baseFor;
 
 /***/ }),
 
-/***/ 569:
+/***/ 570:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13872,7 +13945,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Available under MIT license <https://lodash.com/license>
  */
 var isArguments = __webpack_require__(202),
-    isArray = __webpack_require__(570);
+    isArray = __webpack_require__(571);
 
 /** Used to detect unsigned integer values. */
 var reIsUint = /^\d+$/;
@@ -13996,7 +14069,7 @@ module.exports = keysIn;
 
 /***/ }),
 
-/***/ 570:
+/***/ 571:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14184,7 +14257,7 @@ module.exports = isArray;
 
 /***/ }),
 
-/***/ 585:
+/***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14280,7 +14353,7 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 586:
+/***/ 587:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(124)(undefined);
@@ -14295,7 +14368,7 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ 587:
+/***/ 588:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(124)(undefined);
@@ -14310,78 +14383,7 @@ exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: n
 
 /***/ }),
 
-/***/ 589:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _lodash = __webpack_require__(50);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SearchBar = function (_Component) {
-    _inherits(SearchBar, _Component);
-
-    function SearchBar(props) {
-        _classCallCheck(this, SearchBar);
-
-        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
-
-        _this.searchFor = _lodash2.default.debounce(_this.searchFor, 500).bind(_this);
-        return _this;
-    }
-
-    _createClass(SearchBar, [{
-        key: "searchFor",
-        value: function searchFor(e) {
-            e.persist();
-            this.props.searchForType(e.target.value);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                "div",
-                { className: "searchBar" },
-                _react2.default.createElement("i", { className: "fa fa-search" }),
-                _react2.default.createElement("input", { className: "small-input", type: "text", onChange: function onChange(e) {
-                        e.persist();_this2.searchFor(e);
-                    }, onTouchStart: function onTouchStart(_) {
-                        return _this2.props.scrollToBottom();
-                    } })
-            );
-        }
-    }]);
-
-    return SearchBar;
-}(_react.Component);
-
-exports.default = SearchBar;
-
-/***/ }),
-
-/***/ 70:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14417,7 +14419,7 @@ function Notification(props) {
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14431,7 +14433,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(50);
+var _lodash = __webpack_require__(38);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -14455,24 +14457,24 @@ exports.default = function (props) {
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(234);
+module.exports = __webpack_require__(235);
 
 /***/ }),
 
-/***/ 73:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(13);
-var normalizeHeaderName = __webpack_require__(248);
+var normalizeHeaderName = __webpack_require__(249);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -14559,4 +14561,4 @@ module.exports = defaults;
 
 /***/ })
 
-},[229]);
+},[230]);

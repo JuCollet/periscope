@@ -62,7 +62,7 @@ class Photos extends Component {
     }
     
     afterPhotoIsDeleted(){
-        this.props.history.go(-2);
+        this.props.history.go(-1);
     }
 
     render(){

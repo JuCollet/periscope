@@ -6,7 +6,7 @@ import _ from "lodash";
 export default class SearchBar extends Component{
     constructor(props){
         super(props);
-        this.searchFor = _.debounce(this.searchFor, 500).bind(this);
+        this.searchFor = _.debounce(this.searchFor, 250).bind(this);
     }
 
     searchFor(e){
