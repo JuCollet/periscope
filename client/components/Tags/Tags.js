@@ -5,7 +5,7 @@ import _ from "lodash";
 
 export default props => {
     
-    if(props.tags !== null && props.tags[0].length > 0){
+    if(Array.isArray(props.tags) && props.tags[0] != undefined && props.tags[0].length > 0){
         return (
             <div className="tags">
                 {props.tags.map((tag, index) => {

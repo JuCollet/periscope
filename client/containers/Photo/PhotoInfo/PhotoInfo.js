@@ -24,7 +24,7 @@ class PhotoInfo extends Component {
     }
     
     toggleTagsEdit(){
-        this.setState({tagEdit:!this.state.tagEdit});
+        this.setState({tagEdit:!this.state.tagEdit,tags:this.props.photo.tags.toString()});
     }
     
     onTagsChange(e){
@@ -46,8 +46,8 @@ class PhotoInfo extends Component {
     
     onTagsSubmit(e){
         e.preventDefault();
-        const tagsArray = e.currentTarget.tags.value.replace(/ /g,'').split(",");
-        this.props.photoUpdate(this.props.photo._id, tagsArray, this.setState({tagEdit:!this.state.tagEdit}));
+        const data = e.currentTarget.tags.value.replace(/ /g,'').split(",");
+        this.props.photoUpdate(this.props.photo._id, data, this.setState({tagEdit:!this.state.tagEdit}));
     }
 
     render(){

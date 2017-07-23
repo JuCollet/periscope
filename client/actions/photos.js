@@ -21,7 +21,7 @@ export function photoDelete(albumId, photoId, filename, cb){
 
 export function photoUpdate(photoId, data, cb){
     
-    const album = axios.put(baseUrl+"update/", {photoId, data})
+    const album = axios.put(baseUrl+"tagsupdate/", {photoId, data})
         .then(album => {
             return album;
         });

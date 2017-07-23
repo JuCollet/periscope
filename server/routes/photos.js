@@ -45,7 +45,7 @@ photosRouter.route('/delete')
         });
     });
     
-photosRouter.route('/update')
+photosRouter.route('/tagsupdate')
     .put(function(req,res,next){
         Album.findOneAndUpdate({"photos._id":req.body.photoId}, {'$set':  {'photos.$.tags': req.body.data}}, { new : true }, function(err, album){
             if(err) return next(err);
