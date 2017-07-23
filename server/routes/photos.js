@@ -15,7 +15,7 @@ const express = require('express'),
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
       });      
 
-photosRouter.route('/')
+photosRouter.route('/delete')
     .put(function(req,res,next){
 
         const params = {
@@ -44,5 +44,13 @@ photosRouter.route('/')
             
         });
     });
+    
+photosRouter.route('/update')
+    .put(function(req,res,next){
+        Album.findOneAndUpdate({"photos._id":req.body.photoId}, {'$set':  {'photos.$.tags': req.body.data}}, { new : true }, function(err, album){
+            if(err) return next(err);
+            res.json(album);
+        });
+    });    
     
 module.exports = photosRouter;

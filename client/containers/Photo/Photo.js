@@ -78,7 +78,9 @@ class Photos extends Component {
         return (
             <div className="wrapper wrapper-padding no-overflow flex-center bkg-veryDarkGrey">
                 <Hammer onSwipe={this.browsePhoto}>
-                    <img className="PhotoBig" src={photo.medium} />
+                    <div id="img-container">
+                        <img className="PhotoBig" src={photo.medium} />
+                    </div>
                 </Hammer>
                 <PhotoInfo photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
