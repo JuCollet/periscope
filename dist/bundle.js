@@ -1653,7 +1653,7 @@ var _actiontypes = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var baseUrl = "http://periscope-julesbe.c9users.io/api/photos/";
+var baseUrl = "/api/photos/";
 
 function photoDelete(albumId, photoId, filename, cb) {
 
@@ -1689,8 +1689,6 @@ var _axios2 = _interopRequireDefault(_axios);
 var _actiontypes = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var baseUrl = "http://periscope-julesbe.c9users.io/albums/";
 
 function fileUpload(files, id, callback) {
 
@@ -2948,7 +2946,8 @@ var Photos = function (_Component) {
         _react2.default.createElement("i", { className: "fa fa-trash button-icon", onClick: function onClick(_) {
             return _this3.deleteAlbum(album._id);
           } }),
-        _react2.default.createElement("i", { className: "fa fa-share-alt-square button-icon" }),
+        _react2.default.createElement("i", { className: "fa fa-pencil button-icon" }),
+        _react2.default.createElement("i", { className: "fa fa-envelope button-icon" }),
         _react2.default.createElement("hr", { className: "albumHr" }),
         _react2.default.createElement(
           "div",
@@ -4182,7 +4181,7 @@ var _actiontypes = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var baseUrl = "http://periscope-julesbe.c9users.io/api/albums/";
+var baseUrl = "/api/albums/";
 
 function albumsFetch() {
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { PHOTO_DELETE } from "../actiontypes/";
 
-const baseUrl = "http://periscope-julesbe.c9users.io/api/photos/";
+const baseUrl = "/api/photos/";
 
 export function photoDelete(albumId, photoId, filename, cb){
 

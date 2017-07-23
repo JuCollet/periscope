@@ -1,8 +1,6 @@
 import axios from "axios";
 import { UPLOAD_FILES } from "../actiontypes/";
 
-const baseUrl = "http://periscope-julesbe.c9users.io/albums/";
-
 export function fileUpload(files, id, callback){
     
     const upload = axios({
