@@ -6,7 +6,7 @@ const express = require('express'),
       multer  = require('multer'),
       aws = require('aws-sdk'),
       fs = require('fs'),
-      lwip = require('lwip'),
+      sharp = require('sharp'),
       storage = multer.diskStorage({
           destination: function (req, file, cb) {
             cb(null, './');
@@ -27,132 +27,80 @@ const express = require('express'),
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
       });
 
-const scaleFinder = function(imgWidth, imgHeight, maxSize, onlyWidth, noResize){
-    if(noResize){
-        return 1;
-    } else if(onlyWidth){
-        return Math.round((maxSize / imgWidth) * 100) / 100;
-    } else {
-        return Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 < 1 ? Math.round( (maxSize / Math.min(imgWidth, imgHeight)) * 100 ) / 100 : 1;
-    }
-};
-
-const imgProcess = [
-    {
-        name : "thumb",
-        maxSize : 320,
-        quality : 100,
-        onlyWidth : true,
-        noResize : false
-    },
-    {
-        name : "medium",
-        maxSize : 1600,
-        quality: 80,
-        onlyWidth : false,
-        noResize : false
-    },
-    {
-        name : "original",
-        maxSize : 0,
-        quality: 100,
-        onlyWidth : false,
-        noResize : true
-    },
-];
-
 uploadRouter.route('/:id')
 
   .put(upload.array('photos', 50), function(req,res,next){
 
     const files = req.files;
     const id = req.params.id;
-    const nbrFiles = files.length;
-    let position = 0;
+    let filesCounter = 0;
     
-    const imgProcessing = function(nextPosition){
+    const sendToS3 = function(buffer, key){
         
-        let currentFile = files[nextPosition];
-        let processed = 0;
+        const params = {
+            Body: buffer,
+            Bucket: "periscopefiles",
+            Key: key,
+            ACL: 'public-read'
+        };
         
-        for(let i = 0; i < imgProcess.length; i ++){
+        s3.putObject(params, function(err, data) {
+            if(err) return next(err);
+            buffer = null;
+        });
+    };
+    
+    const endPhotoProcess = function(filename, filePath, imgWidth, imgHeight){
+        
+        let newPhoto = {
+            filename: `${id}${filename}`,
+            thumb: `${process.env.S3_URL}thumb${id}${filename}`,
+            medium: `${process.env.S3_URL}medium${id}${filename}`,
+            original: `${process.env.S3_URL}original${id}${filename}`,
+            width: imgWidth,
+            height: imgHeight
+        };
+        
+        Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, { new : true }, function(err, album){
+            if(err) return next(err);
+            fs.unlink(filePath);
+            filesCounter++;                
+            if(filesCounter === files.length){
+                res.json(album);                
+            }
+        });
 
-            lwip.open(currentFile.path, function(err, image){
-                if(err) return next(err);
-                
-                console.log("processing " + currentFile.path + " : "+imgProcess[i].name);
-                
-                let scale = scaleFinder(image.width(), image.height(), imgProcess[i].maxSize, imgProcess[i].onlyWidth, imgProcess[i].noResize);
-                const imgInfos = {
-                    width: image.width(),
-                    height: image.height()
-                };
-                
-                image.batch()
-                .scale(scale)
-                .toBuffer('jpg', {quality:imgProcess[i].quality}, function(err, buffer){
-                    if(err) return next(err);
-                    
-                    processed++;
-                    
-                    // Send file to S3
-                    
-                    const params = {
-                        Body: buffer,
-                        Bucket: "periscopefiles",
-                        Key: imgProcess[i].name+id+currentFile.filename,
-                        ACL: 'public-read'
-                    };
-                    
-                    s3.putObject(params, function(err, data) {
-                        if(err) return next(err);
-                        buffer = null;
-                    });
-                    
-                    // Check if every image version has been processed;
-                    if(processed === imgProcess.length){
-                        
-                        // Create a new object with uploaded files links;
-                        let newPhoto = {
-                            filename: `${id}${currentFile.filename}`,
-                            thumb: `${process.env.S3_URL}thumb${id}${currentFile.filename}`,
-                            medium: `${process.env.S3_URL}medium${id}${currentFile.filename}`,
-                            original: `${process.env.S3_URL}original${id}${currentFile.filename}`,
-                            width: imgInfos.width,
-                            height: imgInfos.height
-                        };
+    };
+    
+    files.forEach(function(file){
+        let counter = 0;
+        const image = sharp(file.path).rotate();
+        
+        const finalizeProcess = function(){
+            image.metadata().then(function(metadata){
+                endPhotoProcess(file.filename, file.path, metadata.width, metadata.height);    
+            });
+        };
 
-                        // Update the database by pushing the newPhoto object;
-                        Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, function(err, album){
-                            if(err) return next(err);
-                            
-                            // As the current file as been processed and sent to S3,
-                            // delete the local temp file;
-                            fs.unlink(currentFile.path);                             
-                            
-                            // After the files have been pushed to the database,
-                            // repeat the processing function for remaining files.
-                            if(nextPosition < nbrFiles-1){
-                                position++;
-                                imgProcessing(position);    
-                            }
-                            
-                        });
-                        
-                    }
-                    
-                }); // end buffer write
+        image.clone().resize(320,320).max().toFormat('jpeg').toBuffer().then(function(buffer){
+            sendToS3(buffer, `thumb${id}${file.filename}`);
+            counter++;
+            if(counter === 3) finalizeProcess();
+        });
+        
+        image.clone().resize(1600,1600).max().toFormat('jpeg').toBuffer().then(function(buffer){
+            sendToS3(buffer, `medium${id}${file.filename}`);
+            counter++;
+            if(counter === 3) finalizeProcess();
+        });        
+        
+        image.clone().toFormat('jpeg').toBuffer().then(function(buffer){
+            sendToS3(buffer, `original${id}${file.filename}`);
+            counter++;
+            if(counter === 3) finalizeProcess();
+        });             
             
-            }); // end lwip open
-        
-        } // end for loop
-
-    }; // end imgProcessing;
-
-    // First function calling for image with index 0;
-    imgProcessing(position);
-
-    res.json({"Photos":"ok"});
+    });
 
   });
 

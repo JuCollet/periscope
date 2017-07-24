@@ -30,7 +30,7 @@ class Dropbox extends Component {
       if(this.props.redirection){
         this.props.history.push(redirection);
       }
-      document.getElementById(`${id}-icon`).classList.remove("dropIconAnim", "fa-paper-plane");
+      document.getElementById(`${id}-icon`).classList.remove("fa-cog", "fa-spin");
       document.getElementById(`${id}-icon`).classList.add("fa-check", "txt-white");
       setTimeout(_ => {
         document.getElementById(`${id}-progress`).style.height = ("0px");
@@ -38,8 +38,8 @@ class Dropbox extends Component {
         document.getElementById(`${id}-dropzone`).classList.remove("dragUploadDragHover");
         document.getElementById(`${id}-icon`).classList.add("fa-paper-plane");
       }, 1000);
-    }.bind(this);  
-    
+    }.bind(this);
+
     for (let i = 0; i < dt.files.length; i++) {
       if(dt.files[i].type === "image/jpeg")
       data.append('photos', dt.files[i], dt.files[i].name);
