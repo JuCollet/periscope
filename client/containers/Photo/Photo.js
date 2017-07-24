@@ -84,6 +84,7 @@ class Photos extends Component {
                 </Hammer>
                 <PhotoInfo photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
+                    <i className="fa fa-arrow-left" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>
                     <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
                     <i className="fa fa-heart"></i>
                     <i className="fa fa-share-alt"></i>

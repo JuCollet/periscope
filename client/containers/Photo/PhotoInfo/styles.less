@@ -9,7 +9,8 @@
     transition: .2s;
     
     input {
-        padding-right:0px; 
+        padding-right: 0px;
+        width: calc(~"100vw - 50px");
     }
     
     .fa {
@@ -44,7 +45,13 @@
 @media (min-width: @screen-sm-min) {
 
     .photoInfoBox {
-        padding: 50px 30px 30px 65px;        
+        padding: 50px 30px 30px 65px; 
+        
+        input {
+            padding-right: 0px;
+            width: calc(~"80vw - 100px");
+        }        
+        
     }
 
     .photoInfoShow {
