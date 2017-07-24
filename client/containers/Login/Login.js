@@ -36,7 +36,7 @@ class LogIn extends Component {
                     <Field className="small-input margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
                     <button className="small-button small-button-anim" type="submit">Sign in</button>
                 </form>
-                <Link to="/" className="mediumGrey txt-isVeryLight">I forgot my password</Link>
+                <Link to="/" className="mediumGrey txt-isVeryLight login-forgotpw">I forgot my password</Link>
             </div>
         );
     }

@@ -1,9 +1,6 @@
 {
   "name": "periscope",
   "version": "1.0.0",
-  "engines": {
-    "node": "7.2.1"
-  },
   "description": "A simple digital asset manager build with React.",
   "main": "index.js",
   "scripts": {
