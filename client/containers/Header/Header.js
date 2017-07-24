@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../actions/menu";
 import { searchAlbum } from "../../actions/albums";
+import { photoSearch } from "../../actions/photos";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 class Header extends Component {
@@ -23,6 +24,8 @@ class Header extends Component {
         return "";
       case "albums" :
         return <SearchBar searchForType={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
+      case "photos" :
+        return <SearchBar searchForType={this.props.photoSearch} scrollToBottom={this.scrollToBottom}/>;
       default :
         return "";
     }
@@ -55,7 +58,7 @@ class Header extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({toggleMenu, searchAlbum}, dispatch);
+  return bindActionCreators({toggleMenu, searchAlbum, photoSearch}, dispatch);
 }
 
 function mapStateToProps(state){

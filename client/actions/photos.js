@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PHOTO_DELETE, PHOTO_UPDATE } from "../actiontypes/";
+import { PHOTO_DELETE, PHOTO_UPDATE, PHOTO_SEARCH } from "../actiontypes/";
 
 const baseUrl = "/api/photos/";
 
@@ -33,4 +33,13 @@ export function photoUpdate(photoId, data, cb){
         payload: album
     };
         
+}
+
+export function photoSearch(term){
+    
+    return {
+        type: PHOTO_SEARCH,
+        payload: term
+    };
+    
 }

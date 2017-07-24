@@ -25,10 +25,11 @@ class Photos extends Component {
       this.props.history.push('/app/albums');
     });
   }
-  
+   
   render(){
     
     const { album } = this.props;
+    const { searchTerm } = this.props.photo;
     
     if(!album){
       return <Loading />;
@@ -46,7 +47,12 @@ class Photos extends Component {
         <hr className="albumHr" />
         <div id="photos">
           {this.props.album.photos.map(function(photo, index){
-            return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.thumb} /></NavLink>;
+            // 'some' method check if one element in array passes the test in provided function.
+            if(photo.tags.some(function(tag){return tag.indexOf(searchTerm) !== -1}) || searchTerm === undefined || searchTerm === ''){
+              return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.thumb} /></NavLink>;
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -61,7 +67,8 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state, ownProps){
   return {
-    album : state.albums[ownProps.match.params.id]
+    album : state.albums[ownProps.match.params.id],
+    photo : state.photo
   };
 }
 
