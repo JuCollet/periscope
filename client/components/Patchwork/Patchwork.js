@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import getHeight from "./getHeight";
-import "./styles.less";
 
 const breakpoints = [
     {

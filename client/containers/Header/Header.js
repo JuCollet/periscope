@@ -21,13 +21,13 @@ class Header extends Component {
 
     switch(searchFor){
       case null :
-        return "";
+        return <h2>Periscope</h2>;
       case "albums" :
         return <SearchBar searchForType={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
       case "photos" :
         return <SearchBar searchForType={this.props.photoSearch} scrollToBottom={this.scrollToBottom}/>;
       default :
-        return "";
+        return <h2>Periscope</h2>;
     }
     
   }
@@ -54,7 +54,6 @@ class Header extends Component {
       </div>
       );  
   }
-
 }
 
 function mapDispatchToProps(dispatch){

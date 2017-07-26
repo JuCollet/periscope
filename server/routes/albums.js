@@ -76,13 +76,21 @@ albumRouter.route('/')
         });
     });
 
-albumRouter.route('/search/')
+albumRouter.route('/searchalbum/')
     .post(function(req,res,next){
         Album.find({tags : {$regex : req.body.tags}}, function(err, albums){
             if(err) return next(err);
             res.json(albums);
-        })
-    })
+        });
+    });
+    
+albumRouter.route('/searchphotos/')
+    .post(function(req,res,next){
+        Album.find({"photos.tags" : {$regex : req.body.tags}}, function(err, albums){
+            if(err) return next(err);
+            res.json(albums);
+        });
+    });
     
 albumRouter.route('/:id')
     .get(function(req,res,next){
