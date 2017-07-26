@@ -78,7 +78,14 @@ uploadRouter.route('/:id')
         
         const finalizeProcess = function(){
             image.metadata().then(function(metadata){
-                endPhotoProcess(file.filename, file.path, metadata.width, metadata.height);    
+                if(metadata.orientation && metadata.orientation > 4 && metadata.orientation < 9){
+                    const heightTemp = metadata.height;
+                    metadata.height = metadata.width;
+                    metadata.width = heightTemp;
+                }
+                endPhotoProcess(file.filename, file.path, metadata.width, metadata.height);
+                console.log("width : "+metadata.width)
+                console.log("orientation : "+metadata.orientation)
             });
         };
 

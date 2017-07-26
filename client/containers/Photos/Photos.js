@@ -8,6 +8,7 @@ import { albumFetch, deleteAlbum } from "../../actions/albums";
 import { toggleSearchBar } from "../../actions/menu";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
+import Patchwork from "../../components/Patchwork/Patchwork";
 
 class Photos extends Component {
   
@@ -45,16 +46,7 @@ class Photos extends Component {
         <i className="fa fa-pencil button-icon"></i>
         <i className="fa fa-envelope button-icon"></i>
         <hr className="albumHr" />
-        <div id="photos">
-          {this.props.album.photos.map(function(photo, index){
-            // 'some' method check if one element in array passes the test in provided function.
-            if(photo.tags.some(function(tag){return tag.indexOf(searchTerm) !== -1}) || searchTerm === undefined || searchTerm === ''){
-              return <NavLink to={`/app/photo/${album._id}/${photo._id}`} key={photo._id}> <img src={photo.thumb} /></NavLink>;
-            } else {
-              return null;
-            }
-          })}
-        </div>
+        <Patchwork photos={this.props.album.photos} searchTerm={searchTerm} albumId={album._id} />
       </div>
     );  
   }
