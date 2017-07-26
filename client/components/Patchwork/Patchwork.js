@@ -15,7 +15,7 @@ const breakpoints = [
       columns: 4
     },
     {
-      breakpoint: 350,
+      breakpoint: 320,
       columns: 2
     },
     {
@@ -29,32 +29,24 @@ export default class Patchwork extends Component {
     constructor(props){
         super(props);
         this.state = {};
+        this.stateUpdate = this.stateUpdate.bind(this);
     }
     
-    updateViewWidthOnWindowResize(e){
+    stateUpdate(){
         const { photos } = this.props;
         const newviewWidth = document.getElementById("patchwork").offsetWidth;
         this.setState({
-            photosHeight : getHeight(photos, newviewWidth, 5, breakpoints)
-        });
+            photosHeight : getHeight(photos, newviewWidth, 13, breakpoints)
+        });        
     }
-    
+
     componentDidMount(){
-        
-        const { photos } = this.props;
-        let viewWidth = document.getElementById("patchwork").offsetWidth;
-        
-        this.setState({
-            photosHeight : getHeight(photos, viewWidth, 5, breakpoints)
-        });
-        
-        window.addEventListener("resize", this.updateViewWidthOnWindowResize.bind(this));
-        
+        this.stateUpdate();
+        window.addEventListener("resize", this.stateUpdate);
     }
     
     componentWillUnmount(){
-        console.log('unmount')
-        window.removeEventListener("resize", this.updateViewWidthOnWindowResize.bind(this));
+        window.removeEventListener("resize", this.stateUpdate);
     }
     
     renderPatchwork(){

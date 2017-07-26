@@ -1693,7 +1693,7 @@ var breakpoints = [{
     breakpoint: 768,
     columns: 4
 }, {
-    breakpoint: 350,
+    breakpoint: 320,
     columns: 2
 }, {
     breakpoint: 1,
@@ -1709,37 +1709,30 @@ var Patchwork = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Patchwork.__proto__ || Object.getPrototypeOf(Patchwork)).call(this, props));
 
         _this.state = {};
+        _this.stateUpdate = _this.stateUpdate.bind(_this);
         return _this;
     }
 
     _createClass(Patchwork, [{
-        key: "updateViewWidthOnWindowResize",
-        value: function updateViewWidthOnWindowResize(e) {
+        key: "stateUpdate",
+        value: function stateUpdate() {
             var photos = this.props.photos;
 
             var newviewWidth = document.getElementById("patchwork").offsetWidth;
             this.setState({
-                photosHeight: (0, _getHeight2.default)(photos, newviewWidth, 5, breakpoints)
+                photosHeight: (0, _getHeight2.default)(photos, newviewWidth, 13, breakpoints)
             });
         }
     }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            var photos = this.props.photos;
-
-            var viewWidth = document.getElementById("patchwork").offsetWidth;
-
-            this.setState({
-                photosHeight: (0, _getHeight2.default)(photos, viewWidth, 5, breakpoints)
-            });
-
-            window.addEventListener("resize", this.updateViewWidthOnWindowResize.bind(this));
+            this.stateUpdate();
+            window.addEventListener("resize", this.stateUpdate);
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            console.log('unmount');
-            window.removeEventListener("resize", this.updateViewWidthOnWindowResize.bind(this));
+            window.removeEventListener("resize", this.stateUpdate);
         }
     }, {
         key: "renderPatchwork",
@@ -1792,7 +1785,6 @@ exports.default = Patchwork;
 
 "use strict";
 
-"usestrict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -1804,22 +1796,21 @@ var _getImgHeight = function _getImgHeight(index, array, columns, viewWidth, gut
     var rowWidth = 0;
     for (var i = startIndex; i < startIndex + columns; i++) {
         if (array[i]) {
-            var ratio = 333 / array[i].height;
+            var ratio = 666 / array[i].height;
             rowWidth += array[i].width * ratio;
         }
     }
     var widthRatio = (viewWidth - gutter * (columns - 1)) / rowWidth;
-    var finalHeight = widthRatio * 333;
+    var finalHeight = widthRatio * 666;
     if (index === 0) {
         sizeReference = finalHeight;
     }
-    return finalHeight / sizeReference > 1.5 ? sizeReference : finalHeight;
-}; // End _getImgHeight
+    return finalHeight / sizeReference > 1.5 && columns > 1 ? sizeReference : finalHeight;
+};
 
 var getImgHeight = function getImgHeight(array, viewWidth, gutter, breakpoints) {
-
     var columns = breakpoints.find(function (o) {
-        return viewWidth > o.breakpoint;
+        return viewWidth >= o.breakpoint;
     }).columns;
 
     return array.map(function (photo, index, array) {
@@ -14572,7 +14563,7 @@ exports = module.exports = __webpack_require__(76)(undefined);
 
 
 // module
-exports.push([module.i, "#patchwork {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
+exports.push([module.i, "#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n", ""]);
 
 // exports
 

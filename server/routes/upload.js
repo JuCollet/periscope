@@ -84,8 +84,6 @@ uploadRouter.route('/:id')
                     metadata.width = heightTemp;
                 }
                 endPhotoProcess(file.filename, file.path, metadata.width, metadata.height);
-                console.log("width : "+metadata.width)
-                console.log("orientation : "+metadata.orientation)
             });
         };
 
