@@ -6,10 +6,3 @@ export function toggleMenu(){
         payload: null
     };
 }
-
-export function toggleSearchBar(type){
-    return {
-        type: TOGGLE_SEARCHBAR,
-        payload: type
-    };
-}

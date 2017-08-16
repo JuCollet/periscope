@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
 import { albumFetch, deleteAlbum } from "../../actions/albums";
-import { toggleSearchBar } from "../../actions/menu";
+import { searchType } from "../../actions/search";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
 import Patchwork from "../../components/Patchwork/Patchwork";
@@ -14,11 +14,11 @@ class Photos extends Component {
   
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
-    this.props.toggleSearchBar("photos");
+    this.props.searchType("photos");
   }
   
   componentWillUnmount(){
-    this.props.toggleSearchBar(null);
+    this.props.searchType(null);
   }
   
   deleteAlbum(albumId){
@@ -30,8 +30,8 @@ class Photos extends Component {
   render(){
     
     const { album } = this.props;
-    const { searchTerm } = this.props.photo;
-    
+    const { searchTerm } = this.props.search;
+
     if(!album){
       return <Loading />;
     }
@@ -46,7 +46,7 @@ class Photos extends Component {
         <i className="fa fa-pencil button-icon"></i>
         <i className="fa fa-envelope button-icon"></i>
         <hr className="albumHr" />
-        <Patchwork photos={this.props.album.photos} searchTerm={searchTerm} albumId={album._id} />
+        <Patchwork photos={this.props.album.photos} searchTerm={searchTerm.substr(0,1) === "#" ? searchTerm.substr(1) : searchTerm} albumId={album._id} />
       </div>
     );  
   }
@@ -54,13 +54,13 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumFetch, deleteAlbum, toggleSearchBar }, dispatch);
+  return bindActionCreators({ albumFetch, deleteAlbum, searchType }, dispatch);
 }
 
 function mapStateToProps(state, ownProps){
   return {
     album : state.albums[ownProps.match.params.id],
-    photo : state.photo
+    search : state.search
   };
 }
 

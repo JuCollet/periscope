@@ -9,4 +9,5 @@ export const PHOTO_SEARCH = "photo_search";
 export const UPLOAD_FILES = "upload_files";
 export const USER_LOGIN = "user_login";
 export const TOGGLE_MENU = "toggle_menu";
-export const TOGGLE_SEARCHBAR = "toggle_searchbar";
+export const SEARCH_TERM_UPDATE = "search_term_update";
+export const SEARCH_TYPE_TOGGLE = "search_type_toggle";

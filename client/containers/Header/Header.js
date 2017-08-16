@@ -4,37 +4,9 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../actions/menu";
-import { searchAlbum } from "../../actions/albums";
-import { photoSearch } from "../../actions/photos";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
 
 class Header extends Component {
-  
-  constructor(props){
-    super(props);
-    this.scrollToBottom = this.scrollToBottom.bind(this);
-  }
-  
-  renderSearchBar(){
-    
-    const { searchFor } = this.props.menu;
-
-    switch(searchFor){
-      case null :
-        return <span className="title">Bubble</span>;
-      case "albums" :
-        return <SearchBar searchForType={searchFor} searchForFunc={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
-      case "photos" :
-        return <SearchBar searchForType={searchFor} searchForFunc={this.props.photoSearch} scrollToBottom={this.scrollToBottom}/>;
-      default :
-        return <span className="title">Bubble</span>;
-    }
-    
-  }
-  
-  scrollToBottom(){
-    window.scrollTo(0, document.getElementById("root").offsetHeight);
-  }  
   
   toggleMenu(){
     this.props.toggleMenu();
@@ -48,7 +20,7 @@ class Header extends Component {
       <div id="header" className={headerUpClass}>
         <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
         <div className="header-option">
-        {this.renderSearchBar()}
+          {this.props.search.searchType === null ? <span className="title">Periscope</span> : <SearchBar />}
         </div>
       </div>
       );  
@@ -56,12 +28,13 @@ class Header extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({toggleMenu, searchAlbum, photoSearch}, dispatch);
+  return bindActionCreators({toggleMenu}, dispatch);
 }
 
 function mapStateToProps(state){
   return {
-    menu : state.menu
+    menu : state.menu,
+    search : state.search
   };
 }
 

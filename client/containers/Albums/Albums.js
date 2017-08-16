@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { albumsFetch } from "../../actions/albums";
-import { toggleSearchBar } from "../../actions/menu";
+import { searchType } from "../../actions/search";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -14,12 +14,14 @@ import Card from "../Cards/Cards";
 class Albums extends Component {
   
   componentDidMount(){
-    this.props.albumsFetch();
-    this.props.toggleSearchBar("albums");
+    if(this.props.search.searchTerm.substr(0,1) !== "#"){
+      this.props.albumsFetch(); 
+    }
+    this.props.searchType("albums");
   }
   
   componentWillUnmount() {
-    this.props.toggleSearchBar(null);
+    this.props.searchType(null);
   }
   
   isEmpty(obj){
@@ -52,12 +54,13 @@ class Albums extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumsFetch, toggleSearchBar }, dispatch);
+  return bindActionCreators({ albumsFetch, searchType }, dispatch);
 }
 
 function mapStateToProps(state){
   return {
-    albums : state.albums
+    albums : state.albums,
+    search : state.search
   };
 }
 

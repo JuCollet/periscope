@@ -51,7 +51,7 @@ export function deleteAlbum(albumId, cb){
 
 export function searchAlbum(tags){
     
-    let finalUrl = "";
+    let finalUrl;
     
     if(tags.slice(0,1) === "#"){
         tags = tags.substr(1);
@@ -61,7 +61,7 @@ export function searchAlbum(tags){
     }
     
     const albums = axios.post(finalUrl, {tags:tags});
-    
+
     return {
         type: ALBUM_SEARCH,
         payload: albums
