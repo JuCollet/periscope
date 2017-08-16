@@ -21,13 +21,13 @@ class Header extends Component {
 
     switch(searchFor){
       case null :
-        return <h2>Periscope</h2>;
+        return <span className="title">Bubble</span>;
       case "albums" :
-        return <SearchBar searchForType={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
+        return <SearchBar searchForType={searchFor} searchForFunc={this.props.searchAlbum} scrollToBottom={this.scrollToBottom}/>;
       case "photos" :
-        return <SearchBar searchForType={this.props.photoSearch} scrollToBottom={this.scrollToBottom}/>;
+        return <SearchBar searchForType={searchFor} searchForFunc={this.props.photoSearch} scrollToBottom={this.scrollToBottom}/>;
       default :
-        return <h2>Periscope</h2>;
+        return <span className="title">Bubble</span>;
     }
     
   }
@@ -47,7 +47,6 @@ class Header extends Component {
     return (
       <div id="header" className={headerUpClass}>
         <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
-        <span className="title">Periscope</span>
         <div className="header-option">
         {this.renderSearchBar()}
         </div>
