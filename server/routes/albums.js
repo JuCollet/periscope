@@ -88,7 +88,6 @@ albumRouter.route('/')
 
 albumRouter.route('/searchalbum/')
     .post(function(req,res,next){
-        
         Album.aggregate([
             {
                 $match : { tags : {$regex : req.body.tags, $options: 'i'}},
@@ -110,7 +109,20 @@ albumRouter.route('/searchalbum/')
     
 albumRouter.route('/searchphotos/')
     .post(function(req,res,next){
-        Album.find({"photos.tags" : {$regex : req.body.tags, $options: 'i'}}, function(err, albums){
+        Album.aggregate([
+            {
+                $match : { "photos.tags" : {$regex : req.body.tags, $options: 'i'}},
+            },
+            {
+                $project : {
+                    name: 1,
+                    description : 1,
+                    updatedAt : 1,
+                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    numberOfPhotos : { $size: "$photos"}
+                }
+            }
+        ],function(err, albums){
             if(err) return next(err);
             res.json(albums);
         });
