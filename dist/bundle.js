@@ -691,6 +691,7 @@ var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
 var ALBUM_DELETE = exports.ALBUM_DELETE = "album_delete";
 var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
 var ALBUM_SEARCH = exports.ALBUM_SEARCH = "album_search";
+var ALBUM_THUMB_UPDATE = exports.ALBUM_THUMB_UPDATE = "album_thumb_update";
 var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
 var PHOTO_DELETE = exports.PHOTO_DELETE = "photo_delete";
 var PHOTO_UPDATE = exports.PHOTO_UPDATE = "photo_update";
@@ -2165,8 +2166,8 @@ var Card = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Card.__proto__ || Object.getPrototypeOf(Card)).call.apply(_ref, [this].concat(args))), _this), _this.cardStyle = function (_) {
-      if (_this.props.album.thumb) {
-        return { backgroundImage: 'url(' + _this.props.album.thumb + ')' };
+      if (_this.props.album.albumThumb) {
+        return { backgroundImage: 'url(' + _this.props.album.albumThumb + ')' };
       } else if (_this.props.album.photos) {
         return { backgroundImage: 'url(' + _this.props.album.photos[0].thumb + ')' };
       } else {
@@ -2199,8 +2200,9 @@ var Card = function (_Component) {
           _react2.default.createElement(
             "div",
             { className: "card-img-infos" },
-            this.props.album.numberOfPhotos,
-            " Photos"
+            this.props.album.numberOfPhotos ? this.props.album.numberOfPhotos : this.props.album.photos.length,
+            " Photo",
+            this.props.album.numberOfPhotos < 2 ? "" : "s"
           )
         ),
         _react2.default.createElement(
@@ -2721,7 +2723,7 @@ var SearchBar = function (_Component) {
                     }, className: "small-input", type: "text", onChange: function onChange(e) {
                         e.persist();_this2.searchFor(e);
                     }, onTouchStart: function onTouchStart(_) {
-                        return _this2.props.scrollToBottom();
+                        return _this2.scrollToBottom();
                     } })
             );
         }
@@ -2955,6 +2957,8 @@ var _reactRedux = __webpack_require__(8);
 
 var _photos = __webpack_require__(70);
 
+var _albums = __webpack_require__(38);
+
 var _Tags = __webpack_require__(73);
 
 var _Tags2 = _interopRequireDefault(_Tags);
@@ -3124,6 +3128,19 @@ var PhotoInfo = function (_Component) {
                         "Editer les tags"
                     )
                 ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "a",
+                        { href: "#", onClick: function onClick(_) {
+                                return _this2.props.albumThumbUpdate(album._id, photo.thumb, function (_) {
+                                    return _this2.props.closeInfoBox();
+                                });
+                            } },
+                        "Choisir comme image d'album"
+                    )
+                ),
                 _react2.default.createElement("br", null),
                 _react2.default.createElement("i", { className: "fa fa-chevron-down", onClick: function onClick(_) {
                         return _this2.props.closeInfoBox();
@@ -3136,7 +3153,7 @@ var PhotoInfo = function (_Component) {
 }(_react.Component);
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ photoUpdate: _photos.photoUpdate }, dispatch);
+    return (0, _redux.bindActionCreators)({ photoUpdate: _photos.photoUpdate, albumThumbUpdate: _albums.albumThumbUpdate }, dispatch);
 }
 
 exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(PhotoInfo);
@@ -3534,6 +3551,8 @@ exports.default = function () {
             return _extends({}, state, _defineProperty({}, action.payload.data._id, action.payload.data));
         case _actiontypes.ALBUM_SEARCH:
             return _lodash2.default.mapKeys(action.payload.data, "_id");
+        case _actiontypes.ALBUM_THUMB_UPDATE:
+            return _extends({}, state, _defineProperty({}, action.payload.data._id, action.payload.data));
         case _actiontypes.PHOTO_DELETE:
             return _extends({}, state, _defineProperty({}, action.payload.data._id, action.payload.data));
         case _actiontypes.PHOTO_UPDATE:
@@ -13985,6 +14004,7 @@ exports.albumsFetch = albumsFetch;
 exports.albumFetch = albumFetch;
 exports.createAlbum = createAlbum;
 exports.deleteAlbum = deleteAlbum;
+exports.albumThumbUpdate = albumThumbUpdate;
 exports.searchAlbum = searchAlbum;
 
 var _axios = __webpack_require__(74);
@@ -14038,6 +14058,15 @@ function deleteAlbum(albumId, cb) {
     return {
         type: _actiontypes.ALBUM_DELETE,
         payload: albumId
+    };
+}
+
+function albumThumbUpdate(id, albumThumb, cb) {
+    var album = _axios2.default.put(baseUrl + "/updateAlbumThumb/", { id: id, albumThumb: albumThumb }).then(cb());
+
+    return {
+        type: _actiontypes.ALBUM_THUMB_UPDATE,
+        payload: album
     };
 }
 

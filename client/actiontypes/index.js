@@ -2,6 +2,7 @@ export const ALBUM_CREATE = "albums_create";
 export const ALBUM_DELETE = "album_delete";
 export const ALBUM_FETCH = "album_fetch";
 export const ALBUM_SEARCH = "album_search";
+export const ALBUM_THUMB_UPDATE = "album_thumb_update";
 export const ALBUMS_FETCH = "albums_fetch";
 export const PHOTO_DELETE = "photo_delete";
 export const PHOTO_UPDATE = "photo_update";

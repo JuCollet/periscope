@@ -24,7 +24,8 @@ const albumSchema = new mongoose.Schema({
     photographer : String,
     description : String,
     photos : [photoSchema],
-    tags : [String]
+    tags : [String],
+    albumThumb : String
     },
     {
       timestamps:true

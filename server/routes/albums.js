@@ -23,7 +23,7 @@ albumRouter.route('/')
                     name: 1,
                     description : 1,
                     updatedAt : 1,
-                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    albumThumb : 1,
                     numberOfPhotos : { $size: "$photos"}
                 }
             }
@@ -97,7 +97,7 @@ albumRouter.route('/searchalbum/')
                     name: 1,
                     description : 1,
                     updatedAt : 1,
-                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    albumThumb : 1,
                     numberOfPhotos : { $size: "$photos"}
                 }
             }
@@ -118,7 +118,7 @@ albumRouter.route('/searchphotos/')
                     name: 1,
                     description : 1,
                     updatedAt : 1,
-                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    albumThumb : 1,
                     numberOfPhotos : { $size: "$photos"}
                 }
             }
@@ -131,6 +131,14 @@ albumRouter.route('/searchphotos/')
 albumRouter.route('/:id')
     .get(function(req,res,next){
         Album.findById(req.params.id, function(err,album){
+            if(err) return next(err);
+            res.json(album);
+        });
+    });
+    
+albumRouter.route('/updateAlbumThumb/')
+    .put(function(req,res,next){
+        Album.findByIdAndUpdate(req.body.id, {'$set':  {'albumThumb': req.body.albumThumb}}, { new : true }, function(err, album){
             if(err) return next(err);
             res.json(album);
         });

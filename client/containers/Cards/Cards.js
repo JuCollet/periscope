@@ -7,8 +7,8 @@ import Dropbox from "../Dropbox/Dropbox";
 export default class Card extends Component {
   
   cardStyle = _ => {
-    if(this.props.album.thumb){
-      return { backgroundImage: 'url(' + this.props.album.thumb + ')'};
+    if(this.props.album.albumThumb){
+      return { backgroundImage: 'url(' + this.props.album.albumThumb + ')'};
     } else if(this.props.album.photos){
       return { backgroundImage: 'url(' + this.props.album.photos[0].thumb + ')'};
     } else {
@@ -29,7 +29,7 @@ export default class Card extends Component {
         <div className="card-img-wrapper">
           <div className="card-img" style={this.cardStyle()}></div>
             {newBadge}
-            <div className="card-img-infos">{this.props.album.numberOfPhotos} Photos</div>           
+            <div className="card-img-infos">{this.props.album.numberOfPhotos ? this.props.album.numberOfPhotos : this.props.album.photos.length } Photo{this.props.album.numberOfPhotos < 2 ? "" : "s"}</div>           
         </div>
         <div className="card-body">
           <div className="card-body-title">{this.props.album.name}</div>

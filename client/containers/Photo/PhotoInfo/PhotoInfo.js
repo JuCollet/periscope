@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { photoUpdate } from "../../../actions/photos";
+import { albumThumbUpdate } from "../../../actions/albums";
 import Tags from "../../../components/Tags/Tags";
 
 
@@ -68,6 +69,7 @@ class PhotoInfo extends Component {
                 <p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
                 <p><a href={photo.original} download>Télécharger cette image</a></p>
                 {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
+                <p><a href="#" onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())}>Choisir comme image d'album</a></p>
                 <br/>
                 <i className="fa fa-chevron-down" onClick={_ => this.props.closeInfoBox()}></i>
             </div>
@@ -76,7 +78,7 @@ class PhotoInfo extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ photoUpdate }, dispatch);
+    return bindActionCreators({ photoUpdate, albumThumbUpdate }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(PhotoInfo);

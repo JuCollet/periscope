@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH } from "../actiontypes/";
+import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
 
 const baseUrl = "/api/albums/";
 
@@ -47,6 +47,16 @@ export function deleteAlbum(albumId, cb){
         payload: albumId
     };
     
+}
+
+export function albumThumbUpdate(id, albumThumb, cb){
+    const album = axios.put(baseUrl + "/updateAlbumThumb/", {id, albumThumb})
+        .then(cb());
+    
+    return {
+        type : ALBUM_THUMB_UPDATE,
+        payload: album
+    };
 }
 
 export function searchAlbum(tags){
