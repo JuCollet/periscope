@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
 import { albumFetch, deleteAlbum } from "../../actions/albums";
-import { searchType } from "../../actions/search";
+import { searchType, searchTermUpdate } from "../../actions/search";
 import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
 import Patchwork from "../../components/Patchwork/Patchwork";
@@ -14,7 +14,10 @@ class Photos extends Component {
   
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
-    this.props.searchType("photos");
+    if(this.props.search.searchTerm.substr(0,1) !== "#"){
+      this.props.searchTermUpdate("");
+    }
+    this.props.searchType("photos"); 
   }
   
   componentWillUnmount(){
@@ -54,7 +57,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ albumFetch, deleteAlbum, searchType }, dispatch);
+  return bindActionCreators({ albumFetch, deleteAlbum, searchType, searchTermUpdate }, dispatch);
 }
 
 function mapStateToProps(state, ownProps){

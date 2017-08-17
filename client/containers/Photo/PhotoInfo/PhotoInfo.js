@@ -57,7 +57,6 @@ class PhotoInfo extends Component {
         
         return (
             <div className="bkg-white photoInfoBox">
-                <i className="fa fa-times" onClick={_ => this.props.closeInfoBox()}></i>
                 <h2>Infos</h2>
                 <p><b>Nom de l'album : </b>{album.name}</p>
                 <p><b>Description : </b>{album.description}</p>
@@ -65,10 +64,12 @@ class PhotoInfo extends Component {
                 <p><b>Dimensions : </b>{photo.width ? photo.width : "largeur inconnue"} x {photo.height ? photo.height : "hauteur inconnue"}</p>
                 <Tags tags={photo.tags} />
                 <hr/>
-                <a href="#"><p>Partager</p></a>
-                <a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}><p>Supprimer cette image</p></a>
-                <a href={photo.original} download><p>Télécharger cette image</p></a>
-                {this.state.tagEdit ? this.tagsEditRender() : <a href="#" onClick={this.toggleTagsEdit}><p>Editer les tags</p></a> }
+                <p><a href="#">Partager</a></p>
+                <p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
+                <p><a href={photo.original} download>Télécharger cette image</a></p>
+                {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
+                <br/>
+                <i className="fa fa-chevron-down" onClick={_ => this.props.closeInfoBox()}></i>
             </div>
         );        
     }

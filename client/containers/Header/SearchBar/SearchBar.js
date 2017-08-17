@@ -19,6 +19,10 @@ class SearchBar extends Component{
     componentDidMount(){
         this.searchTerm.value = this.props.search.searchTerm;
     }
+    
+    componentWillReceiveProps(nextProps){
+        this.searchTerm.value = nextProps.search.searchTerm;
+    }
 
     scrollToBottom(){
         window.scrollTo(0, document.getElementById("root").offsetHeight);
