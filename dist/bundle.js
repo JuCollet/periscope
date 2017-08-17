@@ -2165,7 +2165,9 @@ var Card = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Card.__proto__ || Object.getPrototypeOf(Card)).call.apply(_ref, [this].concat(args))), _this), _this.cardStyle = function (_) {
-      if (_this.props.album.photos.length > 0) {
+      if (_this.props.album.thumb) {
+        return { backgroundImage: 'url(' + _this.props.album.thumb + ')' };
+      } else if (_this.props.album.photos) {
         return { backgroundImage: 'url(' + _this.props.album.photos[0].thumb + ')' };
       } else {
         return { backgroundImage: 'url(/img/nophoto.png)' };
@@ -2197,7 +2199,7 @@ var Card = function (_Component) {
           _react2.default.createElement(
             "div",
             { className: "card-img-infos" },
-            this.props.album.photos.length,
+            this.props.album.numberOfPhotos,
             " Photos"
           )
         ),
@@ -3220,12 +3222,24 @@ var Photos = function (_Component) {
       });
     }
   }, {
+    key: "renderPatchwork",
+    value: function renderPatchwork() {
+      var album = this.props.album;
+      var searchTerm = this.props.search.searchTerm;
+
+
+      if (this.props.album.photos) {
+        return _react2.default.createElement(_Patchwork2.default, { photos: this.props.album.photos, searchTerm: searchTerm.substr(0, 1) === "#" ? searchTerm.substr(1) : searchTerm, albumId: album._id });
+      } else {
+        return _react2.default.createElement(_Loading2.default, null);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
       var album = this.props.album;
-      var searchTerm = this.props.search.searchTerm;
 
 
       if (!album) {
@@ -3258,7 +3272,7 @@ var Photos = function (_Component) {
         _react2.default.createElement("i", { className: "fa fa-pencil button-icon" }),
         _react2.default.createElement("i", { className: "fa fa-envelope button-icon" }),
         _react2.default.createElement("hr", { className: "albumHr" }),
-        _react2.default.createElement(_Patchwork2.default, { photos: this.props.album.photos, searchTerm: searchTerm.substr(0, 1) === "#" ? searchTerm.substr(1) : searchTerm, albumId: album._id })
+        this.renderPatchwork()
       );
     }
   }]);

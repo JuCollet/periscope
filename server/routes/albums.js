@@ -17,7 +17,17 @@ const express = require('express'),
 
 albumRouter.route('/')
     .get(function(req,res,next){
-        Album.find({}, function(err, albums){
+        Album.aggregate([
+            {
+                $project : {
+                    name: 1,
+                    description : 1,
+                    updatedAt : 1,
+                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    numberOfPhotos : { $size: "$photos"}
+                }
+            }
+        ], function(err, albums){
             if(err) return next(err);
             res.json(albums);
         });
@@ -78,7 +88,21 @@ albumRouter.route('/')
 
 albumRouter.route('/searchalbum/')
     .post(function(req,res,next){
-        Album.find({tags : {$regex : req.body.tags}}, function(err, albums){
+        
+        Album.aggregate([
+            {
+                $match : { tags : {$regex : req.body.tags, $options: 'i'}},
+            },
+            {
+                $project : {
+                    name: 1,
+                    description : 1,
+                    updatedAt : 1,
+                    thumb : { $arrayElemAt : ["$photos.thumb", 0] },
+                    numberOfPhotos : { $size: "$photos"}
+                }
+            }
+        ],function(err, albums){
             if(err) return next(err);
             res.json(albums);
         });
@@ -86,7 +110,7 @@ albumRouter.route('/searchalbum/')
     
 albumRouter.route('/searchphotos/')
     .post(function(req,res,next){
-        Album.find({"photos.tags" : {$regex : req.body.tags}}, function(err, albums){
+        Album.find({"photos.tags" : {$regex : req.body.tags, $options: 'i'}}, function(err, albums){
             if(err) return next(err);
             res.json(albums);
         });

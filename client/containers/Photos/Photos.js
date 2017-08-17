@@ -29,11 +29,23 @@ class Photos extends Component {
       this.props.history.push('/app/albums');
     });
   }
+  
+  renderPatchwork(){
+    
+    const { album } = this.props;
+    const { searchTerm } = this.props.search;
+
+    if(this.props.album.photos){
+      return <Patchwork photos={this.props.album.photos} searchTerm={searchTerm.substr(0,1) === "#" ? searchTerm.substr(1) : searchTerm} albumId={album._id} />;
+    } else {
+      return <Loading />;
+    }
+    
+  }
    
   render(){
     
     const { album } = this.props;
-    const { searchTerm } = this.props.search;
 
     if(!album){
       return <Loading />;
@@ -49,7 +61,7 @@ class Photos extends Component {
         <i className="fa fa-pencil button-icon"></i>
         <i className="fa fa-envelope button-icon"></i>
         <hr className="albumHr" />
-        <Patchwork photos={this.props.album.photos} searchTerm={searchTerm.substr(0,1) === "#" ? searchTerm.substr(1) : searchTerm} albumId={album._id} />
+        {this.renderPatchwork()}
       </div>
     );  
   }
