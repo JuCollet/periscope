@@ -55,14 +55,15 @@ class PhotoInfo extends Component {
     
         const { photo, album } = this.props;
 
-        
         return (
             <div className="bkg-white photoInfoBox">
+                <i className="fa fa-chevron-circle-down photoInfoCloseButton" onClick={_ => this.props.closeInfoBox()}></i>
                 <h2>Infos</h2>
                 <p><b>Nom de l'album : </b>{album.name}</p>
                 <p><b>Description : </b>{album.description}</p>
                 <p><b>Crédit photographique : </b>&copy; {album.photographer}</p>
                 <p><b>Dimensions : </b>{photo.width ? photo.width : "largeur inconnue"} x {photo.height ? photo.height : "hauteur inconnue"}</p>
+                <p><b>Impression optimale : </b>{photo.width ? Math.round(photo.width/118) : "largeur inconnue"} cm x {photo.height ? Math.round(photo.height/118) : "hauteur inconnue"} cm max.</p>
                 <Tags tags={photo.tags} />
                 <hr/>
                 <p><a href="#">Partager</a></p>
@@ -70,8 +71,6 @@ class PhotoInfo extends Component {
                 <p><a href={photo.original} download>Télécharger cette image</a></p>
                 {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
                 <p><a href="#" onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())}>Choisir comme image d'album</a></p>
-                <br/>
-                <i className="fa fa-chevron-down" onClick={_ => this.props.closeInfoBox()}></i>
             </div>
         );        
     }

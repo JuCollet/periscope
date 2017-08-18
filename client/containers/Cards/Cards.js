@@ -29,7 +29,7 @@ export default class Card extends Component {
         <div className="card-img-wrapper">
           <div className="card-img" style={this.cardStyle()}></div>
             {newBadge}
-            <div className="card-img-infos">{this.props.album.numberOfPhotos ? this.props.album.numberOfPhotos : this.props.album.photos.length } Photo{this.props.album.numberOfPhotos < 2 ? "" : "s"}</div>           
+            <div className="card-img-infos">{this.props.album.numberOfPhotos ? this.props.album.numberOfPhotos : "0" } Photo{this.props.album.numberOfPhotos < 2 ? "" : "s"}</div>           
         </div>
         <div className="card-body">
           <div className="card-body-title">{this.props.album.name}</div>

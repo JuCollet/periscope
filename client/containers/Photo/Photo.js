@@ -79,13 +79,13 @@ class Photos extends Component {
             <div className="wrapper wrapper-padding no-overflow flex-center bkg-veryDarkGrey">
                 <Hammer onSwipe={this.browsePhoto}>
                     <div id="img-container">
+                        <i className="fa fa-times photos-close-button" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>
                         <img className="PhotoBig" src={photo.medium} />
                     </div>
                 </Hammer>
                 <PhotoInfo photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
                 <div className="photoButtonsBox">
-                    <i className="fa fa-arrow-left" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>
-                    <a href={photo.original} download><i className="fa fa-arrow-down"></i></a>
+                    <a href={photo.original} download><i className="fa fa-download"></i></a>
                     <i className="fa fa-heart"></i>
                     <i className="fa fa-share-alt"></i>
                     <i className="fa fa-info-circle" onClick={this.showInfos}></i>

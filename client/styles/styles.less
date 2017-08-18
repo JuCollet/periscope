@@ -88,15 +88,10 @@ h3 {
     display: flex;
     flex-direction: column;
     min-height: 50vh;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
 
-    .contentBox-image {
-        width: 17vw;
-        border-radius: 5px;
-    }   
     .contentBox-body {
-        padding-left: 0px;
-        min-width: 70vw;
+        min-width: 50vw;
     }
     
     input, textarea {
@@ -107,12 +102,11 @@ h3 {
 
 @media (min-width: @screen-sm-min){
     .contentBox {
-        padding-top: 55px;
-        padding-bottom: unset;
+        margin-top: 55px;
+        margin-bottom: unset;
         flex-direction: row;
         
         .contentBox-body {
-            padding-left: 40px;
             min-width: 50vw;
         }
         
@@ -182,10 +176,16 @@ h3 {
     padding: 20px 20px 80px 20px;
 }
 
+
 @media (min-width: @screen-sm-min){
     
     .wrapper-padding {
         padding: 80px 20px 20px 20px;  
+    }
+    
+    .wrapper-background-image {
+        background-image: url('pattern.png');
+        background-repeat: repeat;
     }
 
 }

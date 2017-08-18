@@ -56,8 +56,6 @@ class Upload extends Component {
         return(
             <div className="wrapper flex-center">
                 <div className="contentBox">
-                    <div className="contentBox-image bkg-darkBlueGrey">
-                    </div>
                     <div className="contentBox-body">
                         <h2>Créer un album</h2>
                         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>

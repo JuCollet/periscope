@@ -28,7 +28,7 @@ class LogIn extends Component {
         const { handleSubmit } = this.props;
         
         return (
-            <div className="wrapper flex-center">
+            <div className="wrapper wrapper-background-image flex-center">
                 <form id="sign" onSubmit={handleSubmit(this.onSubmit)}>
                     <img src="/img/logo.svg" width="150" alt="Logo Periscope"/>
                     <h1 className="margin-md-bottom margin-sm-top darkBlueGrey">Periscope</h1>
