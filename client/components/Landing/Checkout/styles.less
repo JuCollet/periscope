@@ -50,18 +50,30 @@
     margin-top: 48px;
     padding: 20px 15px 15px 25px;
     border-radius: 4px;
-    background-color: darken(@darkBlueGrey, 10%);
+    background-color: darken(@darkBlueGrey, 7%);
   }
 
   hr {
     border-width: 1px 0px 0px 0px;
     margin: 15px 0px 10px 0px;
-    border-color: darken(@darkBlueGrey, 10%);
+    border-style: solid;
+    border-color: @darkBlueGrey;
     width: 40px;
   }
   
   p {
     margin: 10px 0px 10px 0px;
+  }
+  
+  .payments-logos {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 25px;
+    border-radius: 2px;
+  }
+  
+  .payments-logos:nth-child(2) {
+    margin-left: 25px;
   }
   
   .checkout-recap-button{

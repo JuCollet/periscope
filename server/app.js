@@ -3,19 +3,23 @@
 const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
+      morgan = require('morgan'),
       albumRouter = require('./routes/albums'),
       uploadRouter = require('./routes/upload'),
       photosRouter = require('./routes/photos'),
+      userRouter = require('./routes/users'),
       app = express();
 
 require('./db');
 
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/albums', albumRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/photos', photosRouter);
+app.use('/api/users', userRouter);
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 
