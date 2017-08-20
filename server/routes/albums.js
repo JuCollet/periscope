@@ -3,6 +3,7 @@
 const express = require('express'),
       mongoose = require('mongoose'),
       Album = require('../models/album'),
+      albumController = require('../controllers/albums'),
       albumRouter = express.Router(),
       aws = require('aws-sdk'),
       s3 = new aws.S3({
@@ -16,22 +17,7 @@ const express = require('express'),
       });         
 
 albumRouter.route('/')
-    .get(function(req,res,next){
-        Album.aggregate([
-            {
-                $project : {
-                    name: 1,
-                    description : 1,
-                    updatedAt : 1,
-                    albumThumb : 1,
-                    numberOfPhotos : { $size: "$photos"}
-                }
-            }
-        ], function(err, albums){
-            if(err) return next(err);
-            res.json(albums);
-        });
-    })
+    .get(albumController.getAlbums)
     .post(function(req,res,next){
         const newAlbum = req.body;
         Album.create(newAlbum, function(err, album){
@@ -87,54 +73,13 @@ albumRouter.route('/')
     });
 
 albumRouter.route('/searchalbum/')
-    .post(function(req,res,next){
-        Album.aggregate([
-            {
-                $match : { tags : {$regex : req.body.tags, $options: 'i'}},
-            },
-            {
-                $project : {
-                    name: 1,
-                    description : 1,
-                    updatedAt : 1,
-                    albumThumb : 1,
-                    numberOfPhotos : { $size: "$photos"}
-                }
-            }
-        ],function(err, albums){
-            if(err) return next(err);
-            res.json(albums);
-        });
-    });
+    .post(albumController.searchAlbum);
     
 albumRouter.route('/searchphotos/')
-    .post(function(req,res,next){
-        Album.aggregate([
-            {
-                $match : { "photos.tags" : {$regex : req.body.tags, $options: 'i'}},
-            },
-            {
-                $project : {
-                    name: 1,
-                    description : 1,
-                    updatedAt : 1,
-                    albumThumb : 1,
-                    numberOfPhotos : { $size: "$photos"}
-                }
-            }
-        ],function(err, albums){
-            if(err) return next(err);
-            res.json(albums);
-        });
-    });
+    .post(albumController.searchPhotos);
     
 albumRouter.route('/:id')
-    .get(function(req,res,next){
-        Album.findById(req.params.id, function(err,album){
-            if(err) return next(err);
-            res.json(album);
-        });
-    });
+    .get(albumController.getAlbum);
     
 albumRouter.route('/updateAlbumThumb/')
     .put(function(req,res,next){
