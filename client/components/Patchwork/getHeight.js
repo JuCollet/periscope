@@ -14,7 +14,7 @@ const _getImgHeight = function(index, array, columns, viewWidth, gutter){
     const widthRatio = (viewWidth-gutter*(columns-1))/rowWidth;
     let finalHeight = widthRatio*666;
     if(index === 0) {sizeReference=finalHeight;}
-    return finalHeight/sizeReference > 1.5 && columns > 1 ? sizeReference : finalHeight;
+    return finalHeight/sizeReference > 1.5 && columns > 2 ? sizeReference : finalHeight;
 };
 
 const getImgHeight = function(array, viewWidth, gutter, breakpoints){

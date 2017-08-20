@@ -1,0 +1,112 @@
+.wrapper-planboxes {
+    display: flex;
+    padding: 0px 40px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-top: 50px;
+    
+    
+    .planbox {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        flex: 1 1 auto;
+        background-color: darken(@darkBlueGrey, 5%);
+        margin-right: 20px;
+        margin-bottom: 20px;  
+        max-width: 300px;
+        min-width: 275px;
+        border-radius: 4px;
+        text-align: center;
+        color: white;
+        
+        hr {
+            border-width: 1px 0px 0px 0px;
+            border-color: @darkBlueGrey;
+            opacity: .3;
+            width: 100px;
+        }
+        
+    }
+    
+    .planbox:last-child {
+        margin-right: 0px;
+    }    
+    
+    .planbox-image{
+        padding-top: 30px;
+    }
+    
+    .planbox-body {
+        font-weight: 300;
+    }
+}
+
+.planbox-cta {
+    display: inline-block;
+    padding: 10px 40px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    border-radius: 3px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: .2s;
+    text-transform: uppercase;
+    color: white;
+}
+
+.planbox-cta:hover {
+    box-shadow : 1px 1px 4px 4px rgba(0,0,0,.07);
+}  
+
+@media(max-width: @screen-md-min){
+    
+    .wrapper-planboxes{
+        padding-top: 100px;
+        justify-content: space-around;
+
+        .planbox {
+            background-color: unset;
+            border-radius: unset;
+            min-width: 150px;
+            margin-top: 50px;
+            margin-right: 0px;
+            padding-bottom: 20px;
+        }
+        
+        .planbox {
+            background-color: unset;
+            border-radius: unset;
+            min-width: 150px;
+            margin-top: 30px;
+            margin-right: 0px;
+            padding-bottom: 20px;
+        }
+        
+        @media(max-width: 919px){
+            .planbox:last-child{
+                margin-top: 0px;
+            }
+        }
+        
+    }
+}
+
+@media(max-width: 645px){
+
+    .wrapper-planboxes{
+
+        .planbox {
+            margin-top: unset;
+            border-bottom: 1px solid darken(@darkBlueGrey, 10%);
+            max-width: 275px;
+        }
+        
+        .planbox:last-child {
+            border-bottom: 0px;
+        }        
+    
+    }
+}

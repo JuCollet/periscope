@@ -13,6 +13,7 @@
 @import "../containers/Cards/styles.less";
 @import "../containers/Albums/styles.less";
 @import "../containers/Dropbox/styles.less";
+@import "../components/Landing/styles.less";
 @import "../components/Loading/styles.less";
 @import "../components/Patchwork/styles.less";
 
@@ -28,7 +29,8 @@
 @darkBlueGrey: #5A646E;
 @green: #4EE898;
 @red: #FF3F00;
-
+@orange : #F5A623;
+@blue : #23A2F5;
 
 // BASE //
 
@@ -182,11 +184,6 @@ h3 {
     .wrapper-padding {
         padding: 80px 20px 20px 20px;  
     }
-    
-    .wrapper-background-image {
-        background-image: url('pattern.png');
-        background-repeat: repeat;
-    }
 
 }
 
@@ -241,6 +238,14 @@ h3 {
 
 .bkg-green {
     background-color: @green;
+}
+
+.bkg-orange {
+    background-color: @orange;
+}
+
+.bkg-blue {
+    background-color: @blue;
 }
 
 .bkg-lightGrey {

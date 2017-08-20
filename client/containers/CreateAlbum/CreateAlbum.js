@@ -76,10 +76,9 @@ class Upload extends Component {
                             </div>
                             <br/>
                             <div className="UploadTagsDisplay">
-                            <Tags tags={this.state.tags} />
+                                <Tags tags={this.state.tags} />
                             </div>
-                            <br/>
-                            <button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button>
+                            <p><button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button></p>
                         </form>
                     </div>
                 </div>

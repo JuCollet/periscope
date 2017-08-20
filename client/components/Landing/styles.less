@@ -1,0 +1,16 @@
+@import "./Header/styles.less";
+@import "./Plans/Planbox/styles.less";
+@import "./Checkout/styles.less";
+
+.planboxes-presentation {
+    height: 400px;
+    width: 80%;
+    flex: 1 1 auto;
+    background-color: red;
+}   
+
+@media (min-width: @screen-md-min){
+    .planboxes-presentation {
+        display: none;
+    }  
+}

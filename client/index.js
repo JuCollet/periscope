@@ -10,8 +10,9 @@ import promise from "redux-promise";
 import 'normalize.css';
 import './styles/styles.less';
 
-import LogIn from "./containers/Login/Login";
 import App from "./components/app";
+import Landing from "./components/Landing/Landing";
+import LogIn from "./containers/Login/Login";
 
 import reducers from "./reducers";
 
@@ -25,9 +26,9 @@ ReactDOM.render(
         <BrowserRouter>
             <div className="container">
                 <Switch>
-                    <Route exact path="/" component={LogIn} />
+                    <Route path="/login" component={LogIn} />
                     <Route path ="/app" component={App} />
-                    <Route path ="/" component={LogIn} />
+                    <Route path ="/" component={Landing} />
                 </Switch>
             </div>
         </BrowserRouter>
