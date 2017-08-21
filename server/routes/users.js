@@ -9,4 +9,7 @@ const express = require('express'),
 userRouter.route('/signup')
     .post(Authentication.signup);
     
+userRouter.route('/signin')
+    .post(Authentication.signin);
+    
 module.exports = userRouter;

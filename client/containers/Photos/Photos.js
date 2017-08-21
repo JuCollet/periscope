@@ -53,7 +53,7 @@ class Photos extends Component {
     
     return (
       <div className="wrapper wrapper-padding">
-        <p><a href="#" onClick={_=>this.props.history.push(`/app/albums/`)}><i className="fa fa-chevron-left"></i>&nbsp;&nbsp;Retour</a></p>
+        <p><NavLink to="/app/albums/"><i className="fa fa-chevron-left"></i><span className="photos-back-link">&nbsp;&nbsp;Retour</span></NavLink></p>
         <span className="albumTitle">{album.name}</span>
         <span className="albumPhotographer">par {album.photographer}</span>
         <span className="albumDescription">{album.description}</span>

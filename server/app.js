@@ -27,6 +27,15 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
+app.use(function(err,req,res,next){
+  res.status(err.status || 500);
+  res.json({
+    error : {
+      message : err.message
+    }
+  });
+});
+
 app.listen(process.env.PORT || 8080, function(){
   console.log('Server running');
 });
