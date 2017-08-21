@@ -27,12 +27,5 @@ exports.signup = function(req,res,next){
 };
 
 exports.signin = function(req,res,next){
-    User.findOne({ email : req.body.email }, function(err, user){
-        if(err) return next(err);
-        if(user){
-            res.json({token : createToken(user)});
-        } else {
-            res.json({ status : "No user found"});
-        }
-    });
+    res.json({token : createToken(req.user)});
 };
