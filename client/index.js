@@ -11,7 +11,7 @@ import 'normalize.css';
 import './styles/styles.less';
 
 import App from "./components/app";
-import Landing from "./components/Landing/Landing";
+import Landing from "./containers/Landing/Landing";
 import LogIn from "./containers/Login/Login";
 
 import reducers from "./reducers";
