@@ -54,12 +54,19 @@ export default class Patchwork extends Component {
         
         if(this.state.photosHeight){
             return photos.map(function(photo, index){
-                        if(photo.tags.some(function(tag){return tag.indexOf(searchTerm) !== -1}) || searchTerm === undefined || searchTerm === ''){
-                            return <NavLink to={`/app/photo/${albumId}/${photo._id}`} key={photo._id}> <img src={photo.thumb} height={this.state.photosHeight[index]}  /></NavLink>;
-                        } else {
-                            return null;
-                        }
-                    }.bind(this));
+                const img = <NavLink to={`/app/photo/${albumId}/${photo._id}`} key={photo._id}> <img src={photo.thumb} height={this.state.photosHeight[index]}  /></NavLink>;
+                const filterTags = searchTerm.split(' ');
+                const filterResult = filterTags.map(function(filterTag){
+                        return photo.tags.some(function(tag){return tag.indexOf(filterTag) !== -1});
+                    });
+                if(searchTerm === undefined || searchTerm === ''){
+                    return img;
+                } else if(filterResult.indexOf(false) === -1){
+                    return img;
+                } else {
+                    return null;
+                }
+            }.bind(this));
         } else {
             return null;
         }
