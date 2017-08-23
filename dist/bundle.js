@@ -736,7 +736,7 @@ var PHOTO_DELETE = exports.PHOTO_DELETE = "photo_delete";
 var PHOTO_UPDATE = exports.PHOTO_UPDATE = "photo_update";
 var PHOTO_SEARCH = exports.PHOTO_SEARCH = "photo_search";
 var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
-var USER_LOGIN = exports.USER_LOGIN = "user_login";
+var USER_SIGNIN = exports.USER_SIGNIN = "user_signin";
 var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
 var SEARCH_TERM_UPDATE = exports.SEARCH_TERM_UPDATE = "search_term_update";
 var SEARCH_TYPE_TOGGLE = exports.SEARCH_TYPE_TOGGLE = "search_type_toggle";
@@ -1349,11 +1349,7 @@ var LogIn = function (_Component) {
     }, {
         key: "onSubmit",
         value: function onSubmit(data) {
-            var _this2 = this;
-
-            this.props.userLogin(data, function (_) {
-                _this2.props.history.push('/app/albums');
-            });
+            this.props.signInUser(data);
             this.props.reset();
         }
     }, {
@@ -1374,7 +1370,7 @@ var LogIn = function (_Component) {
                         { className: "margin-md-bottom margin-sm-top darkBlueGrey" },
                         "Periscope"
                     ),
-                    _react2.default.createElement(_reduxForm.Field, { className: "small-input margin-md-bottom", name: "username", type: "text", placeholder: "Login", ariaLabel: "username", component: this.renderField }),
+                    _react2.default.createElement(_reduxForm.Field, { className: "small-input margin-md-bottom", name: "email", type: "text", placeholder: "E-Mail", ariaLabel: "e-mail", component: this.renderField }),
                     _react2.default.createElement(_reduxForm.Field, { className: "small-input margin-lg-bottom", name: "password", type: "password", placeholder: "Password", ariaLabel: "password", component: this.renderField }),
                     _react2.default.createElement(
                         "button",
@@ -1396,8 +1392,8 @@ var LogIn = function (_Component) {
 
 function validate(values) {
     var errors = {};
-    if (!values.username) {
-        errors.username = "No valid login";
+    if (!values.email) {
+        errors.email = "No valid E-mail";
     }
     if (!values.password) {
         errors.password = "No valid password";
@@ -1406,7 +1402,7 @@ function validate(values) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ userLogin: _user.userLogin }, dispatch);
+    return (0, _redux.bindActionCreators)({ signInUser: _user.signInUser }, dispatch);
 }
 
 exports.default = (0, _reduxForm.reduxForm)({
@@ -1614,21 +1610,37 @@ function fileUpload(files, id, cb) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.userLogin = userLogin;
+exports.signInUser = signInUser;
+exports.signUpUser = signUpUser;
 
 var _actiontypes = __webpack_require__(17);
 
-var _users = __webpack_require__(239);
+var _axios = __webpack_require__(51);
 
-function userLogin(user, cb) {
+var _axios2 = _interopRequireDefault(_axios);
 
-    if (user.username === _users.usersMock.login && user.password === _users.usersMock.password) {
-        cb();
-    }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    return {
-        type: _actiontypes.USER_LOGIN,
-        payload: _users.usersMock
+var baseUrl = "/api/users/";
+
+function signInUser(_ref) {
+    var email = _ref.email,
+        password = _ref.password;
+
+    return function (dispatch) {
+        _axios2.default.post(baseUrl + "signin", { email: email, password: password }).then(function (res) {
+            console.log(res);
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    };
+}
+
+function signUpUser(user) {
+    return function (dispatch) {
+        _axios2.default.post(baseUrl + "signup", user).then(function (res) {
+            console.log(res);
+        });
     };
 }
 
@@ -2647,6 +2659,8 @@ var _reactRedux = __webpack_require__(8);
 
 var _redux = __webpack_require__(9);
 
+var _user = __webpack_require__(220);
+
 var _reactRouterDom = __webpack_require__(13);
 
 var _PlansData = __webpack_require__(121);
@@ -2693,7 +2707,9 @@ var Checkout = function (_Component) {
         }
     }, {
         key: "onSubmit",
-        value: function onSubmit(data) {}
+        value: function onSubmit(data) {
+            this.props.signUpUser(_extends({}, data, { plan: this.props.match.params.plan }));
+        }
     }, {
         key: "render",
         value: function render() {
@@ -2725,7 +2741,7 @@ var Checkout = function (_Component) {
                         }),
                         _react2.default.createElement(
                             "span",
-                            { className: "planbox-cta bkg-orange" },
+                            { onClick: this.props.handleSubmit(this.onSubmit), className: "planbox-cta bkg-orange" },
                             "INSCRIPTION"
                         )
                     )
@@ -2804,11 +2820,12 @@ var Checkout = function (_Component) {
 
 function validate(values) {
     var errors = {};
+
     return errors;
 }
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({}, dispatch);
+    return (0, _redux.bindActionCreators)({ signUpUser: _user.signUpUser }, dispatch);
 }
 
 exports.default = (0, _reduxForm.reduxForm)({ validate: validate, form: "checkoutForm" })((0, _reactRedux.connect)(null, mapDispatchToProps)(Checkout));
@@ -3800,24 +3817,6 @@ _reactDom2.default.render(_react2.default.createElement(
         )
     )
 ), document.getElementById('root'));
-
-/***/ }),
-
-/***/ 239:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var usersMock = exports.usersMock = {
-  name: "Julien",
-  admin: true,
-  login: "mock",
-  password: "mock"
-};
 
 /***/ }),
 
@@ -14568,7 +14567,7 @@ var fields = [{
     placeholder: "Nom",
     type: "text"
 }, {
-    name: "eMail",
+    name: "email",
     placeholder: "Adresse e-mail",
     type: "email"
 }, {

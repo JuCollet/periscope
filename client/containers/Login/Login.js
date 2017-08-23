@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
-import { userLogin } from "../../actions/user";
+import { signInUser } from "../../actions/user";
 import { connect } from "react-redux";
 import { Link } from"react-router-dom";
 
@@ -19,7 +19,7 @@ class LogIn extends Component {
     }
     
     onSubmit(data){
-        this.props.userLogin(data, _ => {this.props.history.push('/app/albums')});
+        this.props.signInUser(data);
         this.props.reset();
     }
     
@@ -32,7 +32,7 @@ class LogIn extends Component {
                 <form id="sign" onSubmit={handleSubmit(this.onSubmit)}>
                     <img src="/img/logo.svg" width="150" alt="Logo Periscope"/>
                     <h1 className="margin-md-bottom margin-sm-top darkBlueGrey">Periscope</h1>
-                    <Field className="small-input margin-md-bottom" name="username" type="text" placeholder="Login" ariaLabel="username" component={this.renderField} />
+                    <Field className="small-input margin-md-bottom" name="email" type="text" placeholder="E-Mail" ariaLabel="e-mail" component={this.renderField} />
                     <Field className="small-input margin-lg-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
                     <button className="small-button small-button-anim" type="submit">Sign in</button>
                 </form>
@@ -40,13 +40,12 @@ class LogIn extends Component {
             </div>
         );
     }
-    
 }
 
 function validate(values){
     const errors = {};
-    if(!values.username){
-        errors.username = "No valid login";
+    if(!values.email){
+        errors.email = "No valid E-mail";
     }
     if (!values.password){
         errors.password = "No valid password";
@@ -55,7 +54,7 @@ function validate(values){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ userLogin }, dispatch);
+    return bindActionCreators({ signInUser }, dispatch);
 }
 
 export default reduxForm({

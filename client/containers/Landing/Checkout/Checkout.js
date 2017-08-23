@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form"; 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { signUpUser } from "../../../actions/user";
 import { Link } from"react-router-dom";
 import PlansData from "../Plans/PlansData";
 import formFields from "./formFields";
@@ -21,7 +22,7 @@ class Checkout extends Component {
     }
     
     onSubmit(data){
-        
+        this.props.signUpUser({...data, plan : this.props.match.params.plan });
     }
     
     render(){
@@ -36,7 +37,7 @@ class Checkout extends Component {
                     {formFields.map(formField => {
                         return <Field key={formField.name} name={formField.name} placeholder={formField.placeholder} type={formField.type} component={this.renderInput}></Field>;
                     })}
-                    <span className="planbox-cta bkg-orange">INSCRIPTION</span>
+                    <span onClick={this.props.handleSubmit(this.onSubmit)} className="planbox-cta bkg-orange">INSCRIPTION</span>
                   </form>
                 </div>
                 <div className="checkout-recap">
@@ -59,11 +60,12 @@ class Checkout extends Component {
 
 function validate(values){
     const errors = {};
+    
     return errors;
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ signUpUser }, dispatch);
 }
 
 export default reduxForm({validate, form: "checkoutForm"})(connect(null, mapDispatchToProps)(Checkout));

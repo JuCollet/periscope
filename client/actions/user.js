@@ -1,15 +1,25 @@
-import { USER_LOGIN } from "../actiontypes/";
-import { usersMock } from "../mock/users";
+import { USER_SIGNIN } from "../actiontypes/";
+import axios from "axios";
 
-export function userLogin(user, cb){
+const baseUrl = "/api/users/";
 
-    if(user.username === usersMock.login && user.password === usersMock.password){
-        cb();
-    }
-    
-    return {
-        type : USER_LOGIN,
-        payload : usersMock
-    }
-    
+
+export function signInUser({email, password}){
+    return function(dispatch){
+        axios.post(baseUrl+"signin", {email, password})
+            .then(function(res){
+            console.log(res);
+            })
+            .catch(function(err){
+                console.log(err.message);
+            });
+    };
+}
+
+export function signUpUser(user){
+    return function(dispatch){
+        axios.post(baseUrl+"signup", user).then(function(res){
+            console.log(res);
+        });
+    };
 }

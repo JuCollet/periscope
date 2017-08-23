@@ -13,13 +13,15 @@ const userSchema = new Schema({
         unique: true
     },
     password : String,
-    plan : String
+    plan : String,
+    bucket: String
 });
 
 userSchema.pre('save', function(next){
   const user = this;
   bcrypt.hash(user.password, 10, function(err, hash){
     if(err)throw err;
+    user.bucket = Date.now();
     user.password = hash;
     next();
   });

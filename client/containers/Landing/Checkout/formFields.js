@@ -10,7 +10,7 @@ const fields = [
         type: "text"
     },
     {
-        name : "eMail",
+        name : "email",
         placeholder : "Adresse e-mail",
         type: "email"
     },
