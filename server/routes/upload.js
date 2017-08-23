@@ -50,7 +50,7 @@ uploadRouter.route('/:id')
         });
     };
     
-    const endPhotoProcess = function(filename, filePath, imgWidth, imgHeight){
+    const endPhotoProcess = function(filename, filePath, imgWidth, imgHeight, imgSize){
         
         let newPhoto = {
             filename: `${id}${filename}`,
@@ -58,7 +58,8 @@ uploadRouter.route('/:id')
             medium: `${process.env.S3_URL}medium${id}${filename}`,
             original: `${process.env.S3_URL}original${id}${filename}`,
             width: imgWidth,
-            height: imgHeight
+            height: imgHeight,
+            size: imgSize
         };
         
         Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, { new : true }, function(err, album){
@@ -83,7 +84,7 @@ uploadRouter.route('/:id')
                     metadata.height = metadata.width;
                     metadata.width = heightTemp;
                 }
-                endPhotoProcess(file.filename, file.path, metadata.width, metadata.height);
+                endPhotoProcess(file.filename, file.path, metadata.width, metadata.height, file.size);
             });
         };
 

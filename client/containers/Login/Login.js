@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
-import { signInUser } from "../../actions/user";
+import { signInUser, signInUserResetError } from "../../actions/user";
 import { connect } from "react-redux";
-import { Link } from"react-router-dom";
+import { Link, withRouter } from"react-router-dom";
 
 class LogIn extends Component {
     
     constructor(props){
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.tiltLoginBox = this.tiltLoginBox.bind(this);
     }
     
     renderField(field){
@@ -18,9 +19,43 @@ class LogIn extends Component {
         );
     }
     
+    componentWillReceiveProps(nextProps){
+        if(nextProps.error){
+            this.tiltLoginBox();
+        }
+    }
+    
     onSubmit(data){
-        this.props.signInUser(data);
-        this.props.reset();
+        this.props.signInUser(data, this.props.history, this.props.reset);
+    }
+    
+    tiltLoginBox(){
+        const box = document.getElementById('sign');
+        let counter = 0;
+        let left = true;
+        
+        this.props.signInUserResetError();
+
+        const tiltBox = function(){
+            setTimeout(function(){
+                if(left){
+                    box.style.right = "0px";
+                    box.style.left = "20px";   
+                } else {
+                    box.style.right = "20px";
+                    box.style.left = "0px";     
+                }
+                left = !left;
+                counter++;
+                if(counter === 7){
+                    box.style.right = "0px";
+                    box.style.left = "0px";
+                } else {
+                    tiltBox();
+                }
+            }, 50);            
+        };
+        tiltBox();
     }
     
     render () {
@@ -54,10 +89,16 @@ function validate(values){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ signInUser }, dispatch);
+    return bindActionCreators({ signInUser, signInUserResetError }, dispatch);
+}
+
+function mapStateToProps(state){
+    return {
+        error : state.user.error   
+    }
 }
 
 export default reduxForm({
     validate,
     form : 'LoginForm'
-})(connect(null, mapDispatchToProps)(LogIn));
+})(connect(mapStateToProps, mapDispatchToProps)(withRouter(LogIn)));

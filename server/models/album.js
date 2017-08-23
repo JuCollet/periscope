@@ -10,6 +10,7 @@ const photoSchema = new mongoose.Schema({
     original : String,
     width: Number,
     height: Number,
+    size: Number,
     tags : [String],
     rating : {
         type: Number,
