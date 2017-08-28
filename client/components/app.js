@@ -3,6 +3,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 
+import require_auth from "./require_auth";
+
 import Sidemenu from "../containers/Sidemenu/Sidemenu";
 import Header from "../containers/Header/Header";
 import CreateAlbum from "../containers/CreateAlbum/CreateAlbum";
@@ -11,7 +13,7 @@ import Albums from "../containers/Albums/Albums";
 import Photos from "../containers/Photos/Photos";
 import Photo from "../containers/Photo/Photo";
 
-export default class App extends Component {
+class App extends Component {
     
     render(){
         return(
@@ -30,3 +32,5 @@ export default class App extends Component {
     }
     
 }
+
+export default require_auth(App);

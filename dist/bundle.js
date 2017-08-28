@@ -15,8 +15,7 @@ var _actiontypes = __webpack_require__(17);
 
 function toggleMenu() {
     return {
-        type: _actiontypes.TOGGLE_MENU,
-        payload: null
+        type: _actiontypes.TOGGLE_MENU
     };
 }
 
@@ -1134,6 +1133,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(13);
 
+var _require_auth = __webpack_require__(214);
+
+var _require_auth2 = _interopRequireDefault(_require_auth);
+
 var _Sidemenu = __webpack_require__(239);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
@@ -1203,7 +1206,7 @@ var App = function (_Component) {
     return App;
 }(_react.Component);
 
-exports.default = App;
+exports.default = (0, _require_auth2.default)(App);
 
 /***/ }),
 
@@ -3401,7 +3404,6 @@ var PhotoInfo = function (_Component) {
         value: function componentDidMount() {
             var tags = this.props.photo.tags;
 
-
             if (tags !== null) this.setState({ tags: this.props.photo.tags.toString() });
         }
     }, {
@@ -3419,7 +3421,6 @@ var PhotoInfo = function (_Component) {
     }, {
         key: "tagsEditRender",
         value: function tagsEditRender() {
-
             return _react2.default.createElement(
                 "div",
                 { className: "input-group" },
@@ -3797,6 +3798,7 @@ var Sidemenu = function (_Component) {
   _createClass(Sidemenu, [{
     key: "onSignOut",
     value: function onSignOut() {
+      this.props.toggleMenu();
       this.props.signOutUser();
     }
   }, {
@@ -3919,10 +3921,6 @@ __webpack_require__(219);
 
 __webpack_require__(220);
 
-var _require_auth = __webpack_require__(214);
-
-var _require_auth2 = _interopRequireDefault(_require_auth);
-
 var _app = __webpack_require__(213);
 
 var _app2 = _interopRequireDefault(_app);
@@ -3957,7 +3955,7 @@ _reactDom2.default.render(_react2.default.createElement(
                 _reactRouterDom.Switch,
                 null,
                 _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
-                _react2.default.createElement(_reactRouterDom.Route, { path: '/app', component: (0, _require_auth2.default)(_app2.default) }),
+                _react2.default.createElement(_reactRouterDom.Route, { path: '/app', component: _app2.default }),
                 _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _Landing2.default })
             )
         )
@@ -14728,8 +14726,8 @@ var baseUrl = "/api/photos/";
 
 function photoDelete(albumId, photoId, filename, cb) {
     return function (dispatch) {
+        cb();
         _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }).then(function (album) {
-            cb();
             dispatch({
                 type: _actiontypes.PHOTO_DELETE,
                 payload: album
@@ -14740,8 +14738,8 @@ function photoDelete(albumId, photoId, filename, cb) {
 
 function photoUpdate(photoId, data, cb) {
     return function (dispatch) {
+        cb();
         _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }).then(function (album) {
-            cb();
             dispatch({
                 type: _actiontypes.PHOTO_UPDATE,
                 payload: album

@@ -20,7 +20,6 @@ class PhotoInfo extends Component {
     
     componentDidMount(){
         const { tags } = this.props.photo;
-        
         if(tags !== null)this.setState({tags:this.props.photo.tags.toString()});
     }
     
@@ -35,7 +34,6 @@ class PhotoInfo extends Component {
     }
     
     tagsEditRender(){
-        
         return(
             <div className="input-group">
                 <form onSubmit={this.onTagsSubmit}>

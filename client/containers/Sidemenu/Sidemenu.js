@@ -15,6 +15,7 @@ class Sidemenu extends Component {
   }
   
   onSignOut(){
+    this.props.toggleMenu();
     this.props.signOutUser();
   }
   

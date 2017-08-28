@@ -5,8 +5,8 @@ const baseUrl = "/api/photos/";
 
 export function photoDelete(albumId, photoId, filename, cb){
     return function(dispatch){
+        cb();
         axios.put(baseUrl+"delete/", {albumId, photoId, filename}).then( album => {
-            cb();
             dispatch({
                 type : PHOTO_DELETE,
                 payload : album    
@@ -17,8 +17,8 @@ export function photoDelete(albumId, photoId, filename, cb){
 
 export function photoUpdate(photoId, data, cb){
     return function(dispatch){
+        cb();
         axios.put(baseUrl+"tagsupdate/", {photoId, data}).then( album => {
-            cb();
             dispatch({
                 type: PHOTO_UPDATE,
                 payload: album 

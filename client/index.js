@@ -10,7 +10,6 @@ import thunk from "redux-thunk";
 import 'normalize.css';
 import './styles/styles.less';
 
-import require_auth from "./components/require_auth";
 import App from "./components/app";
 import Landing from "./containers/Landing/Landing";
 import LogIn from "./containers/Login/Login";
@@ -28,7 +27,7 @@ ReactDOM.render(
             <div className="container">
                 <Switch>
                     <Route path="/login" component={LogIn} />
-                    <Route path ="/app" component={require_auth(App)} />
+                    <Route path ="/app" component={App} />
                     <Route path ="/" component={Landing} />
                 </Switch>
             </div>
