@@ -33,10 +33,10 @@ export default class Patchwork extends Component {
     
     stateUpdate(){
         const { photos } = this.props;
-        const newviewWidth = document.getElementById("patchwork").offsetWidth;
+        const newviewWidth = document.getElementById("patchwork").offsetWidth - 5;
         this.setState({
             photosHeight : getHeight(photos, newviewWidth, 13, breakpoints)
-        });        
+        });
     }
 
     componentDidMount(){

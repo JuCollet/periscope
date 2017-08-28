@@ -95,7 +95,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
     return {
         error : state.user.error   
-    }
+    };
 }
 
 export default reduxForm({

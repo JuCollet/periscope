@@ -5,8 +5,18 @@ import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { toggleMenu } from "../../actions/menu";
+import { signOutUser } from "../../actions/user";
 
 class Sidemenu extends Component {
+  
+  constructor(props){
+    super(props);
+    this.onSignOut = this.onSignOut.bind(this);
+  }
+  
+  onSignOut(){
+    this.props.signOutUser();
+  }
   
   render(){
     
@@ -21,7 +31,7 @@ class Sidemenu extends Component {
           <li className="sidemenu-desktop"><NavLink to="/app/upload/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>
           <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
           <li>Favoris</li>
-          <li><a href="/">Déconnexion</a></li>
+          <li><a href="#" onClick={this.onSignOut} >Déconnexion</a></li>
         </ul>
       </div>
     );
@@ -29,7 +39,7 @@ class Sidemenu extends Component {
 };
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({toggleMenu}, dispatch);
+  return bindActionCreators({toggleMenu, signOutUser}, dispatch);
 }
 
 function mapStateToProps(state){

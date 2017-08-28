@@ -16,15 +16,13 @@ export default class Home extends Component {
     
     render(){
         return(
-            <BrowserRouter>
-                <div className="container">
-                                    <Header/>
-                    <Switch>
-                        <Route exact path="/" component={Plans} />
-                        <Route path="/checkout/:plan" component={Checkout} />
-                    </Switch>
-                </div>
-            </BrowserRouter>
+            <div className="container">
+                <Header/>
+                <Switch>
+                    <Route exact path="/" component={Plans} />
+                    <Route path="/checkout/:plan" component={Checkout} />
+                </Switch>
+            </div>
         );
     }
     
