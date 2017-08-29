@@ -38,7 +38,7 @@ export default class Patchwork extends Component {
             photosHeight : getHeight(photos, newviewWidth, 13, breakpoints)
         });
     }
-
+    
     componentDidMount(){
         this.stateUpdate();
         window.addEventListener("resize", this.stateUpdate);

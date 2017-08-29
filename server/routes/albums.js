@@ -5,6 +5,7 @@ const express = require('express'),
       Album = require('../models/album'),
       albumController = require('../controllers/albums'),
       albumRouter = express.Router(),
+      passportService = require('../services/passport'),
       aws = require('aws-sdk'),
       s3 = new aws.S3({
         endpoint: 's3-eu-central-1.amazonaws.com',
@@ -17,7 +18,7 @@ const express = require('express'),
       });         
 
 albumRouter.route('/')
-    .get(albumController.getAlbums)
+    .get(passportService.requireAuth, albumController.getAlbums)
     .post(function(req,res,next){
         const newAlbum = req.body;
         Album.create(newAlbum, function(err, album){

@@ -46,7 +46,7 @@ class PhotoInfo extends Component {
     onTagsSubmit(e){
         e.preventDefault();
         const data = e.currentTarget.tags.value.replace(/ /g,'').split(",");
-        this.props.photoUpdate(this.props.photo._id, data, this.setState({tagEdit:!this.state.tagEdit}));
+        this.props.photoUpdate(this.props.photo._id, data, _=>this.setState({tagEdit:!this.state.tagEdit}));
     }
 
     render(){

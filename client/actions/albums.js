@@ -1,3 +1,5 @@
+/*global localStorage*/
+
 import axios from "axios";
 import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
 
@@ -5,7 +7,9 @@ const baseUrl = "/api/albums/";
 
 export function albumsFetch(){
     return function(dispatch){
-        axios.get(baseUrl).then(albums => {
+        axios.get(baseUrl, {
+            headers : {authorization : localStorage.getItem('token')}
+        }).then(albums => {
             dispatch({
                 type : ALBUMS_FETCH,
                 payload : albums            

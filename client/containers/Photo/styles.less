@@ -11,14 +11,6 @@
     opacity: 0;
 }
 
-@media (min-width: @screen-sm-min) {
-
-    #img-container {
-        position: relative;
-    }
-
-}
-
 .photos-close-button {
     position: absolute;
     top: 15px;
@@ -32,6 +24,15 @@
 
 .photos-close-button:hover {
     opacity: 1;
+}
+
+@media (min-width: @screen-sm-min) {
+
+    .photos-close-button {
+        top: 85px;
+        right: 30px;
+    }
+
 }
 
 .photoButtonsBox {

@@ -17,8 +17,8 @@ export function photoDelete(albumId, photoId, filename, cb){
 
 export function photoUpdate(photoId, data, cb){
     return function(dispatch){
-        cb();
         axios.put(baseUrl+"tagsupdate/", {photoId, data}).then( album => {
+            cb();
             dispatch({
                 type: PHOTO_UPDATE,
                 payload: album 

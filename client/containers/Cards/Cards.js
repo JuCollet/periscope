@@ -9,8 +9,6 @@ export default class Card extends Component {
   cardStyle = _ => {
     if(this.props.album.albumThumb){
       return { backgroundImage: 'url(' + this.props.album.albumThumb + ')'};
-    } else if(this.props.album.photos){
-      return { backgroundImage: 'url(' + this.props.album.photos[0].thumb + ')'};
     } else {
       return { backgroundImage: 'url(/img/nophoto.png)'};
     }

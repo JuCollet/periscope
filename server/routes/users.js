@@ -7,18 +7,15 @@ const express = require('express'),
       passportService = require('../services/passport'),
       passport = require('passport'),
       userRouter = express.Router();
-      
-const requireAuth = passport.authenticate('jwt', {session : false});
-const requireSignin = passport.authenticate('local', {session : false});
 
 userRouter.route('/signup')
     .post(Authentication.signup);
     
 userRouter.route('/signin')
-    .post(requireSignin, Authentication.signin);
+    .post(passportService.requireSignin, Authentication.signin);
     
 userRouter.route('/')
-    .get(requireAuth, function(req, res, next){
+    .get(passportService.requireAuth, function(req, res, next){
         res.send({hello:"coucou"});
     });
     
