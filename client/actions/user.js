@@ -43,7 +43,7 @@ export function signUpUser(user, history){
     };
 }
 
-export function signInUserResetError(){
+export function signInErrorReset(){
     return {
         type: USER_AUTH_RESET_ERROR
     };

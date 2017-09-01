@@ -1,0 +1,33 @@
+.bulletNav {
+    list-style: none;
+    padding: 0px;
+    
+    li {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background-color: #efefef;
+        cursor: pointer;
+        box-shadow: inset 1px 1px 1px 1px rgba(100,100,100,0.1);
+    }
+    
+    a {
+        margin-right: 7px;
+    }
+    
+    .active {
+        background-color: #cccccc;
+        box-shadow: unset;
+        cursor: default;
+    }
+
+    li:last-child {
+        margin-right: unset;
+    }
+    
+    li:hover:not(.active) {
+        background-color: #777777;
+    }
+
+}

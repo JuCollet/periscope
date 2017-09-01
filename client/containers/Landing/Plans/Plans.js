@@ -1,22 +1,35 @@
-import React, { Component } from "react";
-import Planbox from "./Planbox/Planbox";
-import PlansData from "./PlansData";
+import React, { Component} from 'react';
+import SliderSelect from "../../../components/SliderSelect/SliderSelect";
+import plansOffer from "../plansOffer"; 
+import "./Styles.less";
 
 export default class Plans extends Component {
-
-    renderPlanBoxes(){
-        return PlansData.map(function(plan, index){
-            return <Planbox key={index} plan={index} img={plan.img} name={plan.name} storage={plan.storage} usersText={plan.usersText} users={plan.users} color={plan.color} price={plan.price} />;
+    
+    constructor(props){
+        super(props);
+        this.state = {SelectedPlan : 0},
+        this.SliderCallback = this.SliderCallback.bind(this);
+    }
+    
+    SliderCallback(SelectedPlan){
+        this.setState({
+            SelectedPlan 
         });
     }
     
     render(){
+        
+        const { SelectedPlan } = this.state;
+        
         return(
-            <div className="wrapper wrapper-planboxes">
-                <div className="planboxes-presentation">
-                    <p>Demo</p>
-                </div>                
-                {this.renderPlanBoxes()}              
+            <div className="plans">
+                <span className="planVolume margin-lg-bottom txt-darkBlueGrey">{plansOffer[SelectedPlan].volume}</span>
+                <SliderSelect callback={this.SliderCallback} valuesArray={plansOffer}/>
+                <h2 className="txt-darkBlueGrey margin-md-top margin-md-bottom">{plansOffer[SelectedPlan].name}</h2>
+                <hr/>
+                <p className="txt-darkBlueGrey">Jusqu'à {plansOffer[SelectedPlan].photos}</p>
+                <p className="txt-darkBlueGrey">{plansOffer[SelectedPlan].users}</p>
+                <button className="small-button small-button-anim margin-sm-top" onClick={_=>this.props.history.push(`/checkout/${this.state.SelectedPlan}`)}>{plansOffer[SelectedPlan].price}</button>
             </div>
         );
     }

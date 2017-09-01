@@ -16,7 +16,6 @@ import { USER_AUTH } from "./actiontypes/";
 
 import App from "./components/app";
 import Landing from "./containers/Landing/Landing";
-import LogIn from "./containers/Login/Login";
 
 import reducers from "./reducers";
 
@@ -37,9 +36,8 @@ ReactDOM.render(
         <BrowserRouter>
             <div className="container">
                 <Switch>
-                    <Route path="/login" component={LogIn} />
                     <Route path ="/app" component={App} />
-                    <Route path ="/" component={Landing} />
+                    <Route path="/" component={Landing} />
                 </Switch>
             </div>
         </BrowserRouter>

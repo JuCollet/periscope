@@ -1,16 +1,31 @@
-@import "./Header/styles.less";
-@import "./Plans/Planbox/styles.less";
-@import "./Checkout/styles.less";
+.landing {
+    display: block;
+    text-align: center;
+    width: calc(~"80% - 60px");
+    padding: 0px 30px 60px 30px;
+}
 
-.planboxes-presentation {
-    height: 400px;
-    width: 80%;
-    flex: 1 1 auto;
-    background-color: red;
-}   
+.landing-footer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+}
 
-@media (min-width: @screen-md-min){
-    .planboxes-presentation {
-        display: none;
-    }  
+@media (min-width: @screen-sm-min) {
+    
+    .landing {
+        position: relative;
+        padding: 30px 60px 60px 60px;
+        width: 220px;
+        height: 400px;
+        border-radius: 7px;
+        box-shadow: 1px 1px 4px 3px @lightGrey;
+        transition: .05s;
+    }
+    
 }

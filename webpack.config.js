@@ -16,7 +16,7 @@ module.exports = {
         contentBase: __dirname + '/dist',
         host: process.env.IP,
         port: process.env.PORT,
-        "public": "periscope-julesbe.c9users.io"
+        "public": "periscope-clean-julesbe.c9users.io"
     },
     module : {
         loaders : [

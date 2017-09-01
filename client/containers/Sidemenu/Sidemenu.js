@@ -32,7 +32,7 @@ class Sidemenu extends Component {
           <li className="sidemenu-desktop"><NavLink to="/app/upload/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>
           <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
           <li>Favoris</li>
-          <li><NavLink to="/login" onClick={this.onSignOut} >Déconnexion</NavLink></li>
+          <li><NavLink to="/" onClick={this.onSignOut} >Déconnexion</NavLink></li>
         </ul>
       </div>
     );
