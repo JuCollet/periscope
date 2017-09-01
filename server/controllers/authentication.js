@@ -10,7 +10,7 @@ exports.signup = function(req,res,next){
     User.findOne({ email: req.body.email}, function(err, user){
         if(err) return next(err);
         if(user){
-            return res.status(422).send('{error : "Email in use}');
+            return res.status(422).send('Adresse déjà utilisée');
         } else {
             User.create({
                 firstname : req.body.firstName,
@@ -20,7 +20,7 @@ exports.signup = function(req,res,next){
                 password : req.body.password
             }, function(err, user){
                 if(err) return next(err);
-                res.send(user);
+                res.json({token : createToken(user)});
             });
         }
     });

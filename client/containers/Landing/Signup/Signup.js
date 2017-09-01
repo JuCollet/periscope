@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from "react";
-import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
+import { signUpUser, signErrorReset } from "../../../actions/user";
 import { connect } from "react-redux";
 import { withRouter } from"react-router-dom";
 
@@ -10,50 +10,92 @@ class CheckOut extends Component {
     constructor(props){
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
+        this.state = {
+            firstname : "",
+            email : "",
+            password : "",
+            passwordValidation : "",
+            error : null,
+            errorField : null
+        };
     }
     
-    renderField(field){
-        return(
-            <input className={field.className} type={field.type} placeholder={field.placeholder} aria-label={field.ariaLabel} {...field.input}/>
-        );
+    componentWillUpdate(nextProps){
+        if(nextProps.error && nextProps.error.err){
+            this.props.tilt();
+            this.props.signErrorReset();
+        }
     }    
     
-    onSubmit(data){
-        this.props.signInUser(data, this.props.history, this.props.reset);
+    onChangeHandler(e){
+        this.setState({
+            [e.currentTarget.name] : e.currentTarget.value
+        });
+    }
+    
+    onSubmit(e){
+        e.preventDefault();
+        
+        const { firstname, email, password, passwordValidation } = this.state;
+        
+        if(!firstname || firstname.length < 2){
+            return this.setState({
+                error : "Quel est votre prénom ?",
+                errorField : "firstname"
+            });    
+        } else if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+            return this.setState({
+                error : "Cet email semble incorrect",
+                errorField : "email"
+            });
+        } else if(!password){
+            return this.setState({
+                error : "Choisissez un mot de passe",
+                errorField : "password"
+            });    
+        } else if(password !== passwordValidation){
+            return this.setState({
+                error : "Confirmez le mot de passe",
+                errorField : "passwordValidation"
+            });    
+        } else {
+            this.setState({
+                error : null,
+                errorField : null
+            });
+        }
+        this.props.signUpUser({firstname, email, password}, this.props.history);
+    }
+    
+    renderStyle(name){
+        const { errorField } = this.state;
+        return errorField === name ? {border : "1px solid tomato"} : null;
     }
 
     render(){
-        
-        const { handleSubmit } = this.props;
-
         return(
             <div>
-                            <img src="/img/logo_150.svg" alt="Logo Periscope"/>
-
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>
-                <h3 className="txt-darkBlueGrey margin-lg-bottom">5Go gratuits !</h3>
-                <form onSubmit={handleSubmit(this.onSubmit)}>
-                    <Field className="small-input margin-sm-bottom" name="name" type="text" placeholder="Prénom" ariaLabel="Prénom" component={this.renderField} />
-                    <Field className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" ariaLabel="e-mail" component={this.renderField} />
-                    <Field className="small-input margin-sm-bottom" name="password" type="password" placeholder="Mot de passe" ariaLabel="mot de passe" component={this.renderField} />
-                    <Field className="small-input margin-lg-bottom" name="passwordValidation" type="password" placeholder="Confirmez le mot de passe" ariaLabel="Confirmation du mot de passe" component={this.renderField} />
-                    <button className="small-button small-button-anim" type="submit">je m'inscris</button>
+                <h3 className="txt-darkBlueGrey margin-lg-bottom"><b>5Go</b> gratuits !</h3>
+                <form onSubmit={this.onSubmit} >
+                    <input value={this.state.firstname} style={this.renderStyle('firstname')} className="small-input margin-sm-bottom" name="firstname" type="text" placeholder="Prénom" aria-label="Prénom" onChange={this.onChangeHandler} />
+                    <input value={this.state.email} style={this.renderStyle('email')} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" onChange={this.onChangeHandler} />
+                    <input value={this.state.password} style={this.renderStyle('password')} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Mot de passe" aria-label="mot de passe" onChange={this.onChangeHandler} />
+                    <input value={this.state.passwordValidation} style={this.renderStyle('passwordValidation')} className="small-input margin-sm-bottom" name="passwordValidation" type="password" placeholder="Confirmez le mot de passe" aria-label="Confirmation du mot de passe" onChange={this.onChangeHandler} />
+                    {this.state.error ? <div className="txt-red"> {this.state.error} </div> : this.props.error ? <div className="txt-red"> {this.props.error.message} </div> : null}
+                    <button className="small-button small-button-anim margin-md-top" type="submit">je m'inscris</button>
                 </form>   
             </div>
         );
     }
 }
 
+// 
 
-function validate(values){
-    const errors = {};
-    if(!values.email){
-        errors.email = "No valid E-mail";
-    }
-    if (!values.password){
-        errors.password = "No valid password";
-    }
-    return errors;
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({signUpUser, signErrorReset}, dispatch);
 }
 
 function mapStateToProps(state){
@@ -62,7 +104,4 @@ function mapStateToProps(state){
     };
 }
 
-export default reduxForm({
-    validate,
-    form : 'CheckoutForm'
-})(connect(mapStateToProps)(withRouter(CheckOut)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CheckOut));

@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from"react-router-dom";
-import { signInUser, signInErrorReset } from "../../../actions/user";
+import { signInUser, signErrorReset } from "../../../actions/user";
 
 class Signin extends Component {
 
@@ -21,9 +21,9 @@ class Signin extends Component {
     }
     
     componentWillUpdate(nextProps){
-        if(nextProps.error){
+        if(nextProps.error.err){
             this.props.tilt();
-            this.props.signInErrorReset();
+            this.props.signErrorReset();
         }
     }
     
@@ -59,7 +59,7 @@ function validate(values){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ signInUser, signInErrorReset }, dispatch);
+    return bindActionCreators({ signInUser, signErrorReset }, dispatch);
 }
 
 function mapStateToProps(state){

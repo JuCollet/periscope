@@ -1,6 +1,6 @@
 /*global localStorage*/
 
-import { USER_AUTH, USER_UNAUTH, USER_AUTH_ERROR, USER_AUTH_RESET_ERROR } from "../actiontypes/";
+import { USER_AUTH, USER_UNAUTH, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
 import axios from "axios";
 
 const baseUrl = "/api/users/";
@@ -13,10 +13,13 @@ export function signInUser({email, password}, history, cb){
                 localStorage.setItem('token', res.data.token);
                 history.push('/app/albums');
             })
-            .catch(function(){
+            .catch(function(err){
                 dispatch({
-                    type: USER_AUTH_ERROR,
-                    payload: true
+                    type: USER_SIGN_ERROR,
+                    payload: {
+                        err : true,
+                        message : err.response.data
+                    }
                 });
                 cb();
             });
@@ -39,12 +42,21 @@ export function signUpUser(user, history){
             dispatch({ type: USER_AUTH });
             localStorage.setItem('token', res.data.token);
             history.push('/app/albums');
-        });
+        })
+        .catch(function(err){
+            dispatch({
+                type: USER_SIGN_ERROR,
+                payload: {
+                    err : true,
+                    message : err.response.data
+                }
+            });
+        });        
     };
 }
 
-export function signInErrorReset(){
+export function signErrorReset(){
     return {
-        type: USER_AUTH_RESET_ERROR
+        type: USER_RESET_ERROR
     };
 }

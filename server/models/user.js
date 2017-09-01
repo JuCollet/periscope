@@ -7,13 +7,15 @@ const mongoose = require('mongoose'),
       
 const userSchema = new Schema({
     firstname : String,
-    lastname : String,
     email : {
         type: String,
         unique: true
     },
     password : String,
-    plan : String,
+    volume : {
+      type: Number,
+      default: 5
+    },
     bucket: String
 });
 
