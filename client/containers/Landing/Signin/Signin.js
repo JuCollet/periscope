@@ -21,7 +21,7 @@ class Signin extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
     
-    componentWillMount(){
+    componentDidMount(){
         if(this.props.user.authenticated){
             this.props.history.push('/app/albums');
         }
@@ -33,7 +33,9 @@ class Signin extends Component {
         if(nextProps.user.error && nextProps.user.error.err){
             this.props.tilt();
             this.props.signErrorReset();
-        }
+        } else if(nextProps.user.authenticated){
+            this.props.history.push('/app/albums');
+        }        
     }
     
     onChangeHandler(e){
@@ -64,7 +66,8 @@ class Signin extends Component {
                 errorField : null
             });
         }
-            this.props.signInUser({email, password}, this.props.history);
+        
+        this.props.signInUser({email, password});
     }
     
     renderStyle(name){

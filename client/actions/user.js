@@ -5,14 +5,13 @@ import axios from "axios";
 
 const baseUrl = "/api/users/";
 
-export function signInUser({email, password}, history){
+export function signInUser({email, password}){
     return function(dispatch){
         axios.post(baseUrl+"signin", {email, password})
             .then(function(res){
-                dispatch({ type: USER_AUTH });
-                localStorage.setItem("customer",true);
                 localStorage.setItem('token', res.data.token);
-                history.push('/app/albums');
+                localStorage.setItem("customer",true);
+                dispatch({ type: USER_AUTH });
             })
             .catch(function(err){
                 dispatch({

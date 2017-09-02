@@ -1224,7 +1224,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(10);
 
-var _reduxForm = __webpack_require__(48);
+var _reduxForm = __webpack_require__(69);
 
 var _reducer_albums = __webpack_require__(234);
 
@@ -1366,7 +1366,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fileUpload = fileUpload;
 
-var _axios = __webpack_require__(50);
+var _axios = __webpack_require__(49);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -2132,7 +2132,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reduxForm = __webpack_require__(48);
+var _reduxForm = __webpack_require__(69);
 
 var _reactRedux = __webpack_require__(8);
 
@@ -2681,8 +2681,8 @@ var Signin = function (_Component) {
     }
 
     _createClass(Signin, [{
-        key: "componentWillMount",
-        value: function componentWillMount() {
+        key: "componentDidMount",
+        value: function componentDidMount() {
             if (this.props.user.authenticated) {
                 this.props.history.push('/app/albums');
             }
@@ -2695,6 +2695,8 @@ var Signin = function (_Component) {
             if (nextProps.user.error && nextProps.user.error.err) {
                 this.props.tilt();
                 this.props.signErrorReset();
+            } else if (nextProps.user.authenticated) {
+                this.props.history.push('/app/albums');
             }
         }
     }, {
@@ -2729,7 +2731,8 @@ var Signin = function (_Component) {
                     errorField: null
                 });
             }
-            this.props.signInUser({ email: email, password: password }, this.props.history);
+
+            this.props.signInUser({ email: email, password: password });
         }
     }, {
         key: "renderStyle",
@@ -3803,7 +3806,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(49);
+var _reactDom = __webpack_require__(48);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -4907,7 +4910,7 @@ exports.deleteAlbum = deleteAlbum;
 exports.albumThumbUpdate = albumThumbUpdate;
 exports.searchAlbum = searchAlbum;
 
-var _axios = __webpack_require__(50);
+var _axios = __webpack_require__(49);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -4916,11 +4919,10 @@ var _actiontypes = __webpack_require__(15);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var baseUrl = "/api/albums/";
-var authHeader = { headers: { authorization: localStorage.getItem('token') } };
 
 function albumsFetch() {
     return function (dispatch) {
-        _axios2.default.get(baseUrl, authHeader).then(function (albums) {
+        _axios2.default.get(baseUrl, { headers: { authorization: localStorage.getItem('token') } }).then(function (albums) {
             dispatch({
                 type: _actiontypes.ALBUMS_FETCH,
                 payload: albums
@@ -4942,7 +4944,7 @@ function albumFetch(id) {
 
 function createAlbum(album, cb) {
     return function (dispatch) {
-        _axios2.default.post(baseUrl, album, authHeader).then(function (createdAlbum) {
+        _axios2.default.post(baseUrl, album, { headers: { authorization: localStorage.getItem('token') } }).then(function (createdAlbum) {
             cb();
             dispatch({
                 type: _actiontypes.ALBUM_CREATE,
@@ -4954,7 +4956,7 @@ function createAlbum(album, cb) {
 
 function deleteAlbum(albumId, cb) {
     return function (dispatch) {
-        _axios2.default.delete(baseUrl, _extends({}, authHeader, { data: { albumId: albumId } })).then(function (_) {
+        _axios2.default.delete(baseUrl, _extends({ headers: { authorization: localStorage.getItem('token') } }, { data: { albumId: albumId } })).then(function (_) {
             cb();
             dispatch({
                 type: _actiontypes.ALBUM_DELETE,
@@ -14453,7 +14455,7 @@ root._=_;}}).call(undefined);
 
 /***/ }),
 
-/***/ 50:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14656,7 +14658,7 @@ exports.photoDelete = photoDelete;
 exports.photoUpdate = photoUpdate;
 exports.photoSearch = photoSearch;
 
-var _axios = __webpack_require__(50);
+var _axios = __webpack_require__(49);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -14667,12 +14669,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /*global localStorage*/
 
 var baseUrl = "/api/photos/";
-var authHeader = { headers: { authorization: localStorage.getItem('token') } };
 
 function photoDelete(albumId, photoId, filename, cb) {
     return function (dispatch) {
         cb();
-        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, authHeader).then(function (album) {
+        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
             dispatch({
                 type: _actiontypes.PHOTO_DELETE,
                 payload: album
@@ -14683,7 +14684,7 @@ function photoDelete(albumId, photoId, filename, cb) {
 
 function photoUpdate(photoId, data, cb) {
     return function (dispatch) {
-        _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }, authHeader).then(function (album) {
+        _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
             cb();
             dispatch({
                 type: _actiontypes.PHOTO_UPDATE,
@@ -14751,7 +14752,7 @@ exports.signErrorReset = signErrorReset;
 
 var _actiontypes = __webpack_require__(15);
 
-var _axios = __webpack_require__(50);
+var _axios = __webpack_require__(49);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -14759,16 +14760,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var baseUrl = "/api/users/";
 
-function signInUser(_ref, history) {
+function signInUser(_ref) {
     var email = _ref.email,
         password = _ref.password;
 
     return function (dispatch) {
         _axios2.default.post(baseUrl + "signin", { email: email, password: password }).then(function (res) {
-            dispatch({ type: _actiontypes.USER_AUTH });
-            localStorage.setItem("customer", true);
             localStorage.setItem('token', res.data.token);
-            history.push('/app/albums');
+            localStorage.setItem("customer", true);
+            dispatch({ type: _actiontypes.USER_AUTH });
         }).catch(function (err) {
             dispatch({
                 type: _actiontypes.USER_SIGN_ERROR,
