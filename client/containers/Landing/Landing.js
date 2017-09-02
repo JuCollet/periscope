@@ -1,3 +1,5 @@
+/*global localStorage*/
+
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import BulletsNav from "../../components/BulletsNav/BulletsNav";
@@ -5,9 +7,18 @@ import Welcome from "./Welcome/Welcome";
 import Signup from './Signup/Signup';
 import Signin from "./Signin/Signin";
 
+// Custom HOC to tilt parent component on error : 
+// add tilt() method to props and accept the parameters :
+// (DOM element, amplitude (Int - default 20), duration (Int - default 50), iterations (Int - default 7)
 import TiltComponent from "../../components/tilt_component";
 
 class Landing extends Component {
+    
+    componentWillMount(){
+        if(localStorage.getItem('customer')){
+            this.props.history.push('/signin');
+        }
+    }
     
     render () {
         

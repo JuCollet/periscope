@@ -10,7 +10,7 @@ export default function(state = {}, action){
         case USER_SIGN_ERROR :
             return {...state, error : action.payload};
         case USER_RESET_ERROR :
-            return {...state, error : { ...state.error, err : false }};
+            return {...state, error : { ...state.error, ...action.payload }};
         default :
             return state;
     }

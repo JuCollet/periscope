@@ -1,61 +1,89 @@
+/*global localStorage*/
+
 'use strict';
 
 import React, { Component } from "react";
-import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Link, withRouter } from"react-router-dom";
+import { withRouter } from"react-router-dom";
 import { signInUser, signErrorReset } from "../../../actions/user";
 
 class Signin extends Component {
 
     constructor(props){
         super(props);
+        this.state = { 
+            email : "",
+            password : "",
+            error : null
+        };
+        this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
     
-    renderField(field){
-        return(
-            <input className={field.className} type={field.type} placeholder={field.placeholder} aria-label={field.ariaLabel} {...field.input}/>
-        );
+    componentWillMount(){
+        if(this.props.user.authenticated){
+            this.props.history.push('/app/albums');
+        }
+        // This action require a boolean to reset or not the error message.
+        this.props.signErrorReset(true);
     }
     
     componentWillUpdate(nextProps){
-        if(nextProps.error.err){
+        if(nextProps.user.error && nextProps.user.error.err){
             this.props.tilt();
             this.props.signErrorReset();
         }
     }
     
-    onSubmit(data){
-        this.props.signInUser(data, this.props.history, this.props.reset);
+    onChangeHandler(e){
+        this.setState({
+            [e.currentTarget.name] : e.currentTarget.value
+        });
+    }
+    
+    onSubmit(e) {
+        e.preventDefault();
+        const { email, password } = this.state;
+        
+        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+            this.props.tilt();
+            return this.setState({
+                error : "Cet email semble incorrect",
+                errorField : "email"
+            });
+        } else if(!password){
+            this.props.tilt();
+            return this.setState({
+                error : "Entrez votre mot de passe",
+                errorField : "password"
+            });    
+        } else {
+            this.setState({
+                error : null,
+                errorField : null
+            });
+        }
+            this.props.signInUser({email, password}, this.props.history);
+    }
+    
+    renderStyle(name){
+        const { errorField } = this.state;
+        return errorField === name ? {border : "1px solid tomato"} : null;
     }    
     
     render(){
-        
-        const { handleSubmit } = this.props;
-
         return(
-            <form onSubmit={handleSubmit(this.onSubmit)}>
+            <form onSubmit={this.onSubmit}>
                 <img src="/img/logo.svg" width="150" alt="Logo Periscope"/>
                 <h1 className="margin-md-bottom margin-sm-top txt-darkBlueGrey">Periscope</h1>
-                <Field className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" ariaLabel="e-mail" component={this.renderField} />
-                <Field className="small-input margin-md-bottom" name="password" type="password" placeholder="Password" ariaLabel="password" component={this.renderField} />
-                <button className="small-button small-button-anim" type="submit">Sign in</button>
+                <input value={this.state.email} style={this.renderStyle('email')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" />
+                <input value={this.state.password} style={this.renderStyle('password')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Password" aria-label="password" />
+                {this.state.error ? <div className="txt-red margin-sm-bottom"> {this.state.error} </div> : this.props.user.error ? <div className="txt-red margin-sm-bottom"> {this.props.user.error.message} </div> : null}
+                <button className="small-button small-button-anim margin-sm-top" type="submit">Sign in</button>
             </form>        
         );
     }
-}
-
-function validate(values){
-    const errors = {};
-    if(!values.email){
-        errors.email = "No valid E-mail";
-    }
-    if (!values.password){
-        errors.password = "No valid password";
-    }
-    return errors;
 }
 
 function mapDispatchToProps(dispatch){
@@ -64,11 +92,8 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
     return {
-        error : state.user.error   
+        user : state.user   
     };
 }
 
-export default reduxForm({
-    validate,
-    form : 'LoginForm'
-})(connect(mapStateToProps, mapDispatchToProps)(withRouter(Signin)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signin));

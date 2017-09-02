@@ -19,6 +19,7 @@ import Landing from "./containers/Landing/Landing";
 
 import reducers from "./reducers";
 
+// These lines allow using Redux DevTools on Chrome
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(
     applyMiddleware(thunk)

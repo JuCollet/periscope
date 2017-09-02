@@ -1132,7 +1132,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*global localStorage*/
+
+// Custom HOC to tilt parent component on error : 
+// add tilt() method to props and accept the parameters :
+// (DOM element, amplitude (Int - default 20), duration (Int - default 50), iterations (Int - default 7)
+
 
 var Landing = function (_Component) {
     _inherits(Landing, _Component);
@@ -1144,6 +1149,13 @@ var Landing = function (_Component) {
     }
 
     _createClass(Landing, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            if (localStorage.getItem('customer')) {
+                this.props.history.push('/signin');
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -2616,21 +2628,19 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*global localStorage*/
+
 
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reduxForm = __webpack_require__(48);
 
 var _redux = __webpack_require__(10);
 
@@ -2641,6 +2651,8 @@ var _reactRouterDom = __webpack_require__(16);
 var _user = __webpack_require__(72);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2656,49 +2668,105 @@ var Signin = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).call(this, props));
 
+        _this.state = {
+            email: "",
+            password: "",
+            error: null
+        };
+        _this.onChangeHandler = _this.onChangeHandler.bind(_this);
         _this.onSubmit = _this.onSubmit.bind(_this);
         return _this;
     }
 
     _createClass(Signin, [{
-        key: 'renderField',
-        value: function renderField(field) {
-            return _react2.default.createElement('input', _extends({ className: field.className, type: field.type, placeholder: field.placeholder, 'aria-label': field.ariaLabel }, field.input));
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            if (this.props.user.authenticated) {
+                this.props.history.push('/app/albums');
+            }
+            // This action require a boolean to reset or not the error message.
+            this.props.signErrorReset(true);
         }
     }, {
-        key: 'componentWillUpdate',
+        key: "componentWillUpdate",
         value: function componentWillUpdate(nextProps) {
-            if (nextProps.error.err) {
+            if (nextProps.user.error && nextProps.user.error.err) {
                 this.props.tilt();
                 this.props.signErrorReset();
             }
         }
     }, {
-        key: 'onSubmit',
-        value: function onSubmit(data) {
-            this.props.signInUser(data, this.props.history, this.props.reset);
+        key: "onChangeHandler",
+        value: function onChangeHandler(e) {
+            this.setState(_defineProperty({}, e.currentTarget.name, e.currentTarget.value));
         }
     }, {
-        key: 'render',
+        key: "onSubmit",
+        value: function onSubmit(e) {
+            e.preventDefault();
+            var _state = this.state,
+                email = _state.email,
+                password = _state.password;
+
+
+            if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                this.props.tilt();
+                return this.setState({
+                    error: "Cet email semble incorrect",
+                    errorField: "email"
+                });
+            } else if (!password) {
+                this.props.tilt();
+                return this.setState({
+                    error: "Entrez votre mot de passe",
+                    errorField: "password"
+                });
+            } else {
+                this.setState({
+                    error: null,
+                    errorField: null
+                });
+            }
+            this.props.signInUser({ email: email, password: password }, this.props.history);
+        }
+    }, {
+        key: "renderStyle",
+        value: function renderStyle(name) {
+            var errorField = this.state.errorField;
+
+            return errorField === name ? { border: "1px solid tomato" } : null;
+        }
+    }, {
+        key: "render",
         value: function render() {
-            var handleSubmit = this.props.handleSubmit;
-
-
             return _react2.default.createElement(
-                'form',
-                { onSubmit: handleSubmit(this.onSubmit) },
-                _react2.default.createElement('img', { src: '/img/logo.svg', width: '150', alt: 'Logo Periscope' }),
+                "form",
+                { onSubmit: this.onSubmit },
+                _react2.default.createElement("img", { src: "/img/logo.svg", width: "150", alt: "Logo Periscope" }),
                 _react2.default.createElement(
-                    'h1',
-                    { className: 'margin-md-bottom margin-sm-top txt-darkBlueGrey' },
-                    'Periscope'
+                    "h1",
+                    { className: "margin-md-bottom margin-sm-top txt-darkBlueGrey" },
+                    "Periscope"
                 ),
-                _react2.default.createElement(_reduxForm.Field, { className: 'small-input margin-sm-bottom', name: 'email', type: 'text', placeholder: 'E-Mail', ariaLabel: 'e-mail', component: this.renderField }),
-                _react2.default.createElement(_reduxForm.Field, { className: 'small-input margin-md-bottom', name: 'password', type: 'password', placeholder: 'Password', ariaLabel: 'password', component: this.renderField }),
+                _react2.default.createElement("input", { value: this.state.email, style: this.renderStyle('email'), onChange: this.onChangeHandler, className: "small-input margin-sm-bottom", name: "email", type: "text", placeholder: "E-Mail", "aria-label": "e-mail" }),
+                _react2.default.createElement("input", { value: this.state.password, style: this.renderStyle('password'), onChange: this.onChangeHandler, className: "small-input margin-sm-bottom", name: "password", type: "password", placeholder: "Password", "aria-label": "password" }),
+                this.state.error ? _react2.default.createElement(
+                    "div",
+                    { className: "txt-red margin-sm-bottom" },
+                    " ",
+                    this.state.error,
+                    " "
+                ) : this.props.user.error ? _react2.default.createElement(
+                    "div",
+                    { className: "txt-red margin-sm-bottom" },
+                    " ",
+                    this.props.user.error.message,
+                    " "
+                ) : null,
                 _react2.default.createElement(
-                    'button',
-                    { className: 'small-button small-button-anim', type: 'submit' },
-                    'Sign in'
+                    "button",
+                    { className: "small-button small-button-anim margin-sm-top", type: "submit" },
+                    "Sign in"
                 )
             );
         }
@@ -2707,31 +2775,17 @@ var Signin = function (_Component) {
     return Signin;
 }(_react.Component);
 
-function validate(values) {
-    var errors = {};
-    if (!values.email) {
-        errors.email = "No valid E-mail";
-    }
-    if (!values.password) {
-        errors.password = "No valid password";
-    }
-    return errors;
-}
-
 function mapDispatchToProps(dispatch) {
     return (0, _redux.bindActionCreators)({ signInUser: _user.signInUser, signErrorReset: _user.signErrorReset }, dispatch);
 }
 
 function mapStateToProps(state) {
     return {
-        error: state.user.error
+        user: state.user
     };
 }
 
-exports.default = (0, _reduxForm.reduxForm)({
-    validate: validate,
-    form: 'LoginForm'
-})((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _reactRouterDom.withRouter)(Signin)));
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _reactRouterDom.withRouter)(Signin));
 
 /***/ }),
 
@@ -2769,13 +2823,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CheckOut = function (_Component) {
-    _inherits(CheckOut, _Component);
+var Signup = function (_Component) {
+    _inherits(Signup, _Component);
 
-    function CheckOut(props) {
-        _classCallCheck(this, CheckOut);
+    function Signup(props) {
+        _classCallCheck(this, Signup);
 
-        var _this = _possibleConstructorReturn(this, (CheckOut.__proto__ || Object.getPrototypeOf(CheckOut)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Signup.__proto__ || Object.getPrototypeOf(Signup)).call(this, props));
 
         _this.onSubmit = _this.onSubmit.bind(_this);
         _this.onChangeHandler = _this.onChangeHandler.bind(_this);
@@ -2784,13 +2838,18 @@ var CheckOut = function (_Component) {
             email: "",
             password: "",
             passwordValidation: "",
-            error: null,
-            errorField: null
+            error: null
         };
         return _this;
     }
 
-    _createClass(CheckOut, [{
+    _createClass(Signup, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            // This action require a boolean to reset or not the error message.
+            this.props.signErrorReset(true);
+        }
+    }, {
         key: "componentWillUpdate",
         value: function componentWillUpdate(nextProps) {
             if (nextProps.error && nextProps.error.err) {
@@ -2816,23 +2875,27 @@ var CheckOut = function (_Component) {
 
 
             if (!firstname || firstname.length < 2) {
+                this.props.tilt();
                 return this.setState({
                     error: "Quel est votre prénom ?",
                     errorField: "firstname"
                 });
             } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                this.props.tilt();
                 return this.setState({
                     error: "Cet email semble incorrect",
                     errorField: "email"
                 });
             } else if (!password) {
+                this.props.tilt();
                 return this.setState({
                     error: "Choisissez un mot de passe",
                     errorField: "password"
                 });
             } else if (password !== passwordValidation) {
+                this.props.tilt();
                 return this.setState({
-                    error: "Confirmez le mot de passe",
+                    error: "Confirmation incorrecte",
                     errorField: "passwordValidation"
                 });
             } else {
@@ -2901,11 +2964,8 @@ var CheckOut = function (_Component) {
         }
     }]);
 
-    return CheckOut;
+    return Signup;
 }(_react.Component);
-
-// 
-
 
 function mapDispatchToProps(dispatch) {
     return (0, _redux.bindActionCreators)({ signUpUser: _user.signUpUser, signErrorReset: _user.signErrorReset }, dispatch);
@@ -2917,7 +2977,7 @@ function mapStateToProps(state) {
     };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _reactRouterDom.withRouter)(CheckOut));
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _reactRouterDom.withRouter)(Signup));
 
 /***/ }),
 
@@ -3775,6 +3835,7 @@ var _reducers2 = _interopRequireDefault(_reducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// These lines allow using Redux DevTools on Chrome
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
 var store = (0, _redux.createStore)(_reducers2.default, composeEnhancers((0, _redux.applyMiddleware)(_reduxThunk2.default)));
 
@@ -3977,7 +4038,7 @@ exports.default = function () {
         case _actiontypes.USER_SIGN_ERROR:
             return _extends({}, state, { error: action.payload });
         case _actiontypes.USER_RESET_ERROR:
-            return _extends({}, state, { error: _extends({}, state.error, { err: false }) });
+            return _extends({}, state, { error: _extends({}, state.error, action.payload) });
         default:
             return state;
     }
@@ -14675,6 +14736,9 @@ function searchType(type) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
+
 exports.signInUser = signInUser;
 exports.signOutUser = signOutUser;
 exports.signUpUser = signUpUser;
@@ -14688,17 +14752,16 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*global localStorage*/
-
 var baseUrl = "/api/users/";
 
-function signInUser(_ref, history, cb) {
+function signInUser(_ref, history) {
     var email = _ref.email,
         password = _ref.password;
 
     return function (dispatch) {
         _axios2.default.post(baseUrl + "signin", { email: email, password: password }).then(function (res) {
             dispatch({ type: _actiontypes.USER_AUTH });
+            localStorage.setItem("customer", true);
             localStorage.setItem('token', res.data.token);
             history.push('/app/albums');
         }).catch(function (err) {
@@ -14706,10 +14769,9 @@ function signInUser(_ref, history, cb) {
                 type: _actiontypes.USER_SIGN_ERROR,
                 payload: {
                     err: true,
-                    message: err.response.data
+                    message: err.response.data.error.message
                 }
             });
-            cb();
         });
     };
 }
@@ -14727,6 +14789,7 @@ function signUpUser(user, history) {
     return function (dispatch) {
         _axios2.default.post(baseUrl + "signup", user).then(function (res) {
             dispatch({ type: _actiontypes.USER_AUTH });
+            localStorage.setItem("customer", true);
             localStorage.setItem('token', res.data.token);
             history.push('/app/albums');
         }).catch(function (err) {
@@ -14741,9 +14804,19 @@ function signUpUser(user, history) {
     };
 }
 
-function signErrorReset() {
+function signErrorReset(message) {
+
+    var payload = {
+        err: false
+    };
+
+    if (message) {
+        payload = _extends({}, payload, { message: "" });
+    }
+
     return {
-        type: _actiontypes.USER_RESET_ERROR
+        type: _actiontypes.USER_RESET_ERROR,
+        payload: payload
     };
 }
 

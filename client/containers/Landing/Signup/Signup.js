@@ -6,7 +6,7 @@ import { signUpUser, signErrorReset } from "../../../actions/user";
 import { connect } from "react-redux";
 import { withRouter } from"react-router-dom";
 
-class CheckOut extends Component {
+class Signup extends Component {
     constructor(props){
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -16,10 +16,14 @@ class CheckOut extends Component {
             email : "",
             password : "",
             passwordValidation : "",
-            error : null,
-            errorField : null
+            error : null
         };
     }
+    
+    componentWillMount(){
+        // This action require a boolean to reset or not the error message.
+        this.props.signErrorReset(true);
+    }    
     
     componentWillUpdate(nextProps){
         if(nextProps.error && nextProps.error.err){
@@ -40,23 +44,27 @@ class CheckOut extends Component {
         const { firstname, email, password, passwordValidation } = this.state;
         
         if(!firstname || firstname.length < 2){
+            this.props.tilt();
             return this.setState({
                 error : "Quel est votre prénom ?",
                 errorField : "firstname"
             });    
         } else if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+            this.props.tilt();
             return this.setState({
                 error : "Cet email semble incorrect",
                 errorField : "email"
             });
         } else if(!password){
+            this.props.tilt();
             return this.setState({
                 error : "Choisissez un mot de passe",
                 errorField : "password"
             });    
         } else if(password !== passwordValidation){
+            this.props.tilt();
             return this.setState({
-                error : "Confirmez le mot de passe",
+                error : "Confirmation incorrecte",
                 errorField : "passwordValidation"
             });    
         } else {
@@ -91,9 +99,6 @@ class CheckOut extends Component {
     }
 }
 
-// 
-
-
 function mapDispatchToProps(dispatch){
     return bindActionCreators({signUpUser, signErrorReset}, dispatch);
 }
@@ -104,4 +109,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CheckOut));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signup));

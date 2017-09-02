@@ -11,17 +11,24 @@ const jwtOptions = {
 
 const localLogin = new LocalStrategy({ usernameField : 'email'}, function(email, password, done){
     User.findOne({email : email}, function(err, user){
-        if(err) return done(err, false);
+        if(err) {
+            return done(err, false);
+        }
         if(user) {
             user.comparePassword(password, function(err, isMatch){
-                if(err) return done(err);
+                if(err) {
+                    err.message = 'Identification impossible';
+                    return done(err);
+                }
                 if(!isMatch){
-                    return done(null, false);
+                    const err = new Error('Mot de passe incorrect');
+                    return done(err, false);
                 } else {
                     return done(null, user);
                 }
             });            
         } else {
+            const err = new Error('Utilisateur introuvable');
             return done(err);
         }
     });
