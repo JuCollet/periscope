@@ -1,22 +1,14 @@
 'use strict';
 
 const express = require('express'),
-      mongoose = require('mongoose'),
-      User = require('../models/user'),
-      Authentication = require('../controllers/authentication'),
+      usersController = require('../controllers/users_controller'),
       passportService = require('../services/passport'),
-      passport = require('passport'),
       userRouter = express.Router();
 
 userRouter.route('/signup')
-    .post(Authentication.signup);
+    .post(usersController.signup);
     
 userRouter.route('/signin')
-    .post(passportService.requireSignin, Authentication.signin);
-    
-userRouter.route('/')
-    .get(passportService.requireAuth, function(req, res, next){
-        res.send({hello:"coucou"});
-    });
+    .post(passportService.requireSignin, usersController.signin);
     
 module.exports = userRouter;

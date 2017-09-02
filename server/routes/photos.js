@@ -1,56 +1,14 @@
 'use strict';
 
 const express = require('express'),
-      mongoose = require('mongoose'),
-      Album = require('../models/album'),
-      aws = require('aws-sdk'),
-      photosRouter = express.Router(),
-      s3 = new aws.S3({
-        endpoint: 's3-eu-central-1.amazonaws.com',
-        signatureVersion: 'v4',
-        region: 'eu-central-1'
-      });
-      aws.config.update({
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-      });      
+      photosController = require('../controllers/photos_controller'),
+      passportService = require('../services/passport'),
+      photosRouter = express.Router();
 
 photosRouter.route('/delete')
-    .put(function(req,res,next){
-
-        const params = {
-            Bucket: "periscopefiles",
-            Delete : {
-                Objects : [
-                {
-                    Key: `thumb${req.body.filename}`
-                },
-                {
-                    Key: `medium${req.body.filename}`
-                },
-                {
-                    Key: `original${req.body.filename}`
-                },
-                ]
-            }
-        };
-
-        s3.deleteObjects(params, function(err, data){
-            if(err) return next(err);
-            Album.findByIdAndUpdate(req.body.albumId, {$pull : { photos : {_id : req.body.photoId}}}, { new : true }, function(err, album){
-                if(err) return next(err);
-                res.json(album);
-            });    
-            
-        });
-    });
+    .put(passportService.requireAuth, photosController.photoDelete);
     
 photosRouter.route('/tagsupdate')
-    .put(function(req,res,next){
-        Album.findOneAndUpdate({"photos._id":req.body.photoId}, {'$set':  {'photos.$.tags': req.body.data}}, { new : true }, function(err, album){
-            if(err) return next(err);
-            res.json(album);
-        });
-    });    
+    .put(passportService.requireAuth, photosController.tagsUpdate);    
     
 module.exports = photosRouter;

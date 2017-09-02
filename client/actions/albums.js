@@ -4,12 +4,11 @@ import axios from "axios";
 import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
 
 const baseUrl = "/api/albums/";
+const authHeader = {headers : {authorization : localStorage.getItem('token')}};
 
 export function albumsFetch(){
     return function(dispatch){
-        axios.get(baseUrl, {
-            headers : {authorization : localStorage.getItem('token')}
-        }).then(albums => {
+        axios.get(baseUrl, authHeader).then(albums => {
             dispatch({
                 type : ALBUMS_FETCH,
                 payload : albums            
@@ -31,7 +30,7 @@ export function albumFetch(id){
 
 export function createAlbum(album, cb){
     return function(dispatch){
-        axios.post(baseUrl, album).then(createdAlbum => {
+        axios.post(baseUrl, album, authHeader).then(createdAlbum => {
             cb();
             dispatch({
                 type : ALBUM_CREATE,
@@ -43,7 +42,7 @@ export function createAlbum(album, cb){
 
 export function deleteAlbum(albumId, cb){
     return function(dispatch){
-        axios.delete(baseUrl, {data : { albumId }}).then( _ => {
+        axios.delete(baseUrl, {...authHeader, data : { albumId }}).then( _ => {
             cb();
             dispatch({
                 type : ALBUM_DELETE,
@@ -77,7 +76,7 @@ export function searchAlbum(tags){
     }
 
     return function(dispatch){
-        axios.post(finalUrl, {tags:tags}).then( albums => {
+        axios.post(finalUrl, {tags:tags}, authHeader).then( albums => {
             dispatch({
                 type: ALBUM_SEARCH,
                 payload: albums 

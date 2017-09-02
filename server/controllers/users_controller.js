@@ -1,12 +1,21 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
 
+module.exports = {
+    signin : signin,
+    signup : signup
+};
+
 function createToken(user){
     const timeStamp = new Date().getTime();
     return jwt.encode({ sub: user._id, iat: timeStamp }, process.env.JWT_SECRET);
 }
 
-exports.signup = function(req,res,next){
+function signin(req,res,next){
+    res.json({token : createToken(req.user)});
+}
+
+function signup(req,res,next){
     User.findOne({ email: req.body.email}, function(err, user){
         if(err) return next(err);
         if(user){
@@ -16,7 +25,6 @@ exports.signup = function(req,res,next){
                 firstname : req.body.firstName,
                 lastname : req.body.lastName,
                 email : req.body.email,
-                plan : req.body.plan,
                 password : req.body.password
             }, function(err, user){
                 if(err) return next(err);
@@ -24,8 +32,4 @@ exports.signup = function(req,res,next){
             });
         }
     });
-};
-
-exports.signin = function(req,res,next){
-    res.json({token : createToken(req.user)});
-};
+}

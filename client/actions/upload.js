@@ -1,3 +1,5 @@
+/*global localStorage*/
+
 import axios from "axios";
 import { UPLOAD_FILES } from "../actiontypes/";
 
@@ -8,7 +10,7 @@ export function fileUpload(files, id, cb){
             url: `/api/upload/${id}`,
             method: 'put',
             data: files,
-            headers:{'Content-Type':'multipart/form-data'},
+            headers:{'Content-Type':'multipart/form-data', authorization : localStorage.getItem('token')},
             onUploadProgress: function (progressEvent) {
                 document.getElementById(`${id}-progress`).style.height = ((progressEvent.loaded/progressEvent.total)*100)+"%";
                 if(progressEvent.loaded === progressEvent.total) {

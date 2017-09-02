@@ -1374,6 +1374,8 @@ var _actiontypes = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*global localStorage*/
+
 function fileUpload(files, id, cb) {
 
     return function (dispatch) {
@@ -1381,7 +1383,7 @@ function fileUpload(files, id, cb) {
             url: "/api/upload/" + id,
             method: 'put',
             data: files,
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers: { 'Content-Type': 'multipart/form-data', authorization: localStorage.getItem('token') },
             onUploadProgress: function onUploadProgress(progressEvent) {
                 document.getElementById(id + "-progress").style.height = progressEvent.loaded / progressEvent.total * 100 + "%";
                 if (progressEvent.loaded === progressEvent.total) {
@@ -4895,6 +4897,9 @@ function isSlowBuffer(obj) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
+
 exports.albumsFetch = albumsFetch;
 exports.albumFetch = albumFetch;
 exports.createAlbum = createAlbum;
@@ -4910,15 +4915,12 @@ var _actiontypes = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*global localStorage*/
-
 var baseUrl = "/api/albums/";
+var authHeader = { headers: { authorization: localStorage.getItem('token') } };
 
 function albumsFetch() {
     return function (dispatch) {
-        _axios2.default.get(baseUrl, {
-            headers: { authorization: localStorage.getItem('token') }
-        }).then(function (albums) {
+        _axios2.default.get(baseUrl, authHeader).then(function (albums) {
             dispatch({
                 type: _actiontypes.ALBUMS_FETCH,
                 payload: albums
@@ -4940,7 +4942,7 @@ function albumFetch(id) {
 
 function createAlbum(album, cb) {
     return function (dispatch) {
-        _axios2.default.post(baseUrl, album).then(function (createdAlbum) {
+        _axios2.default.post(baseUrl, album, authHeader).then(function (createdAlbum) {
             cb();
             dispatch({
                 type: _actiontypes.ALBUM_CREATE,
@@ -4952,7 +4954,7 @@ function createAlbum(album, cb) {
 
 function deleteAlbum(albumId, cb) {
     return function (dispatch) {
-        _axios2.default.delete(baseUrl, { data: { albumId: albumId } }).then(function (_) {
+        _axios2.default.delete(baseUrl, _extends({}, authHeader, { data: { albumId: albumId } })).then(function (_) {
             cb();
             dispatch({
                 type: _actiontypes.ALBUM_DELETE,
@@ -4986,7 +4988,7 @@ function searchAlbum(tags) {
     }
 
     return function (dispatch) {
-        _axios2.default.post(finalUrl, { tags: tags }).then(function (albums) {
+        _axios2.default.post(finalUrl, { tags: tags }, authHeader).then(function (albums) {
             dispatch({
                 type: _actiontypes.ALBUM_SEARCH,
                 payload: albums
@@ -14662,12 +14664,15 @@ var _actiontypes = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*global localStorage*/
+
 var baseUrl = "/api/photos/";
+var authHeader = { headers: { authorization: localStorage.getItem('token') } };
 
 function photoDelete(albumId, photoId, filename, cb) {
     return function (dispatch) {
         cb();
-        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }).then(function (album) {
+        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, authHeader).then(function (album) {
             dispatch({
                 type: _actiontypes.PHOTO_DELETE,
                 payload: album
@@ -14678,7 +14683,7 @@ function photoDelete(albumId, photoId, filename, cb) {
 
 function photoUpdate(photoId, data, cb) {
     return function (dispatch) {
-        _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }).then(function (album) {
+        _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }, authHeader).then(function (album) {
             cb();
             dispatch({
                 type: _actiontypes.PHOTO_UPDATE,

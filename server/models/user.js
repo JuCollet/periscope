@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema,
-      bcrypt = require('bcrypt');
+      bcrypt = require('bcrypt'),
+      randomToken = require('random-token');
 
       
 const userSchema = new Schema({
@@ -16,6 +17,7 @@ const userSchema = new Schema({
       type: Number,
       default: 5
     },
+    usedVolume : Number,
     bucket: String
 });
 
@@ -23,7 +25,7 @@ userSchema.pre('save', function(next){
   const user = this;
   bcrypt.hash(user.password, 10, function(err, hash){
     if(err)throw err;
-    user.bucket = Date.now();
+    user.bucket = randomToken(8) + Date.now();
     user.password = hash;
     next();
   });
