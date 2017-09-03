@@ -44,19 +44,23 @@
   background-color: darken(@lightGrey, 5%);
 }
 
+
 .input-group {
   display: inline-block;
+  width: 100%;
   position: relative;
   padding: 0px;
-  margin-bottom: 20px;
   
+
   input, textarea {
+    display: block;
+    width: 100%;    
     font-size: 1.1em;
     background-color: transparent;
   }
   
   input {
-    padding: 0px 30px 10px 0px;
+    padding: 0px 0px 10px 0px;
     outline: none;
     
     border-width: 0px 0px 2px 0px;
@@ -80,6 +84,7 @@
   
   textarea {
     padding: 13px;
+    width: calc(~"100% - 28px");
     border: 2px solid @lightGrey;
     border-radius: 3px;
     outline: none;

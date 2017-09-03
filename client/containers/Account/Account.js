@@ -24,14 +24,18 @@ class Account extends Component {
         const infos = this.props.userInfos;        
 
         return (
-            <div className="wrapper-padding flex-center">
-                <h2 className="txt-darkBlueGrey margin-lg-bottom">Bienvenue, {this.props.userInfos.name}</h2>
-                <h3>Utilisation</h3>
-                <p>Tu as déjà utilisé {usedVolumePercentage} % de ton volume de {volume/1073741824} Go.</p>
-                <VolumeGauge volume={infos.volume} usedVolume={infos.usedVolume}/>
-                <h3 className="margin-lg-top margin-md-bottom">Infos personnelles</h3>
-                <span className="margin-sm-bottom">Ton adresse e-mail est : {this.props.userInfos.email}</span>
-                <span className="margin-md-bottom">L'ID de ton espace est : {this.props.userInfos.bucket}</span>
+            <div className="container wrapper-padding flex-center bkg-lightGrey">
+                <div className="content-box content-box-medium txt-darkBlueGrey content-box-banner-left">
+                    <div className="content-box-banner-left-img bkg-vintagePhoto"></div>
+                    <h2 className="margin-md-bottom">Bonjour {this.props.userInfos.name} !</h2>
+                    <h3>Utilisation</h3>
+                    <p>Tu as déjà utilisé <b>{usedVolumePercentage}%</b> de ton volume de <b>{volume/1073741824}Go</b>.</p>
+                    <VolumeGauge volume={infos.volume} usedVolume={infos.usedVolume}/>
+                    <h3 className="margin-md-top margin-md-bottom">Infos personnelles</h3>
+                    <p className="margin-sm-bottom">Ton adresse e-mail est : <b>{this.props.userInfos.email}</b></p>
+                    <p className="margin-md-bottom">L'ID de ton espace est : <b>{this.props.userInfos.bucket}</b></p>
+                    <i className="fa fa-edit button-icon"></i>
+                </div>
             </div>
         );
     }

@@ -21,7 +21,7 @@ class App extends Component {
                 <Header />
                 <Sidemenu />
                 <Switch>
-                    <Route path="/app/Upload" component={CreateAlbum} />
+                    <Route path="/app/CreateAlbum" component={CreateAlbum} />
                     <Route path="/app/Account" component={Account} />
                     <Route path="/app/albums" component={Albums} />
                     <Route path="/app/photos/:id" component={Photos} />

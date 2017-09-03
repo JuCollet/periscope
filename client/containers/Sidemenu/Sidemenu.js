@@ -36,7 +36,7 @@ class Sidemenu extends Component {
           <h2 className="sidemenu-title txt-darkBlueGrey">Periscope</h2>
           <ul className="sidemenu-desktop-list">
             <li><NavLink to="/app/albums/" onClick={ _ => this.props.toggleMenu() }>Gallerie</NavLink></li>
-            <li className="sidemenu-desktop-only"><NavLink to="/app/upload/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>
+            <li className="sidemenu-desktop-only"><NavLink to="/app/CreateAlbum/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>
             <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
             <li><NavLink to="/" onClick={this.onSignOut} >Déconnexion</NavLink></li>
           </ul>

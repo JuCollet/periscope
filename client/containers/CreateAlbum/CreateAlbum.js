@@ -5,7 +5,7 @@ import { createAlbum } from '../../actions/albums';
 import { bindActionCreators } from 'redux';
 import Tags from "../../components/Tags/Tags";
 
-class Upload extends Component {
+class CreateAlbum extends Component {
     
     constructor(props){
         super(props);
@@ -54,33 +54,32 @@ class Upload extends Component {
     
     render(){
         return(
-            <div className="wrapper flex-center">
-                <div className="contentBox">
-                    <div className="contentBox-body">
-                        <h2>Créer un album</h2>
-                        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                            <div className="input-group">
-                                <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
-                            </div>
-                            <br/>
-                            <div className="input-group">
-                                <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
-                            </div>
-                            <br/>
-                            <div className="input-group">
-                                <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
-                            </div>
-                            <br/>
-                            <div className="input-group">
-                                <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
-                            </div>
-                            <br/>
-                            <div className="UploadTagsDisplay">
-                                <Tags tags={this.state.tags} />
-                            </div>
-                            <p><button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button></p>
-                        </form>
-                    </div>
+            <div className="wrapper-padding flex-center bkg-lightGrey">
+                <div className="content-box content-box-medium content-box-banner-left">
+                    <div className="content-box-banner-left-img bkg-vintagePhoto"></div>
+                    <h2 className="txt-darkBlueGrey margin-md-bottom">Créer un album</h2>
+                    <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                        <div className="input-group margin-md-bottom">
+                            <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
+                        </div>
+                        <br/>
+                        <div className="input-group margin-md-bottom">
+                            <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
+                        </div>
+                        <br/>
+                        <div className="input-group margin-md-bottom">
+                            <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
+                        </div>
+                        <br/>
+                        <div className="input-group margin-md-bottom">
+                            <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
+                        </div>
+                        <br/>
+                        <div className="margin-md-bottom">
+                            <Tags tags={this.state.tags} />
+                        </div>
+                        <button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button>
+                    </form>
                 </div>
             </div>
         );
@@ -105,4 +104,4 @@ function mapDispatchToProps(dispatch){
 export default reduxForm({
   validate,
   form: 'uploadForm'
-})(connect(null, mapDispatchToProps)(Upload));
+})(connect(null, mapDispatchToProps)(CreateAlbum));
