@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 
-import require_auth from "./require_auth";
+import require_auth from "./Authentication/require_auth";
 
 import Sidemenu from "../containers/Sidemenu/Sidemenu";
 import Header from "../containers/Header/Header";

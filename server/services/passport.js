@@ -18,10 +18,12 @@ const localLogin = new LocalStrategy({ usernameField : 'email'}, function(email,
             user.comparePassword(password, function(err, isMatch){
                 if(err) {
                     err.message = 'Identification impossible';
+                    err.status = 500;                    
                     return done(err);
                 }
                 if(!isMatch){
                     const err = new Error('Mot de passe incorrect');
+                    err.status = 403;
                     return done(err, false);
                 } else {
                     return done(null, user);
@@ -29,6 +31,7 @@ const localLogin = new LocalStrategy({ usernameField : 'email'}, function(email,
             });            
         } else {
             const err = new Error('Utilisateur introuvable');
+            err.status = 404;            
             return done(err);
         }
     });
@@ -36,7 +39,10 @@ const localLogin = new LocalStrategy({ usernameField : 'email'}, function(email,
 
 const JwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
     User.findById( payload.sub , function(err, user){
-        if(err) return done(err, false);
+        if(err) {
+            err.status = 500;
+            return done(err, false);
+        }
         if(user){
             return done(null, user);
         } else {

@@ -1,13 +1,25 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
+import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
 
 const baseUrl = "/api/albums/";
 
 export function albumsFetch(){
     return function(dispatch){
+        
+        dispatch({
+            type : FETCHING,
+            payload : {isFetching : true}
+        });        
+        
         axios.get(baseUrl, {headers : {authorization : localStorage.getItem('token')}}).then(albums => {
+            
+        dispatch({
+            type : FETCHING,
+            payload : {isFetching : false}
+        });
+        
             dispatch({
                 type : ALBUMS_FETCH,
                 payload : albums            
@@ -75,7 +87,7 @@ export function searchAlbum(tags){
     }
 
     return function(dispatch){
-        axios.post(finalUrl, {tags:tags}, authHeader).then( albums => {
+        axios.post(finalUrl, {tags:tags}, {headers : {authorization : localStorage.getItem('token')}}).then( albums => {
             dispatch({
                 type: ALBUM_SEARCH,
                 payload: albums 

@@ -1,4 +1,4 @@
-import { USER_AUTH, USER_UNAUTH, USER_SIGN_ERROR, USER_RESET_ERROR } from '../actiontypes/';
+import { USER_AUTH, USER_UNAUTH, USER_SIGN_ERROR, USER_GET_INFOS, USER_RESET_ERROR } from '../actiontypes/';
 
 export default function(state = {}, action){
     
@@ -11,6 +11,8 @@ export default function(state = {}, action){
             return {...state, error : action.payload};
         case USER_RESET_ERROR :
             return {...state, error : { ...state.error, ...action.payload }};
+        case USER_GET_INFOS :
+            return {...state, infos : action.payload };
         default :
             return state;
     }

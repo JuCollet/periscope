@@ -54,7 +54,7 @@ class PhotoInfo extends Component {
         const { photo, album } = this.props;
 
         return (
-            <div className="bkg-white photoInfoBox">
+            <div className="wrapper-padding bkg-white" ref={this.props.photoInfoDomElement}>
                 <i className="fa fa-chevron-circle-down photoInfoCloseButton" onClick={_ => this.props.closeInfoBox()}></i>
                 <h2>Infos</h2>
                 <p><b>Nom de l'album : </b>{album.name}</p>

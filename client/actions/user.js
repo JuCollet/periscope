@@ -1,9 +1,21 @@
 /*global localStorage*/
 
-import { USER_AUTH, USER_UNAUTH, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
+import { USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
 import axios from "axios";
 
 const baseUrl = "/api/users/";
+
+export function getInfos(){
+    return function(dispatch){
+        axios.get(baseUrl+"infos", {headers : {authorization : localStorage.getItem('token')}})
+            .then(function(res){
+                dispatch({
+                    type: USER_GET_INFOS,
+                    payload : res.data
+                });
+            });
+    };
+}
 
 export function signInUser({email, password}){
     return function(dispatch){

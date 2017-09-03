@@ -10,7 +10,7 @@ import Signin from "./Signin/Signin";
 // Custom HOC to tilt parent component on error : 
 // add tilt() method to props and accept the parameters :
 // (DOM element, amplitude (Int - default 20), duration (Int - default 50), iterations (Int - default 7)
-import TiltComponent from "../../components/tilt_component";
+import TiltComponent from "../../components/Animations/tilt_component";
 
 class Landing extends Component {
     
@@ -25,7 +25,7 @@ class Landing extends Component {
         const { pathname } = this.props.location;
     
         return (
-            <div className="wrapper flex-center bkg-pattern">
+            <div className="container flex-center bkg-pattern">
                 <div className="landing flex-center bkg-white" ref={(LandingBox) => { this.LandingBox = LandingBox; }}>
                     <Switch>
                         <Route path="/signin" render={(props) => (<Signin tilt={_ => this.props.tilt(this.LandingBox)}/>)} />
@@ -36,7 +36,7 @@ class Landing extends Component {
                         <BulletsNav pages={["/","/signup","/signin"]} location={pathname} history={this.props.history}/>
                     </div>
                 </div>
-                {pathname === "/signin" ? <Link to="/signin" className="txt-mediumGrey margin-md-top">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-mediumGrey margin-md-top">Déjà inscrit ?</Link>}
+                {pathname === "/signin" ? <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Déjà inscrit ?</Link>}
             </div>
         );
     }

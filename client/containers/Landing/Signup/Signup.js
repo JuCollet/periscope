@@ -12,7 +12,7 @@ class Signup extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.state = {
-            firstname : "",
+            firstName : "",
             email : "",
             password : "",
             passwordValidation : "",
@@ -41,13 +41,13 @@ class Signup extends Component {
     onSubmit(e){
         e.preventDefault();
         
-        const { firstname, email, password, passwordValidation } = this.state;
+        const { firstName, email, password, passwordValidation } = this.state;
         
-        if(!firstname || firstname.length < 2){
+        if(!firstName || firstName.length < 2){
             this.props.tilt();
             return this.setState({
                 error : "Quel est votre prénom ?",
-                errorField : "firstname"
+                errorField : "firstName"
             });    
         } else if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             this.props.tilt();
@@ -73,7 +73,7 @@ class Signup extends Component {
                 errorField : null
             });
         }
-        this.props.signUpUser({firstname, email, password}, this.props.history);
+        this.props.signUpUser({firstName, email, password}, this.props.history);
     }
     
     renderStyle(name){
@@ -87,7 +87,7 @@ class Signup extends Component {
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>
                 <h3 className="txt-darkBlueGrey margin-lg-bottom"><b>5Go</b> gratuits !</h3>
                 <form onSubmit={this.onSubmit} >
-                    <input value={this.state.firstname} style={this.renderStyle('firstname')} className="small-input margin-sm-bottom" name="firstname" type="text" placeholder="Prénom" aria-label="Prénom" onChange={this.onChangeHandler} />
+                    <input value={this.state.firstName} style={this.renderStyle('firstName')} className="small-input margin-sm-bottom" name="firstName" type="text" placeholder="Prénom" aria-label="Prénom" onChange={this.onChangeHandler} />
                     <input value={this.state.email} style={this.renderStyle('email')} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" onChange={this.onChangeHandler} />
                     <input value={this.state.password} style={this.renderStyle('password')} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Mot de passe" aria-label="mot de passe" onChange={this.onChangeHandler} />
                     <input value={this.state.passwordValidation} style={this.renderStyle('passwordValidation')} className="small-input margin-sm-bottom" name="passwordValidation" type="password" placeholder="Confirmez le mot de passe" aria-label="Confirmation du mot de passe" onChange={this.onChangeHandler} />

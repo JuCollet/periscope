@@ -8,19 +8,16 @@ import SearchBar from "./SearchBar/SearchBar";
 
 class Header extends Component {
   
-  toggleMenu(){
-    this.props.toggleMenu();
-  }
-  
   render(){
     
     const headerUpClass = this.props.menu.open ? 'header-up' : 'header-down';
 
     return (
       <div id="header" className={headerUpClass}>
-        <i className="fa fa-bars" aria-hidden="true" onClick={this.toggleMenu.bind(this)}></i>
-        <div className="header-option">
-          {this.props.search.searchType === null ? <span className="title">Periscope</span> : <SearchBar />}
+        <i className="fa fa-bars margin-sm-right" aria-hidden="true" onClick={_=>this.props.toggleMenu()}></i>
+        <div className="title margin-sm-left margin-sm-right txt-darkBlueGrey">Periscope</div>
+        <div className="header-search">
+          {this.props.search.searchType === null ? "" : <SearchBar />}
         </div>
       </div>
       );  

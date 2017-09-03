@@ -38,8 +38,8 @@ class SearchBar extends Component{
     render(){
         return (
         <div className="searchBar">
-        <i className="fa fa-search"></i>
-        <input ref={searchTerm => this.searchTerm = searchTerm} className="small-input" type="text" onChange={e=>{e.persist();this.searchFor(e)}} onTouchStart={_=>this.scrollToBottom()}></input>
+            <i className="fa fa-search"></i>
+            <input ref={searchTerm => this.searchTerm = searchTerm} className="small-input" type="text" onChange={e=>{e.persist();this.searchFor(e)}} onTouchStart={_=>this.scrollToBottom()}></input>
         </div>
         );        
     }

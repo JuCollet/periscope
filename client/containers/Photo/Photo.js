@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Hammer from "react-hammerjs";
 import _ from "lodash";
 import { bindActionCreators } from "redux";
+import SmoothScroll from "../../components/Animations/SmoothScroll";
 import { albumFetch } from "../../actions/albums";
 import { photoDelete } from "../../actions/photos";
 import Loading from "../../components/Loading/Loading";
@@ -16,6 +17,7 @@ class Photos extends Component {
         super(props);
         this.state = {infoOpen:false};
         this.showInfos = this.showInfos.bind(this);
+        this.closeInfos = this.closeInfos.bind(this);
         this.browsePhoto = this.browsePhoto.bind(this);
         this.getPhotoIndex = this.getPhotoIndex.bind(this);
         this.afterPhotoIsDeleted = this.afterPhotoIsDeleted.bind(this);
@@ -27,16 +29,11 @@ class Photos extends Component {
     }
     
     showInfos(){
-        if(this.state.infoOpen){
-            document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "visible";
-            document.getElementsByClassName("PhotoBig")[0].classList.remove("PhotoHide");
-            document.getElementsByClassName("photoInfoBox")[0].classList.remove("photoInfoShow");            
-        } else {
-            document.getElementsByClassName("photoButtonsBox")[0].style.visibility = "hidden";
-            document.getElementsByClassName("PhotoBig")[0].classList.add("PhotoHide");
-            document.getElementsByClassName("photoInfoBox")[0].classList.add("photoInfoShow");
-        }
-        this.setState({infoOpen:!this.state.infoOpen});
+        this.props.smoothScrollTo(this.photoInfo);
+    }
+    
+    closeInfos(){
+        this.props.smoothScrollTo(this.photoBox);
     }
     
     getPhotoIndex(){
@@ -75,23 +72,25 @@ class Photos extends Component {
         const photo = _.find(album.photos, {"_id":this.props.match.params.photoId});
         
         return (
-            <div className="wrapper wrapper-padding no-overflow flex-center bkg-veryDarkGrey">
-                <Hammer onSwipe={this.browsePhoto}>
-                    <div id="img-container">
-                        <i className="fa fa-times photos-close-button" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>
-                        <img className="PhotoBig" src={photo.medium} />
-                    </div>
-                </Hammer>
-                <PhotoInfo photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.showInfos}/>
-                <div className="photoButtonsBox">
-                    <a href={photo.original} download><i className="fa fa-download"></i></a>
-                    <i className="fa fa-heart"></i>
-                    <i className="fa fa-share-alt"></i>
-                    <i className="fa fa-info-circle" onClick={this.showInfos}></i>
-                    <i className="fa fa-chevron-left" onClick={_=>this.browsePhoto({direction:4})}></i>
-                    <span>{this.getPhotoIndex()+1} / {album.photos.length}</span>
-                    <i className="fa fa-chevron-right" onClick={_=>this.browsePhoto({direction:2})}></i>
-                </div>                    
+            <div className="container">
+                <div ref={node=> {this.photoBox = node}} className="wrapper-padding flex-center bkg-veryDarkGrey">
+                    <Hammer onSwipe={this.browsePhoto}>
+                        <div id="img-container">
+                            <i className="fa fa-times photos-close-button" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>
+                            <img className="PhotoBig" src={photo.medium} />
+                        </div>
+                    </Hammer>
+                    <div className="photoButtonsBox">
+                        <a href={photo.original} download><i className="fa fa-download"></i></a>
+                        <i className="fa fa-heart"></i>
+                        <i className="fa fa-share-alt"></i>
+                        <i className="fa fa-info-circle" onClick={this.showInfos}></i>
+                        <i className="fa fa-chevron-left" onClick={_=>this.browsePhoto({direction:4})}></i>
+                        <span>{this.getPhotoIndex()+1} / {album.photos.length}</span>
+                        <i className="fa fa-chevron-right" onClick={_=>this.browsePhoto({direction:2})}></i>
+                    </div>                    
+                </div>
+                <PhotoInfo photoInfoDomElement={el => this.photoInfo = el} photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.closeInfos} />
             </div>
         );
     }
@@ -108,4 +107,4 @@ function mapStateToProps(state, ownProps){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Photos);
+export default connect(mapStateToProps, mapDispatchToProps)(SmoothScroll(Photos));

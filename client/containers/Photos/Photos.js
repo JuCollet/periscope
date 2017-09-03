@@ -52,7 +52,7 @@ class Photos extends Component {
     }
     
     return (
-      <div className="wrapper wrapper-padding">
+      <div className="wrapper-padding">
         <p><NavLink to="/app/albums/"><i className="fa fa-chevron-left"></i><span className="photos-back-link">&nbsp;&nbsp;Retour</span></NavLink></p>
         <span className="albumTitle">{album.name}</span>
         <span className="albumPhotographer">par {album.photographer}</span>

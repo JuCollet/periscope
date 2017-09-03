@@ -14,25 +14,24 @@
   flex: 0 0 50px;
 
   .fa-bars {
-    z-index: 99999;
+    z-index: 999;
     font-size: 26px;
-    margin-right: 10px;
     color: @darkBlueGrey;
     cursor: pointer;
   }
   
 }
 
-.header-option {
+.header-search {
     display: flex;
+    width: 100%;
     align-items: center;
     flex-direction: row;
-    width: 100%;
 }
 
 .header-up {
   transition: .3s;
-  bottom: 300px !important;
+  bottom: @sidemenu-mobile-height !important;
 }
 
 .header-down {
@@ -61,13 +60,23 @@
     width: 20%;  
   }
   
-  #header .fa-search {
-    left: 20px;  
-  }
-  
   .header-up {
     transition: .3s;
     bottom: unset;
   }
 
+}
+
+.title {
+    display: none;
+    top: 1px;
+    font-size: 1.5em;
+    padding-bottom: 4px;
+}
+
+@media (min-width: @screen-sm-min){
+    .title {
+        display: unset;
+        top: unset;
+    }
 }

@@ -10,5 +10,8 @@ userRouter.route('/signup')
     
 userRouter.route('/signin')
     .post(passportService.requireSignin, usersController.signin);
-    
+
+userRouter.route('/infos')
+    .get(passportService.requireAuth, usersController.getInfos);
+
 module.exports = userRouter;

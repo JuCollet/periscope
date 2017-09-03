@@ -1,4 +1,6 @@
-#sidemenu{
+@sidemenu-mobile-height: 225px;
+
+#sidemenu {
     position: fixed;
     right: 0px;
     top: 0px;
@@ -17,15 +19,9 @@
         padding: 20px 0px;
         border-top: 1px solid @lightGrey;
         font-size: 1.1em;
-        color: @darkBlueGrey;
     }
 
     z-index: 9999;
-    
-    h2 {
-        color: @darkBlueGrey;
-    }
-    
 }
 
 .sidemenu-open {
@@ -68,20 +64,27 @@
         right: 0px;
         top: unset;
         left: 0px;
-        height: 300px;
+        height: @sidemenu-mobile-height;
         width: 100%;
         text-align: right;
+        background-color: white;
         
-        .sidemenu-desktop {
+
+        
+        .sidemenu-desktop-only {
             display: none;
         }
 
-        h2 {
+        .sidemenu-title {
             display: none;
         }
         
         ul.sidemenu-desktop-list {
             text-align: center;
+            
+            li {
+                border-color: @lightGrey;
+            }
             
             li:first-child {
                 border-top: 0px;
@@ -98,7 +101,7 @@
     .sidemenu-close {
         transition: .3s;
         width: 100%;
-        bottom: -300px !important;
+        bottom: -(@sidemenu-mobile-height) !important;
         box-shadow: none;
     }
     
