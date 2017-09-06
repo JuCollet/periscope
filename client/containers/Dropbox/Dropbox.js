@@ -41,7 +41,7 @@ class Dropbox extends Component {
     }.bind(this);
 
     for (let i = 0; i < dt.files.length; i++) {
-      if(dt.files[i].type === "image/jpeg")
+      if(dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png")
       data.append('photos', dt.files[i], dt.files[i].name);
     }
     

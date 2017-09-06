@@ -25,6 +25,7 @@ class Photos extends Component {
     
     componentDidMount(){
         const { albumId } = this.props.match.params;
+        window.scrollTo(0, 0);
         this.props.albumFetch(albumId);
     }
     
@@ -82,8 +83,6 @@ class Photos extends Component {
                     </Hammer>
                     <div className="photoButtonsBox">
                         <a href={photo.original} download><i className="fa fa-download"></i></a>
-                        <i className="fa fa-heart"></i>
-                        <i className="fa fa-share-alt"></i>
                         <i className="fa fa-info-circle" onClick={this.showInfos}></i>
                         <i className="fa fa-chevron-left" onClick={_=>this.browsePhoto({direction:4})}></i>
                         <span>{this.getPhotoIndex()+1} / {album.photos.length}</span>

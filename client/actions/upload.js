@@ -18,11 +18,11 @@ export function fileUpload(files, id, cb){
                     document.getElementById(`${id}-icon`).classList.add("fa-cog", "fa-spin", "txt-white");                
                 }
             }
-        }).then( album => {
+        }).then( res => {
             cb();
             dispatch({
                 type: UPLOAD_FILES,
-                payload: album      
+                payload: res
             });        
         });
     };        

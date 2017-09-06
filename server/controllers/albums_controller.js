@@ -28,7 +28,9 @@ const aggregateConfig = {
         $project : {
             name: 1,
             description : 1,
+            createdAt : 1,            
             updatedAt : 1,
+            thumb: { $arrayElemAt: [ "$photos.thumb", 0 ] },
             albumThumb : 1,
             numberOfPhotos : { $size: "$photos"}
         }

@@ -42,7 +42,7 @@ class Albums extends Component {
     }
     
     return (
-      <div className="wrapper-padding">
+      <div className="wrapper-padding bkg-lightGrey flex-mobile-bottom">
         {_.map(this.props.albums, album => {
           return <NavLink to={`/app/photos/${album._id}`} key={album._id}><Card album={album} /></NavLink>;
         })}

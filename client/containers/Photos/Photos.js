@@ -59,8 +59,6 @@ class Photos extends Component {
         <span className="albumDescription">{album.description}</span>
         <Tags tags={album.tags} />
         <i className="fa fa-trash button-icon" onClick={_ => this.deleteAlbum(album._id)}></i>
-        <i className="fa fa-pencil button-icon"></i>
-        <i className="fa fa-envelope button-icon"></i>
         <hr className="albumHr" />
         {this.renderPatchwork()}
       </div>

@@ -98,7 +98,7 @@ p {
 }
 
 .wrapper-padding {
-    height: calc(~"100% - 100px");
+    min-height: calc(~"100% - 100px");
     padding: 20px 20px 80px 20px;
 }
 
@@ -135,6 +135,12 @@ p {
 
     .desktop-only {
         display: none !important;
+    }
+    
+    .flex-mobile-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
 }

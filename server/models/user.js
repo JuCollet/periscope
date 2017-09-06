@@ -15,7 +15,7 @@ const userSchema = new Schema({
     password : String,
     volume : {
       type: Number,
-      default: 5368709120
+      default: 1073741824
     },
     usedVolume : {
       type : Number,

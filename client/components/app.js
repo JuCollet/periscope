@@ -8,6 +8,7 @@ import require_auth from "./Authentication/require_auth";
 import Sidemenu from "../containers/Sidemenu/Sidemenu";
 import Header from "../containers/Header/Header";
 import CreateAlbum from "../containers/CreateAlbum/CreateAlbum";
+import Upload from "../containers/Upload/Upload";
 import Account from "../containers/Account/Account";
 import Albums from "../containers/Albums/Albums";
 import Photos from "../containers/Photos/Photos";
@@ -22,6 +23,7 @@ class App extends Component {
                 <Sidemenu />
                 <Switch>
                     <Route path="/app/CreateAlbum" component={CreateAlbum} />
+                    <Route path="/app/upload/:albumId" component={Upload} />
                     <Route path="/app/Account" component={Account} />
                     <Route path="/app/albums" component={Albums} />
                     <Route path="/app/photos/:id" component={Photos} />

@@ -1,8 +1,10 @@
-import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_DELETE, ALBUM_THUMB_UPDATE, PHOTO_DELETE, PHOTO_UPDATE, ALBUM_SEARCH, UPLOAD_FILES } from '../actiontypes/';
+import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_DELETE, ALBUMS_RESET_STATE, ALBUM_THUMB_UPDATE, PHOTO_DELETE, PHOTO_UPDATE, ALBUM_SEARCH, UPLOAD_FILES } from '../actiontypes/';
 import _ from "lodash";
 
 export default function(state = {}, action){
     switch(action.type){
+        case ALBUMS_RESET_STATE :
+            return {};
         case ALBUM_DELETE :
             return _.omit(state, action.payload);        
         case ALBUMS_FETCH :

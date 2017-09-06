@@ -47,9 +47,7 @@ class CreateAlbum extends Component {
             description: data.description,
             tags: this.state.tags
         };
-        this.props.createAlbum(newAlbum, _ => {
-            this.props.history.push('/app/albums');
-        });
+        this.props.createAlbum(newAlbum, this.props.history.push);
     }
     
     render(){

@@ -1,6 +1,6 @@
 /*global localStorage*/
 
-import { USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
+import { ALBUMS_RESET_STATE, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
 import axios from "axios";
 
 const baseUrl = "/api/users/";
@@ -19,7 +19,7 @@ export function getInfos(){
 
 export function signInUser({email, password}){
     return function(dispatch){
-        axios.post(baseUrl+"signin", {email, password})
+        axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem("customer",true);
@@ -41,14 +41,18 @@ export function signOutUser(){
     return function(dispatch){
         localStorage.removeItem('token');
         dispatch({
+            type: ALBUMS_RESET_STATE
+        });
+        dispatch({
             type: USER_UNAUTH
         });
     };
 }
 
 export function signUpUser(user, history){
+    const userWithLowerCaseEmail = {...user, email : user.email.toLowerCase()};
     return function(dispatch){
-        axios.post(baseUrl+"signup", user)
+        axios.post(baseUrl+"signup", userWithLowerCaseEmail)
         .then(function(res){
             dispatch({ type: USER_AUTH });
             localStorage.setItem("customer",true);

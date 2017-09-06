@@ -15,15 +15,16 @@ export function albumsFetch(){
         
         axios.get(baseUrl, {headers : {authorization : localStorage.getItem('token')}}).then(albums => {
             
-        dispatch({
-            type : FETCHING,
-            payload : {isFetching : false}
-        });
-        
+            dispatch({
+                type : FETCHING,
+                payload : {isFetching : false}
+            });
+            
             dispatch({
                 type : ALBUMS_FETCH,
                 payload : albums            
             });
+            
         });
     };
 }
@@ -42,7 +43,7 @@ export function albumFetch(id){
 export function createAlbum(album, cb){
     return function(dispatch){
         axios.post(baseUrl, album, {headers : {authorization : localStorage.getItem('token')}}).then(createdAlbum => {
-            cb();
+            cb("/app/albums");
             dispatch({
                 type : ALBUM_CREATE,
                 payload : createdAlbum            
@@ -65,7 +66,7 @@ export function deleteAlbum(albumId, cb){
 
 export function albumThumbUpdate(id, albumThumb, cb){
     return function(dispatch){
-        axios.put(baseUrl + "/updateAlbumThumb/", {id, albumThumb}).then( album => {
+        axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb}).then( album => {
             cb();
             dispatch({
                 type : ALBUM_THUMB_UPDATE,
