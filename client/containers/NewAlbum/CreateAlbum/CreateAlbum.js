@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createAlbum } from '../../actions/albums';
+import { createAlbum } from '../../../actions/albums';
 import { bindActionCreators } from 'redux';
-import Tags from "../../components/Tags/Tags";
+import Tags from "../../../components/Tags/Tags";
 
 class CreateAlbum extends Component {
     
@@ -29,7 +29,7 @@ class CreateAlbum extends Component {
                 {touched && error ?  <i className="fa fa-times txt-red"></i> : touched && pristine ? <i className="fa fa-times txt-red"></i> : touched ? <i className="fa fa-check txt-green"></i> : ""}
             </div>
         );
-    }
+    }    
     
     renderTags(values){
         if(values){
@@ -51,36 +51,29 @@ class CreateAlbum extends Component {
     }
     
     render(){
-        return(
-            <div className="wrapper-padding flex-center bkg-lightGrey">
-                <div className="content-box content-box-medium content-box-banner-left">
-                    <div className="content-box-banner-left-img bkg-vintagePhoto"></div>
-                    <h2 className="txt-darkBlueGrey margin-md-bottom">Créer un album</h2>
-                    <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                        <div className="input-group margin-md-bottom">
-                            <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
-                        </div>
-                        <br/>
-                        <div className="input-group margin-md-bottom">
-                            <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
-                        </div>
-                        <br/>
-                        <div className="input-group margin-md-bottom">
-                            <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
-                        </div>
-                        <br/>
-                        <div className="input-group margin-md-bottom">
-                            <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
-                        </div>
-                        <br/>
-                        <div className="margin-md-bottom">
-                            <Tags tags={this.state.tags} />
-                        </div>
-                        <button disabled={!this.props.valid} className="small-button small-button-anim" type="submit">Envoyer</button>
-                    </form>
-                </div>
+        return (
+            <div>
+                <h3 className="margin-md-bottom">Créer un album</h3>
+                <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <div className="input-group">
+                        <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
+                    </div>
+                    <div className="input-group">
+                        <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
+                    </div>
+                    <div className="input-group">
+                        <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
+                    </div>
+                    <div className="input-group">
+                        <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
+                    </div>
+                    <div className="margin-md-bottom">
+                        <Tags tags={this.state.tags} />
+                    </div>                    
+                    <button className="small-button small-button-anim" type="submit">Créer</button>
+                </form>
             </div>
-        );
+        );        
     }
 }
 

@@ -3,9 +3,17 @@
 import { ALBUMS_RESET_STATE, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
 import axios from "axios";
 
+export {
+    getInfos,
+    signInUser,
+    signUpUser,
+    signOutUser,
+    signErrorReset
+};
+
 const baseUrl = "/api/users/";
 
-export function getInfos(){
+function getInfos(){
     return function(dispatch){
         axios.get(baseUrl+"infos", {headers : {authorization : localStorage.getItem('token')}})
             .then(function(res){
@@ -17,7 +25,7 @@ export function getInfos(){
     };
 }
 
-export function signInUser({email, password}){
+function signInUser({email, password}){
     return function(dispatch){
         axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
@@ -37,7 +45,7 @@ export function signInUser({email, password}){
     };
 }
 
-export function signOutUser(){
+function signOutUser(){
     return function(dispatch){
         localStorage.removeItem('token');
         dispatch({
@@ -49,7 +57,7 @@ export function signOutUser(){
     };
 }
 
-export function signUpUser(user, history){
+function signUpUser(user, history){
     const userWithLowerCaseEmail = {...user, email : user.email.toLowerCase()};
     return function(dispatch){
         axios.post(baseUrl+"signup", userWithLowerCaseEmail)
@@ -71,7 +79,7 @@ export function signUpUser(user, history){
     };
 }
 
-export function signErrorReset(message){
+function signErrorReset(message){
     
     let payload = {
         err : false,

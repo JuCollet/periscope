@@ -83,7 +83,7 @@ class Signin extends Component {
                 <input value={this.state.email} style={this.renderStyle('email')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" />
                 <input value={this.state.password} style={this.renderStyle('password')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Password" aria-label="password" />
                 {this.state.error ? <div className="txt-red margin-sm-bottom"> {this.state.error} </div> : this.props.user.error ? <div className="txt-red margin-sm-bottom"> {this.props.user.error.message} </div> : null}
-                <button className="small-button small-button-anim margin-sm-top" type="submit">Sign in</button>
+                <button className="small-button small-button-anim margin-sm-top" type="submit">Se connecter</button>
             </form>
         );
     }

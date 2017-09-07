@@ -1,5 +1,4 @@
 const Album = require('../models/album');
-const updateUsedVolume = require('./upload_controller').updateUsedVolume;
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const aws = require('aws-sdk');
@@ -93,7 +92,7 @@ function deleteAlbum(req,res,next){
 
     }
     
-    updateUsedVolume(req,res,next,album);
+    res.json(album);
 
     });
 }

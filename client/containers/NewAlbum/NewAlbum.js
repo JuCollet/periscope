@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { Link, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getInfos } from "../../actions/user";
 
-import Loading from "../../components/Loading/Loading";
+import CreateAlbum from "./CreateAlbum/CreateAlbum";
+import Infos from "./Infos/Infos";
 
-import MyUsage from "./MyUsage/MyUsage";
-import Myinfos from "./MyInfos/MyInfos";
-
-class Account extends Component {
-    
-    componentWillMount(){
-        this.props.getInfos();
-    }    
+class NewAlbum extends Component {
     
     renderLinkStyle(link){
         const { pathname } = this.props.location;
@@ -26,16 +19,12 @@ class Account extends Component {
 
         const links = [
             {
-                path : "usage",
-                label : "Mon utilisation"
+                path : "create",
+                label : "Créer un album"
             },
             {
                 path : "infos",
-                label : "Infos personnelles"
-            },
-            {
-                path : "friends",
-                label : "Mes amis"
+                label : "Plus d'infos"
             },            
         ];
         
@@ -47,28 +36,23 @@ class Account extends Component {
     }
     
     render(){
-        
-        if(!this.props.userInfos){
-            return <Loading />;
-        }
-        
-        const infos = this.props.userInfos;
+
         const { path } = this.props.match;
 
         return (
             <div className="container-center wrapper-padding">
                 <div className="content-page">
                     <div className="content-page-sidemenu">
-                        <h2 className="txt-darkBlueGrey margin-md-bottom">Mon compte</h2>
+                        <h2 className="txt-darkBlueGrey margin-md-bottom">Nouvel&nbsp;album</h2>
                         <ul>
                             {this.renderLinksList()}
                         </ul>
                     </div>
                     <div className="content-page-content">
                     <Switch>
-                        <Route path={`${path}/infos`} render={props=> { return <Myinfos {...props} infos={infos} />}} />
-                        <Route path={`${path}/usage`} render={props=> { return <MyUsage {...props} infos={infos} />}} />
-                        <Redirect from={`${path}/`} to={`${path}/usage`} />
+                        <Route path={`${path}/infos`} component={Infos} />
+                        <Route path={`${path}/create`} render={props=> { return <CreateAlbum {...props} />}} />
+                        <Redirect from={`${path}/`} to={`${path}/create`} />
                     </Switch>
                     </div>
                 </div>
@@ -78,13 +62,12 @@ class Account extends Component {
 }
 
 function mapDispatchToprops(dispatch){
-    return bindActionCreators({ getInfos }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 function mapStateTopProps(state){
     return {
-        userInfos : state.user.infos
     };
 }
 
-export default connect(mapStateTopProps, mapDispatchToprops)(Account);
+export default connect(mapStateTopProps, mapDispatchToprops)(NewAlbum);

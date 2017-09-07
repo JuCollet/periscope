@@ -18,8 +18,7 @@ const express = require('express'),
       });
 
 module.exports = {
-    sendFiles : sendFiles,
-    updateUsedVolume : updateUsedVolume
+    sendFiles : sendFiles
 };
 
 function sendFiles (req,res,next){
@@ -64,7 +63,7 @@ function sendFiles (req,res,next){
             });
             filesCounter++;                
             if(filesCounter === files.length){
-                updateUsedVolume(req,res,next,album);
+                res.json(album);
             }
         });
     };
@@ -104,35 +103,4 @@ function sendFiles (req,res,next){
         });             
             
     });
-
-}
-
-function updateUsedVolume(req, res, next, data){
-    Album.aggregate([
-        { $match : { bucket : req.user.bucket }},
-        { $unwind : "$photos" },
-        { $group : { 
-            _id : null,
-            usedVolume : { $sum : "$photos.size" } } }
-    ], function(err, result){
-        if(err){
-            err.message = "Impossible de calculer l'espace utilisé";
-            return next(err);
-        }
-        
-        let usedVolume;
-        
-        if(result.length === 0){
-            usedVolume = 0;
-        } else {
-            usedVolume = result[0].usedVolume;
-        }
-        
-        User.findByIdAndUpdate(req.user._id, { '$set' : { 'usedVolume' : usedVolume }}, { new : true }, function(err, user){
-            if(err){
-                err.message = "Impossible de mettre à jour le volume utilisé";
-            }
-            res.json(data);
-        });
-    });    
 }

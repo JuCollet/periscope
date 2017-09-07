@@ -3,7 +3,11 @@
 import axios from "axios";
 import { UPLOAD_FILES } from "../actiontypes/";
 
-export function fileUpload(files, id, cb){
+export {
+    fileUpload // Send file to server;
+};
+
+function fileUpload(files, id, cb){
     
     return function(dispatch){
         axios({

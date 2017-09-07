@@ -3,9 +3,15 @@
 import axios from "axios";
 import { PHOTO_DELETE, PHOTO_UPDATE, PHOTO_SEARCH } from "../actiontypes/";
 
+export {
+    photoDelete, // Delete a particular photo
+    photoUpdate, // Update photo tags
+    photoSearch // Update the search term for filtering displayed photos.
+};
+
 const baseUrl = "/api/photos/";
 
-export function photoDelete(albumId, photoId, filename, cb){
+function photoDelete(albumId, photoId, filename, cb){
     return function(dispatch){
         cb();
         axios.put(baseUrl+"delete/", {albumId, photoId, filename}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
@@ -17,7 +23,7 @@ export function photoDelete(albumId, photoId, filename, cb){
     };
 }
 
-export function photoUpdate(photoId, data, cb){
+function photoUpdate(photoId, data, cb){
     return function(dispatch){
         axios.put(baseUrl+"tagsupdate/", {photoId, data}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
             cb();
@@ -29,7 +35,7 @@ export function photoUpdate(photoId, data, cb){
     };
 }
 
-export function photoSearch(term){
+function photoSearch(term){
     return {
         type: PHOTO_SEARCH,
         payload: term

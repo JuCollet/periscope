@@ -5,7 +5,16 @@ import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_
 
 const baseUrl = "/api/albums/";
 
-export function albumsFetch(){
+export {
+    albumsFetch, // Fetch all albums - auth required
+    albumFetch, // Fetch a particular album - auth not required
+    albumThumbUpdate, // Update the displayed album thumb - auth not required
+    createAlbum, // Create a new album - auth required
+    deleteAlbum, // Delete an existing album - auth required
+    searchAlbum // Search an album with album or photo tags - auth required
+};
+
+function albumsFetch(){
     return function(dispatch){
         
         dispatch({
@@ -29,7 +38,7 @@ export function albumsFetch(){
     };
 }
 
-export function albumFetch(id){
+function albumFetch(id){
     return function(dispatch){
         axios.get(baseUrl+id).then(album => {
             dispatch({
@@ -40,31 +49,7 @@ export function albumFetch(id){
     };
 }
 
-export function createAlbum(album, cb){
-    return function(dispatch){
-        axios.post(baseUrl, album, {headers : {authorization : localStorage.getItem('token')}}).then(createdAlbum => {
-            cb("/app/albums");
-            dispatch({
-                type : ALBUM_CREATE,
-                payload : createdAlbum            
-            });        
-        });
-    };
-}
-
-export function deleteAlbum(albumId, cb){
-    return function(dispatch){
-        axios.delete(baseUrl, {...{headers : {authorization : localStorage.getItem('token')}}, data : { albumId }}).then( _ => {
-            cb();
-            dispatch({
-                type : ALBUM_DELETE,
-                payload : albumId           
-            });        
-        });
-    };
-}
-
-export function albumThumbUpdate(id, albumThumb, cb){
+function albumThumbUpdate(id, albumThumb, cb){
     return function(dispatch){
         axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb}).then( album => {
             cb();
@@ -76,7 +61,31 @@ export function albumThumbUpdate(id, albumThumb, cb){
     };    
 }
 
-export function searchAlbum(tags){
+function createAlbum(album, cb){
+    return function(dispatch){
+        axios.post(baseUrl, album, {headers : {authorization : localStorage.getItem('token')}}).then(createdAlbum => {
+            cb("/app/albums");
+            dispatch({
+                type : ALBUM_CREATE,
+                payload : createdAlbum            
+            });        
+        });
+    };
+}
+
+function deleteAlbum(albumId, cb){
+    return function(dispatch){
+        axios.delete(baseUrl, {...{headers : {authorization : localStorage.getItem('token')}}, data : { albumId }}).then( _ => {
+            cb();
+            dispatch({
+                type : ALBUM_DELETE,
+                payload : albumId           
+            });        
+        });
+    };
+}
+
+function searchAlbum(tags){
 
     let finalUrl;
     

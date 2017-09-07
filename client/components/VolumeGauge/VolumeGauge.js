@@ -21,7 +21,7 @@ export default class VolumeGauge extends Component {
                     backgroundColor : usedVolumePercentage < 90 ? usedVolumePercentage < 70 ? "#4EE898" : "#F5A623" : "#FF3F00"
                 }
             });
-        }, 500);
+        }, 250);
     }
     
     render(){

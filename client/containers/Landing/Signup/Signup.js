@@ -85,7 +85,7 @@ class Signup extends Component {
         return(
             <div>
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>
-                <h3 className="txt-darkBlueGrey margin-lg-bottom"><b>1Go</b> gratuits !</h3>
+                <h4 className="txt-darkBlueGrey margin-lg-bottom"><b>1Go</b> gratuit !</h4>
                 <form onSubmit={this.onSubmit} >
                     <input value={this.state.firstName} style={this.renderStyle('firstName')} className="small-input margin-sm-bottom" name="firstName" type="text" placeholder="Prénom" aria-label="Prénom" onChange={this.onChangeHandler} />
                     <input value={this.state.email} style={this.renderStyle('email')} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" onChange={this.onChangeHandler} />

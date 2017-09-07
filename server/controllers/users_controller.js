@@ -1,5 +1,6 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
+const Album = require('../models/album');
 
 module.exports = {
     getInfos : getInfos,
@@ -18,12 +19,35 @@ function getInfos(req,res,next){
             err.message = "Utiliseur introuvable";
             return next(err);
         }
-        res.json({
-            name : user.firstname,
-            email : user.email,
-            volume : user.volume,
-            usedVolume : user.usedVolume,
-            bucket : user.bucket
+        Album.aggregate([
+            { $match : { bucket : user.bucket}},
+            { $group : {
+                _id : null,
+                "numberOfAlbums" : {
+                    $sum : 1
+                },
+                "numberOfPhotos" : {
+                    $sum : {
+                        $size : "$photos"
+                    },
+                },
+                "usedVolume" : {
+                    $sum : {
+                        $sum : "$photos.size"
+                    }
+                }
+            }}
+            ], function(err, usageInfos){
+            if(err){
+                err.message = "Impossible d'obtenir plus d'infos";
+                return next(err);
+            }
+            res.json({ ...usageInfos[0],
+                name : user.firstname,
+                email : user.email,
+                volume : user.volume,
+                bucket : user.bucket
+            });            
         });
     });
 }

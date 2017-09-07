@@ -39,7 +39,7 @@ function photoDelete(req,res,next){
         if(err) return next(err);
         Album.findByIdAndUpdate(req.body.albumId, {$pull : { photos : {_id : req.body.photoId}}}, { new : true }, function(err, album){
             if(err) return next(err);
-            updateUsedVolume(req,res,next,album);
+            res.json(album);
         });    
         
     });

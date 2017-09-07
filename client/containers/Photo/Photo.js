@@ -74,7 +74,7 @@ class Photos extends Component {
         
         return (
             <div className="container">
-                <div ref={node=> {this.photoBox = node}} className="wrapper-padding flex-center bkg-veryDarkGrey">
+                <div ref={node=> {this.photoBox = node}} className="wrapper-padding wrapper-fullHeight flex-center bkg-veryDarkGrey">
                     <Hammer onSwipe={this.browsePhoto}>
                         <div id="img-container">
                             <i className="fa fa-times photos-close-button" onClick={_=>this.props.history.push(`/app/photos/${this.props.album._id}`)}></i>

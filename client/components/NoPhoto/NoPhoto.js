@@ -5,7 +5,7 @@ import './noPhoto.png';
 export default class NoPhoto extends Component {
     render(){
         return(
-            <div className="wrapper-padding flex-center bkg-lightGrey">
+            <div className="wrapper-padding wrapper-fullHeight flex-center bkg-lightGrey">
                 <div className="content-box flex-center desktop-only text-center">
                     <img src="../../img/noPhoto.png" width="128px" />
                     <h2 className="txt-darkBlueGrey">Aucune photo<br/>trouvée</h2>

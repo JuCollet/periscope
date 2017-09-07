@@ -54,7 +54,7 @@ class PhotoInfo extends Component {
         const { photo, album } = this.props;
 
         return (
-            <div className="wrapper-padding bkg-white" ref={this.props.photoInfoDomElement}>
+            <div className="wrapper-padding wrapper-fullHeight bkg-white" ref={this.props.photoInfoDomElement}>
                 <i className="fa fa-chevron-circle-down photoInfoCloseButton" onClick={_ => this.props.closeInfoBox()}></i>
                 <h2>Infos</h2>
                 <p><b>Nom de l'album : </b>{album.name}</p>
@@ -64,7 +64,6 @@ class PhotoInfo extends Component {
                 <p><b>Impression optimale : </b>{photo.width ? Math.round(photo.width/118) : "largeur inconnue"} cm x {photo.height ? Math.round(photo.height/118) : "hauteur inconnue"} cm max.</p>
                 <Tags tags={photo.tags} />
                 <hr/>
-                <p><a href="#">Partager</a></p>
                 <p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
                 <p><a href={photo.original} download>Télécharger cette image</a></p>
                 {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
