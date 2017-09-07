@@ -43,7 +43,7 @@ class NewAlbum extends Component {
             <div className="container-center wrapper-padding">
                 <div className="content-page">
                     <div className="content-page-sidemenu">
-                        <h2 className="txt-darkBlueGrey margin-md-bottom">Nouvel&nbsp;album</h2>
+                        <h2 className="txt-darkBlueGrey margin-md-bottom">Albums</h2>
                         <ul>
                             {this.renderLinksList()}
                         </ul>

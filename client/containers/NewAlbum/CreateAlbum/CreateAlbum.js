@@ -12,6 +12,7 @@ class CreateAlbum extends Component {
         this.state = {tags:["tags"]};
         this.errors = {errors:false};
         this.renderTags = this.renderTags.bind(this);
+        this.autoTags = this.autoTags.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
     
@@ -20,13 +21,11 @@ class CreateAlbum extends Component {
     }
     
     renderInput(field){
-        
-        const { meta : {touched, error, pristine } } = field;
-        
+        const { meta : {touched, error } } = field;
         return(
             <div>
-                <input placeholder={field.placeholder} {...field.input}></input>
-                {touched && error ?  <i className="fa fa-times txt-red"></i> : touched && pristine ? <i className="fa fa-times txt-red"></i> : touched ? <i className="fa fa-check txt-green"></i> : ""}
+                {field.type === "text" ? <input placeholder={field.placeholder} {...field.input}></input> : <textarea placeholder={field.placeholder} rows={field.rows} {...field.input}></textarea>}
+                {touched && error ?  <div><i className="fa fa-times txt-red"></i><p className="txt-red margin-sm-top">{error}</p></div> : ""}
             </div>
         );
     }    
@@ -37,6 +36,23 @@ class CreateAlbum extends Component {
             this.setState({
                 tags:tags.length === 1 && tags[0] === "" ? ["tags"] : tags
             });
+        }
+    }
+    
+    autoTags(e){
+        e.preventDefault();
+        let autoTags = [];
+
+        if(this.props.values && this.props.values.values){
+            const { values : { albumName, description }} = this.props.values;
+            const tagsStringArray = [albumName, description];
+            
+            tagsStringArray.forEach(str=>{
+                if(str) autoTags = autoTags.concat(this.props.tagsStringToArray(str, 4, autoTags));
+            });
+            
+            this.setState({tags : autoTags});
+            this.props.change("tags", autoTags.join(","));
         }
     }
     
@@ -56,20 +72,23 @@ class CreateAlbum extends Component {
                 <h3 className="margin-md-bottom">Créer un album</h3>
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                     <div className="input-group">
-                        <Field name="albumName" placeholder="Nom de l'album" component={this.renderInput}></Field>
+                        <Field name="albumName" placeholder="Nom de l'album" type="text" component={this.renderInput}></Field>
                     </div>
                     <div className="input-group">
-                        <Field name="photographerName" placeholder="Nom du photographe" component={this.renderInput}></Field>
+                        <Field name="photographerName" placeholder="Nom du photographe" type="text" component={this.renderInput}></Field>
                     </div>
                     <div className="input-group">
-                        <Field name="description" component={field => {return <textarea rows="3" placeholder="Description" {...field.input}></textarea>;}}></Field>
+                        <Field name="description" placeholder="Description de l'album" type="textarea" rows="3"component={this.renderInput}></Field>
                     </div>
                     <div className="input-group">
-                        <Field name="tags" placeholder="Tags" onChange={this.renderTags} component={this.renderInput}></Field>
+                        <Field name="tags" placeholder="Tags" onChange={this.renderTags} type="text" component={this.renderInput}></Field>
                     </div>
                     <div className="margin-md-bottom">
-                        <Tags tags={this.state.tags} />
-                    </div>                    
+                        {this.props.renderTagsElement(this.state.tags)}
+                    </div>
+                    <div className="margin-md-bottom">
+                        <a href="" onClick={this.autoTags}><i className="fa fa-magic"></i>&nbsp;&nbsp;tags automatiques</a>
+                    </div>
                     <button className="small-button small-button-anim" type="submit">Créer</button>
                 </form>
             </div>
@@ -80,10 +99,10 @@ class CreateAlbum extends Component {
 function validate(values){
     const errors = {};
     if(!values.albumName || values.albumName && values.albumName.length < 3){
-        errors.albumName = "Erreur";
+        errors.albumName = "Cet album n'a pas de nom";
     }
-    if(!values.photographerName || values.photographerName && values.photographerName.length < 3){
-        errors.photographerName = "Erreur";
+    if(!values.description || values.description && values.description.length < 3){
+        errors.description = "Cet album n'a pas de description";
     }   
     return errors;
 }
@@ -92,7 +111,13 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({ createAlbum }, dispatch);
 }
 
+function mapStateToProps(state){
+    return {
+        values : state.form.uploadForm
+    };
+}
+
 export default reduxForm({
   validate,
   form: 'uploadForm'
-})(connect(null, mapDispatchToProps)(CreateAlbum));
+})(connect(mapStateToProps, mapDispatchToProps)(Tags(CreateAlbum)));

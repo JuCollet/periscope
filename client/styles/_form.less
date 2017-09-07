@@ -52,8 +52,6 @@
 
   input, textarea {
     display: block;
-    width: 425px;
-    max-width: 90vw;
     font-size: 1em;
     
     background-color: transparent;
@@ -62,7 +60,8 @@
   input {
     padding: 0px 0px 10px 0px;
     outline: none;
-    
+    width: 100%;
+
     border-width: 0px 0px 1px 0px;
     border-color: @lightGrey;
     
@@ -86,8 +85,7 @@
   
   textarea {
     padding: 13px;
-    width: 397px;
-    max-width: 90vw;    
+    width: calc(~"100% - 28px");
     border: 1px solid @lightGrey;
     border-radius: 3px;
     outline: none;
@@ -100,4 +98,9 @@
     border-color: @mediumGrey;
   }
   
+}
+
+.input-group-textarea .fa {
+  top: 7px;
+  right: 7px;
 }

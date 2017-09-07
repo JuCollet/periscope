@@ -102,7 +102,7 @@ function getAlbum(req, res, next){
         {
             $match : { _id : ObjectId(req.params.id) }
         },
-        {$project : Object.assign(aggregateConfig.$project, {photos: 1, photographer : 1})}
+        {$project : Object.assign(aggregateConfig.$project, {photos: 1, photographer : 1, tags : 1})}
     ], function(err, albums){
         if(err) return next(err);
         res.json(albums[0]);

@@ -50,14 +50,14 @@ class Photos extends Component {
     if(!album){
       return <Loading />;
     }
-    
+
     return (
       <div className="wrapper-padding">
         <p><NavLink to="/app/albums/"><i className="fa fa-chevron-left"></i><span className="photos-back-link">&nbsp;&nbsp;Retour</span></NavLink></p>
         <span className="albumTitle">{album.name}</span>
-        <span className="albumPhotographer">par {album.photographer}</span>
+        <span className="albumPhotographer">{album.photographer ? 'par ' + album.photographer : null}</span>
         <span className="albumDescription">{album.description}</span>
-        <Tags tags={album.tags} />
+        {this.props.renderTagsElement(album.tags)}
         <i className="fa fa-trash button-icon" onClick={_ => this.deleteAlbum(album._id)}></i>
         <hr className="albumHr" />
         {this.renderPatchwork()}
@@ -78,4 +78,4 @@ function mapStateToProps(state, ownProps){
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Photos);
+export default connect(mapStateToProps, mapDispatchToProps)(Tags(Photos));
