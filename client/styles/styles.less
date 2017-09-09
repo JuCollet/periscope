@@ -8,7 +8,6 @@
 @import "../containers/Sidemenu/styles.less";
 @import "../containers/Photos/styles.less";
 @import "../containers/Photo/styles.less";
-@import "../containers/Photo/PhotoInfo/styles.less";
 @import "../containers/Cards/styles.less";
 @import "../containers/Dropbox/styles.less";
 @import "../components/Loading/styles.less";
@@ -92,6 +91,12 @@ ul {
     list-style: none;
 }
 
+i > span {
+    font-family: Lato, "Sans-Serif";
+    font-weight: 400;
+    font-size: .9em;
+}
+
 
 // MODULES //
 
@@ -138,7 +143,6 @@ ul {
 .content-page {
     display: flex;
     flex-wrap: wrap;
-    width: 960px;
 }
 
 .content-page-sidemenu {
@@ -172,6 +176,12 @@ ul {
         padding-top: unset;
         padding-left: 5%;
         border-left: 1px solid @lightGrey;
+    }
+}
+
+@media (min-width:@screen-md-min){
+    .content-page {
+        width: 960px;        
     }
 }
 

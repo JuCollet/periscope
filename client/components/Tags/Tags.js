@@ -6,7 +6,7 @@ export default function(ComposedComponent){
         
         tagsStringToArray(str, min = 4, array = []){
             if(!str) return;
-            const filtered = str.replace(/[.,;"?!]/g, "").split(/[\s\']/);
+            const filtered = str.replace(/[.;"?!]/g, "").split(/[\s\'\,]/);
             return filtered.filter((tag, index)=>{
                 if(!array && tag.length > min) return true;
                 else if(/\d{4,20}/.test(tag) && array.indexOf(tag) === -1) return true;

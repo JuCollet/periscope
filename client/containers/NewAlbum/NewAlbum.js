@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import CreateAlbum from "./CreateAlbum/CreateAlbum";
 import Infos from "./Infos/Infos";
 
-class NewAlbum extends Component {
+export default class NewAlbum extends Component {
     
     renderLinkStyle(link){
         const { pathname } = this.props.location;
@@ -60,14 +58,3 @@ class NewAlbum extends Component {
         );
     }
 }
-
-function mapDispatchToprops(dispatch){
-    return bindActionCreators({ }, dispatch);
-}
-
-function mapStateTopProps(state){
-    return {
-    };
-}
-
-export default connect(mapStateTopProps, mapDispatchToprops)(NewAlbum);

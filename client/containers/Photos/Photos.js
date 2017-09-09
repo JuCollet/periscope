@@ -57,10 +57,9 @@ class Photos extends Component {
         <span className="albumTitle">{album.name}</span>
         <span className="albumPhotographer">{album.photographer ? 'par ' + album.photographer : null}</span>
         <span className="albumDescription">{album.description}</span>
-        {this.props.renderTagsElement(album.tags)}
-        <i className="fa fa-trash button-icon" onClick={_ => this.deleteAlbum(album._id)}></i>
-        <hr className="albumHr" />
+        <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
         {this.renderPatchwork()}
+        <i className="fa fa-trash button-icon margin-md-bottom" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>
       </div>
     );  
   }

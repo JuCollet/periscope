@@ -85,6 +85,7 @@ var Dropbox = function (_Component) {
 
       var dt = e.dataTransfer;
       var data = new FormData();
+      var dataSize = 0;
 
       var callback = function () {
 
@@ -102,7 +103,10 @@ var Dropbox = function (_Component) {
       }.bind(this);
 
       for (var i = 0; i < dt.files.length; i++) {
-        if (dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png") data.append('photos', dt.files[i], dt.files[i].name);
+        if (dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png") {
+          dataSize += dt.files[i].size;
+          data.append('photos', dt.files[i], dt.files[i].name);
+        }
       }
 
       this.props.fileUpload(data, id, callback);
@@ -1632,9 +1636,9 @@ var Patchwork = function (_Component) {
         value: function stateUpdate() {
             var photos = this.props.photos;
 
-            var newviewWidth = document.getElementById("patchwork").clientWidth;
+            var newviewWidth = document.getElementById("patchwork").clientWidth - 20;
             this.setState({
-                photosHeight: (0, _getHeight2.default)(photos, newviewWidth, 13, breakpoints)
+                photosHeight: (0, _getHeight2.default)(photos, newviewWidth, 10, breakpoints)
             });
         }
     }, {
@@ -2747,7 +2751,7 @@ var Signin = function (_Component) {
                 ) : null,
                 _react2.default.createElement(
                     "button",
-                    { className: "small-button small-button-anim margin-sm-top", type: "submit" },
+                    { className: "button button-medium button-white button-animation margin-sm-top", type: "submit" },
                     "Se connecter"
                 )
             );
@@ -2938,7 +2942,7 @@ var Signup = function (_Component) {
                     ) : null,
                     _react2.default.createElement(
                         "button",
-                        { className: "small-button small-button-anim margin-md-top", type: "submit" },
+                        { className: "button button-medium button-white button-animation margin-md-top", type: "submit" },
                         "je m'inscris"
                     )
                 )
@@ -3017,7 +3021,7 @@ var Welcome = function (_Component) {
                 ),
                 _react2.default.createElement(
                     "button",
-                    { className: "small-button small-button-anim", type: "submit", onClick: function onClick() {
+                    { className: "button button-medium button-white button-animation", type: "submit", onClick: function onClick() {
                             return _this2.props.history.push('/signup');
                         } },
                     "S'inscrire"
@@ -3119,9 +3123,9 @@ var CreateAlbum = function (_Component) {
         key: 'renderTags',
         value: function renderTags(values) {
             if (values) {
-                var tags = values.currentTarget.value.replace(/ /g, '').split(",");
+                var tags = this.props.tagsStringToArray(values.currentTarget.value, 0);
                 this.setState({
-                    tags: tags.length === 1 && tags[0] === "" ? ["tags"] : tags
+                    tags: tags ? tags.length === 1 && tags[0] === "" ? ["tags"] : tags : ["tags"]
                 });
             }
         }
@@ -3210,7 +3214,7 @@ var CreateAlbum = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'button',
-                        { className: 'small-button small-button-anim', type: 'submit' },
+                        { className: 'button button-medium button-white button-animation', type: 'submit' },
                         'Cr\xE9er'
                     )
                 )
@@ -3301,10 +3305,6 @@ var _react = __webpack_require__(1);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(14);
-
-var _reactRedux = __webpack_require__(7);
-
-var _redux = __webpack_require__(9);
 
 var _CreateAlbum = __webpack_require__(233);
 
@@ -3413,15 +3413,7 @@ var NewAlbum = function (_Component) {
     return NewAlbum;
 }(_react.Component);
 
-function mapDispatchToprops(dispatch) {
-    return (0, _redux.bindActionCreators)({}, dispatch);
-}
-
-function mapStateTopProps(state) {
-    return {};
-}
-
-exports.default = (0, _reactRedux.connect)(mapStateTopProps, mapDispatchToprops)(NewAlbum);
+exports.default = NewAlbum;
 
 /***/ }),
 
@@ -3485,7 +3477,6 @@ var Photos = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Photos.__proto__ || Object.getPrototypeOf(Photos)).call(this, props));
 
-        _this.state = { infoOpen: false };
         _this.showInfos = _this.showInfos.bind(_this);
         _this.closeInfos = _this.closeInfos.bind(_this);
         _this.browsePhoto = _this.browsePhoto.bind(_this);
@@ -3510,7 +3501,7 @@ var Photos = function (_Component) {
     }, {
         key: "closeInfos",
         value: function closeInfos() {
-            this.props.smoothScrollTo(this.photoBox);
+            this.props.smoothScrollTo(this.photoBox, 10);
         }
     }, {
         key: "getPhotoIndex",
@@ -3600,7 +3591,7 @@ var Photos = function (_Component) {
                 ),
                 _react2.default.createElement(_PhotoInfo2.default, { photoInfoDomElement: function photoInfoDomElement(el) {
                         return _this2.photoInfo = el;
-                    }, photoDelete: this.props.photoDelete, callback: this.afterPhotoIsDeleted, album: this.props.album, photo: photo, closeInfoBox: this.closeInfos })
+                    }, photoDelete: this.props.photoDelete, callback: this.afterPhotoIsDeleted, album: this.props.album, photo: photo, closeInfoBox: this.closeInfos, location: this.props.location, match: this.props.match })
             );
         }
     }]);
@@ -3638,17 +3629,23 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(14);
 
-var _reactRedux = __webpack_require__(7);
+var _Infos = __webpack_require__(588);
 
-var _photos = __webpack_require__(75);
+var _Infos2 = _interopRequireDefault(_Infos);
 
-var _albums = __webpack_require__(31);
+var _Edit = __webpack_require__(587);
 
-var _Tags = __webpack_require__(77);
+var _Edit2 = _interopRequireDefault(_Edit);
 
-var _Tags2 = _interopRequireDefault(_Tags);
+var _Integration = __webpack_require__(590);
+
+var _Integration2 = _interopRequireDefault(_Integration);
+
+var _Options = __webpack_require__(589);
+
+var _Options2 = _interopRequireDefault(_Options);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3661,59 +3658,51 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PhotoInfo = function (_Component) {
     _inherits(PhotoInfo, _Component);
 
-    function PhotoInfo(props) {
+    function PhotoInfo() {
         _classCallCheck(this, PhotoInfo);
 
-        var _this = _possibleConstructorReturn(this, (PhotoInfo.__proto__ || Object.getPrototypeOf(PhotoInfo)).call(this, props));
-
-        _this.state = { tagEdit: false, tags: [] };
-        _this.toggleTagsEdit = _this.toggleTagsEdit.bind(_this);
-        _this.onTagsSubmit = _this.onTagsSubmit.bind(_this);
-        _this.onTagsChange = _this.onTagsChange.bind(_this);
-        return _this;
+        return _possibleConstructorReturn(this, (PhotoInfo.__proto__ || Object.getPrototypeOf(PhotoInfo)).apply(this, arguments));
     }
 
     _createClass(PhotoInfo, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var tags = this.props.photo.tags;
+        key: "renderLinkStyle",
+        value: function renderLinkStyle(link) {
+            var pathname = this.props.location.pathname;
 
-            if (tags !== null) this.setState({ tags: this.props.photo.tags.toString() });
+            return pathname.split('/').indexOf(link.path) !== -1 ? { opacity: ".5" } : null;
         }
     }, {
-        key: "toggleTagsEdit",
-        value: function toggleTagsEdit() {
-            this.setState({ tagEdit: !this.state.tagEdit, tags: this.props.photo.tags.toString() });
-        }
-    }, {
-        key: "onTagsChange",
-        value: function onTagsChange(e) {
-            this.setState({
-                tags: e.currentTarget.value
-            });
-        }
-    }, {
-        key: "tagsEditRender",
-        value: function tagsEditRender() {
-            return _react2.default.createElement(
-                "div",
-                { className: "input-group" },
-                _react2.default.createElement(
-                    "form",
-                    { onSubmit: this.onTagsSubmit },
-                    _react2.default.createElement("input", { name: "tags", type: "text", placeholder: "Tags", value: this.state.tags, onChange: this.onTagsChange })
-                )
-            );
-        }
-    }, {
-        key: "onTagsSubmit",
-        value: function onTagsSubmit(e) {
+        key: "renderLinksList",
+        value: function renderLinksList() {
             var _this2 = this;
 
-            e.preventDefault();
-            var data = e.currentTarget.tags.value.replace(/ /g, '').split(",");
-            this.props.photoUpdate(this.props.photo._id, data, function (_) {
-                return _this2.setState({ tagEdit: !_this2.state.tagEdit });
+            var url = this.props.match.url;
+
+
+            var links = [{
+                path: "infos",
+                label: "Infos"
+            }, {
+                path: "edit",
+                label: "Editer les infos"
+            }, {
+                path: "integration",
+                label: "Intégration"
+            }, {
+                path: "options",
+                label: "Options"
+            }];
+
+            return links.map(function (link) {
+                return _react2.default.createElement(
+                    "li",
+                    { className: "margin-sm-bottom", style: _this2.renderLinkStyle(link), key: link.label },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: url + "/" + link.path },
+                        link.label
+                    )
+                );
             });
         }
     }, {
@@ -3721,120 +3710,48 @@ var PhotoInfo = function (_Component) {
         value: function render() {
             var _this3 = this;
 
-            var _props = this.props,
-                photo = _props.photo,
-                album = _props.album;
+            var url = this.props.match.url;
 
 
             return _react2.default.createElement(
                 "div",
                 { className: "wrapper-padding wrapper-fullHeight bkg-white", ref: this.props.photoInfoDomElement },
-                _react2.default.createElement("i", { className: "fa fa-chevron-circle-down photoInfoCloseButton", onClick: function onClick(_) {
-                        return _this3.props.closeInfoBox();
-                    } }),
                 _react2.default.createElement(
-                    "h2",
-                    null,
-                    "Infos"
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
+                    "div",
+                    { className: "content-page" },
                     _react2.default.createElement(
-                        "b",
-                        null,
-                        "Nom de l'album : "
+                        "div",
+                        { className: "content-page-sidemenu" },
+                        _react2.default.createElement(
+                            "h2",
+                            { className: "txt-darkBlueGrey margin-md-bottom" },
+                            "Photo"
+                        ),
+                        _react2.default.createElement(
+                            "ul",
+                            null,
+                            this.renderLinksList()
+                        ),
+                        _react2.default.createElement("i", { className: "fa fa-chevron-up button-icon margin-md-bottom", style: { marginRight: "0px" }, onClick: function onClick(_) {
+                                return _this3.props.closeInfoBox();
+                            } })
                     ),
-                    album.name
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
                     _react2.default.createElement(
-                        "b",
-                        null,
-                        "Description : "
-                    ),
-                    album.description
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Cr\xE9dit photographique : "
-                    ),
-                    "\xA9 ",
-                    album.photographer
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Dimensions : "
-                    ),
-                    photo.width ? photo.width : "largeur inconnue",
-                    " x ",
-                    photo.height ? photo.height : "hauteur inconnue"
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Impression optimale : "
-                    ),
-                    photo.width ? Math.round(photo.width / 118) : "largeur inconnue",
-                    " cm x ",
-                    photo.height ? Math.round(photo.height / 118) : "hauteur inconnue",
-                    " cm max."
-                ),
-                _react2.default.createElement(_Tags2.default, { tags: photo.tags }),
-                _react2.default.createElement("hr", null),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { href: "#", onClick: function onClick(_) {
-                                return _this3.props.photoDelete(album._id, photo._id, photo.filename, _this3.props.callback);
-                            } },
-                        "Supprimer cette image"
-                    )
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { href: photo.original, download: true },
-                        "T\xE9l\xE9charger cette image"
-                    )
-                ),
-                this.state.tagEdit ? this.tagsEditRender() : _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { href: "#", onClick: this.toggleTagsEdit },
-                        "Editer les tags"
-                    )
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { href: "#", onClick: function onClick(_) {
-                                return _this3.props.albumThumbUpdate(album._id, photo.thumb, function (_) {
-                                    return _this3.props.closeInfoBox();
-                                });
-                            } },
-                        "Choisir comme image d'album"
+                        "div",
+                        { className: "content-page-content" },
+                        _react2.default.createElement(
+                            _reactRouterDom.Switch,
+                            null,
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/infos", render: function render(_) {
+                                    return _react2.default.createElement(_Infos2.default, { album: _this3.props.album, photo: _this3.props.photo });
+                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/edit", component: _Edit2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/integration", render: function render(_) {
+                                    return _react2.default.createElement(_Integration2.default, { album: _this3.props.album, photo: _this3.props.photo });
+                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/options", component: _Options2.default }),
+                            _react2.default.createElement(_reactRouterDom.Redirect, { from: "/", to: url + "/infos" })
+                        )
                     )
                 )
             );
@@ -3844,11 +3761,7 @@ var PhotoInfo = function (_Component) {
     return PhotoInfo;
 }(_react.Component);
 
-function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ photoUpdate: _photos.photoUpdate, albumThumbUpdate: _albums.albumThumbUpdate }, dispatch);
-}
-
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(PhotoInfo);
+exports.default = PhotoInfo;
 
 /***/ }),
 
@@ -3987,12 +3900,24 @@ var Photos = function (_Component) {
           { className: "albumDescription" },
           album.description
         ),
-        this.props.renderTagsElement(album.tags),
-        _react2.default.createElement("i", { className: "fa fa-trash button-icon", onClick: function onClick(_) {
-            return _this3.deleteAlbum(album._id);
-          } }),
-        _react2.default.createElement("hr", { className: "albumHr" }),
-        this.renderPatchwork()
+        _react2.default.createElement(
+          "div",
+          { className: "margin-md-bottom" },
+          this.props.renderTagsElement(album.tags)
+        ),
+        this.renderPatchwork(),
+        _react2.default.createElement(
+          "i",
+          { className: "fa fa-trash button-icon margin-md-bottom", onClick: function onClick(_) {
+              return _this3.deleteAlbum(album._id);
+            } },
+          " ",
+          _react2.default.createElement(
+            "span",
+            null,
+            "Effacer cet album"
+          )
+        )
       );
     }
   }]);
@@ -15719,7 +15644,7 @@ exports = module.exports = __webpack_require__(37)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".small-button {\n  display: inline-block;\n  outline: none;\n  padding: 10px 30px 10px 30px;\n  border: 1px solid #777777;\n  border-radius: 3px;\n  min-height: 38px;\n  background-color: #FFFFFF;\n  text-transform: uppercase;\n  text-align: center;\n  color: #777777;\n  font-size: 1em;\n  font-weight: 300;\n  cursor: pointer;\n}\n.small-button-anim:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.albumHr {\n  margin: 12px 0px 20px 0px;\n  border-style: dotted;\n  border-width: 0px 0px 1px 0px;\n  border-color: #cccccc;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.PhotoHide {\n  -webkit-transition: .3s;\n  transition: .3s;\n  opacity: 0;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.photoInfoBox {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: absolute;\n  padding: 25px;\n  min-height: 100%;\n  right: 0;\n  left: 0;\n  top: calc(100% + 60px);\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoInfoBox input {\n  padding-right: 0px;\n  width: calc(100vw - 50px);\n}\n.photoInfoBox .photoInfoCloseButton {\n  margin-bottom: 15px;\n  font-size: 1.5em;\n  color: #cccccc;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photoInfoBox .photoInfoCloseButton:hover {\n  color: #777777;\n}\n.photoInfoBox hr {\n  margin-left: 0;\n  border-width: 1px 0px 0px 0px;\n  border-style: dotted;\n  border-color: #cccccc;\n  width: 100px;\n}\n.photoInfoShow {\n  -webkit-transition: .2s;\n  transition: .2s;\n  top: 0px;\n}\n@media (min-width: 768px) {\n  .photoInfoBox {\n    padding: 50px 30px 30px 65px;\n  }\n  .photoInfoBox input {\n    padding-right: 0px;\n    width: calc(80vw - 100px);\n  }\n  .photoInfoShow {\n    top: 60px;\n  }\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  width: 960px;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(581) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(582) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
+exports.push([module.i, ".button {\n  display: inline-block;\n  outline: none;\n  border-radius: 3px;\n  text-transform: uppercase;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: .1s;\n  transition: .1s;\n}\n.button-medium {\n  padding: 10px 30px 10px 30px;\n  min-height: 38px;\n  border: 1px solid;\n  font-size: 1em;\n  font-weight: 300;\n}\n.button-small {\n  padding: 7px 7px 5px 7px;\n  border: 1px solid;\n  font-weight: 300;\n  font-size: .8em;\n}\n.button-white {\n  border-color: #777777;\n  background-color: #FFFFFF;\n  color: #777777;\n}\n.button-hover-green:hover {\n  border-color: #4EE898;\n  background-color: #4EE898;\n  color: white;\n}\n.button-animation:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea + div .fa {\n  top: 10px;\n  right: 10px;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\ni > span {\n  font-family: Lato, \"Sans-Serif\";\n  font-weight: 400;\n  font-size: .9em;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n@media (min-width: 992px) {\n  .content-page {\n    width: 960px;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(581) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(582) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
 
 // exports
 
@@ -15850,6 +15775,372 @@ if(false) {
 
 /***/ }),
 
+/***/ 587:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+    return _react2.default.createElement(
+        "h1",
+        null,
+        "Edit"
+    );
+};
+
+/***/ }),
+
+/***/ 588:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Tags = __webpack_require__(77);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Infos = function (_React$Component) {
+    _inherits(Infos, _React$Component);
+
+    function Infos() {
+        _classCallCheck(this, Infos);
+
+        return _possibleConstructorReturn(this, (Infos.__proto__ || Object.getPrototypeOf(Infos)).apply(this, arguments));
+    }
+
+    _createClass(Infos, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                album = _props.album,
+                photo = _props.photo;
+
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Infos"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Nom de l'album : "
+                    ),
+                    album.name
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Description : "
+                    ),
+                    photo.description ? photo.description : album.description
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Cr\xE9dit photographique : "
+                    ),
+                    "\xA9 ",
+                    photo.photographer ? photo.photographer : album.photographer
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Dimensions : "
+                    ),
+                    photo.width ? photo.width : "largeur inconnue",
+                    " x ",
+                    photo.height ? photo.height : "hauteur inconnue"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Impression optimale : "
+                    ),
+                    photo.width ? Math.round(photo.width / 118) : "largeur inconnue",
+                    " cm x ",
+                    photo.height ? Math.round(photo.height / 118) : "hauteur inconnue",
+                    " cm max."
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Poids de l'image : "
+                    ),
+                    Math.round(photo.size / 1048576 * 10) / 10,
+                    " Mo"
+                ),
+                this.props.renderTagsElement(photo.tags),
+                _react2.default.createElement(
+                    "a",
+                    { href: photo.original },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "button button-small button-white button-animation" },
+                        "T\xE9l\xE9charger"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Infos;
+}(_react2.default.Component);
+
+exports.default = (0, _Tags2.default)(Infos);
+
+/***/ }),
+
+/***/ 589:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "h3",
+            null,
+            "Options"
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            _react2.default.createElement(
+                "a",
+                { href: "" },
+                "Supprimer cette image"
+            )
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            _react2.default.createElement(
+                "a",
+                { href: "" },
+                "T\xE9l\xE9charger cette image"
+            )
+        ),
+        _react2.default.createElement(
+            "p",
+            null,
+            _react2.default.createElement(
+                "a",
+                { href: "" },
+                "Choisir comme photo d'album"
+            )
+        )
+    );
+};
+
+/*
+
+<p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
+            <p><a href={photo.original} download>Télécharger cette image</a></p>
+            {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
+            <p><a href="#" onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())}>Choisir comme image d'album</a></p>           
+
+*/
+
+/***/ }),
+
+/***/ 590:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Integration = function (_React$Component) {
+    _inherits(Integration, _React$Component);
+
+    function Integration(props) {
+        _classCallCheck(this, Integration);
+
+        return _possibleConstructorReturn(this, (Integration.__proto__ || Object.getPrototypeOf(Integration)).call(this, props));
+    }
+
+    _createClass(Integration, [{
+        key: "toClipboard",
+        value: function toClipboard(e, el) {
+            e.preventDefault();
+            el.select();
+            document.execCommand('copy');
+            var elBackground = el.style.backgroundColor;
+            var elColor = el.style.color;
+            el.style.backgroundColor = "#4EE898";
+            el.style.color = "white";
+            setTimeout(function (_) {
+                el.style.backgroundColor = elBackground;
+                el.style.color = elColor;
+            }, 1000);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Int\xE9gration"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-lg-top" },
+                    "Lien de l'image originale"
+                ),
+                _react2.default.createElement("input", { defaultValue: this.props.photo.original, ref: function ref(el) {
+                        return _this2.input1 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input1);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Image de Blog - Small"
+                ),
+                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.thumb + "[/IMG]", ref: function ref(el) {
+                        return _this2.input2 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input2);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Image de Blog - Medium"
+                ),
+                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.medium + "[/IMG]", ref: function ref(el) {
+                        return _this2.input3 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input3);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Element image HTML"
+                ),
+                _react2.default.createElement("input", { defaultValue: "<img src=\"" + this.props.photo.medium + "\" alt=\"" + this.props.album.name + "\"/>", ref: function ref(el) {
+                        return _this2.input4 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input4);
+                        } },
+                    "Copier"
+                )
+            );
+        }
+    }]);
+
+    return Integration;
+}(_react2.default.Component);
+
+exports.default = Integration;
+;
+
+/***/ }),
+
 /***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15975,7 +16266,7 @@ exports.default = function (ComposedComponent) {
                 var array = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
                 if (!str) return;
-                var filtered = str.replace(/[.,;"?!]/g, "").split(/[\s\']/);
+                var filtered = str.replace(/[.;"?!]/g, "").split(/[\s\'\,]/);
                 return filtered.filter(function (tag, index) {
                     if (!array && tag.length > min) return true;else if (/\d{4,20}/.test(tag) && array.indexOf(tag) === -1) return true;else if (/\b[A-Z]/.test(tag) && index !== 0 && array.indexOf(tag.toLowerCase()) === -1) return true;else if (array && array.indexOf(tag.toLowerCase()) === -1 && tag.length > min) return true;
                 }).map(function (tag) {

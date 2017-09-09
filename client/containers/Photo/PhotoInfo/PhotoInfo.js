@@ -1,80 +1,75 @@
 "use strict";
 
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { photoUpdate } from "../../../actions/photos";
-import { albumThumbUpdate } from "../../../actions/albums";
-import Tags from "../../../components/Tags/Tags";
+import { Link, Route, Switch, Redirect } from "react-router-dom";
 
+import Infos from "./Infos/Infos";
+import Edit from "./Edit/Edit";
+import Integration from "./Integration/Integration";
+import Options from "./Options/Options";
 
-class PhotoInfo extends Component {
+export default class PhotoInfo extends Component {
     
-    constructor(props){
-        super(props);
-        this.state = {tagEdit:false, tags:[]};
-        this.toggleTagsEdit = this.toggleTagsEdit.bind(this);
-        this.onTagsSubmit = this.onTagsSubmit.bind(this);
-        this.onTagsChange = this.onTagsChange.bind(this);
+    renderLinkStyle(link){
+        const { pathname } = this.props.location;
+        return pathname.split('/').indexOf(link.path) !== -1 ? {opacity:".5"} : null;
     }
     
-    componentDidMount(){
-        const { tags } = this.props.photo;
-        if(tags !== null)this.setState({tags:this.props.photo.tags.toString()});
-    }
-    
-    toggleTagsEdit(){
-        this.setState({tagEdit:!this.state.tagEdit,tags:this.props.photo.tags.toString()});
-    }
-    
-    onTagsChange(e){
-        this.setState({
-            tags:e.currentTarget.value
-        });
-    }
-    
-    tagsEditRender(){
-        return(
-            <div className="input-group">
-                <form onSubmit={this.onTagsSubmit}>
-                    <input name="tags" type="text" placeholder="Tags" value={this.state.tags} onChange={this.onTagsChange}/>
-                </form>
-            </div>        
+    renderLinksList(){
+        
+        const { url } = this.props.match;
+
+        const links = [
+            {
+                path : "infos",
+                label : "Infos"
+            },
+            {
+                path : "edit",
+                label : "Editer les infos"
+            },
+            {
+                path : "integration",
+                label : "Intégration"
+            },                 
+            {
+                path : "options",
+                label : "Options"
+            },            
+        ];
+        
+        return (
+            links.map(link=>{
+                return <li className="margin-sm-bottom" style={this.renderLinkStyle(link)} key={link.label}><Link to={`${url}/${link.path}`}>{link.label}</Link></li>;
+            })
         );
-    }
-    
-    onTagsSubmit(e){
-        e.preventDefault();
-        const data = e.currentTarget.tags.value.replace(/ /g,'').split(",");
-        this.props.photoUpdate(this.props.photo._id, data, _=>this.setState({tagEdit:!this.state.tagEdit}));
-    }
+    }    
 
     render(){
-    
-        const { photo, album } = this.props;
-
+        
+        const { url } = this.props.match;
+        
         return (
             <div className="wrapper-padding wrapper-fullHeight bkg-white" ref={this.props.photoInfoDomElement}>
-                <i className="fa fa-chevron-circle-down photoInfoCloseButton" onClick={_ => this.props.closeInfoBox()}></i>
-                <h2>Infos</h2>
-                <p><b>Nom de l'album : </b>{album.name}</p>
-                <p><b>Description : </b>{album.description}</p>
-                <p><b>Crédit photographique : </b>&copy; {album.photographer}</p>
-                <p><b>Dimensions : </b>{photo.width ? photo.width : "largeur inconnue"} x {photo.height ? photo.height : "hauteur inconnue"}</p>
-                <p><b>Impression optimale : </b>{photo.width ? Math.round(photo.width/118) : "largeur inconnue"} cm x {photo.height ? Math.round(photo.height/118) : "hauteur inconnue"} cm max.</p>
-                <Tags tags={photo.tags} />
-                <hr/>
-                <p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
-                <p><a href={photo.original} download>Télécharger cette image</a></p>
-                {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
-                <p><a href="#" onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())}>Choisir comme image d'album</a></p>
+                <div className="content-page">
+                    <div className="content-page-sidemenu">
+                        <h2 className="txt-darkBlueGrey margin-md-bottom">Photo</h2>
+                        <ul>
+                            {this.renderLinksList()}
+                        </ul>
+                        <i className="fa fa-chevron-up button-icon margin-md-bottom" style={{marginRight:"0px"}} onClick={_ => this.props.closeInfoBox()}></i>
+                    </div>
+                    <div className="content-page-content">
+                        <Switch>
+                            <Route path={`${url}/infos`} render={_ => { return <Infos album={this.props.album} photo={this.props.photo} />}} />
+                            <Route path={`${url}/edit`} component={Edit}/>
+                            <Route path={`${url}/integration`} render={ _ => {return <Integration album={this.props.album} photo={this.props.photo} /> }}/>                            
+                            <Route path={`${url}/options`} component={Options}/>
+                            <Redirect from={`/`} to={`${url}/infos`} />
+                        </Switch>                    
+                    </div>
+                </div>
             </div>
         );        
     }
 }
-
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({ photoUpdate, albumThumbUpdate }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(PhotoInfo);

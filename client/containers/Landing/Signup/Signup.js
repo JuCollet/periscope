@@ -92,7 +92,7 @@ class Signup extends Component {
                     <input value={this.state.password} style={this.renderStyle('password')} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Mot de passe" aria-label="mot de passe" onChange={this.onChangeHandler} />
                     <input value={this.state.passwordValidation} style={this.renderStyle('passwordValidation')} className="small-input margin-sm-bottom" name="passwordValidation" type="password" placeholder="Confirmez le mot de passe" aria-label="Confirmation du mot de passe" onChange={this.onChangeHandler} />
                     {this.state.error ? <div className="txt-red"> {this.state.error} </div> : this.props.error ? <div className="txt-red"> {this.props.error.message} </div> : null}
-                    <button className="small-button small-button-anim margin-md-top" type="submit">je m'inscris</button>
+                    <button className="button button-medium button-white button-animation margin-md-top" type="submit">je m'inscris</button>
                 </form>   
             </div>
         );

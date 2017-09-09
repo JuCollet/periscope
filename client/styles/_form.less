@@ -1,22 +1,41 @@
-.small-button {
+.button {
   display: inline-block;
   outline: none;
-  padding: 10px 30px 10px 30px;
-  border: 1px solid @darkGrey;
   border-radius: 3px;
-  min-height: 38px;
-  
-  background-color: #FFFFFF;
-  
   text-transform: uppercase;
-  text-align: center;
-  color: @darkGrey;
-  font-size: 1em;
-  font-weight: 300;
+  text-align: center;  
   cursor: pointer;
+  transition: .1s;
 }
 
-.small-button-anim:hover{
+.button-medium {
+  padding: 10px 30px 10px 30px;
+  min-height: 38px;
+  border: 1px solid;
+  font-size: 1em;
+  font-weight: 300;  
+}
+
+.button-small {
+  padding: 7px 7px 5px 7px;
+  border: 1px solid;
+  font-weight: 300;
+  font-size: .8em;
+}
+
+.button-white {
+  border-color: @darkGrey;
+  background-color: #FFFFFF;
+  color: @darkGrey;
+}
+
+.button-hover-green:hover {
+  border-color: @green;
+  background-color: @green;
+  color: white;
+}
+
+.button-animation:hover{
   animation-name: buttonAnim;
   animation-duration: .15s;
   animation-fill-mode: forwards;
@@ -43,7 +62,6 @@
   outline: none;
   background-color: darken(@lightGrey, 5%);
 }
-
 
 .input-group {
 
@@ -91,6 +109,11 @@
     outline: none;
     resize: none;
     color: @darkBlueGrey;
+  }
+  
+  textarea + div .fa {
+    top: 10px;
+    right: 10px;
   }
   
   textarea:focus {

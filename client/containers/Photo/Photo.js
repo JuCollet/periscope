@@ -15,7 +15,6 @@ class Photos extends Component {
     
     constructor(props){
         super(props);
-        this.state = {infoOpen:false};
         this.showInfos = this.showInfos.bind(this);
         this.closeInfos = this.closeInfos.bind(this);
         this.browsePhoto = this.browsePhoto.bind(this);
@@ -34,7 +33,7 @@ class Photos extends Component {
     }
     
     closeInfos(){
-        this.props.smoothScrollTo(this.photoBox);
+        this.props.smoothScrollTo(this.photoBox, 10);
     }
     
     getPhotoIndex(){
@@ -63,7 +62,7 @@ class Photos extends Component {
     }
 
     render(){
-        
+
         const { album } = this.props;
         
         if(!album){
@@ -89,7 +88,7 @@ class Photos extends Component {
                         <i className="fa fa-chevron-right" onClick={_=>this.browsePhoto({direction:2})}></i>
                     </div>                    
                 </div>
-                <PhotoInfo photoInfoDomElement={el => this.photoInfo = el} photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.closeInfos} />
+                <PhotoInfo photoInfoDomElement={el => this.photoInfo = el} photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.closeInfos} location={this.props.location} match={this.props.match} />
             </div>
         );
     }

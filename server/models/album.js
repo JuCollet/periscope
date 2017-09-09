@@ -8,6 +8,8 @@ const photoSchema = new mongoose.Schema({
     thumb : String,
     medium : String,
     original : String,
+    description : String,
+    photographer : String,
     width: Number,
     height: Number,
     size: Number,

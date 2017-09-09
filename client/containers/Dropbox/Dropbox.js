@@ -24,6 +24,7 @@ class Dropbox extends Component {
     
     const dt = e.dataTransfer;
     let data = new FormData();
+    let dataSize = 0;
     
     const callback = function(){
 
@@ -41,8 +42,10 @@ class Dropbox extends Component {
     }.bind(this);
 
     for (let i = 0; i < dt.files.length; i++) {
-      if(dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png")
-      data.append('photos', dt.files[i], dt.files[i].name);
+      if(dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png") {
+        dataSize += dt.files[i].size;
+        data.append('photos', dt.files[i], dt.files[i].name);
+      }
     }
     
     this.props.fileUpload(data, id, callback);
@@ -60,9 +63,7 @@ class Dropbox extends Component {
           </div>
         </div>
     );
-    
   }
-  
 }
         
     function mapDispacthToProps(dispatch){

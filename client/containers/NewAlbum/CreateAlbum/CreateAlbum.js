@@ -32,9 +32,9 @@ class CreateAlbum extends Component {
     
     renderTags(values){
         if(values){
-            const tags = values.currentTarget.value.replace(/ /g,'').split(",");
+            const tags = this.props.tagsStringToArray(values.currentTarget.value, 0);
             this.setState({
-                tags:tags.length === 1 && tags[0] === "" ? ["tags"] : tags
+                tags: tags ? tags.length === 1 && tags[0] === "" ? ["tags"] : tags : ["tags"]
             });
         }
     }
@@ -89,7 +89,7 @@ class CreateAlbum extends Component {
                     <div className="margin-md-bottom">
                         <a href="" onClick={this.autoTags}><i className="fa fa-magic"></i>&nbsp;&nbsp;tags automatiques</a>
                     </div>
-                    <button className="small-button small-button-anim" type="submit">Créer</button>
+                    <button className="button button-medium button-white button-animation" type="submit">Créer</button>
                 </form>
             </div>
         );        
