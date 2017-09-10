@@ -484,7 +484,6 @@ var ALBUM_CREATE = exports.ALBUM_CREATE = "albums_create";
 var ALBUM_DELETE = exports.ALBUM_DELETE = "album_delete";
 var ALBUM_FETCH = exports.ALBUM_FETCH = "album_fetch";
 var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
-var ALBUMS_RESET_STATE = exports.ALBUMS_RESET_STATE = "albums_reset_state";
 var ALBUM_SEARCH = exports.ALBUM_SEARCH = "album_search";
 var ALBUM_THUMB_UPDATE = exports.ALBUM_THUMB_UPDATE = "album_thumb_update";
 var FETCHING = exports.FETCHING = "fetching";
@@ -985,7 +984,9 @@ var Landing = function (_Component) {
     _createClass(Landing, [{
         key: "componentWillMount",
         value: function componentWillMount() {
-            if (localStorage.getItem('customer')) {
+            // Test if pathname contains '/signup/' + a 21-digits bucket name,
+            // and doesn't redirect if true, because it's a request to join an existing profile.
+            if (localStorage.getItem('customer') && !/(signup\/)\w{21}/.test(this.props.location.pathname)) {
                 this.props.history.push('/signin');
             }
         }
@@ -1012,7 +1013,7 @@ var Landing = function (_Component) {
                                         return _this2.props.tilt(_this2.LandingBox);
                                     } });
                             } }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: "/signup", render: function render(props) {
+                        _react2.default.createElement(_reactRouterDom.Route, { path: "/signup/:friendId", render: function render(props) {
                                 return _react2.default.createElement(_Signup2.default, { tilt: function tilt(_) {
                                         return _this2.props.tilt(_this2.LandingBox);
                                     } });
@@ -1022,7 +1023,7 @@ var Landing = function (_Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "landing-footer" },
-                        _react2.default.createElement(_BulletsNav2.default, { pages: ["/", "/signup", "/signin"], location: pathname, history: this.props.history })
+                        _react2.default.createElement(_BulletsNav2.default, { pages: ["/", "/signup/0", "/signin"], location: pathname, history: this.props.history })
                     )
                 ),
                 pathname === "/signin" ? _react2.default.createElement(
@@ -1083,9 +1084,18 @@ var _reducer_search = __webpack_require__(250);
 
 var _reducer_search2 = _interopRequireDefault(_reducer_search);
 
+var _actiontypes = __webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var rootReducer = (0, _redux.combineReducers)({
+var rootReducer = function rootReducer(state, action) {
+    if (action.type === _actiontypes.USER_UNAUTH) {
+        state = undefined;
+    }
+    return appReducer(state, action);
+};
+
+var appReducer = (0, _redux.combineReducers)({
     menu: _reducer_menu2.default,
     user: _reducer_user2.default,
     albums: _reducer_albums2.default,
@@ -1568,8 +1578,6 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(588);
-
 __webpack_require__(583);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1590,40 +1598,40 @@ var NoPhoto = function (_Component) {
     }
 
     _createClass(NoPhoto, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             var _this2 = this;
 
             return _react2.default.createElement(
-                'div',
-                { className: 'wrapper-padding wrapper-fullHeight flex-center bkg-lightGrey' },
+                "div",
+                { className: "wrapper-padding wrapper-fullHeight flex-center bkg-lightGrey" },
                 _react2.default.createElement(
-                    'div',
-                    { className: 'content-box flex-center desktop-only text-center' },
-                    _react2.default.createElement('img', { src: '../../img/noPhoto.png', width: '128px' }),
+                    "div",
+                    { className: "content-box flex-center desktop-only text-center" },
+                    _react2.default.createElement("img", { src: "../../img/noPhoto.png", width: "128px" }),
                     _react2.default.createElement(
-                        'h2',
-                        { className: 'txt-darkBlueGrey' },
-                        'Aucune photo',
-                        _react2.default.createElement('br', null),
-                        'trouv\xE9e'
+                        "h2",
+                        { className: "txt-darkBlueGrey" },
+                        "Aucune photo",
+                        _react2.default.createElement("br", null),
+                        "trouv\xE9e"
                     ),
                     _react2.default.createElement(
-                        'p',
-                        { className: 'txt-darkBlueGrey' },
-                        'Peut-\xEAtre voudriez-vous cr\xE9er ',
-                        _react2.default.createElement('br', null),
-                        'un nouvel album ?'
+                        "p",
+                        { className: "txt-darkBlueGrey" },
+                        "Peut-\xEAtre voudriez-vous cr\xE9er ",
+                        _react2.default.createElement("br", null),
+                        "un nouvel album ?"
                     ),
                     _react2.default.createElement(
-                        'button',
-                        { className: 'small-button small-button-anim margin-sm-top', onClick: function onClick(_) {
+                        "button",
+                        { className: "button button-medium button-white button-animation margin-sm-top", onClick: function onClick(_) {
                                 return _this2.props.history.push('/app/CreateAlbum');
                             } },
-                        'Cr\xE9er un album'
+                        "Cr\xE9er un album"
                     )
                 ),
-                _react2.default.createElement('img', { className: 'mobile-only', src: '../../img/noPhoto.png', width: '128px' })
+                _react2.default.createElement("img", { className: "mobile-only", src: "../../img/noPhoto.png", width: "128px" })
             );
         }
     }]);
@@ -2122,9 +2130,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(7);
+
 var _VolumeGauge = __webpack_require__(222);
 
 var _VolumeGauge2 = _interopRequireDefault(_VolumeGauge);
+
+var _Loading = __webpack_require__(52);
+
+var _Loading2 = _interopRequireDefault(_Loading);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2146,9 +2160,13 @@ var MyUsage = function (_React$Component) {
     _createClass(MyUsage, [{
         key: "render",
         value: function render() {
-
             var infos = this.props.infos;
+
             var usedVolumePercentage = Math.round(infos.usedVolume / infos.volume * 100);
+
+            if (this.props.isFetching) {
+                return _react2.default.createElement(_Loading2.default, null);
+            }
 
             return _react2.default.createElement(
                 "div",
@@ -2164,12 +2182,12 @@ var MyUsage = function (_React$Component) {
                     "p",
                     null,
                     "Tu as d\xE9j\xE0 utilis\xE9 ",
-                    Math.round(infos.usedVolume / 1048576),
+                    infos.usedVolume ? Math.round(infos.usedVolume / 1048576) : 0,
                     "Mo, soit ",
                     _react2.default.createElement(
                         "b",
                         null,
-                        usedVolumePercentage,
+                        usedVolumePercentage ? usedVolumePercentage : 0,
                         "%"
                     ),
                     " de ton volume de ",
@@ -2180,23 +2198,30 @@ var MyUsage = function (_React$Component) {
                         "Go."
                     )
                 ),
-                _react2.default.createElement(_VolumeGauge2.default, { volume: infos.volume, usedVolume: infos.usedVolume }),
+                _react2.default.createElement(_VolumeGauge2.default, { volume: infos.volume ? infos.volume : 0, usedVolume: infos.usedVolume ? infos.usedVolume : 0 }),
                 _react2.default.createElement(
                     "h3",
                     { className: "margin-md-top" },
-                    infos.numberOfAlbums,
-                    " albums, ",
-                    infos.numberOfPhotos,
-                    " photos"
+                    infos.numberOfAlbums ? infos.numberOfAlbums : 0,
+                    " album",
+                    infos.numberOfAlbums && infos.numberOfAlbums > 1 ? "s" : null,
+                    ", ",
+                    infos.numberOfPhotos ? infos.numberOfPhotos : 0,
+                    " photo",
+                    infos.numberOfPhotos && infos.numberOfPhotos > 1 ? "s" : null
                 ),
                 _react2.default.createElement(
                     "p",
                     { className: "margin-md-bottom" },
                     "Tu as ",
-                    infos.numberOfPhotos,
-                    " photos, r\xE9parties dans ",
-                    infos.numberOfAlbums,
-                    " albums."
+                    infos.numberOfPhotos ? infos.numberOfPhotos : 0,
+                    " photo",
+                    infos.numberOfPhotos && infos.numberOfPhotos > 1 ? "s" : null,
+                    ", r\xE9parties dans ",
+                    infos.numberOfAlbums ? infos.numberOfAlbums : 0,
+                    " album",
+                    infos.numberOfAlbums && infos.numberOfAlbums > 1 ? "s" : null,
+                    "."
                 ),
                 _react2.default.createElement("hr", null),
                 _react2.default.createElement(
@@ -2216,7 +2241,13 @@ var MyUsage = function (_React$Component) {
     return MyUsage;
 }(_react2.default.Component);
 
-exports.default = MyUsage;
+function mapStateTopProps(state) {
+    return {
+        isFetching: state.fetching.isFetching
+    };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateTopProps)(MyUsage);
 
 /***/ }),
 
@@ -2885,7 +2916,8 @@ var Signup = function (_Component) {
             email: "",
             password: "",
             passwordValidation: "",
-            error: null
+            error: null,
+            bucket: _this.props.match.params.friendId ? _this.props.match.params.friendId : null
         };
         return _this;
     }
@@ -2918,7 +2950,8 @@ var Signup = function (_Component) {
                 firstName = _state.firstName,
                 email = _state.email,
                 password = _state.password,
-                passwordValidation = _state.passwordValidation;
+                passwordValidation = _state.passwordValidation,
+                bucket = _state.bucket;
 
 
             if (!firstName || firstName.length < 2) {
@@ -2951,7 +2984,7 @@ var Signup = function (_Component) {
                     errorField: null
                 });
             }
-            this.props.signUpUser({ firstName: firstName, email: email, password: password }, this.props.history);
+            this.props.signUpUser({ firstName: firstName, email: email, password: password, bucket: bucket }, this.props.history);
         }
     }, {
         key: "renderStyle",
@@ -2963,6 +2996,7 @@ var Signup = function (_Component) {
     }, {
         key: "render",
         value: function render() {
+
             return _react2.default.createElement(
                 "div",
                 null,
@@ -3083,7 +3117,7 @@ var Welcome = function (_Component) {
                 _react2.default.createElement(
                     "button",
                     { className: "button button-medium button-white button-animation", type: "submit", onClick: function onClick() {
-                            return _this2.props.history.push('/signup');
+                            return _this2.props.history.push('/signup/0');
                         } },
                     "S'inscrire"
                 )
@@ -4254,6 +4288,10 @@ var _Edit = __webpack_require__(237);
 
 var _Edit2 = _interopRequireDefault(_Edit);
 
+var _Share = __webpack_require__(591);
+
+var _Share2 = _interopRequireDefault(_Share);
+
 var _Integration = __webpack_require__(239);
 
 var _Integration2 = _interopRequireDefault(_Integration);
@@ -4300,6 +4338,9 @@ var PhotoInfo = function (_Component) {
             }, {
                 path: "edit",
                 label: "Editer les infos"
+            }, {
+                path: "share",
+                label: "Partager"
             }, {
                 path: "integration",
                 label: "Intégration"
@@ -4362,6 +4403,9 @@ var PhotoInfo = function (_Component) {
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: url + "/edit", render: function render(_) {
                                     return _react2.default.createElement(_Edit2.default, { album: _this3.props.album, photo: _this3.props.photo, history: _this3.props.history });
+                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/share", render: function render(_) {
+                                    return _react2.default.createElement(_Share2.default, { album: _this3.props.album, photo: _this3.props.photo });
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: url + "/integration", render: function render(_) {
                                     return _react2.default.createElement(_Integration2.default, { album: _this3.props.album, photo: _this3.props.photo });
@@ -4894,8 +4938,6 @@ exports.default = function () {
     var action = arguments[1];
 
     switch (action.type) {
-        case _actiontypes.ALBUMS_RESET_STATE:
-            return {};
         case _actiontypes.ALBUM_DELETE:
             return _lodash2.default.omit(state, action.payload);
         case _actiontypes.ALBUMS_FETCH:
@@ -15979,7 +16021,15 @@ var baseUrl = "/api/users/";
 
 function getInfos() {
     return function (dispatch) {
+        dispatch({
+            type: _actiontypes.FETCHING,
+            payload: { isFetching: true }
+        });
         _axios2.default.get(baseUrl + "infos", { headers: { authorization: localStorage.getItem('token') } }).then(function (res) {
+            dispatch({
+                type: _actiontypes.FETCHING,
+                payload: { isFetching: false }
+            });
             dispatch({
                 type: _actiontypes.USER_GET_INFOS,
                 payload: res.data
@@ -16012,9 +16062,6 @@ function signInUser(_ref) {
 function signOutUser() {
     return function (dispatch) {
         localStorage.removeItem('token');
-        dispatch({
-            type: _actiontypes.ALBUMS_RESET_STATE
-        });
         dispatch({
             type: _actiontypes.USER_UNAUTH
         });
@@ -16231,21 +16278,6 @@ exports.push([module.i, ".bulletNav {\n  list-style: none;\n  padding: 0px;\n}\n
 
 /***/ }),
 
-/***/ 580:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(37)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16336,38 +16368,6 @@ if(false) {
 
 /***/ }),
 
-/***/ 588:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(580);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(49)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
 /***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16397,6 +16397,61 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+
+/***/ 591:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Share = function (_Component) {
+    _inherits(Share, _Component);
+
+    function Share() {
+        _classCallCheck(this, Share);
+
+        return _possibleConstructorReturn(this, (Share.__proto__ || Object.getPrototypeOf(Share)).apply(this, arguments));
+    }
+
+    _createClass(Share, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Partager cette image"
+                )
+            );
+        }
+    }]);
+
+    return Share;
+}(_react.Component);
+
+exports.default = Share;
 
 /***/ }),
 

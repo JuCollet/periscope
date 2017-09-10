@@ -16,7 +16,8 @@ class Signup extends Component {
             email : "",
             password : "",
             passwordValidation : "",
-            error : null
+            error : null,
+            bucket : this.props.match.params.friendId ? this.props.match.params.friendId : null
         };
     }
     
@@ -41,7 +42,7 @@ class Signup extends Component {
     onSubmit(e){
         e.preventDefault();
         
-        const { firstName, email, password, passwordValidation } = this.state;
+        const { firstName, email, password, passwordValidation, bucket } = this.state;
         
         if(!firstName || firstName.length < 2){
             this.props.tilt();
@@ -73,7 +74,7 @@ class Signup extends Component {
                 errorField : null
             });
         }
-        this.props.signUpUser({firstName, email, password}, this.props.history);
+        this.props.signUpUser({firstName, email, password, bucket}, this.props.history);
     }
     
     renderStyle(name){
@@ -82,6 +83,7 @@ class Signup extends Component {
     }
 
     render(){
+        
         return(
             <div>
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>

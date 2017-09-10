@@ -8,8 +8,16 @@ import FetchingReducer from "./reducer_fetching";
 import PhotoReducer from "./reducer_photo";
 import UserReducer from "./reducer_user";
 import SearchReducer from "./reducer_search";
+import { USER_UNAUTH } from "../actiontypes/";
 
-const rootReducer = combineReducers({
+const rootReducer = (state, action) => {
+    if(action.type === USER_UNAUTH){
+        state = undefined;
+    }
+    return appReducer(state,action);
+};
+
+const appReducer = combineReducers({
     menu : MenuReducer,
     user : UserReducer,
     albums : AlbumsReducer,

@@ -1,6 +1,6 @@
 /*global localStorage*/
 
-import { ALBUMS_RESET_STATE, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
+import { FETCHING, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
 import axios from "axios";
 
 export {
@@ -15,8 +15,16 @@ const baseUrl = "/api/users/";
 
 function getInfos(){
     return function(dispatch){
+        dispatch({
+            type : FETCHING,
+            payload : {isFetching : true}
+        });           
         axios.get(baseUrl+"infos", {headers : {authorization : localStorage.getItem('token')}})
             .then(function(res){
+                dispatch({
+                    type : FETCHING,
+                    payload : {isFetching : false}
+                });                
                 dispatch({
                     type: USER_GET_INFOS,
                     payload : res.data
@@ -48,9 +56,6 @@ function signInUser({email, password}){
 function signOutUser(){
     return function(dispatch){
         localStorage.removeItem('token');
-        dispatch({
-            type: ALBUMS_RESET_STATE
-        });
         dispatch({
             type: USER_UNAUTH
         });

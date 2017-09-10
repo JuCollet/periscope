@@ -5,6 +5,7 @@ import { Link, Route, Switch, Redirect } from "react-router-dom";
 
 import Infos from "./Infos/Infos";
 import Edit from "./Edit/Edit";
+import Share from "./Share/Share";
 import Integration from "./Integration/Integration";
 import Options from "./Options/Options";
 
@@ -28,6 +29,10 @@ export default class PhotoInfo extends Component {
                 path : "edit",
                 label : "Editer les infos"
             },
+            {
+                path : "share",
+                label : "Partager"
+            },                
             {
                 path : "integration",
                 label : "Intégration"
@@ -63,6 +68,7 @@ export default class PhotoInfo extends Component {
                         <Switch>
                             <Route path={`${url}/infos`} render={_ => { return <Infos album={this.props.album} photo={this.props.photo} />}} />
                             <Route path={`${url}/edit`} render={_ => { return <Edit album={this.props.album} photo={this.props.photo} history={this.props.history} />}} />
+                            <Route path={`${url}/share`} render={ _ => {return <Share album={this.props.album} photo={this.props.photo} /> }}/>                            
                             <Route path={`${url}/integration`} render={ _ => {return <Integration album={this.props.album} photo={this.props.photo} /> }}/>                            
                             <Route path={`${url}/options`} render={ _ => {return <Options history={this.props.history} album={this.props.album} photo={this.props.photo} closeInfoBox={this.props.closeInfoBox} /> }} />
                             <Redirect from={`/`} to={`${url}/infos`} />

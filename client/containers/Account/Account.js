@@ -83,7 +83,7 @@ function mapDispatchToprops(dispatch){
 
 function mapStateTopProps(state){
     return {
-        userInfos : state.user.infos
+        userInfos : state.user.infos,
     };
 }
 

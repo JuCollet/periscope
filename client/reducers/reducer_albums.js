@@ -3,8 +3,6 @@ import _ from "lodash";
 
 export default function(state = {}, action){
     switch(action.type){
-        case ALBUMS_RESET_STATE :
-            return {};
         case ALBUM_DELETE :
             return _.omit(state, action.payload);        
         case ALBUMS_FETCH :

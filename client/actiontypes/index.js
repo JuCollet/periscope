@@ -2,7 +2,6 @@ export const ALBUM_CREATE = "albums_create";
 export const ALBUM_DELETE = "album_delete";
 export const ALBUM_FETCH = "album_fetch";
 export const ALBUMS_FETCH = "albums_fetch";
-export const ALBUMS_RESET_STATE = "albums_reset_state";
 export const ALBUM_SEARCH = "album_search";
 export const ALBUM_THUMB_UPDATE = "album_thumb_update";
 export const FETCHING = "fetching";

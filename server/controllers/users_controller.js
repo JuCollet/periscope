@@ -42,12 +42,12 @@ function getInfos(req,res,next){
                 err.message = "Impossible d'obtenir plus d'infos";
                 return next(err);
             }
-            res.json({ ...usageInfos[0],
+            res.json(Object.assign(usageInfos[0],{
                 name : user.firstname,
                 email : user.email,
                 volume : user.volume,
                 bucket : user.bucket
-            });            
+            }));            
         });
     });
 }
@@ -66,7 +66,8 @@ function signup(req,res,next){
                 firstname : req.body.firstName,
                 lastname : req.body.lastName,
                 email : req.body.email,
-                password : req.body.password
+                password : req.body.password,
+                bucket : req.body.bucket
             }, function(err, user){
                 if(err) return next(err);
                 res.json({token : createToken(user)});

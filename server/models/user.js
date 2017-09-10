@@ -21,14 +21,21 @@ const userSchema = new Schema({
       type : Number,
       default : 0
     },
-    bucket: String
+    bucket: String,
+    admin : {
+      type : Boolean,
+      default : false
+    }
 });
 
 userSchema.pre('save', function(next){
   const user = this;
   bcrypt.hash(user.password, 10, function(err, hash){
     if(err)throw err;
-    user.bucket = randomToken(8) + Date.now();
+    if(!user.bucket || user.bucket.length < 20) {
+      user.bucket = randomToken(8) + Date.now();
+      user.admin = true;
+    }
     user.password = hash;
     next();
   });
