@@ -42,7 +42,7 @@ function getInfos(req,res,next){
                 err.message = "Impossible d'obtenir plus d'infos";
                 return next(err);
             }
-            res.json(Object.assign(usageInfos[0],{
+            res.json(Object.assign(usageInfos[0] ? usageInfos[0] : {},{
                 name : user.firstname,
                 email : user.email,
                 volume : user.volume,
