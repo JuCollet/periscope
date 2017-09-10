@@ -35,8 +35,10 @@ class Photos extends Component {
     const { album } = this.props;
     const { searchTerm } = this.props.search;
 
-    if(this.props.album.photos){
+    if(album.photos && album.photos.length > 0){
       return <Patchwork photos={this.props.album.photos} searchTerm={searchTerm.substr(0,1) === "#" ? searchTerm.substr(1) : searchTerm} albumId={album._id} />;
+    } else if(album.photos && album.photos.length === 0) {
+      return <h4 className="txt-isVeryLight margin-lg-bottom">Cet album ne contient aucune photo.</h4>;
     } else {
       return <Loading />;
     }
@@ -59,7 +61,7 @@ class Photos extends Component {
         <span className="albumDescription">{album.description}</span>
         <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
         {this.renderPatchwork()}
-        <i className="fa fa-trash button-icon margin-md-bottom" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>
+        <i className="fa fa-trash button-icon margin-md-bottom margin-sm-top" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>
       </div>
     );  
   }

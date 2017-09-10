@@ -25,7 +25,7 @@ function photoDelete(albumId, photoId, filename, cb){
 
 function photoUpdate(photoId, data, cb){
     return function(dispatch){
-        axios.put(baseUrl+"tagsupdate/", {photoId, data}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
+        axios.put(baseUrl+"update/", {photoId, data}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
             cb();
             dispatch({
                 type: PHOTO_UPDATE,

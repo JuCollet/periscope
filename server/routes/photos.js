@@ -8,7 +8,7 @@ const express = require('express'),
 photosRouter.route('/delete')
     .put(passportService.requireAuth, photosController.photoDelete);
     
-photosRouter.route('/tagsupdate')
-    .put(passportService.requireAuth, photosController.tagsUpdate);    
+photosRouter.route('/update')
+    .put(passportService.requireAuth, photosController.photoUpdate);    
     
 module.exports = photosRouter;

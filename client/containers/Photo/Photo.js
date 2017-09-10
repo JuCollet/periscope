@@ -7,7 +7,6 @@ import _ from "lodash";
 import { bindActionCreators } from "redux";
 import SmoothScroll from "../../components/Animations/SmoothScroll";
 import { albumFetch } from "../../actions/albums";
-import { photoDelete } from "../../actions/photos";
 import Loading from "../../components/Loading/Loading";
 import PhotoInfo from "./PhotoInfo/PhotoInfo";
 
@@ -19,7 +18,6 @@ class Photos extends Component {
         this.closeInfos = this.closeInfos.bind(this);
         this.browsePhoto = this.browsePhoto.bind(this);
         this.getPhotoIndex = this.getPhotoIndex.bind(this);
-        this.afterPhotoIsDeleted = this.afterPhotoIsDeleted.bind(this);
     }
     
     componentDidMount(){
@@ -56,10 +54,6 @@ class Photos extends Component {
         }        
         this.props.history.push(`/app/photo/${this.props.album._id}/${this.props.album.photos[nextIndex]._id}`);
     }
-    
-    afterPhotoIsDeleted(){
-        this.props.history.go(-1);
-    }
 
     render(){
 
@@ -88,7 +82,7 @@ class Photos extends Component {
                         <i className="fa fa-chevron-right" onClick={_=>this.browsePhoto({direction:2})}></i>
                     </div>                    
                 </div>
-                <PhotoInfo photoInfoDomElement={el => this.photoInfo = el} photoDelete={this.props.photoDelete} callback={this.afterPhotoIsDeleted} album={this.props.album} photo={photo} closeInfoBox={this.closeInfos} location={this.props.location} match={this.props.match} />
+                <PhotoInfo photoInfoDomElement={el => this.photoInfo = el} history={this.props.history} album={this.props.album} photo={photo} closeInfoBox={this.closeInfos} location={this.props.location} match={this.props.match} />
             </div>
         );
     }
@@ -96,7 +90,7 @@ class Photos extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({albumFetch, photoDelete}, dispatch);
+    return bindActionCreators({albumFetch}, dispatch);
 }
 
 function mapStateToProps(state, ownProps){

@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 122:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,6 +16,67 @@ var _actiontypes = __webpack_require__(15);
 function toggleMenu() {
     return {
         type: _actiontypes.TOGGLE_MENU
+    };
+}
+
+/***/ }),
+
+/***/ 122:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.photoSearch = exports.photoUpdate = exports.photoDelete = undefined;
+
+var _axios = __webpack_require__(53);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actiontypes = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*global localStorage*/
+
+exports.photoDelete = photoDelete;
+exports.photoUpdate = photoUpdate;
+exports.photoSearch = photoSearch;
+
+
+var baseUrl = "/api/photos/";
+
+function photoDelete(albumId, photoId, filename, cb) {
+    return function (dispatch) {
+        cb();
+        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
+            dispatch({
+                type: _actiontypes.PHOTO_DELETE,
+                payload: album
+            });
+        });
+    };
+}
+
+function photoUpdate(photoId, data, cb) {
+    return function (dispatch) {
+        _axios2.default.put(baseUrl + "update/", { photoId: photoId, data: data }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
+            cb();
+            dispatch({
+                type: _actiontypes.PHOTO_UPDATE,
+                payload: album
+            });
+        });
+    };
+}
+
+function photoSearch(term) {
+    return {
+        type: _actiontypes.PHOTO_SEARCH,
+        payload: term
     };
 }
 
@@ -39,7 +100,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _upload = __webpack_require__(214);
 
@@ -153,12 +214,12 @@ exports.default = (0, _reactRedux.connect)(null, mapDispacthToProps)(Dropbox);
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(17);
-var settle = __webpack_require__(254);
-var buildURL = __webpack_require__(257);
-var parseHeaders = __webpack_require__(263);
-var isURLSameOrigin = __webpack_require__(261);
+var settle = __webpack_require__(258);
+var buildURL = __webpack_require__(261);
+var parseHeaders = __webpack_require__(267);
+var isURLSameOrigin = __webpack_require__(265);
 var createError = __webpack_require__(127);
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(256);
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(260);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -251,7 +312,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(259);
+      var cookies = __webpack_require__(263);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -373,7 +434,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(253);
+var enhanceError = __webpack_require__(257);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -451,7 +512,7 @@ var SEARCH_TYPE_TOGGLE = exports.SEARCH_TYPE_TOGGLE = "search_type_toggle";
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var bind = __webpack_require__(128);
-var isBuffer = __webpack_require__(289);
+var isBuffer = __webpack_require__(293);
 
 /*global toString:true*/
 
@@ -783,7 +844,7 @@ var _require_auth = __webpack_require__(217);
 
 var _require_auth2 = _interopRequireDefault(_require_auth);
 
-var _Sidemenu = __webpack_require__(239);
+var _Sidemenu = __webpack_require__(243);
 
 var _Sidemenu2 = _interopRequireDefault(_Sidemenu);
 
@@ -795,7 +856,7 @@ var _NewAlbum = __webpack_require__(235);
 
 var _NewAlbum2 = _interopRequireDefault(_NewAlbum);
 
-var _Upload = __webpack_require__(240);
+var _Upload = __webpack_require__(244);
 
 var _Upload2 = _interopRequireDefault(_Upload);
 
@@ -807,7 +868,7 @@ var _Albums = __webpack_require__(226);
 
 var _Albums2 = _interopRequireDefault(_Albums);
 
-var _Photos = __webpack_require__(238);
+var _Photos = __webpack_require__(242);
 
 var _Photos2 = _interopRequireDefault(_Photos);
 
@@ -994,31 +1055,31 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reduxForm = __webpack_require__(74);
 
-var _reducer_albums = __webpack_require__(242);
+var _reducer_albums = __webpack_require__(246);
 
 var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 
-var _reducer_menu = __webpack_require__(244);
+var _reducer_menu = __webpack_require__(248);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
 
-var _reducer_fetching = __webpack_require__(243);
+var _reducer_fetching = __webpack_require__(247);
 
 var _reducer_fetching2 = _interopRequireDefault(_reducer_fetching);
 
-var _reducer_photo = __webpack_require__(245);
+var _reducer_photo = __webpack_require__(249);
 
 var _reducer_photo2 = _interopRequireDefault(_reducer_photo);
 
-var _reducer_user = __webpack_require__(247);
+var _reducer_user = __webpack_require__(251);
 
 var _reducer_user2 = _interopRequireDefault(_reducer_user);
 
-var _reducer_search = __webpack_require__(246);
+var _reducer_search = __webpack_require__(250);
 
 var _reducer_search2 = _interopRequireDefault(_reducer_search);
 
@@ -1074,7 +1135,7 @@ exports['default'] = thunk;
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(574);
+var content = __webpack_require__(578);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1106,7 +1167,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(578);
+var content = __webpack_require__(582);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1435,7 +1496,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(14);
 
-__webpack_require__(583);
+__webpack_require__(587);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1507,9 +1568,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(584);
+__webpack_require__(588);
 
-__webpack_require__(579);
+__webpack_require__(583);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1763,7 +1824,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(585);
+__webpack_require__(589);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1846,7 +1907,7 @@ var _reactRouterDom = __webpack_require__(14);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _user = __webpack_require__(51);
 
@@ -2181,11 +2242,11 @@ var _NoPhoto = __webpack_require__(219);
 
 var _NoPhoto2 = _interopRequireDefault(_NoPhoto);
 
-var _albums = __webpack_require__(31);
+var _albums = __webpack_require__(36);
 
-var _search = __webpack_require__(76);
+var _search = __webpack_require__(75);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(7);
 
@@ -2303,7 +2364,7 @@ var _Dropbox = __webpack_require__(123);
 
 var _Dropbox2 = _interopRequireDefault(_Dropbox);
 
-__webpack_require__(580);
+__webpack_require__(584);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2424,11 +2485,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(7);
 
-var _menu = __webpack_require__(122);
+var _menu = __webpack_require__(121);
 
 var _SearchBar = __webpack_require__(229);
 
@@ -2514,13 +2575,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
-var _albums = __webpack_require__(31);
+var _albums = __webpack_require__(36);
 
-var _photos = __webpack_require__(75);
+var _photos = __webpack_require__(122);
 
-var _search = __webpack_require__(76);
+var _search = __webpack_require__(75);
 
 var _lodash = __webpack_require__(42);
 
@@ -2625,7 +2686,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(7);
 
@@ -2791,7 +2852,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _user = __webpack_require__(51);
 
@@ -3059,11 +3120,11 @@ var _reduxForm = __webpack_require__(74);
 
 var _reactRedux = __webpack_require__(7);
 
-var _albums = __webpack_require__(31);
+var _albums = __webpack_require__(36);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
-var _Tags = __webpack_require__(77);
+var _Tags = __webpack_require__(76);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -3443,21 +3504,19 @@ var _lodash = __webpack_require__(42);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _SmoothScroll = __webpack_require__(215);
 
 var _SmoothScroll2 = _interopRequireDefault(_SmoothScroll);
 
-var _albums = __webpack_require__(31);
-
-var _photos = __webpack_require__(75);
+var _albums = __webpack_require__(36);
 
 var _Loading = __webpack_require__(52);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _PhotoInfo = __webpack_require__(237);
+var _PhotoInfo = __webpack_require__(241);
 
 var _PhotoInfo2 = _interopRequireDefault(_PhotoInfo);
 
@@ -3481,7 +3540,6 @@ var Photos = function (_Component) {
         _this.closeInfos = _this.closeInfos.bind(_this);
         _this.browsePhoto = _this.browsePhoto.bind(_this);
         _this.getPhotoIndex = _this.getPhotoIndex.bind(_this);
-        _this.afterPhotoIsDeleted = _this.afterPhotoIsDeleted.bind(_this);
         return _this;
     }
 
@@ -3525,11 +3583,6 @@ var Photos = function (_Component) {
                 nextIndex = this.props.album.photos.length - 1;
             }
             this.props.history.push("/app/photo/" + this.props.album._id + "/" + this.props.album.photos[nextIndex]._id);
-        }
-    }, {
-        key: "afterPhotoIsDeleted",
-        value: function afterPhotoIsDeleted() {
-            this.props.history.go(-1);
         }
     }, {
         key: "render",
@@ -3591,7 +3644,7 @@ var Photos = function (_Component) {
                 ),
                 _react2.default.createElement(_PhotoInfo2.default, { photoInfoDomElement: function photoInfoDomElement(el) {
                         return _this2.photoInfo = el;
-                    }, photoDelete: this.props.photoDelete, callback: this.afterPhotoIsDeleted, album: this.props.album, photo: photo, closeInfoBox: this.closeInfos, location: this.props.location, match: this.props.match })
+                    }, history: this.props.history, album: this.props.album, photo: photo, closeInfoBox: this.closeInfos, location: this.props.location, match: this.props.match })
             );
         }
     }]);
@@ -3600,7 +3653,7 @@ var Photos = function (_Component) {
 }(_react.Component);
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ albumFetch: _albums.albumFetch, photoDelete: _photos.photoDelete }, dispatch);
+    return (0, _redux.bindActionCreators)({ albumFetch: _albums.albumFetch }, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {
@@ -3629,21 +3682,583 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _redux = __webpack_require__(10);
+
+var _reactRedux = __webpack_require__(7);
+
+var _Tags = __webpack_require__(76);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
+var _photos = __webpack_require__(122);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Edit = function (_Component) {
+    _inherits(Edit, _Component);
+
+    function Edit(props) {
+        _classCallCheck(this, Edit);
+
+        var _this = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).call(this, props));
+
+        var photo = props.photo,
+            album = props.album;
+
+
+        _this.state = {
+            photographer: photo.photographer ? photo.photographer : album.photographer,
+            description: photo.description ? photo.description : album.description,
+            tags: photo.tags,
+            tagsArray: _this.props.tagsStringToArray(photo.tags.join(','), 1)
+        };
+
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Edit, [{
+        key: "handleInputChange",
+        value: function handleInputChange(e) {
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
+            if (e.target.name === "tags" && this.state.tags && this.state.tags.length > 1) {
+                this.setState({
+                    tagsArray: this.props.tagsStringToArray(e.target.value, 1)
+                });
+            }
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(e) {
+            var _this2 = this;
+
+            e.preventDefault();
+            this.props.photoUpdate(this.props.photo._id, {
+                photographer: this.state.photographer,
+                description: this.state.description,
+                tags: this.state.tagsArray
+            }, function (_) {
+                _this2.props.history.push("/app/photos/" + _this2.props.album._id);
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "form",
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "h3",
+                        { className: "margin-md-bottom" },
+                        "Editer les infos"
+                    ),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-top margin-sm-bottom" },
+                        "Photographe"
+                    ),
+                    _react2.default.createElement("input", { name: "photographer", onChange: this.handleInputChange, value: this.state.photographer, className: "small-input" }),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-top margin-sm-bottom" },
+                        "Description"
+                    ),
+                    _react2.default.createElement("textarea", { name: "description", onChange: this.handleInputChange, rows: "3", value: this.state.description, className: "small-input" }),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-top margin-sm-bottom" },
+                        "Tags"
+                    ),
+                    _react2.default.createElement("input", { name: "tags", onChange: this.handleInputChange, value: this.state.tags, className: "small-input margin-md-bottom" }),
+                    this.props.renderTagsElement(this.state.tagsArray),
+                    _react2.default.createElement(
+                        "button",
+                        { type: "submit", className: "button button-small button-white button-hover-green margin-sm-top" },
+                        "Valider"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Edit;
+}(_react.Component);
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ photoUpdate: _photos.photoUpdate }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)((0, _Tags2.default)(Edit));
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Tags = __webpack_require__(76);
+
+var _Tags2 = _interopRequireDefault(_Tags);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Infos = function (_React$Component) {
+    _inherits(Infos, _React$Component);
+
+    function Infos() {
+        _classCallCheck(this, Infos);
+
+        return _possibleConstructorReturn(this, (Infos.__proto__ || Object.getPrototypeOf(Infos)).apply(this, arguments));
+    }
+
+    _createClass(Infos, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                album = _props.album,
+                photo = _props.photo;
+
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Infos"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Nom de l'album : "
+                    ),
+                    album.name
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Description : "
+                    ),
+                    photo.description ? photo.description : album.description
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Cr\xE9dit photographique : "
+                    ),
+                    "\xA9 ",
+                    photo.photographer ? photo.photographer : album.photographer
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Dimensions : "
+                    ),
+                    photo.width ? photo.width : "largeur inconnue",
+                    " x ",
+                    photo.height ? photo.height : "hauteur inconnue"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Impression optimale : "
+                    ),
+                    photo.width ? Math.round(photo.width / 118) : "largeur inconnue",
+                    " cm x ",
+                    photo.height ? Math.round(photo.height / 118) : "hauteur inconnue",
+                    " cm max."
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    _react2.default.createElement(
+                        "b",
+                        null,
+                        "Poids de l'image : "
+                    ),
+                    Math.round(photo.size / 1048576 * 10) / 10,
+                    " Mo"
+                ),
+                this.props.renderTagsElement(photo.tags),
+                _react2.default.createElement(
+                    "a",
+                    { href: photo.original },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "button button-small button-white button-animation" },
+                        "T\xE9l\xE9charger"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Infos;
+}(_react2.default.Component);
+
+exports.default = (0, _Tags2.default)(Infos);
+
+/***/ }),
+
+/***/ 239:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Integration = function (_React$Component) {
+    _inherits(Integration, _React$Component);
+
+    function Integration(props) {
+        _classCallCheck(this, Integration);
+
+        return _possibleConstructorReturn(this, (Integration.__proto__ || Object.getPrototypeOf(Integration)).call(this, props));
+    }
+
+    _createClass(Integration, [{
+        key: "toClipboard",
+        value: function toClipboard(e, el) {
+            e.preventDefault();
+            el.select();
+            document.execCommand('copy');
+            var elBackground = el.style.backgroundColor;
+            var elColor = el.style.color;
+            el.style.backgroundColor = "#4EE898";
+            el.style.color = "white";
+            setTimeout(function (_) {
+                el.style.backgroundColor = elBackground;
+                el.style.color = elColor;
+            }, 1000);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Int\xE9gration"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-lg-top" },
+                    "Lien de l'image originale"
+                ),
+                _react2.default.createElement("input", { defaultValue: this.props.photo.original, ref: function ref(el) {
+                        return _this2.input1 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input1);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Image de Blog - Small"
+                ),
+                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.thumb + "[/IMG]", ref: function ref(el) {
+                        return _this2.input2 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input2);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Image de Blog - Medium"
+                ),
+                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.medium + "[/IMG]", ref: function ref(el) {
+                        return _this2.input3 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input3);
+                        } },
+                    "Copier"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-sm-bottom margin-md-top" },
+                    "Element image HTML"
+                ),
+                _react2.default.createElement("input", { defaultValue: "<img src=\"" + this.props.photo.medium + "\" alt=\"" + this.props.album.name + "\"/>", ref: function ref(el) {
+                        return _this2.input4 = el;
+                    }, className: "small-input margin-sm-bottom" }),
+                _react2.default.createElement(
+                    "button",
+                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
+                            return _this2.toClipboard(e, _this2.input4);
+                        } },
+                    "Copier"
+                )
+            );
+        }
+    }]);
+
+    return Integration;
+}(_react2.default.Component);
+
+exports.default = Integration;
+;
+
+/***/ }),
+
+/***/ 240:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(10);
+
+var _reactRedux = __webpack_require__(7);
+
+var _photos = __webpack_require__(122);
+
+var _albums = __webpack_require__(36);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Options = function (_Component) {
+    _inherits(Options, _Component);
+
+    function Options() {
+        _classCallCheck(this, Options);
+
+        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    }
+
+    _createClass(Options, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var _props = this.props,
+                photo = _props.photo,
+                album = _props.album;
+
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Options"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-md-top" },
+                    "T\xE9l\xE9charger cette image"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "T\xE9l\xE9chargez cette image au format JPEG, dans sa qualit\xE9 d'origine (original), dans une taille medium (1600px\xA0max.) ou small/thumb (320px\xA0max.)."
+                ),
+                _react2.default.createElement(
+                    "a",
+                    { href: photo.original, download: true },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "button button-small button-white button-hover-green margin-sm-right" },
+                        "Original"
+                    )
+                ),
+                _react2.default.createElement(
+                    "a",
+                    { href: photo.medium, download: true },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "button button-small button-white button-hover-green margin-sm-right" },
+                        "Medium"
+                    )
+                ),
+                _react2.default.createElement(
+                    "a",
+                    { href: photo.thumb, download: true },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "button button-small button-white button-hover-green" },
+                        "Small"
+                    )
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-md-top" },
+                    "D\xE9finir comme image d'album"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Cette image sera utilis\xE9e comme image d'album dans votre gallerie."
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { onClick: function onClick(_) {
+                            return _this2.props.albumThumbUpdate(album._id, photo.thumb, function (_) {
+                                return _this2.props.closeInfoBox();
+                            });
+                        }, className: "button button-small button-white button-hover-green" },
+                    "Image d'album"
+                ),
+                _react2.default.createElement(
+                    "h4",
+                    { className: "margin-md-top" },
+                    "Supprimer l'image"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "Attention, en supprimant cette image, les personnes avec qui vous l'avez partag\xE9e ne pourront plus la voir et les liens vers cette image int\xE9gr\xE9s dans des blogs ou sur d'autres sites ne fonctionneront plus."
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { onClick: function onClick(_) {
+                            return _this2.props.photoDelete(album._id, photo._id, photo.filename, function (_) {
+                                _this2.props.history.push("/app/photos/" + album._id);
+                            });
+                        }, className: "button button-small button-white button-hover-green" },
+                    "Supprimer cette image"
+                )
+            );
+        }
+    }]);
+
+    return Options;
+}(_react.Component);
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ photoDelete: _photos.photoDelete, albumThumbUpdate: _albums.albumThumbUpdate }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Options);
+
+/***/ }),
+
+/***/ 241:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
 var _reactRouterDom = __webpack_require__(14);
 
-var _Infos = __webpack_require__(588);
+var _Infos = __webpack_require__(238);
 
 var _Infos2 = _interopRequireDefault(_Infos);
 
-var _Edit = __webpack_require__(587);
+var _Edit = __webpack_require__(237);
 
 var _Edit2 = _interopRequireDefault(_Edit);
 
-var _Integration = __webpack_require__(590);
+var _Integration = __webpack_require__(239);
 
 var _Integration2 = _interopRequireDefault(_Integration);
 
-var _Options = __webpack_require__(589);
+var _Options = __webpack_require__(240);
 
 var _Options2 = _interopRequireDefault(_Options);
 
@@ -3745,11 +4360,15 @@ var PhotoInfo = function (_Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { path: url + "/infos", render: function render(_) {
                                     return _react2.default.createElement(_Infos2.default, { album: _this3.props.album, photo: _this3.props.photo });
                                 } }),
-                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/edit", component: _Edit2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/edit", render: function render(_) {
+                                    return _react2.default.createElement(_Edit2.default, { album: _this3.props.album, photo: _this3.props.photo, history: _this3.props.history });
+                                } }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: url + "/integration", render: function render(_) {
                                     return _react2.default.createElement(_Integration2.default, { album: _this3.props.album, photo: _this3.props.photo });
                                 } }),
-                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/options", component: _Options2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: url + "/options", render: function render(_) {
+                                    return _react2.default.createElement(_Options2.default, { history: _this3.props.history, album: _this3.props.album, photo: _this3.props.photo, closeInfoBox: _this3.props.closeInfoBox });
+                                } }),
                             _react2.default.createElement(_reactRouterDom.Redirect, { from: "/", to: url + "/infos" })
                         )
                     )
@@ -3765,7 +4384,7 @@ exports.default = PhotoInfo;
 
 /***/ }),
 
-/***/ 238:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3783,19 +4402,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRouterDom = __webpack_require__(14);
 
-var _albums = __webpack_require__(31);
+var _albums = __webpack_require__(36);
 
-var _search = __webpack_require__(76);
+var _search = __webpack_require__(75);
 
 var _Loading = __webpack_require__(52);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Tags = __webpack_require__(77);
+var _Tags = __webpack_require__(76);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -3850,8 +4469,14 @@ var Photos = function (_Component) {
       var searchTerm = this.props.search.searchTerm;
 
 
-      if (this.props.album.photos) {
+      if (album.photos && album.photos.length > 0) {
         return _react2.default.createElement(_Patchwork2.default, { photos: this.props.album.photos, searchTerm: searchTerm.substr(0, 1) === "#" ? searchTerm.substr(1) : searchTerm, albumId: album._id });
+      } else if (album.photos && album.photos.length === 0) {
+        return _react2.default.createElement(
+          "h4",
+          { className: "txt-isVeryLight margin-lg-bottom" },
+          "Cet album ne contient aucune photo."
+        );
       } else {
         return _react2.default.createElement(_Loading2.default, null);
       }
@@ -3908,7 +4533,7 @@ var Photos = function (_Component) {
         this.renderPatchwork(),
         _react2.default.createElement(
           "i",
-          { className: "fa fa-trash button-icon margin-md-bottom", onClick: function onClick(_) {
+          { className: "fa fa-trash button-icon margin-md-bottom margin-sm-top", onClick: function onClick(_) {
               return _this3.deleteAlbum(album._id);
             } },
           " ",
@@ -3940,7 +4565,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 239:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3960,13 +4585,13 @@ var _reactHammerjs = __webpack_require__(73);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRouterDom = __webpack_require__(14);
 
 var _reactRedux = __webpack_require__(7);
 
-var _menu = __webpack_require__(122);
+var _menu = __webpack_require__(121);
 
 var _user = __webpack_require__(51);
 
@@ -4093,7 +4718,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ 240:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4111,7 +4736,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _Dropbox = __webpack_require__(123);
 
@@ -4174,7 +4799,7 @@ exports.default = (0, _reactRedux.connect)()(Upload);
 
 /***/ }),
 
-/***/ 241:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4192,7 +4817,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = __webpack_require__(7);
 
-var _redux = __webpack_require__(9);
+var _redux = __webpack_require__(10);
 
 var _reactRouterDom = __webpack_require__(14);
 
@@ -4252,7 +4877,7 @@ _reactDom2.default.render(_react2.default.createElement(
 
 /***/ }),
 
-/***/ 242:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4304,7 +4929,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ 243:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4330,7 +4955,7 @@ var _actiontypes = __webpack_require__(15);
 
 /***/ }),
 
-/***/ 244:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4361,7 +4986,7 @@ var _actiontypes = __webpack_require__(15);
 
 /***/ }),
 
-/***/ 245:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4395,7 +5020,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ 246:
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4426,7 +5051,7 @@ var _actiontypes = __webpack_require__(15);
 
 /***/ }),
 
-/***/ 247:
+/***/ 251:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4463,7 +5088,7 @@ var _actiontypes = __webpack_require__(15);
 
 /***/ }),
 
-/***/ 248:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4471,8 +5096,8 @@ var _actiontypes = __webpack_require__(15);
 
 var utils = __webpack_require__(17);
 var bind = __webpack_require__(128);
-var Axios = __webpack_require__(250);
-var defaults = __webpack_require__(78);
+var Axios = __webpack_require__(254);
+var defaults = __webpack_require__(77);
 
 /**
  * Create an instance of Axios
@@ -4506,14 +5131,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(125);
-axios.CancelToken = __webpack_require__(249);
+axios.CancelToken = __webpack_require__(253);
 axios.isCancel = __webpack_require__(126);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(264);
+axios.spread = __webpack_require__(268);
 
 module.exports = axios;
 
@@ -4522,7 +5147,7 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 249:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4586,18 +5211,18 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ 250:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(78);
+var defaults = __webpack_require__(77);
 var utils = __webpack_require__(17);
-var InterceptorManager = __webpack_require__(251);
-var dispatchRequest = __webpack_require__(252);
-var isAbsoluteURL = __webpack_require__(260);
-var combineURLs = __webpack_require__(258);
+var InterceptorManager = __webpack_require__(255);
+var dispatchRequest = __webpack_require__(256);
+var isAbsoluteURL = __webpack_require__(264);
+var combineURLs = __webpack_require__(262);
 
 /**
  * Create a new instance of Axios
@@ -4679,7 +5304,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 251:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4738,16 +5363,16 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 252:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(17);
-var transformData = __webpack_require__(255);
+var transformData = __webpack_require__(259);
 var isCancel = __webpack_require__(126);
-var defaults = __webpack_require__(78);
+var defaults = __webpack_require__(77);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -4805,7 +5430,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 253:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4834,7 +5459,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 254:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4861,7 +5486,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4888,7 +5513,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 256:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4930,7 +5555,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 257:
+/***/ 261:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4998,7 +5623,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 258:
+/***/ 262:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5018,7 +5643,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 259:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5078,7 +5703,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 260:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5101,7 +5726,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 261:
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5171,7 +5796,7 @@ function nonStandardBrowserEnv() {
 
 /***/ }),
 
-/***/ 262:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5190,7 +5815,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 263:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5236,7 +5861,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 264:
+/***/ 268:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5271,7 +5896,7 @@ module.exports = function spread(callback) {
 
 /***/ }),
 
-/***/ 289:
+/***/ 293:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5301,7 +5926,7 @@ function isSlowBuffer(obj) {
 
 /***/ }),
 
-/***/ 31:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14958,7 +15583,7 @@ else if(freeModule){// Export for Node.js.
 (freeModule.exports=_)._=_;// Export for CommonJS support.
 freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121), __webpack_require__(48)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120), __webpack_require__(48)(module)))
 
 /***/ }),
 
@@ -15008,7 +15633,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(570);
+var	fixUrls = __webpack_require__(574);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -15476,11 +16101,11 @@ function Notification(props) {
 "use strict";
 
 
-module.exports = __webpack_require__(248);
+module.exports = __webpack_require__(252);
 
 /***/ }),
 
-/***/ 570:
+/***/ 574:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15576,7 +16201,7 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 574:
+/***/ 578:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(37)(undefined);
@@ -15591,7 +16216,7 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
-/***/ 575:
+/***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(37)(undefined);
@@ -15606,7 +16231,7 @@ exports.push([module.i, ".bulletNav {\n  list-style: none;\n  padding: 0px;\n}\n
 
 /***/ }),
 
-/***/ 576:
+/***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(37)(undefined);
@@ -15621,7 +16246,7 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ 577:
+/***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(37)(undefined);
@@ -15636,7 +16261,7 @@ exports.push([module.i, ".volumeGaugeContainer {\n  overflow: hidden;\n  display
 
 /***/ }),
 
-/***/ 578:
+/***/ 582:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(37)(undefined);
@@ -15644,565 +16269,138 @@ exports = module.exports = __webpack_require__(37)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".button {\n  display: inline-block;\n  outline: none;\n  border-radius: 3px;\n  text-transform: uppercase;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: .1s;\n  transition: .1s;\n}\n.button-medium {\n  padding: 10px 30px 10px 30px;\n  min-height: 38px;\n  border: 1px solid;\n  font-size: 1em;\n  font-weight: 300;\n}\n.button-small {\n  padding: 7px 7px 5px 7px;\n  border: 1px solid;\n  font-weight: 300;\n  font-size: .8em;\n}\n.button-white {\n  border-color: #777777;\n  background-color: #FFFFFF;\n  color: #777777;\n}\n.button-hover-green:hover {\n  border-color: #4EE898;\n  background-color: #4EE898;\n  color: white;\n}\n.button-animation:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea + div .fa {\n  top: 10px;\n  right: 10px;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\ni > span {\n  font-family: Lato, \"Sans-Serif\";\n  font-weight: 400;\n  font-size: .9em;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n@media (min-width: 992px) {\n  .content-page {\n    width: 960px;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(581) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(582) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
+exports.push([module.i, ".button {\n  display: inline-block;\n  outline: none;\n  border-radius: 3px;\n  text-transform: uppercase;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: .1s;\n  transition: .1s;\n}\n.button-medium {\n  padding: 10px 30px 10px 30px;\n  min-height: 38px;\n  border: 1px solid;\n  font-size: 1em;\n  font-weight: 300;\n}\n.button-small {\n  padding: 7px 7px 5px 7px;\n  border: 1px solid;\n  font-weight: 300;\n  font-size: .8em;\n}\n.button-white {\n  border-color: #777777;\n  background-color: #FFFFFF;\n  color: #777777;\n}\n.button-hover-green:hover {\n  border-color: #4EE898;\n  background-color: #4EE898;\n  color: white;\n}\n.button-animation:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea + div .fa {\n  top: 10px;\n  right: 10px;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\ni > span {\n  font-family: Lato, \"Sans-Serif\";\n  font-weight: 400;\n  font-size: .9em;\n}\ntextarea {\n  resize: none;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  width: 100%;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n@media (min-width: 992px) {\n  .content-page {\n    width: 960px;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(585) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(586) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 579:
+/***/ 583:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/noPhoto.png";
 
 /***/ }),
 
-/***/ 580:
+/***/ 584:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/noPhotoInAlbum.png";
 
 /***/ }),
 
-/***/ 581:
+/***/ 585:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/pattern.png";
 
 /***/ }),
 
-/***/ 582:
+/***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/vintage.jpg";
 
 /***/ }),
 
-/***/ 583:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(575);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(49)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 584:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(576);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(49)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 585:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(577);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(49)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
 /***/ 587:
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(579);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-    return _react2.default.createElement(
-        "h1",
-        null,
-        "Edit"
-    );
-};
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
 /***/ 588:
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(580);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Tags = __webpack_require__(77);
-
-var _Tags2 = _interopRequireDefault(_Tags);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Infos = function (_React$Component) {
-    _inherits(Infos, _React$Component);
-
-    function Infos() {
-        _classCallCheck(this, Infos);
-
-        return _possibleConstructorReturn(this, (Infos.__proto__ || Object.getPrototypeOf(Infos)).apply(this, arguments));
-    }
-
-    _createClass(Infos, [{
-        key: "render",
-        value: function render() {
-            var _props = this.props,
-                album = _props.album,
-                photo = _props.photo;
-
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "h3",
-                    null,
-                    "Infos"
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Nom de l'album : "
-                    ),
-                    album.name
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Description : "
-                    ),
-                    photo.description ? photo.description : album.description
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Cr\xE9dit photographique : "
-                    ),
-                    "\xA9 ",
-                    photo.photographer ? photo.photographer : album.photographer
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Dimensions : "
-                    ),
-                    photo.width ? photo.width : "largeur inconnue",
-                    " x ",
-                    photo.height ? photo.height : "hauteur inconnue"
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Impression optimale : "
-                    ),
-                    photo.width ? Math.round(photo.width / 118) : "largeur inconnue",
-                    " cm x ",
-                    photo.height ? Math.round(photo.height / 118) : "hauteur inconnue",
-                    " cm max."
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "b",
-                        null,
-                        "Poids de l'image : "
-                    ),
-                    Math.round(photo.size / 1048576 * 10) / 10,
-                    " Mo"
-                ),
-                this.props.renderTagsElement(photo.tags),
-                _react2.default.createElement(
-                    "a",
-                    { href: photo.original },
-                    _react2.default.createElement(
-                        "button",
-                        { className: "button button-small button-white button-animation" },
-                        "T\xE9l\xE9charger"
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Infos;
-}(_react2.default.Component);
-
-exports.default = (0, _Tags2.default)(Infos);
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
 /***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(581);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-            "h3",
-            null,
-            "Options"
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            _react2.default.createElement(
-                "a",
-                { href: "" },
-                "Supprimer cette image"
-            )
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            _react2.default.createElement(
-                "a",
-                { href: "" },
-                "T\xE9l\xE9charger cette image"
-            )
-        ),
-        _react2.default.createElement(
-            "p",
-            null,
-            _react2.default.createElement(
-                "a",
-                { href: "" },
-                "Choisir comme photo d'album"
-            )
-        )
-    );
-};
-
-/*
-
-<p><a href="#" onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, this.props.callback)}>Supprimer cette image</a></p>
-            <p><a href={photo.original} download>Télécharger cette image</a></p>
-            {this.state.tagEdit ? this.tagsEditRender() : <p><a href="#" onClick={this.toggleTagsEdit}>Editer les tags</a></p> }
-            <p><a href="#" onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())}>Choisir comme image d'album</a></p>           
-
-*/
-
-/***/ }),
-
-/***/ 590:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Integration = function (_React$Component) {
-    _inherits(Integration, _React$Component);
-
-    function Integration(props) {
-        _classCallCheck(this, Integration);
-
-        return _possibleConstructorReturn(this, (Integration.__proto__ || Object.getPrototypeOf(Integration)).call(this, props));
-    }
-
-    _createClass(Integration, [{
-        key: "toClipboard",
-        value: function toClipboard(e, el) {
-            e.preventDefault();
-            el.select();
-            document.execCommand('copy');
-            var elBackground = el.style.backgroundColor;
-            var elColor = el.style.color;
-            el.style.backgroundColor = "#4EE898";
-            el.style.color = "white";
-            setTimeout(function (_) {
-                el.style.backgroundColor = elBackground;
-                el.style.color = elColor;
-            }, 1000);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "h3",
-                    null,
-                    "Int\xE9gration"
-                ),
-                _react2.default.createElement(
-                    "h4",
-                    { className: "margin-sm-bottom margin-lg-top" },
-                    "Lien de l'image originale"
-                ),
-                _react2.default.createElement("input", { defaultValue: this.props.photo.original, ref: function ref(el) {
-                        return _this2.input1 = el;
-                    }, className: "small-input margin-sm-bottom" }),
-                _react2.default.createElement(
-                    "button",
-                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
-                            return _this2.toClipboard(e, _this2.input1);
-                        } },
-                    "Copier"
-                ),
-                _react2.default.createElement(
-                    "h4",
-                    { className: "margin-sm-bottom margin-md-top" },
-                    "Image de Blog - Small"
-                ),
-                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.thumb + "[/IMG]", ref: function ref(el) {
-                        return _this2.input2 = el;
-                    }, className: "small-input margin-sm-bottom" }),
-                _react2.default.createElement(
-                    "button",
-                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
-                            return _this2.toClipboard(e, _this2.input2);
-                        } },
-                    "Copier"
-                ),
-                _react2.default.createElement(
-                    "h4",
-                    { className: "margin-sm-bottom margin-md-top" },
-                    "Image de Blog - Medium"
-                ),
-                _react2.default.createElement("input", { defaultValue: "[IMG]" + this.props.photo.medium + "[/IMG]", ref: function ref(el) {
-                        return _this2.input3 = el;
-                    }, className: "small-input margin-sm-bottom" }),
-                _react2.default.createElement(
-                    "button",
-                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
-                            return _this2.toClipboard(e, _this2.input3);
-                        } },
-                    "Copier"
-                ),
-                _react2.default.createElement(
-                    "h4",
-                    { className: "margin-sm-bottom margin-md-top" },
-                    "Element image HTML"
-                ),
-                _react2.default.createElement("input", { defaultValue: "<img src=\"" + this.props.photo.medium + "\" alt=\"" + this.props.album.name + "\"/>", ref: function ref(el) {
-                        return _this2.input4 = el;
-                    }, className: "small-input margin-sm-bottom" }),
-                _react2.default.createElement(
-                    "button",
-                    { className: "button button-small button-white button-hover-green", onClick: function onClick(e) {
-                            return _this2.toClipboard(e, _this2.input4);
-                        } },
-                    "Copier"
-                )
-            );
-        }
-    }]);
-
-    return Integration;
-}(_react2.default.Component);
-
-exports.default = Integration;
-;
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
 /***/ 75:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.photoSearch = exports.photoUpdate = exports.photoDelete = undefined;
-
-var _axios = __webpack_require__(53);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _actiontypes = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*global localStorage*/
-
-exports.photoDelete = photoDelete;
-exports.photoUpdate = photoUpdate;
-exports.photoSearch = photoSearch;
-
-
-var baseUrl = "/api/photos/";
-
-function photoDelete(albumId, photoId, filename, cb) {
-    return function (dispatch) {
-        cb();
-        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
-            dispatch({
-                type: _actiontypes.PHOTO_DELETE,
-                payload: album
-            });
-        });
-    };
-}
-
-function photoUpdate(photoId, data, cb) {
-    return function (dispatch) {
-        _axios2.default.put(baseUrl + "tagsupdate/", { photoId: photoId, data: data }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
-            cb();
-            dispatch({
-                type: _actiontypes.PHOTO_UPDATE,
-                payload: album
-            });
-        });
-    };
-}
-
-function photoSearch(term) {
-    return {
-        type: _actiontypes.PHOTO_SEARCH,
-        payload: term
-    };
-}
-
-/***/ }),
-
-/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16235,7 +16433,7 @@ function searchType(type) {
 
 /***/ }),
 
-/***/ 77:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16323,14 +16521,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /***/ }),
 
-/***/ 78:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(17);
-var normalizeHeaderName = __webpack_require__(262);
+var normalizeHeaderName = __webpack_require__(266);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -16417,4 +16615,4 @@ module.exports = defaults;
 
 /***/ })
 
-},[241]);
+},[245]);

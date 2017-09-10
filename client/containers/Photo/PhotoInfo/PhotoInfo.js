@@ -48,7 +48,7 @@ export default class PhotoInfo extends Component {
     render(){
         
         const { url } = this.props.match;
-        
+
         return (
             <div className="wrapper-padding wrapper-fullHeight bkg-white" ref={this.props.photoInfoDomElement}>
                 <div className="content-page">
@@ -62,9 +62,9 @@ export default class PhotoInfo extends Component {
                     <div className="content-page-content">
                         <Switch>
                             <Route path={`${url}/infos`} render={_ => { return <Infos album={this.props.album} photo={this.props.photo} />}} />
-                            <Route path={`${url}/edit`} component={Edit}/>
+                            <Route path={`${url}/edit`} render={_ => { return <Edit album={this.props.album} photo={this.props.photo} history={this.props.history} />}} />
                             <Route path={`${url}/integration`} render={ _ => {return <Integration album={this.props.album} photo={this.props.photo} /> }}/>                            
-                            <Route path={`${url}/options`} component={Options}/>
+                            <Route path={`${url}/options`} render={ _ => {return <Options history={this.props.history} album={this.props.album} photo={this.props.photo} closeInfoBox={this.props.closeInfoBox} /> }} />
                             <Redirect from={`/`} to={`${url}/infos`} />
                         </Switch>                    
                     </div>

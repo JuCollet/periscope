@@ -14,7 +14,7 @@ aws.config.update({
 
 module.exports = {
     photoDelete : photoDelete,
-    tagsUpdate : tagsUpdate
+    photoUpdate : photoUpdate
 };
 
 function photoDelete(req,res,next){
@@ -45,8 +45,12 @@ function photoDelete(req,res,next){
     });
 }
 
-function tagsUpdate(req,res,next){
-    Album.findOneAndUpdate({"photos._id":req.body.photoId}, {'$set':  {'photos.$.tags': req.body.data}}, { new : true }, function(err, album){
+function photoUpdate(req,res,next){
+    Album.findOneAndUpdate({"photos._id":req.body.photoId}, {'$set':  {
+        'photos.$.tags': req.body.data.tags,
+        'photos.$.photographer': req.body.data.photographer,
+        'photos.$.description': req.body.data.description,
+    }}, { new : true }, function(err, album){
         if(err) return next(err);
         res.json(album);
     });
