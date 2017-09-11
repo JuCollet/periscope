@@ -68,7 +68,7 @@ export default class PhotoInfo extends Component {
                         <Switch>
                             <Route path={`${url}/infos`} render={_ => { return <Infos album={this.props.album} photo={this.props.photo} />}} />
                             <Route path={`${url}/edit`} render={_ => { return <Edit album={this.props.album} photo={this.props.photo} history={this.props.history} />}} />
-                            <Route path={`${url}/share`} render={ _ => {return <Share album={this.props.album} photo={this.props.photo} /> }}/>                            
+                            <Route path={`${url}/share`} render={ _ => {return <Share photo={this.props.photo}  closeInfoBox={this.props.closeInfoBox} /> }}/>                            
                             <Route path={`${url}/integration`} render={ _ => {return <Integration album={this.props.album} photo={this.props.photo} /> }}/>                            
                             <Route path={`${url}/options`} render={ _ => {return <Options history={this.props.history} album={this.props.album} photo={this.props.photo} closeInfoBox={this.props.closeInfoBox} /> }} />
                             <Redirect from={`/`} to={`${url}/infos`} />

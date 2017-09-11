@@ -1,7 +1,7 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE } from "../actiontypes/";
+import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE, USER_UNAUTH } from "../actiontypes/";
 
 const baseUrl = "/api/albums/";
 
@@ -34,6 +34,15 @@ function albumsFetch(){
                 payload : albums            
             });
             
+        })
+        .catch(err=>{
+            if(err && err.message === "Request failed with status code 401"){
+                dispatch({
+                    type : USER_UNAUTH
+                });
+            } else {
+                console.log(err);
+            }
         });
     };
 }

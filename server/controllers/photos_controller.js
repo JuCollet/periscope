@@ -6,6 +6,7 @@ const s3 = new aws.S3({
         signatureVersion: 'v4',
         region: 'eu-central-1'
       });
+const mailer = require('../mailer');
 
 aws.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -14,7 +15,8 @@ aws.config.update({
 
 module.exports = {
     photoDelete : photoDelete,
-    photoUpdate : photoUpdate
+    photoUpdate : photoUpdate,
+    photoShare : photoShare
 };
 
 function photoDelete(req,res,next){
@@ -54,4 +56,9 @@ function photoUpdate(req,res,next){
         if(err) return next(err);
         res.json(album);
     });
+}
+
+function photoShare(req,res,next){
+    mailer.photoShare(req.body, req.user.firstname);
+    res.json({status:"sent"});
 }

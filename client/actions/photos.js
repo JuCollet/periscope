@@ -6,7 +6,7 @@ import { PHOTO_DELETE, PHOTO_UPDATE, PHOTO_SEARCH } from "../actiontypes/";
 export {
     photoDelete, // Delete a particular photo
     photoUpdate, // Update photo tags
-    photoSearch // Update the search term for filtering displayed photos.
+    photoSearch, // Update the search term for filtering displayed photos.
 };
 
 const baseUrl = "/api/photos/";

@@ -16,8 +16,7 @@ class Edit extends Component {
         this.state = {
             photographer : photo.photographer ? photo.photographer : album.photographer,
             description : photo.description ? photo.description : album.description,
-            tags : photo.tags,
-            tagsArray : this.props.tagsStringToArray(photo.tags.join(','), 1)
+            tags : photo.tags ?  photo.tags.join(',') : ""
         };
         
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,11 +27,6 @@ class Edit extends Component {
         this.setState({
             [e.target.name] : e.target.value
         });
-        if(e.target.name === "tags" && this.state.tags && this.state.tags.length > 1){
-            this.setState({
-                tagsArray : this.props.tagsStringToArray(e.target.value, 1)
-            });
-        }       
     }
     
     handleSubmit(e){
@@ -40,7 +34,7 @@ class Edit extends Component {
         this.props.photoUpdate(this.props.photo._id, {
             photographer : this.state.photographer,
             description : this.state.description,
-            tags : this.state.tagsArray
+            tags : this.props.tagsStringToArray(this.state.tags) ? this.props.tagsStringToArray(this.state.tags) : []
         }, _ => {this.props.history.push(`/app/photos/${this.props.album._id}`)});
     }
     
@@ -56,7 +50,7 @@ class Edit extends Component {
                     <textarea name="description" onChange={this.handleInputChange} rows="3" value={this.state.description} className="small-input"></textarea>
                     <h4 className="margin-md-top margin-sm-bottom">Tags</h4>
                     <input name="tags" onChange={this.handleInputChange} value={this.state.tags} className="small-input margin-md-bottom"></input>
-                    {this.props.renderTagsElement(this.state.tagsArray)}
+                    {this.props.renderTagsElement(this.props.tagsStringToArray(this.state.tags))}
                     <button type="submit" className="button button-small button-white button-hover-green margin-sm-top">Valider</button>
                 </form>
             </div>

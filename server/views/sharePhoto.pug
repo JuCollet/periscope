@@ -1,52 +1,44 @@
 doctype html
 head
-  title Bienvenue sur Periscope
-  style(type="text/css") @font-face {font-family: 'Lato';font-style: normal;font-weight: 400;src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;} body {    font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;}
+  title Periscope
+  style(type="text/css") @font-face {font-family: 'Lato';font-style: normal;font-weight: 400;src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;} body {font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;}
 body(style="background-color:#f2f2f2")
   p &nbsp;
   center
-    table(border="0" cellpadding="0" cellspacing="0" width="650" style="background-color:white;")
+    table(border="0" cellspacing="0" cellpadding="0" width="650" style="background-color:white; border-collapse:collapse;")
       tr
-        td(border="0" style="margin: 0; padding: 0; border-spacing: 0")
-          img(src="http://periscope-clean-julesbe.c9users.io/img/PeriscopeHeader.png")
-      tr(style="color:white;" height="300")
-        td(align="center" valign="top" background="http://periscope-clean-julesbe.c9users.io/img/greenbkg.png" style="padding-top:50px;font-size:20px;line-height:150%;") <b>Bonjour Julien,</b><br/>Christelle voudrait partager cette photo avec toi :
-          p
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/thumb59ad3dbfa4b1bc269a74e3851504525772646.jpg")
-      tr(style="width:300px")
-        td(align="center" style="width:300px;padding-left:100px;padding-right:100px;color:#777777;")
-          p <i>Tu te souviens, c’est la belle rue de Ténérife, où j’ai cherché des parfums toute la soirée ?</i>
+        th
+          img(src="http://periscope-clean-julesbe.c9users.io/img/PeriscopeHeader.png" alt="Periscope")
+      tr(height="300")
+        td(align="center" valign="top" background="http://periscope-clean-julesbe.c9users.io/img/greenbkg.png" style="padding-top:30px;font-size:20px;color:white;line-height:150%;")
+          p <b>Bonjour #{destinationName},</b><br/>#{senderName} voudrait partager cette photo avec toi :
+          img(src=imageUrl alt="Photo partagée" style="border-radius:3px;")
       tr
-        td(align="center")
-          p
-          a(href="http://redshop.croix-rouge.be/" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") Télécharger
+        td(align="center" style="color:#777777;padding-left:100px;padding-right:100px;font-size:16px;")
+          p <i>"#{message}"</i>
       tr
-        td
-          p &nbsp;
+        td(align="center" style="padding-top:15px;padding-bottom:40px;")
+          a(href=downloadUrl target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#5A646E;border-top:12px solid #5A646E;border-bottom:12px solid #5A646E;border-right:18px solid #5A646E;border-left:18px solid #5A646E;display:inline-block;") Télécharger
+      tr
+        td(style="padding-bottom:20px;")
           hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
       tr
-        td(align="center" valign="top" style="padding-top:35px;font-size:20px;line-height:150%;color:#777777") <b>Inscris-toi aussi sur Periscope</b></br>et reçois <b>5Go</b> de stockage gratuits.
-    table(border="0" cellpadding="0" cellspacing="0" width="650" style="background-color:white;padding-top:30px;padding-left:100px;padding-right:100px;color:#777777;text-align:center;")
-      tr(align="center")
-        td(width="100px;")
-          img(src="http://periscope-clean-julesbe.c9users.io/img/bulletkeys.png")
+        td(align="center" style="font-size:20px;color:#5A646E;padding-bottom:20px;")
+          p <b>Inscris-toi aussi sur Periscope</b><br/>et reçois <b>5Go</b> de stockage.
+      tr(align="center" style="color:#5A646E;")
+        td(style="display:inline-block;width:150px;font-size:16px;")
+          img(src="http://periscope-clean-julesbe.c9users.io/img/bulletsearch.png" alt="Recherche facile")
           p Recherche <br/>par mots-clés
-        td(width="100px;")
-          img(src="http://periscope-clean-julesbe.c9users.io/img/bulleteasy.png")
-          p Utilisation <br/>ultra-facile          
-        td(width="100px;")
-          img(src="http://periscope-clean-julesbe.c9users.io/img/bulletinfos.png")
-          p Infos <br/>détaillées
-    table(border="0" cellpadding="0" cellspacing="0" width="650" style="background-color:white;padding-top:30px;padding-left:100px;padding-right:100px;color:#777777;text-align:center;")
+        td(style="display:inline-block;width:150px;font-size:16px;")
+          img(src="http://periscope-clean-julesbe.c9users.io/img/bulletshare.png" alt="Partage facile")
+          p Partage et collaboration
+        td(style="display:inline-block;width:150px;font-size:16px;")
+          img(src="http://periscope-clean-julesbe.c9users.io/img/bulletinfos.png" alt="Infos détaillées")
+          p Informations détaillées
       tr(align="center")
-        td(width="100px;")
-          a(href="http://redshop.croix-rouge.be/" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") S'inscrire
-      tr
+        td(style="padding-top:20px;padding-bottom:50px;")
+          a(href="https://periscope.herokuapp.com" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") Je m'inscris
+      tr(align="center" style="background-color:#dedede;font-size:12px;color:#2e2e2e;")
         td
-          p &nbsp;
-          hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")          
-      tr
-        td
-          p &nbsp;
-          p(style="font-size:.8em;") Periscope, Palo Alto
-          p &nbsp;
+          p <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
+  p &nbsp;

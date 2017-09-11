@@ -51,6 +51,7 @@
     "passport-local": "^1.0.0",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
+    "pug": "^2.0.0-rc.4",
     "random-token": "0.0.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -61,6 +62,7 @@
     "redux": "^3.7.1",
     "redux-form": "^6.8.0",
     "redux-thunk": "^2.2.0",
+    "sendgrid": "^5.2.3",
     "sharp": "^0.18.2"
   }
 }
