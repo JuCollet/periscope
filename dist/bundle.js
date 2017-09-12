@@ -1896,6 +1896,10 @@ var _MyInfos = __webpack_require__(224);
 
 var _MyInfos2 = _interopRequireDefault(_MyInfos);
 
+var _MyFriends = __webpack_require__(595);
+
+var _MyFriends2 = _interopRequireDefault(_MyFriends);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1999,6 +2003,9 @@ var Account = function (_Component) {
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: path + "/usage", render: function render(props) {
                                     return _react2.default.createElement(_MyUsage2.default, _extends({}, props, { infos: infos }));
+                                } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { path: path + "/friends", render: function render(props) {
+                                    return _react2.default.createElement(_MyFriends2.default, _extends({}, props, { infos: infos }));
                                 } }),
                             _react2.default.createElement(_reactRouterDom.Redirect, { from: path + "/", to: path + "/usage" })
                         )
@@ -16558,7 +16565,7 @@ exports = module.exports = __webpack_require__(54)(undefined);
 
 
 // module
-exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n  font-size: 1.2em;\n  color: white;\n  -webkit-animation-name: bubblePop;\n          animation-name: bubblePop;\n  -webkit-animation-duration: .5s;\n          animation-duration: .5s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n}\n.notification-message {\n  padding: 0px 5px 0px 10px;\n  font-size: 1em;\n  font-weight: 400;\n  opacity: 0;\n  -webkit-animation-name: messagePop;\n          animation-name: messagePop;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: .3s;\n          animation-delay: .3s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n  -webkit-animation-duration: .2s;\n          animation-duration: .2s;\n}\n.notification {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 99999;\n  padding: 10px;\n  left: 20px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  border-radius: 4px;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-name: notificationPop;\n          animation-name: notificationPop;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n}\n@-webkit-keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n@keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n", ""]);
+exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n  font-size: 1.2em;\n  color: white;\n  -webkit-animation-name: bubblePop;\n          animation-name: bubblePop;\n  -webkit-animation-duration: .5s;\n          animation-duration: .5s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n}\n.notification-message {\n  padding: 0px 5px 0px 10px;\n  font-size: 1em;\n  font-weight: 400;\n  opacity: 0;\n  -webkit-animation-name: messagePop;\n          animation-name: messagePop;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: .3s;\n          animation-delay: .3s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n  -webkit-animation-duration: .2s;\n          animation-duration: .2s;\n}\n.notification {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 99999;\n  padding: 10px;\n  left: 20px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  border-radius: 4px;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-name: notificationPop;\n          animation-name: notificationPop;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n}\n@-webkit-keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n@keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n", ""]);
 
 // exports
 
@@ -16594,6 +16601,66 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+
+/***/ 595:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MyFriends = function (_Component) {
+    _inherits(MyFriends, _Component);
+
+    function MyFriends() {
+        _classCallCheck(this, MyFriends);
+
+        return _possibleConstructorReturn(this, (MyFriends.__proto__ || Object.getPrototypeOf(MyFriends)).apply(this, arguments));
+    }
+
+    _createClass(MyFriends, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Tes amis"
+                ),
+                _react2.default.createElement(
+                    "h3",
+                    null,
+                    "Ajouter un ami"
+                )
+            );
+        }
+    }]);
+
+    return MyFriends;
+}(_react.Component);
+
+exports.default = MyFriends;
 
 /***/ }),
 

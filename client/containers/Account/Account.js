@@ -8,6 +8,7 @@ import Loading from "../../components/Loading/Loading";
 
 import MyUsage from "./MyUsage/MyUsage";
 import Myinfos from "./MyInfos/MyInfos";
+import MyFriends from "./MyFriends/MyFriends";
 
 class Account extends Component {
     
@@ -68,6 +69,7 @@ class Account extends Component {
                     <Switch>
                         <Route path={`${path}/infos`} render={props=> { return <Myinfos {...props} infos={infos} />}} />
                         <Route path={`${path}/usage`} render={props=> { return <MyUsage {...props} infos={infos} />}} />
+                        <Route path={`${path}/friends`} render={props=> { return <MyFriends {...props} infos={infos} />}} />
                         <Redirect from={`${path}/`} to={`${path}/usage`} />
                     </Switch>
                     </div>
