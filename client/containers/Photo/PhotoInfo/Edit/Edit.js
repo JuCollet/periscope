@@ -14,7 +14,7 @@ class Edit extends Component {
         const { photo, album } = props; 
 
         this.state = {
-            photographer : photo.photographer ? photo.photographer : album.photographer,
+            photographer : photo.photographer ? photo.photographer : album.photographer ? album.photographer : "",
             description : photo.description ? photo.description : album.description,
             tags : photo.tags ?  photo.tags.join(',') : ""
         };

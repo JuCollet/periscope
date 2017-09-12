@@ -4,7 +4,7 @@ export default function(state = {}, action){
     
     switch(action.type){
         case NOTIFICATION_SEND :
-            return action.payload;
+            return {...action.payload, newNotification : true};
         case NOTIFICATION_STOP :
             return {...state, newNotification : false };
         default :

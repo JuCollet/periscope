@@ -11,7 +11,7 @@ class Notification extends Component{
     renderNotification(){
         const { type, message, newNotification} = this.props.notification;
         if(this.props.notification && newNotification) {
-            setTimeout( _ => {this.props.stopNotification();}, 5000);
+            setTimeout( _ => {this.props.stopNotification();}, 2500);
             return (
                 <div className={`notification ${type === "error" ? "bkg-red" : "bkg-green"}`}>
                     <div className="notification-bubble bkg-white"><i className={`fa ${type === "error" ? "fa-times txt-red" : "fa-check txt-green"}`}></i></div>

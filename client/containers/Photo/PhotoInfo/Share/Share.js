@@ -38,7 +38,7 @@ class Share extends Component {
         axios.post("/api/photos/share/", data, {headers : {authorization : localStorage.getItem('token')}})
         .then(_=>{
             this.props.closeInfoBox();
-            this.props.sendNotification("Photo envoyée !", "info");
+            this.props.sendNotification("Photo envoyée !");
         })
         .catch(err => {
             this.props.closeInfoBox();

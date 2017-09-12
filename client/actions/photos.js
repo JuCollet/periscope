@@ -31,7 +31,7 @@ function photoDelete(albumId, photoId, filename, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de supprimer cette photo...",
+                    message : "Oups, action impossible...",
                     type : "error"
                 }
             }); 
@@ -47,7 +47,7 @@ function photoUpdate(photoId, data, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Modifications enregistrées !"
+                    message : "Enregistré !"
                 }
             });               
             dispatch({
@@ -59,7 +59,7 @@ function photoUpdate(photoId, data, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de mettre à jour ces infos...",
+                    message : "Oups, action impossible...",
                     type: "error"
                 }
             });                

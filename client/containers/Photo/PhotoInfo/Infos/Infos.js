@@ -12,7 +12,7 @@ class Infos extends React.Component {
                 <h3>Infos</h3>
                 <p><b>Nom de l'album : </b>{album.name}</p>
                 <p><b>Description : </b>{photo.description ? photo.description : album.description}</p>
-                <p><b>Crédit photographique : </b>&copy; {photo.photographer ? photo.photographer : album.photographer}</p>
+                <p><b>Photographe : </b>{photo.photographer ? photo.photographer : album.photographer}</p>
                 <p><b>Dimensions : </b>{photo.width ? photo.width : "largeur inconnue"} x {photo.height ? photo.height : "hauteur inconnue"}</p>
                 <p><b>Impression optimale : </b>{photo.width ? Math.round(photo.width/118) : "largeur inconnue"} cm x {photo.height ? Math.round(photo.height/118) : "hauteur inconnue"} cm max.</p>
                 <p><b>Poids de l'image : </b>{Math.round((photo.size/1048576)*10)/10} Mo</p>

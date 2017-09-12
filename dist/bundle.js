@@ -3143,7 +3143,7 @@ var CreateAlbum = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (CreateAlbum.__proto__ || Object.getPrototypeOf(CreateAlbum)).call(this, props));
 
-        _this.state = { tags: ["tags"] };
+        _this.state = { tags: [] };
         _this.errors = { errors: false };
         _this.renderTags = _this.renderTags.bind(_this);
         _this.autoTags = _this.autoTags.bind(_this);
@@ -3185,7 +3185,7 @@ var CreateAlbum = function (_Component) {
             if (values) {
                 var tags = this.props.tagsStringToArray(values.currentTarget.value, 0);
                 this.setState({
-                    tags: tags ? tags.length === 1 && tags[0] === "" ? ["tags"] : tags : ["tags"]
+                    tags: tags ? tags : []
                 });
             }
         }
@@ -3714,7 +3714,7 @@ var Edit = function (_Component) {
 
 
         _this.state = {
-            photographer: photo.photographer ? photo.photographer : album.photographer,
+            photographer: photo.photographer ? photo.photographer : album.photographer ? album.photographer : "",
             description: photo.description ? photo.description : album.description,
             tags: photo.tags ? photo.tags.join(',') : ""
         };
@@ -3877,9 +3877,8 @@ var Infos = function (_React$Component) {
                     _react2.default.createElement(
                         "b",
                         null,
-                        "Cr\xE9dit photographique : "
+                        "Photographe : "
                     ),
-                    "\xA9 ",
                     photo.photographer ? photo.photographer : album.photographer
                 ),
                 _react2.default.createElement(
@@ -4461,7 +4460,7 @@ var Share = function (_Component) {
             };
             _axios2.default.post("/api/photos/share/", data, { headers: { authorization: localStorage.getItem('token') } }).then(function (_) {
                 _this2.props.closeInfoBox();
-                _this2.props.sendNotification("Photo envoyée !", "info");
+                _this2.props.sendNotification("Photo envoyée !");
             }).catch(function (err) {
                 _this2.props.closeInfoBox();
                 _this2.props.sendNotification(err.response.data.error.message, "error");
@@ -6119,7 +6118,7 @@ function albumsFetch() {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de télécharger tes albums...",
+                    message: "Albums introuvables...",
                     type: "error"
                 }
             });
@@ -6145,7 +6144,7 @@ function albumFetch(id) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de télécharger cet album",
+                    message: "Album introuvable...",
                     type: "error"
                 }
             });
@@ -6160,7 +6159,7 @@ function albumThumbUpdate(id, albumThumb, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Modification enregistrée !"
+                    message: "C'est fait !"
                 }
             });
             dispatch({
@@ -6197,7 +6196,7 @@ function createAlbum(album, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de créer cet album...",
+                    message: "Impossible de créer cet album",
                     type: "error"
                 }
             });
@@ -6223,7 +6222,7 @@ function deleteAlbum(albumId, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de supprimer cet album...",
+                    message: "Impossible de supprimer cet album",
                     type: "error"
                 }
             });
@@ -15800,7 +15799,7 @@ function photoDelete(albumId, photoId, filename, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de supprimer cette photo...",
+                    message: "Oups, action impossible...",
                     type: "error"
                 }
             });
@@ -15815,7 +15814,7 @@ function photoUpdate(photoId, data, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Modifications enregistrées !"
+                    message: "Enregistré !"
                 }
             });
             dispatch({
@@ -15826,7 +15825,7 @@ function photoUpdate(photoId, data, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de mettre à jour ces infos...",
+                    message: "Oups, action impossible...",
                     type: "error"
                 }
             });
@@ -15887,6 +15886,14 @@ function getInfos() {
             dispatch({
                 type: _actiontypes.USER_GET_INFOS,
                 payload: res.data
+            });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Connection impossible",
+                    type: "error"
+                }
             });
         });
     };
@@ -16398,7 +16405,7 @@ exports.default = function () {
 
     switch (action.type) {
         case _actiontypes.NOTIFICATION_SEND:
-            return action.payload;
+            return _extends({}, action.payload, { newNotification: true });
         case _actiontypes.NOTIFICATION_STOP:
             return _extends({}, state, { newNotification: false });
         default:
@@ -16500,7 +16507,7 @@ var Notification = function (_Component) {
             if (this.props.notification && newNotification) {
                 setTimeout(function (_) {
                     _this2.props.stopNotification();
-                }, 5000);
+                }, 2500);
                 return _react2.default.createElement(
                     "div",
                     { className: "notification " + (type === "error" ? "bkg-red" : "bkg-green") },
@@ -16551,7 +16558,7 @@ exports = module.exports = __webpack_require__(54)(undefined);
 
 
 // module
-exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n  font-size: 1.2em;\n  color: white;\n  -webkit-animation-name: bubblePop;\n          animation-name: bubblePop;\n  -webkit-animation-duration: .5s;\n          animation-duration: .5s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n}\n.notification-message {\n  padding: 0px 5px 0px 10px;\n  font-size: 1.1em;\n  font-weight: 400;\n  opacity: 0;\n  -webkit-animation-name: messagePop;\n          animation-name: messagePop;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: .3s;\n          animation-delay: .3s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n  -webkit-animation-duration: .2s;\n          animation-duration: .2s;\n}\n.notification {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 99999;\n  padding: 10px;\n  left: 20px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  border-radius: 4px;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-name: notificationPop;\n          animation-name: notificationPop;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n}\n@-webkit-keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: -40px;\n    opacity: 0;\n  }\n}\n@keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: -40px;\n    opacity: 0;\n  }\n}\n", ""]);
+exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n  font-size: 1.2em;\n  color: white;\n  -webkit-animation-name: bubblePop;\n          animation-name: bubblePop;\n  -webkit-animation-duration: .5s;\n          animation-duration: .5s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n}\n.notification-message {\n  padding: 0px 5px 0px 10px;\n  font-size: 1em;\n  font-weight: 400;\n  opacity: 0;\n  -webkit-animation-name: messagePop;\n          animation-name: messagePop;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: .3s;\n          animation-delay: .3s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n  -webkit-animation-duration: .2s;\n          animation-duration: .2s;\n}\n.notification {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 99999;\n  padding: 10px;\n  left: 20px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  border-radius: 4px;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-name: notificationPop;\n          animation-name: notificationPop;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n}\n@-webkit-keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n@keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: 40px;\n    opacity: 0;\n  }\n}\n", ""]);
 
 // exports
 

@@ -1,6 +1,6 @@
 /*global localStorage*/
 
-import { FETCHING, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR } from "../actiontypes/";
+import { FETCHING, USER_AUTH, USER_UNAUTH, USER_GET_INFOS, USER_SIGN_ERROR, USER_RESET_ERROR, NOTIFICATION_SEND } from "../actiontypes/";
 import axios from "axios";
 
 export {
@@ -28,6 +28,15 @@ function getInfos(){
                 dispatch({
                     type: USER_GET_INFOS,
                     payload : res.data
+                });
+            })
+            .catch(_=>{
+                dispatch({
+                    type: NOTIFICATION_SEND,
+                    payload : {
+                        message : "Connection impossible",
+                        type : "error"
+                    }
                 });
             });
     };

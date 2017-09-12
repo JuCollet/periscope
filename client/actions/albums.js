@@ -39,7 +39,7 @@ function albumsFetch(){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de télécharger tes albums...",
+                    message : "Albums introuvables...",
                     type: "error"
                 }
             });            
@@ -67,7 +67,7 @@ function albumFetch(id){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de télécharger cet album",
+                    message : "Album introuvable...",
                     type: "error"
                 }
             });            
@@ -83,7 +83,7 @@ function albumThumbUpdate(id, albumThumb, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Modification enregistrée !"
+                    message : "C'est fait !"
                 }
             });
             dispatch({
@@ -123,7 +123,7 @@ function createAlbum(album, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de créer cet album...",
+                    message : "Impossible de créer cet album",
                     type : "error"
                 }
             });    
@@ -151,7 +151,7 @@ function deleteAlbum(albumId, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de supprimer cet album...",
+                    message : "Impossible de supprimer cet album",
                     type : "error"
                 }
             });       
