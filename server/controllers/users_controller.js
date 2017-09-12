@@ -1,6 +1,7 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
 const Album = require('../models/album');
+const mailer = require('../mailer');
 
 module.exports = {
     getInfos : getInfos,
@@ -70,6 +71,8 @@ function signup(req,res,next){
                 bucket : req.body.bucket
             }, function(err, user){
                 if(err) return next(err);
+                console.log(user);
+                mailer.welcome(user.email, user.firstname);
                 res.json({token : createToken(user)});
             });
         }
