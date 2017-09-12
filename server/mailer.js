@@ -13,7 +13,7 @@ function photoShare(data, senderName){
 
   const from_email = new helper.Email("periscopeapp@gmail.com"),
         to_email = new helper.Email(data.destinationEmail),
-        subject = "Periscope - Partage de photo" ,
+        subject = senderName + " t'envoie une photo." ,
         content = new helper.Content('text/html', pug.renderFile(path.join(__dirname, './views/sharePhoto.pug'), {
           destinationName: data.destinationName,
           senderName: senderName,

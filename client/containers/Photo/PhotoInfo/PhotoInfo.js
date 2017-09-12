@@ -31,7 +31,7 @@ export default class PhotoInfo extends Component {
             },
             {
                 path : "share",
-                label : "Partager"
+                label : "Envoyer par E-mail"
             },                
             {
                 path : "integration",

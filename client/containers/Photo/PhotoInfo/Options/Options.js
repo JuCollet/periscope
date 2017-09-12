@@ -25,7 +25,7 @@ class Options extends Component {
                 <button onClick={_=>this.props.albumThumbUpdate(album._id, photo.thumb, _ => this.props.closeInfoBox())} className="button button-small button-white button-hover-green">Image d'album</button>
                 <h4 className="margin-md-top">Supprimer l'image</h4>
                 <p>Attention, en supprimant cette image, les personnes avec qui vous l'avez partagée ne pourront plus la voir et les liens vers cette image intégrés dans des blogs ou sur d'autres sites ne fonctionneront plus.</p>
-                <button onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, _ => {this.props.history.push(`/app/photos/${album._id}`)})} className="button button-small button-white button-hover-green">Supprimer cette image</button>
+                <button onClick={_=>this.props.photoDelete(album._id, photo._id, photo.filename, _ => {this.props.history.push(`/app/photos/${album._id}`)})} className="button button-small button-white button-hover-red">Supprimer cette image</button>
              </div>   
         );          
     }

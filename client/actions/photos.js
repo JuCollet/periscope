@@ -1,7 +1,7 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { PHOTO_DELETE, PHOTO_UPDATE, PHOTO_SEARCH } from "../actiontypes/";
+import { PHOTO_DELETE, PHOTO_UPDATE, PHOTO_SEARCH, NOTIFICATION_SEND } from "../actiontypes/";
 
 export {
     photoDelete, // Delete a particular photo
@@ -14,24 +14,56 @@ const baseUrl = "/api/photos/";
 function photoDelete(albumId, photoId, filename, cb){
     return function(dispatch){
         cb();
-        axios.put(baseUrl+"delete/", {albumId, photoId, filename}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
+        axios.put(baseUrl+"delete/", {albumId, photoId, filename}, {headers : {authorization : localStorage.getItem('token')}})
+        .then( album => {
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Photo supprimée !"
+                }
+            });            
             dispatch({
                 type : PHOTO_DELETE,
                 payload : album    
             });        
+        })
+        .catch(_=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de supprimer cette photo...",
+                    type : "error"
+                }
+            }); 
         });
     };
 }
 
 function photoUpdate(photoId, data, cb){
     return function(dispatch){
-        axios.put(baseUrl+"update/", {photoId, data}, {headers : {authorization : localStorage.getItem('token')}}).then( album => {
+        axios.put(baseUrl+"update/", {photoId, data}, {headers : {authorization : localStorage.getItem('token')}})
+        .then( album => {
             cb();
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Modifications enregistrées !"
+                }
+            });               
             dispatch({
                 type: PHOTO_UPDATE,
                 payload: album 
             });        
-        });
+        })
+        .catch(_=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de mettre à jour ces infos...",
+                    type: "error"
+                }
+            });                
+        })
     };
 }
 

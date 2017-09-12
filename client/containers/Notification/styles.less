@@ -1,0 +1,57 @@
+.notification-bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  color: white;
+  animation-name: bubblePop;
+  animation-duration: .5s;
+  animation-timing-function: ease-in-out;
+}
+
+.notification-message {
+  padding: 0px 5px 0px 10px;
+  font-size: 1.1em;
+  font-weight: 400;
+  opacity: 0;
+  animation-name: messagePop;
+  animation-fill-mode: forwards;
+  animation-delay: .3s;
+  animation-timing-function: ease-in-out;  
+  animation-duration: .2s;
+}
+
+.notification {
+  display: flex;
+  z-index: 99999;
+  padding: 10px;
+  left: 20px;
+  align-items: center;
+  position: absolute;
+  border-radius: 4px;
+  animation-fill-mode: forwards;  
+  animation-name: notificationPop;
+  animation-duration: 2.5s;
+}
+
+@keyframes bubblePop {
+    0% {transform: scale(.7);}
+    80% {transform: scale(1.2);}
+    90% {transform: scale(.9);}  
+    100% {transform: scale(1);}
+}
+
+@keyframes messagePop {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes notificationPop {
+  0% {bottom: 0px}
+  20% {bottom: 20px}
+  90% {bottom: 20px; opacity: 1;}
+  100% {bottom: -40px; opacity: 0;}
+}

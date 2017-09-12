@@ -1,7 +1,7 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { UPLOAD_FILES } from "../actiontypes/";
+import { UPLOAD_FILES, NOTIFICATION_SEND } from "../actiontypes/";
 
 export {
     fileUpload // Send file to server;
@@ -27,7 +27,21 @@ function fileUpload(files, id, cb){
             dispatch({
                 type: UPLOAD_FILES,
                 payload: res
-            });        
+            });
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Photos envoyées !"
+                }
+            });
+        }).catch( err => {
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : err.response.data.error.message,
+                    type: "error"
+                }
+            });    
         });
     };        
 }

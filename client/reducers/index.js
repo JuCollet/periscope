@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 import AlbumsReducer from "./reducer_albums";
 import MenuReducer from "./reducer_menu";
+import NotificationReducer from "./reducer_notification";
 import FetchingReducer from "./reducer_fetching";
 import PhotoReducer from "./reducer_photo";
 import UserReducer from "./reducer_user";
@@ -18,13 +19,14 @@ const rootReducer = (state, action) => {
 };
 
 const appReducer = combineReducers({
-    menu : MenuReducer,
-    user : UserReducer,
     albums : AlbumsReducer,
     fetching : FetchingReducer,
+    form: formReducer,
+    menu : MenuReducer,
+    notification : NotificationReducer,
     photo : PhotoReducer,
+    user : UserReducer,
     search: SearchReducer,
-    form: formReducer
 });
 
 export default rootReducer;

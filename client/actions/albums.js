@@ -1,7 +1,7 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE, USER_UNAUTH } from "../actiontypes/";
+import { ALBUMS_FETCH, ALBUM_FETCH, FETCHING, ALBUM_CREATE, ALBUM_DELETE, ALBUM_SEARCH, ALBUM_THUMB_UPDATE, NOTIFICATION_SEND, USER_UNAUTH } from "../actiontypes/";
 
 const baseUrl = "/api/albums/";
 
@@ -36,6 +36,13 @@ function albumsFetch(){
             
         })
         .catch(err=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de télécharger tes albums...",
+                    type: "error"
+                }
+            });            
             if(err && err.message === "Request failed with status code 401"){
                 dispatch({
                     type : USER_UNAUTH
@@ -49,47 +56,105 @@ function albumsFetch(){
 
 function albumFetch(id){
     return function(dispatch){
-        axios.get(baseUrl+id).then(album => {
+        axios.get(baseUrl+id)
+        .then(album => {
             dispatch({
                 type : ALBUM_FETCH,
                 payload : album            
             });        
+        })
+        .catch(_=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de télécharger cet album",
+                    type: "error"
+                }
+            });            
         });
     };
 }
 
 function albumThumbUpdate(id, albumThumb, cb){
     return function(dispatch){
-        axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb}).then( album => {
+        axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb})
+        .then( album => {
             cb();
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Modification enregistrée !"
+                }
+            });
             dispatch({
                 type : ALBUM_THUMB_UPDATE,
                 payload : album        
             });        
+        })
+        .catch(err => {
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : err.response.data.error.message,
+                    type: "error"
+                }
+            });
         });
     };    
 }
 
 function createAlbum(album, cb){
     return function(dispatch){
-        axios.post(baseUrl, album, {headers : {authorization : localStorage.getItem('token')}}).then(createdAlbum => {
+        axios.post(baseUrl, album, {headers : {authorization : localStorage.getItem('token')}})
+        .then(createdAlbum => {
             cb("/app/albums");
             dispatch({
                 type : ALBUM_CREATE,
                 payload : createdAlbum            
-            });        
+            });
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Album créé !"
+                }
+            });
+        })
+        .catch(_=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de créer cet album...",
+                    type : "error"
+                }
+            });    
         });
     };
 }
 
 function deleteAlbum(albumId, cb){
     return function(dispatch){
-        axios.delete(baseUrl, {...{headers : {authorization : localStorage.getItem('token')}}, data : { albumId }}).then( _ => {
+        axios.delete(baseUrl, {...{headers : {authorization : localStorage.getItem('token')}}, data : { albumId }})
+        .then( _ => {
             cb();
             dispatch({
                 type : ALBUM_DELETE,
                 payload : albumId           
-            });        
+            });
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Album supprimé !"
+                }
+            });            
+        })
+        .catch(_=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Impossible de supprimer cet album...",
+                    type : "error"
+                }
+            });       
         });
     };
 }

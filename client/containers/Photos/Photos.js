@@ -17,7 +17,7 @@ class Photos extends Component {
     if(this.props.search.searchTerm.substr(0,1) !== "#"){
       this.props.searchTermUpdate("");
     }
-    this.props.searchType("photos"); 
+    this.props.searchType("photos");
   }
   
   componentWillUnmount(){

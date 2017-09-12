@@ -59,15 +59,15 @@ function deleteAlbum(req,res,next){
         const filesMap = album.photos.map(photo => {
             return [
                 { 
-                    Key : `thumb${photo.filename}` 
+                    Key : `usersFiles/thumb${photo.filename}` 
                     
                 },
                 { 
-                    Key : `medium${photo.filename}` 
+                    Key : `usersFiles/medium${photo.filename}` 
                     
                 },
                 { 
-                    Key : `original${photo.filename}` 
+                    Key : `usersFiles/original${photo.filename}` 
                     
                 }
             ];

@@ -32,7 +32,7 @@ function sendFiles (req,res,next){
         const params = {
             Body: buffer,
             Bucket: "periscopefiles",
-            Key: key,
+            Key: `usersFiles/${key}`,
             ACL: 'public-read'
         };
         
@@ -46,9 +46,9 @@ function sendFiles (req,res,next){
         
         let newPhoto = {
             filename: `${id}${filename}`,
-            thumb: `${process.env.S3_URL}thumb${id}${filename}`,
-            medium: `${process.env.S3_URL}medium${id}${filename}`,
-            original: `${process.env.S3_URL}original${id}${filename}`,
+            thumb: `${process.env.S3_URL}usersFiles/thumb${id}${filename}`,
+            medium: `${process.env.S3_URL}usersFiles/medium${id}${filename}`,
+            original: `${process.env.S3_URL}usersFiles/original${id}${filename}`,
             width: imgWidth,
             height: imgHeight,
             size: imgSize

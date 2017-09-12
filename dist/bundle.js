@@ -426,9 +426,13 @@ var ALBUMS_FETCH = exports.ALBUMS_FETCH = "albums_fetch";
 var ALBUM_SEARCH = exports.ALBUM_SEARCH = "album_search";
 var ALBUM_THUMB_UPDATE = exports.ALBUM_THUMB_UPDATE = "album_thumb_update";
 var FETCHING = exports.FETCHING = "fetching";
+var NOTIFICATION_SEND = exports.NOTIFICATION_SEND = "notification_send";
+var NOTIFICATION_STOP = exports.NOTIFICATION_STOP = "notification_stop";
 var PHOTO_DELETE = exports.PHOTO_DELETE = "photo_delete";
 var PHOTO_UPDATE = exports.PHOTO_UPDATE = "photo_update";
 var PHOTO_SEARCH = exports.PHOTO_SEARCH = "photo_search";
+var SEARCH_TERM_UPDATE = exports.SEARCH_TERM_UPDATE = "search_term_update";
+var SEARCH_TYPE_TOGGLE = exports.SEARCH_TYPE_TOGGLE = "search_type_toggle";
 var TOGGLE_MENU = exports.TOGGLE_MENU = "toggle_menu";
 var UPLOAD_FILES = exports.UPLOAD_FILES = "upload_files";
 var USER_AUTH = exports.USER_AUTH = "user_auth";
@@ -436,8 +440,6 @@ var USER_SIGN_ERROR = exports.USER_SIGN_ERROR = "user_auth_error";
 var USER_GET_INFOS = exports.USER_GET_INFOS = "user_get_infos";
 var USER_RESET_ERROR = exports.USER_RESET_ERROR = "user_auth_reset_error";
 var USER_UNAUTH = exports.USER_UNAUTH = "user_unauth";
-var SEARCH_TERM_UPDATE = exports.SEARCH_TERM_UPDATE = "search_term_update";
-var SEARCH_TYPE_TOGGLE = exports.SEARCH_TYPE_TOGGLE = "search_type_toggle";
 
 /***/ }),
 
@@ -790,6 +792,10 @@ var _Header = __webpack_require__(228);
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _Notification = __webpack_require__(592);
+
+var _Notification2 = _interopRequireDefault(_Notification);
+
 var _NewAlbum = __webpack_require__(235);
 
 var _NewAlbum2 = _interopRequireDefault(_NewAlbum);
@@ -839,6 +845,7 @@ var App = function (_Component) {
                 { className: 'container' },
                 _react2.default.createElement(_Header2.default, null),
                 _react2.default.createElement(_Sidemenu2.default, null),
+                _react2.default.createElement(_Notification2.default, null),
                 _react2.default.createElement(
                     _reactRouterDom.Switch,
                     null,
@@ -997,7 +1004,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(9);
 
-var _reduxForm = __webpack_require__(75);
+var _reduxForm = __webpack_require__(76);
 
 var _reducer_albums = __webpack_require__(247);
 
@@ -1006,6 +1013,10 @@ var _reducer_albums2 = _interopRequireDefault(_reducer_albums);
 var _reducer_menu = __webpack_require__(249);
 
 var _reducer_menu2 = _interopRequireDefault(_reducer_menu);
+
+var _reducer_notification = __webpack_require__(590);
+
+var _reducer_notification2 = _interopRequireDefault(_reducer_notification);
 
 var _reducer_fetching = __webpack_require__(248);
 
@@ -1035,13 +1046,14 @@ var rootReducer = function rootReducer(state, action) {
 };
 
 var appReducer = (0, _redux.combineReducers)({
-    menu: _reducer_menu2.default,
-    user: _reducer_user2.default,
     albums: _reducer_albums2.default,
     fetching: _reducer_fetching2.default,
+    form: _reduxForm.reducer,
+    menu: _reducer_menu2.default,
+    notification: _reducer_notification2.default,
     photo: _reducer_photo2.default,
-    search: _reducer_search2.default,
-    form: _reduxForm.reducer
+    user: _reducer_user2.default,
+    search: _reducer_search2.default
 });
 
 exports.default = rootReducer;
@@ -1092,7 +1104,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(73)(content, options);
+var update = __webpack_require__(74)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1124,7 +1136,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(73)(content, options);
+var update = __webpack_require__(74)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1153,7 +1165,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fileUpload = undefined;
 
-var _axios = __webpack_require__(52);
+var _axios = __webpack_require__(38);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1186,6 +1198,20 @@ function fileUpload(files, id, cb) {
             dispatch({
                 type: _actiontypes.UPLOAD_FILES,
                 payload: res
+            });
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Photos envoyées !"
+                }
+            });
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: err.response.data.error.message,
+                    type: "error"
+                }
             });
         });
     };
@@ -1856,7 +1882,7 @@ var _reactRedux = __webpack_require__(7);
 
 var _redux = __webpack_require__(9);
 
-var _user = __webpack_require__(50);
+var _user = __webpack_require__(52);
 
 var _Loading = __webpack_require__(37);
 
@@ -2220,7 +2246,7 @@ var _redux = __webpack_require__(9);
 
 var _reactRedux = __webpack_require__(7);
 
-var _lodash = __webpack_require__(42);
+var _lodash = __webpack_require__(43);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -2549,11 +2575,11 @@ var _redux = __webpack_require__(9);
 
 var _albums = __webpack_require__(31);
 
-var _photos = __webpack_require__(76);
+var _photos = __webpack_require__(51);
 
 var _search = __webpack_require__(77);
 
-var _lodash = __webpack_require__(42);
+var _lodash = __webpack_require__(43);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -2662,7 +2688,7 @@ var _reactRedux = __webpack_require__(7);
 
 var _reactRouterDom = __webpack_require__(14);
 
-var _user = __webpack_require__(50);
+var _user = __webpack_require__(52);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2824,7 +2850,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(9);
 
-var _user = __webpack_require__(50);
+var _user = __webpack_require__(52);
 
 var _reactRedux = __webpack_require__(7);
 
@@ -3089,7 +3115,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reduxForm = __webpack_require__(75);
+var _reduxForm = __webpack_require__(76);
 
 var _reactRedux = __webpack_require__(7);
 
@@ -3097,7 +3123,7 @@ var _albums = __webpack_require__(31);
 
 var _redux = __webpack_require__(9);
 
-var _Tags = __webpack_require__(51);
+var _Tags = __webpack_require__(53);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -3469,11 +3495,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(7);
 
-var _reactHammerjs = __webpack_require__(74);
+var _reactHammerjs = __webpack_require__(75);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
-var _lodash = __webpack_require__(42);
+var _lodash = __webpack_require__(43);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -3659,11 +3685,11 @@ var _redux = __webpack_require__(9);
 
 var _reactRedux = __webpack_require__(7);
 
-var _Tags = __webpack_require__(51);
+var _Tags = __webpack_require__(53);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
-var _photos = __webpack_require__(76);
+var _photos = __webpack_require__(51);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3788,7 +3814,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Tags = __webpack_require__(51);
+var _Tags = __webpack_require__(53);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -4066,7 +4092,7 @@ var _redux = __webpack_require__(9);
 
 var _reactRedux = __webpack_require__(7);
 
-var _photos = __webpack_require__(76);
+var _photos = __webpack_require__(51);
 
 var _albums = __webpack_require__(31);
 
@@ -4177,7 +4203,7 @@ var Options = function (_Component) {
                             return _this2.props.photoDelete(album._id, photo._id, photo.filename, function (_) {
                                 _this2.props.history.push("/app/photos/" + album._id);
                             });
-                        }, className: "button button-small button-white button-hover-green" },
+                        }, className: "button button-small button-white button-hover-red" },
                     "Supprimer cette image"
                 )
             );
@@ -4273,7 +4299,7 @@ var PhotoInfo = function (_Component) {
                 label: "Editer les infos"
             }, {
                 path: "share",
-                label: "Partager"
+                label: "Envoyer par E-mail"
             }, {
                 path: "integration",
                 label: "Intégration"
@@ -4377,11 +4403,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(52);
+var _redux = __webpack_require__(9);
+
+var _reactRedux = __webpack_require__(7);
+
+var _axios = __webpack_require__(38);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _photos = __webpack_require__(76);
+var _notification = __webpack_require__(591);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4419,6 +4449,8 @@ var Share = function (_Component) {
     }, {
         key: "handleSubmit",
         value: function handleSubmit(e) {
+            var _this2 = this;
+
             e.preventDefault();
             var data = {
                 destinationName: this.state.destinationName,
@@ -4427,8 +4459,13 @@ var Share = function (_Component) {
                 downloadUrl: this.props.photo.original,
                 message: this.state.message
             };
-            _axios2.default.post("/api/photos/share/", data, { headers: { authorization: localStorage.getItem('token') } });
-            this.props.closeInfoBox();
+            _axios2.default.post("/api/photos/share/", data, { headers: { authorization: localStorage.getItem('token') } }).then(function (_) {
+                _this2.props.closeInfoBox();
+                _this2.props.sendNotification("Photo envoyée !", "info");
+            }).catch(function (err) {
+                _this2.props.closeInfoBox();
+                _this2.props.sendNotification(err.response.data.error.message, "error");
+            });
         }
     }, {
         key: "render",
@@ -4442,11 +4479,31 @@ var Share = function (_Component) {
                     "Partager cette image"
                 ),
                 _react2.default.createElement(
+                    "p",
+                    null,
+                    "En partageant cette image, vous permettrez \xE0 votre contact de la t\xE9l\xE9charger dans sa qualit\xE9 d'origine."
+                ),
+                _react2.default.createElement(
                     "form",
                     { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-bottom" },
+                        "Nom du destinataire"
+                    ),
                     _react2.default.createElement("input", { name: "destinationName", onChange: this.onInputChange, value: this.state.destinationName, className: "small-input margin-md-bottom", type: "text", placeholder: "Nom du destinataire" }),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-bottom" },
+                        "Adresse E-mail du destinataire"
+                    ),
                     _react2.default.createElement("input", { name: "destinationEmail", onChange: this.onInputChange, value: this.state.destinationEmail, className: "small-input margin-md-bottom", type: "email", placeholder: "Email du destinataire" }),
-                    _react2.default.createElement("textarea", { name: "message", onChange: this.onInputChange, value: this.state.message, rows: "3", className: "small-input margin-md-bottom" }),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-bottom" },
+                        "Quel message voulez-vous joindre \xE0 cette image ?"
+                    ),
+                    _react2.default.createElement("textarea", { placeholder: "Message", name: "message", onChange: this.onInputChange, value: this.state.message, rows: "3", className: "small-input margin-md-bottom" }),
                     _react2.default.createElement(
                         "button",
                         { type: "submit", className: "button button-small button-white button-hover-green" },
@@ -4460,7 +4517,11 @@ var Share = function (_Component) {
     return Share;
 }(_react.Component);
 
-exports.default = Share;
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ sendNotification: _notification.sendNotification }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Share);
 
 /***/ }),
 
@@ -4494,7 +4555,7 @@ var _Loading = __webpack_require__(37);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
-var _Tags = __webpack_require__(51);
+var _Tags = __webpack_require__(53);
 
 var _Tags2 = _interopRequireDefault(_Tags);
 
@@ -4661,7 +4722,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactHammerjs = __webpack_require__(74);
+var _reactHammerjs = __webpack_require__(75);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
@@ -4673,7 +4734,7 @@ var _reactRedux = __webpack_require__(7);
 
 var _menu = __webpack_require__(122);
 
-var _user = __webpack_require__(50);
+var _user = __webpack_require__(52);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4891,7 +4952,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(49);
+var _reactDom = __webpack_require__(50);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -4997,7 +5058,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(15);
 
-var _lodash = __webpack_require__(42);
+var _lodash = __webpack_require__(43);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -5090,7 +5151,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(15);
 
-var _lodash = __webpack_require__(42);
+var _lodash = __webpack_require__(43);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -6017,7 +6078,7 @@ exports.searchAlbum = exports.deleteAlbum = exports.createAlbum = exports.albumT
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
 
-var _axios = __webpack_require__(52);
+var _axios = __webpack_require__(38);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -6055,6 +6116,13 @@ function albumsFetch() {
                 payload: albums
             });
         }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de télécharger tes albums...",
+                    type: "error"
+                }
+            });
             if (err && err.message === "Request failed with status code 401") {
                 dispatch({
                     type: _actiontypes.USER_UNAUTH
@@ -6073,6 +6141,14 @@ function albumFetch(id) {
                 type: _actiontypes.ALBUM_FETCH,
                 payload: album
             });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de télécharger cet album",
+                    type: "error"
+                }
+            });
         });
     };
 }
@@ -6082,8 +6158,22 @@ function albumThumbUpdate(id, albumThumb, cb) {
         _axios2.default.put(baseUrl + "updateAlbumThumb/", { id: id, albumThumb: albumThumb }).then(function (album) {
             cb();
             dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Modification enregistrée !"
+                }
+            });
+            dispatch({
                 type: _actiontypes.ALBUM_THUMB_UPDATE,
                 payload: album
+            });
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: err.response.data.error.message,
+                    type: "error"
+                }
             });
         });
     };
@@ -6097,6 +6187,20 @@ function createAlbum(album, cb) {
                 type: _actiontypes.ALBUM_CREATE,
                 payload: createdAlbum
             });
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Album créé !"
+                }
+            });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de créer cet album...",
+                    type: "error"
+                }
+            });
         });
     };
 }
@@ -6108,6 +6212,20 @@ function deleteAlbum(albumId, cb) {
             dispatch({
                 type: _actiontypes.ALBUM_DELETE,
                 payload: albumId
+            });
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Album supprimé !"
+                }
+            });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de supprimer cet album...",
+                    type: "error"
+                }
             });
         });
     };
@@ -6172,7 +6290,17 @@ function Notification(props) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(253);
+
+/***/ }),
+
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15622,11 +15750,100 @@ else if(freeModule){// Export for Node.js.
 (freeModule.exports=_)._=_;// Export for CommonJS support.
 freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121), __webpack_require__(48)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121), __webpack_require__(49)(module)))
 
 /***/ }),
 
-/***/ 50:
+/***/ 51:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.photoSearch = exports.photoUpdate = exports.photoDelete = undefined;
+
+var _axios = __webpack_require__(38);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _actiontypes = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*global localStorage*/
+
+exports.photoDelete = photoDelete;
+exports.photoUpdate = photoUpdate;
+exports.photoSearch = photoSearch;
+
+
+var baseUrl = "/api/photos/";
+
+function photoDelete(albumId, photoId, filename, cb) {
+    return function (dispatch) {
+        cb();
+        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Photo supprimée !"
+                }
+            });
+            dispatch({
+                type: _actiontypes.PHOTO_DELETE,
+                payload: album
+            });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de supprimer cette photo...",
+                    type: "error"
+                }
+            });
+        });
+    };
+}
+
+function photoUpdate(photoId, data, cb) {
+    return function (dispatch) {
+        _axios2.default.put(baseUrl + "update/", { photoId: photoId, data: data }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
+            cb();
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Modifications enregistrées !"
+                }
+            });
+            dispatch({
+                type: _actiontypes.PHOTO_UPDATE,
+                payload: album
+            });
+        }).catch(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Impossible de mettre à jour ces infos...",
+                    type: "error"
+                }
+            });
+        });
+    };
+}
+
+function photoSearch(term) {
+    return {
+        type: _actiontypes.PHOTO_SEARCH,
+        payload: term
+    };
+}
+
+/***/ }),
+
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15641,7 +15858,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _actiontypes = __webpack_require__(15);
 
-var _axios = __webpack_require__(52);
+var _axios = __webpack_require__(38);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -15743,7 +15960,7 @@ function signErrorReset(message) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15831,17 +16048,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /***/ }),
 
-/***/ 52:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(253);
-
-/***/ }),
-
-/***/ 53:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16023,7 +16230,7 @@ module.exports = function (css) {
 /***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(53)(undefined);
+exports = module.exports = __webpack_require__(54)(undefined);
 // imports
 
 
@@ -16038,7 +16245,7 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 /***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(53)(undefined);
+exports = module.exports = __webpack_require__(54)(undefined);
 // imports
 
 
@@ -16053,7 +16260,7 @@ exports.push([module.i, ".bulletNav {\n  list-style: none;\n  padding: 0px;\n}\n
 /***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(53)(undefined);
+exports = module.exports = __webpack_require__(54)(undefined);
 // imports
 
 
@@ -16068,12 +16275,12 @@ exports.push([module.i, ".volumeGaugeContainer {\n  overflow: hidden;\n  display
 /***/ 582:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(53)(undefined);
+exports = module.exports = __webpack_require__(54)(undefined);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
 // module
-exports.push([module.i, ".button {\n  display: inline-block;\n  outline: none;\n  border-radius: 3px;\n  text-transform: uppercase;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: .1s;\n  transition: .1s;\n}\n.button-medium {\n  padding: 10px 30px 10px 30px;\n  min-height: 38px;\n  border: 1px solid;\n  font-size: 1em;\n  font-weight: 300;\n}\n.button-small {\n  padding: 7px 7px 5px 7px;\n  border: 1px solid;\n  font-weight: 300;\n  font-size: .8em;\n}\n.button-white {\n  border-color: #777777;\n  background-color: #FFFFFF;\n  color: #777777;\n}\n.button-hover-green:hover {\n  border-color: #4EE898;\n  background-color: #4EE898;\n  color: white;\n}\n.button-animation:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea + div .fa {\n  top: 10px;\n  right: 10px;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\ni > span {\n  font-family: Lato, \"Sans-Serif\";\n  font-weight: 400;\n  font-size: .9em;\n}\ntextarea {\n  resize: none;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  width: 100%;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n@media (min-width: 992px) {\n  .content-page {\n    width: 960px;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(585) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(586) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
+exports.push([module.i, ".button {\n  display: inline-block;\n  outline: none;\n  border-radius: 3px;\n  text-transform: uppercase;\n  text-align: center;\n  cursor: pointer;\n  -webkit-transition: .1s;\n  transition: .1s;\n}\n.button-medium {\n  padding: 10px 30px 10px 30px;\n  min-height: 38px;\n  border: 1px solid;\n  font-size: 1em;\n  font-weight: 300;\n}\n.button-small {\n  padding: 7px 7px 5px 7px;\n  border: 1px solid;\n  font-weight: 300;\n  font-size: .8em;\n}\n.button-white {\n  border-color: #777777;\n  background-color: #FFFFFF;\n  color: #777777;\n}\n.button-hover-green:hover {\n  border-color: #4EE898;\n  background-color: #4EE898;\n  color: white;\n}\n.button-hover-red:hover {\n  border-color: #FF3F00;\n  background-color: #FF3F00;\n  color: white;\n}\n.button-animation:hover {\n  -webkit-animation-name: buttonAnim;\n          animation-name: buttonAnim;\n  -webkit-animation-duration: .15s;\n          animation-duration: .15s;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: ease-in;\n          animation-timing-function: ease-in;\n}\n@-webkit-keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n@keyframes buttonAnim {\n  from {\n    -webkit-box-shadow: inset 0px 0px 0px 0px #DADADA;\n            box-shadow: inset 0px 0px 0px 0px #DADADA;\n    border: 1px solid #777777;\n  }\n  to {\n    -webkit-box-shadow: inset 100px 0px 0px 0px #4EE898;\n            box-shadow: inset 100px 0px 0px 0px #4EE898;\n    background-color: #4EE898;\n    border: 1px solid #4EE898;\n    color: #FFFFFF;\n  }\n}\n.small-input {\n  width: calc(100% - 15px);\n  padding: 10px 5px 10px 10px;\n  border-radius: 3px;\n  border: 0;\n  background-color: #efefef;\n  color: #777777;\n  font-size: 1em;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.small-input:focus {\n  outline: none;\n  background-color: #e2e2e2;\n}\n.input-group {\n  position: relative;\n  margin-bottom: 20px;\n}\n.input-group input,\n.input-group textarea {\n  display: block;\n  font-size: 1em;\n  background-color: transparent;\n}\n.input-group input {\n  padding: 0px 0px 10px 0px;\n  outline: none;\n  width: 100%;\n  border-width: 0px 0px 1px 0px;\n  border-color: #efefef;\n  font-weight: 300;\n  color: #1A1A1A;\n}\n.input-group input:focus {\n  -webkit-transition: .4s;\n  transition: .4s;\n  border-color: #cccccc;\n}\n.input-group .fa {\n  position: absolute;\n  right: 0px;\n  top: 2px;\n  font-size: 1.2em;\n}\n.input-group textarea {\n  padding: 13px;\n  width: calc(100% - 28px);\n  border: 1px solid #efefef;\n  border-radius: 3px;\n  outline: none;\n  resize: none;\n  color: #5A646E;\n}\n.input-group textarea + div .fa {\n  top: 10px;\n  right: 10px;\n}\n.input-group textarea:focus {\n  -webkit-transition: .3s;\n  transition: .3s;\n  border-color: #cccccc;\n}\n.input-group-textarea .fa {\n  top: 7px;\n  right: 7px;\n}\n.margin-sm-bottom {\n  margin-bottom: 10px;\n}\n.margin-md-bottom {\n  margin-bottom: 20px;\n}\n.margin-lg-bottom {\n  margin-bottom: 30px;\n}\n.margin-sm-top {\n  margin-top: 10px;\n}\n.margin-md-top {\n  margin-top: 20px;\n}\n.margin-lg-top {\n  margin-top: 30px;\n}\n.margin-sm-left {\n  margin-left: 10px;\n}\n.margin-md-left {\n  margin-left: 20px;\n}\n.margin-lg-left {\n  margin-left: 30px;\n}\n.margin-sm-right {\n  margin-right: 10px;\n}\n.margin-md-right {\n  margin-right: 20px;\n}\n.margin-lg-right {\n  margin-right: 30px;\n}\n.landing {\n  display: block;\n  text-align: center;\n  width: calc(80% - 60px);\n  padding: 0px 30px 60px 30px;\n}\n.landing-footer {\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  height: 60px;\n}\n@media (min-width: 768px) {\n  .landing {\n    position: relative;\n    padding: 30px 60px 60px 60px;\n    width: 220px;\n    height: 400px;\n    border-radius: 7px;\n    -webkit-box-shadow: 1px 1px 4px 3px #efefef;\n            box-shadow: 1px 1px 4px 3px #efefef;\n    -webkit-transition: .05s;\n    transition: .05s;\n  }\n}\n#header {\n  position: fixed;\n  left: 0px;\n  right: 0px;\n  height: 40px;\n  bottom: 0px;\n  z-index: 999;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  background-color: #FFFFFF;\n  -webkit-box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: -1px -1px 3px 2px rgba(100, 100, 100, 0.1);\n  padding: 10px 20px 10px 25px;\n  -webkit-box-flex: 0;\n      -ms-flex: 0 0 50px;\n          flex: 0 0 50px;\n}\n#header .fa-bars {\n  z-index: 999;\n  font-size: 26px;\n  color: #5A646E;\n  cursor: pointer;\n}\n.header-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n.header-up {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 225px !important;\n}\n.header-down {\n  -webkit-transition: .3s;\n  transition: .3s;\n  bottom: 0px !important;\n}\n@media (min-width: 768px) {\n  #header {\n    position: fixed;\n    left: 0px;\n    right: 0px;\n    height: 40px;\n    top: 0px;\n    -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n            box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n  }\n  #header .fa-bars {\n    font-size: 24px;\n  }\n  #header input {\n    min-width: 200px;\n    width: 20%;\n  }\n  .header-up {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: unset;\n  }\n}\n.title {\n  display: none;\n  top: 1px;\n  font-size: 1.5em;\n  padding-bottom: 4px;\n}\n@media (min-width: 768px) {\n  .title {\n    display: unset;\n    top: unset;\n  }\n}\n.searchBar {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.searchBar input {\n  width: 100%;\n  padding: 5px 5px 5px 25px;\n}\n.searchBar .fa-search {\n  position: relative;\n  left: 20px;\n  color: #777777;\n  font-size: .9em;\n}\n#sidemenu {\n  position: fixed;\n  right: 0px;\n  top: 0px;\n  bottom: 0px;\n  padding: 40px;\n  width: 250px;\n  background-color: #FFFFFF;\n  z-index: 9999;\n}\n#sidemenu ul.sidemenu-desktop-list {\n  padding: 0px;\n  list-style-type: none;\n}\n#sidemenu ul.sidemenu-desktop-list li {\n  padding: 20px 0px;\n  border-top: 1px solid #efefef;\n  font-size: 1.1em;\n}\n#sidemenu ul.sidemenu-desktop-list li:first-child {\n  border-top: none;\n}\n.sidemenu-open {\n  -webkit-transition: .3s ease;\n  transition: .3s ease;\n  left: 0px;\n  -webkit-box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n          box-shadow: 1px 1px 3px 2px rgba(100, 100, 100, 0.1);\n}\n.sidemenu-close {\n  -webkit-transition-duration: .2s;\n          transition-duration: .2s;\n  left: -330px;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n#sidemenu > .close-icon {\n  display: block;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n  color: #cccccc;\n  font-size: 20px;\n  cursor: pointer;\n}\n#sidemenu > .close-icon:hover {\n  -webkit-transition: .2s;\n  transition: .2s;\n  color: #777777;\n}\n.sidemenu-mobile-icons {\n  display: none;\n}\n@media (max-width: 768px) {\n  #sidemenu {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding: 0px;\n    right: 0px;\n    top: unset;\n    left: 0px;\n    height: 225px;\n    width: 100%;\n    text-align: right;\n    background-color: white;\n  }\n  #sidemenu .sidemenu-desktop-only {\n    display: none;\n  }\n  #sidemenu .sidemenu-title {\n    display: none;\n  }\n  #sidemenu ul.sidemenu-desktop-list {\n    text-align: center;\n  }\n  #sidemenu ul.sidemenu-desktop-list li {\n    border-color: #efefef;\n  }\n  #sidemenu ul.sidemenu-desktop-list li:first-child {\n    border-top: 0px;\n  }\n  #sidemenu .close-icon {\n    display: none;\n  }\n  .sidemenu-close {\n    -webkit-transition: .3s;\n    transition: .3s;\n    width: 100%;\n    bottom: -225px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n  .sidemenu-open {\n    -webkit-transition: .3s;\n    transition: .3s;\n    bottom: 0px !important;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n  }\n}\n.photos-back-link {\n  position: relative;\n  top: -1px;\n}\n.albumTitle {\n  display: inline-block;\n  font-size: 1.7em;\n  color: #5A646E;\n  font-weight: 700;\n  margin: 0px 10px 10px 0px;\n}\n.albumPhotographer {\n  display: inline-block;\n  color: #cccccc;\n  font-weight: 400;\n  margin-bottom: 10px;\n}\n.albumDescription {\n  display: block;\n  font-size: 1em;\n  font-weight: 300;\n  color: #5A646E;\n  margin-bottom: 15px;\n}\n.PhotoBig {\n  max-width: calc(100vw - 40px);\n  max-height: calc(100vh - 200px);\n  border-radius: 4px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transition-delay: .1s;\n          transition-delay: .1s;\n}\n.photos-close-button {\n  position: absolute;\n  top: 15px;\n  right: 20px;\n  font-size: 1.7em;\n  opacity: .5;\n  color: white;\n  -webkit-transition: .2s;\n  transition: .2s;\n  cursor: pointer;\n}\n.photos-close-button:hover {\n  opacity: 1;\n}\n@media (min-width: 768px) {\n  .photos-close-button {\n    top: 85px;\n    right: 30px;\n  }\n}\n.photoButtonsBox {\n  margin-top: 20px;\n}\n.photoButtonsBox i {\n  color: #676767;\n  margin: 0px 10px;\n  font-size: 1em;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.photoButtonsBox i:hover {\n  color: #cccccc;\n}\n.photoButtonsBox span {\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  top: -1px;\n  color: #676767;\n}\n.card {\n  position: relative;\n  display: inline-block;\n  width: 100%;\n  height: 150px;\n  margin-bottom: 15px;\n  border-radius: 4px;\n  background-color: #FFFFFF;\n  cursor: pointer;\n  -webkit-box-shadow: 1px 1px 5px #cccccc;\n          box-shadow: 1px 1px 5px #cccccc;\n}\n.card .card-img-wrapper {\n  position: relative;\n  float: left;\n  overflow: hidden;\n  height: 150px;\n  width: 40%;\n  border-radius: 4px 0px 0px 4px;\n  background-color: #efefef;\n  text-align: right;\n}\n.card .card-img-wrapper .card-img {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center center;\n}\n.card .card-img-wrapper .card-img-infos {\n  position: relative;\n  display: inline-block;\n  margin-left: 5px;\n  padding: 6px;\n  top: -32px;\n  right: 10px;\n  border-radius: 3px;\n  background-color: #1A1A1A;\n  font-size: .7em;\n  font-weight: bold;\n  color: #EEE;\n  opacity: .9;\n}\n.card .card-img-wrapper .card-img-infos.red {\n  background-color: #FF3F00;\n}\n.card .card-body {\n  overflow: hidden;\n  padding: 15px;\n  height: 100px;\n}\n.card .card-body-title {\n  margin-bottom: 5px;\n  font-size: 1em;\n  font-weight: 800;\n  color: #1A1A1A;\n}\n.card .card-buttons {\n  display: none;\n}\n.card .card-body-text {\n  color: #777777;\n}\n.card:hover {\n  -webkit-box-shadow: 2px 2px 10px #cccccc;\n          box-shadow: 2px 2px 10px #cccccc;\n}\n.card:hover .card-img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  -webkit-transition: .5s transform;\n  transition: .5s transform;\n}\n@media (min-width: 768px) {\n  .card {\n    width: 225px;\n    height: 350px;\n    margin-right: 15px;\n  }\n  .card .card-img-wrapper {\n    position: relative;\n    overflow: hidden;\n    height: 150px;\n    width: 100%;\n    border-radius: 4px 4px 0px 0px;\n  }\n  .card .card-body {\n    height: 108px;\n    padding: 20px;\n  }\n  .card .card-body-title {\n    margin-bottom: 10px;\n    font-size: 1.2em;\n  }\n  .card .card-buttons {\n    display: block;\n    position: relative;\n    height: 50px;\n    padding-top: 15px;\n    padding-left: 20px;\n  }\n  .card .card-buttons i {\n    display: inline-block;\n    margin-right: 15px;\n    font-size: .9em;\n    color: #cccccc;\n    cursor: pointer;\n  }\n  .card .card-buttons i:hover {\n    color: #1A1A1A;\n  }\n}\n.dropzone {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 555;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px 4px 0px 0px;\n}\n.dropzone .dropLimits {\n  visibility: hidden;\n}\n.dropzone-progress {\n  position: absolute;\n  bottom: 0;\n  height: 0;\n  width: 100%;\n  border-radius: 4px 4px 0px 0px;\n  -webkit-transition: .3s;\n  transition: .3s;\n  background-color: #4EE898;\n}\n.dragUploadDragHover {\n  height: 100%;\n  background-color: white;\n}\n.dragUploadDragHover .dropLimits {\n  visibility: visible !important;\n  overflow: hidden;\n  position: relative;\n  width: calc(100% - 30px);\n  height: calc(100% - 30px);\n  border: 2px dotted #cccccc;\n  border-radius: 4px;\n  pointer-events: none;\n}\n.dragUploadDragHover .dropLimits .fa {\n  position: absolute;\n  z-index: 666;\n  top: calc(50% - 25px);\n  right: calc(50% - 25px);\n  pointer-events: none;\n  color: #cccccc;\n  font-size: 50px;\n}\n.dropIconAnim {\n  -webkit-transition: .3s;\n  transition: .3s;\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  top: -50px !important;\n  right: -50px !important;\n}\n.loadingBar {\n  height: 15px;\n  width: 150px;\n  margin-top: 10px;\n}\n.loadingBar span {\n  display: inline-block;\n  height: 100%;\n  width: 100%;\n  border-radius: 20px;\n  background-color: #18b865;\n  background-image: linear-gradient(-45deg, #4EE898 25%, transparent 25%, transparent 50%, #4EE898 50%, #4EE898 75%, transparent 75%, transparent);\n  background-size: 50px 50px;\n  -webkit-animation: move 2s linear infinite;\n          animation: move 2s linear infinite;\n}\n@-webkit-keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n@keyframes move {\n  0% {\n    background-position: 0 0;\n  }\n  100% {\n    background-position: 50px 50px;\n  }\n}\n#patchwork {\n  width: 100%;\n}\n#patchwork img {\n  margin-right: 3px;\n  margin-bottom: 3px;\n}\n@media (min-width: 768px) {\n  #patchwork {\n    padding-bottom: 15px;\n  }\n}\n.tag {\n  display: inline-block;\n  margin: 0px 5px 5px 0px;\n  padding: 3px 7px;\n  border-radius: 3px;\n  background-color: #cccccc;\n  font-size: .9em;\n  color: white;\n}\n.tags {\n  margin-bottom: 10px;\n}\nhtml,\nbody,\n#root,\n.container {\n  height: 100%;\n  font-family: 'Lato', sans-serif;\n}\na {\n  text-decoration: none;\n  color: #5A646E;\n}\na:hover {\n  color: #2c3136;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  padding: 0px;\n  margin: 0px;\n  color: #5A646E;\n}\nh1 {\n  font-size: 3.125em;\n}\nh2 {\n  font-size: 2.5em;\n  font-weight: 700;\n}\nh3 {\n  font-size: 1.3em;\n  font-weight: 700;\n}\nh4 {\n  font-size: 1.3em;\n  font-weight: 300;\n}\nhr {\n  border-width: 1px 0px 0px 0px;\n  border-color: #efefef;\n  border-style: solid;\n}\np {\n  font-weight: 300;\n  color: #1A1A1A;\n}\nul {\n  padding: 0px;\n  list-style: none;\n}\ni > span {\n  font-family: Lato, \"Sans-Serif\";\n  font-weight: 400;\n  font-size: .9em;\n}\ntextarea {\n  resize: none;\n}\n.container-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.wrapper-padding {\n  padding: 20px 20px 80px 20px;\n}\n.wrapper-fullHeight {\n  min-height: calc(100% - 100px);\n}\n.content-box {\n  position: relative;\n  display: block;\n  overflow: hidden;\n  padding: 50px;\n  border-radius: 5px;\n  background-color: white;\n}\n.content-box-medium {\n  min-width: 50vw;\n  max-width: 90vw;\n}\n.content-box-banner-left {\n  padding-left: 150px;\n}\n.content-box-banner-left-img {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 100px;\n}\n.content-page {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  width: 100%;\n}\n.content-page-sidemenu {\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  padding-bottom: 5px;\n  text-align: left;\n}\n.content-page-content {\n  padding-top: 20px;\n  width: 100%;\n}\n@media (min-width: 768px) {\n  .content-page {\n    padding-top: 50px;\n  }\n  .content-page-sidemenu {\n    width: 25%;\n    padding-right: 5%;\n    border-bottom: unset;\n    padding-bottom: unset;\n    text-align: right;\n  }\n  .content-page-content {\n    width: 55%;\n    margin-top: 18px;\n    padding-top: unset;\n    padding-left: 5%;\n    border-left: 1px solid #efefef;\n  }\n}\n@media (min-width: 992px) {\n  .content-page {\n    width: 960px;\n  }\n}\n.button-icon {\n  display: inline-block;\n  color: #cccccc;\n  margin-right: 10px;\n  cursor: pointer;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n.button-icon:hover {\n  color: #777777;\n  -webkit-transition: .2s;\n  transition: .2s;\n}\n@media (max-width: 768px) {\n  .content-box-banner-left {\n    padding-left: 50px;\n  }\n  .content-box-banner-left-img {\n    display: none;\n  }\n  .desktop-only {\n    display: none !important;\n  }\n  .flex-mobile-bottom {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n  }\n}\n@media (min-width: 768px) {\n  .wrapper-padding {\n    padding: 80px 20px 20px 20px;\n  }\n  .mobile-only {\n    display: none !important;\n  }\n}\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none !important;\n  }\n}\n.flex-center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.text-center {\n  text-align: center;\n}\n.txt-isLight {\n  opacity: .5;\n}\n.txt-isVeryLight {\n  opacity: .3;\n}\n.txt-white {\n  color: white !important;\n}\n.txt-green {\n  color: #4EE898;\n}\n.txt-red {\n  color: #FF3F00;\n}\n.txt-darkBlueGrey {\n  color: #5A646E;\n}\n.txt-mediumGrey {\n  color: #cccccc;\n}\n.txt-darkGrey {\n  color: #777777;\n}\n.bkg-pattern {\n  background-image: url(" + __webpack_require__(585) + ");\n  background-repeat: repeat;\n}\n@media (max-width: 768px) {\n  .bkg-pattern {\n    background-image: none;\n  }\n}\n.bkg-vintagePhoto {\n  background-image: url(" + __webpack_require__(586) + ");\n  background-size: cover;\n}\n@media (max-width: 768px) {\n  .bkg-darkBluePattern {\n    background-image: none;\n  }\n}\n.bkg-green {\n  background-color: #4EE898;\n}\n.bkg-red {\n  background-color: #FF3F00;\n}\n.bkg-orange {\n  background-color: #F5A623;\n}\n.bkg-blue {\n  background-color: #23A2F5;\n}\n.bkg-lightGrey {\n  background-color: #efefef;\n}\n.bkg-darkGrey {\n  background-color: #777777;\n}\n.bkg-darkBlueGrey {\n  background-color: #5A646E;\n}\n.bkg-veryDarkGrey {\n  background-color: #1A1A1A;\n}\n.bkg-white {\n  background-color: white;\n}\n", ""]);
 
 // exports
 
@@ -16122,7 +16329,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(73)(content, options);
+var update = __webpack_require__(74)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -16154,7 +16361,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(73)(content, options);
+var update = __webpack_require__(74)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -16172,7 +16379,218 @@ if(false) {
 
 /***/ }),
 
-/***/ 73:
+/***/ 590:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var action = arguments[1];
+
+
+    switch (action.type) {
+        case _actiontypes.NOTIFICATION_SEND:
+            return action.payload;
+        case _actiontypes.NOTIFICATION_STOP:
+            return _extends({}, state, { newNotification: false });
+        default:
+            return state;
+    }
+};
+
+var _actiontypes = __webpack_require__(15);
+
+/***/ }),
+
+/***/ 591:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.stopNotification = exports.sendNotification = undefined;
+
+var _actiontypes = __webpack_require__(15);
+
+exports.sendNotification = sendNotification;
+exports.stopNotification = stopNotification;
+
+
+function sendNotification(message) {
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "info";
+
+    return {
+        type: _actiontypes.NOTIFICATION_SEND,
+        payload: {
+            message: message, type: type, newNotification: true
+        }
+    };
+}
+
+function stopNotification() {
+    return {
+        type: _actiontypes.NOTIFICATION_STOP
+    };
+}
+
+/***/ }),
+
+/***/ 592:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(9);
+
+var _reactRedux = __webpack_require__(7);
+
+__webpack_require__(594);
+
+var _notification = __webpack_require__(591);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Notification = function (_Component) {
+    _inherits(Notification, _Component);
+
+    function Notification() {
+        _classCallCheck(this, Notification);
+
+        return _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).apply(this, arguments));
+    }
+
+    _createClass(Notification, [{
+        key: "renderNotification",
+        value: function renderNotification() {
+            var _this2 = this;
+
+            var _props$notification = this.props.notification,
+                type = _props$notification.type,
+                message = _props$notification.message,
+                newNotification = _props$notification.newNotification;
+
+            if (this.props.notification && newNotification) {
+                setTimeout(function (_) {
+                    _this2.props.stopNotification();
+                }, 5000);
+                return _react2.default.createElement(
+                    "div",
+                    { className: "notification " + (type === "error" ? "bkg-red" : "bkg-green") },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "notification-bubble bkg-white" },
+                        _react2.default.createElement("i", { className: "fa " + (type === "error" ? "fa-times txt-red" : "fa-check txt-green") })
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "notification-message txt-white" },
+                        message
+                    )
+                );
+            } else {
+                return null;
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return this.renderNotification();
+        }
+    }]);
+
+    return Notification;
+}(_react.Component);
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ stopNotification: _notification.stopNotification }, dispatch);
+}
+
+function mapStateToProps(state) {
+    return {
+        notification: state.notification
+    };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Notification);
+
+/***/ }),
+
+/***/ 593:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(54)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 25px;\n  height: 25px;\n  border-radius: 50%;\n  font-size: 1.2em;\n  color: white;\n  -webkit-animation-name: bubblePop;\n          animation-name: bubblePop;\n  -webkit-animation-duration: .5s;\n          animation-duration: .5s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n}\n.notification-message {\n  padding: 0px 5px 0px 10px;\n  font-size: 1.1em;\n  font-weight: 400;\n  opacity: 0;\n  -webkit-animation-name: messagePop;\n          animation-name: messagePop;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: .3s;\n          animation-delay: .3s;\n  -webkit-animation-timing-function: ease-in-out;\n          animation-timing-function: ease-in-out;\n  -webkit-animation-duration: .2s;\n          animation-duration: .2s;\n}\n.notification {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  z-index: 99999;\n  padding: 10px;\n  left: 20px;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  border-radius: 4px;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-name: notificationPop;\n          animation-name: notificationPop;\n  -webkit-animation-duration: 2.5s;\n          animation-duration: 2.5s;\n}\n@-webkit-keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes bubblePop {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7);\n  }\n  80% {\n    -webkit-transform: scale(1.2);\n            transform: scale(1.2);\n  }\n  90% {\n    -webkit-transform: scale(0.9);\n            transform: scale(0.9);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes messagePop {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: -40px;\n    opacity: 0;\n  }\n}\n@keyframes notificationPop {\n  0% {\n    bottom: 0px;\n  }\n  20% {\n    bottom: 20px;\n  }\n  90% {\n    bottom: 20px;\n    opacity: 1;\n  }\n  100% {\n    bottom: -40px;\n    opacity: 0;\n  }\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 594:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(593);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(74)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/postcss-loader/lib/index.js!../../../node_modules/less-loader/dist/cjs.js!./styles.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16529,67 +16947,6 @@ function updateLink (link, options, obj) {
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
 
-
-/***/ }),
-
-/***/ 76:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.photoSearch = exports.photoUpdate = exports.photoDelete = undefined;
-
-var _axios = __webpack_require__(52);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _actiontypes = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*global localStorage*/
-
-exports.photoDelete = photoDelete;
-exports.photoUpdate = photoUpdate;
-exports.photoSearch = photoSearch;
-
-
-var baseUrl = "/api/photos/";
-
-function photoDelete(albumId, photoId, filename, cb) {
-    return function (dispatch) {
-        cb();
-        _axios2.default.put(baseUrl + "delete/", { albumId: albumId, photoId: photoId, filename: filename }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
-            dispatch({
-                type: _actiontypes.PHOTO_DELETE,
-                payload: album
-            });
-        });
-    };
-}
-
-function photoUpdate(photoId, data, cb) {
-    return function (dispatch) {
-        _axios2.default.put(baseUrl + "update/", { photoId: photoId, data: data }, { headers: { authorization: localStorage.getItem('token') } }).then(function (album) {
-            cb();
-            dispatch({
-                type: _actiontypes.PHOTO_UPDATE,
-                payload: album
-            });
-        });
-    };
-}
-
-function photoSearch(term) {
-    return {
-        type: _actiontypes.PHOTO_SEARCH,
-        payload: term
-    };
-}
 
 /***/ }),
 
