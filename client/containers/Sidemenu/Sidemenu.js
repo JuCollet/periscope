@@ -28,6 +28,7 @@ class Sidemenu extends Component {
   render(){
     
     const toggleMenuClass = this.props.menu.open ? 'sidemenu-open' : 'sidemenu-close';
+    const { canWrite } = this.props.user;
 
     return (
       <Hammer onSwipe={e=>this.onSwipeHandler(e)}>
@@ -36,7 +37,7 @@ class Sidemenu extends Component {
           <h2 className="sidemenu-title txt-darkBlueGrey">Periscope</h2>
           <ul className="sidemenu-desktop-list">
             <li><NavLink to="/app/albums/" onClick={ _ => this.props.toggleMenu() }>Gallerie</NavLink></li>
-            <li className="sidemenu-desktop-only"><NavLink to="/app/createalbum/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>
+            {!canWrite ? null : <li className="sidemenu-desktop-only"><NavLink to="/app/createalbum/" onClick={ _ => this.props.toggleMenu() }>Créer un album</NavLink></li>}
             <li><NavLink to="/app/account/" onClick={ _ => this.props.toggleMenu() }>Mon compte</NavLink></li>
             <li><NavLink to="/" onClick={this.onSignOut} >Déconnexion</NavLink></li>
           </ul>
@@ -52,7 +53,8 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
   return {
-    menu : state.menu
+    menu : state.menu,
+    user : state.user
   };
 }
 

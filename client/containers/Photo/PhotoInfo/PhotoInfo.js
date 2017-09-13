@@ -1,6 +1,7 @@
 "use strict";
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link, Route, Switch, Redirect } from "react-router-dom";
 
 import Infos from "./Infos/Infos";
@@ -9,7 +10,7 @@ import Share from "./Share/Share";
 import Integration from "./Integration/Integration";
 import Options from "./Options/Options";
 
-export default class PhotoInfo extends Component {
+class PhotoInfo extends Component {
     
     renderLinkStyle(link){
         const { pathname } = this.props.location;
@@ -27,7 +28,8 @@ export default class PhotoInfo extends Component {
             },
             {
                 path : "edit",
-                label : "Editer les infos"
+                label : "Editer les infos",
+                canWrite : true
             },
             {
                 path : "share",
@@ -45,6 +47,9 @@ export default class PhotoInfo extends Component {
         
         return (
             links.map(link=>{
+                if(link.canWrite && !this.props.user.canWrite){
+                    return null;
+                }
                 return <li className="margin-sm-bottom" style={this.renderLinkStyle(link)} key={link.label}><Link to={`${url}/${link.path}`}>{link.label}</Link></li>;
             })
         );
@@ -79,3 +84,11 @@ export default class PhotoInfo extends Component {
         );        
     }
 }
+
+function mapStateTopProps(state){
+    return {
+        user: state.user
+    };
+}
+
+export default connect(mapStateTopProps)(PhotoInfo);

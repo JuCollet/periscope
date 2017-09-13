@@ -28,7 +28,13 @@ const store = createStore(reducers, composeEnhancers(
 const token = localStorage.getItem('token');
 if(token){
     store.dispatch({
-        type: USER_AUTH
+        type: USER_AUTH,
+        payload: {
+            authenticated : true,
+            isAdmin : localStorage.getItem('isAdmin'),
+            canWrite : localStorage.getItem('canWrite'),
+            canDelete : localStorage.getItem('canDelete'),
+        }
     });
 }
 

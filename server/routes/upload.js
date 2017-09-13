@@ -3,6 +3,7 @@
 const express = require('express'),
       uploadController = require('../controllers/upload_controller'),
       passportService = require('../services/passport'),
+      authorizations = require('../services/authorizations'),
       multer  = require('multer'),
       storage = multer.diskStorage({
           destination: function (req, file, cb) {
@@ -16,6 +17,6 @@ const express = require('express'),
       uploadRouter = express.Router();
 
 uploadRouter.route('/:id')
-    .put(passportService.requireAuth, upload.array('photos', 50), uploadController.sendFiles);
+    .put(passportService.requireAuth, authorizations.canWrite, upload.array('photos', 50), uploadController.sendFiles);
 
 module.exports = uploadRouter;

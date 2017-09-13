@@ -25,6 +25,14 @@ const userSchema = new Schema({
     admin : {
       type : Boolean,
       default : false
+    },
+    canWrite : {
+      type : Boolean,
+      default : true
+    },
+    canDelete : {
+      type : Boolean,
+      default : true
     }
 });
 

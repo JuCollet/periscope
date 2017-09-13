@@ -1,12 +1,10 @@
-import { USER_AUTH, USER_UNAUTH, USER_SIGN_ERROR, USER_GET_INFOS, USER_RESET_ERROR } from '../actiontypes/';
+import { USER_AUTH, USER_SIGN_ERROR, USER_GET_INFOS, USER_RESET_ERROR } from '../actiontypes/';
 
 export default function(state = {}, action){
     
     switch(action.type){
         case USER_AUTH :
-            return {...state, authenticated : true};
-        case USER_UNAUTH :
-            return {...state, authenticated : false};
+            return {...state, ...action.payload};
         case USER_SIGN_ERROR :
             return {...state, error : action.payload};
         case USER_RESET_ERROR :
@@ -16,5 +14,4 @@ export default function(state = {}, action){
         default :
             return state;
     }
-    
 }

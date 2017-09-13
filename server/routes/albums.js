@@ -3,7 +3,8 @@
 const express = require('express'),
       albumsController = require('../controllers/albums_controller'),
       albumRouter = express.Router(),
-      passportService = require('../services/passport');
+      passportService = require('../services/passport'),
+      authorizations = require('../services/authorizations');
 
 albumRouter.route('/')
     .get(passportService.requireAuth, albumsController.getAlbums)
@@ -20,6 +21,6 @@ albumRouter.route('/:id')
     .get(albumsController.getAlbum);
     
 albumRouter.route('/updateAlbumThumb/')
-    .put(albumsController.updateAlbumThumb);
+    .put(passportService.requireAuth, authorizations.canWrite, albumsController.updateAlbumThumb);
 
 module.exports = albumRouter;

@@ -47,8 +47,19 @@ function signInUser({email, password}){
         axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
                 localStorage.setItem('token', res.data.token);
+                localStorage.setItem('isAdmin', res.data.isAdmin);
+                localStorage.setItem('canWrite', res.data.canWrite);
+                localStorage.setItem('canDelete', res.data.canDelete);
                 localStorage.setItem("customer",true);
-                dispatch({ type: USER_AUTH });
+                dispatch({ 
+                    type: USER_AUTH,
+                    payload : {
+                        authenticated : true,
+                        isAdmin : res.data.isAdmin,
+                        canWrite : res.data.canWrite,
+                        canDelete : res.data.canDelete
+                    }
+                });
             })
             .catch(function(err){
                 dispatch({
@@ -65,6 +76,9 @@ function signInUser({email, password}){
 function signOutUser(){
     return function(dispatch){
         localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('canDelete');
+        localStorage.removeItem('canWrite');
         dispatch({
             type: USER_UNAUTH
         });

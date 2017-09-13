@@ -7,7 +7,8 @@ const helper = require('sendgrid').mail,
       
 module.exports = {
     photoShare : photoShare,
-    welcome : welcome
+    welcome : welcome,
+    invite : invite
 };      
 
 function photoShare(data, senderName){
@@ -52,4 +53,26 @@ function welcome(destinationEmail, name){
 
   sg.API(sendMail);
 
+}
+
+function invite(senderName, destinationName, destinationEmail, token){
+  
+  const from_email = new helper.Email("periscopeapp@gmail.com"),
+        to_email = new helper.Email(destinationEmail),
+        subject = senderName + " t'invite à rejoindre sa photothèque." ,
+        content = new helper.Content('text/html', pug.renderFile(path.join(__dirname, './views/invite.pug'), {
+          senderName : senderName,
+          destinationName : destinationName,
+          destinationLink : "https://periscope.herokuapp.com/signup/" + token + "/" + senderName
+        })),
+        mail = new helper.Mail(from_email, subject, to_email, content);
+
+  const sendMail = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: mail.toJSON(),
+  });
+
+  sg.API(sendMail);
+  
 }

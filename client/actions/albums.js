@@ -77,7 +77,7 @@ function albumFetch(id){
 
 function albumThumbUpdate(id, albumThumb, cb){
     return function(dispatch){
-        axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb})
+        axios.put(baseUrl + "updateAlbumThumb/", {id, albumThumb}, {headers : {authorization : localStorage.getItem('token')}})
         .then( album => {
             cb();
             dispatch({
@@ -95,7 +95,7 @@ function albumThumbUpdate(id, albumThumb, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : err.response.data.error.message,
+                    message : err.response.data,
                     type: "error"
                 }
             });

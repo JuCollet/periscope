@@ -48,6 +48,7 @@ class Photos extends Component {
   render(){
     
     const { album } = this.props;
+    const { canDelete } = this.props.user; 
 
     if(!album){
       return <Loading />;
@@ -61,7 +62,7 @@ class Photos extends Component {
         <span className="albumDescription">{album.description}</span>
         <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
         {this.renderPatchwork()}
-        <i className="fa fa-trash button-icon margin-md-bottom margin-sm-top" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>
+        {!canDelete ? null : <i className="fa fa-trash button-icon margin-md-bottom margin-sm-top" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>}
       </div>
     );  
   }
@@ -75,7 +76,8 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state, ownProps){
   return {
     album : state.albums[ownProps.match.params.id],
-    search : state.search
+    search : state.search,
+    user : state.user
   };
 }
 

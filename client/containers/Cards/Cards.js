@@ -1,12 +1,13 @@
 'use strict';
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Dropbox from "../Dropbox/Dropbox";
 
 import "./img/noPhotoInAlbum.png";
 
 
-export default class Card extends Component {
+class Card extends Component {
   
   cardStyle = _ => {
     if(this.props.album.albumThumb && this.props.album.albumThumb != null ){
@@ -28,10 +29,11 @@ export default class Card extends Component {
     const newBadge = Date.now() - createDate.getTime() < 86400000 ? <div className="card-img-infos red">NEW</div> : Date.now() - updateDate.getTime() < 86400000 ? <div className="card-img-infos red">UP</div> : "";
   
     const { album } = this.props;
+    const { canWrite } = this.props.user;
   
     return (
       <div className="card">
-        <Dropbox id={album._id} height={150} />
+        { !canWrite ? null : <Dropbox id={album._id} height={150} />}
         <div className="card-img-wrapper">
           <div className="card-img" style={this.cardStyle()}></div>
             {newBadge}
@@ -49,3 +51,11 @@ export default class Card extends Component {
     );  
   }
 }
+
+function mapStateTopProps(state){
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateTopProps)(Card);
