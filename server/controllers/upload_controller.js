@@ -45,6 +45,7 @@ function sendFiles (req,res,next){
     const endPhotoProcess = function(filename, filePath, imgWidth, imgHeight, imgSize){
         
         let newPhoto = {
+            uploader: req.user._id,
             filename: `${id}${filename}`,
             thumb: `${process.env.S3_URL}usersFiles/thumb${id}${filename}`,
             medium: `${process.env.S3_URL}usersFiles/medium${id}${filename}`,

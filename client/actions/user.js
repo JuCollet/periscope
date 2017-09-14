@@ -48,11 +48,12 @@ function signInUser({email, password}){
         axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
                 _setLocalstorage([
-                    {key: "token",value: res.data.token},
-                    {key: "customer",value: true},
-                    {key: "isAdmin",value: res.data.isAdmin},
-                    {key: "canWrite",value: res.data.canWrite},
-                    {key: "canDelete",value: res.data.canDelete},
+                    {key: "token", value: res.data.token},
+                    {key: "customer", value: true},
+                    {key: "isAdmin", value: res.data.isAdmin},
+                    {key: "canWrite", value: res.data.canWrite},
+                    {key: "canDelete", value: res.data.canDelete},
+                    {key: "userId", value: res.data.userId }
                 ]);
                 dispatch({ 
                     type: USER_AUTH,
@@ -78,7 +79,7 @@ function signInUser({email, password}){
 
 function signOutUser(){
     return function(dispatch){
-        _removeFromLocalStorage(['token','isAdmin','canWrite','canDelete']);
+        _removeFromLocalStorage(['token','isAdmin','canWrite','canDelete', 'userId']);
         dispatch({
             type: USER_UNAUTH
         });
@@ -96,6 +97,7 @@ function signUpUser(user, history){
                 {key: "isAdmin",value: res.data.isAdmin},
                 {key: "canWrite",value: res.data.canWrite},
                 {key: "canDelete",value: res.data.canDelete},
+                {key: "userId", value: res.data.userId }
             ]);
             dispatch({ 
                 type: USER_AUTH,
@@ -161,7 +163,7 @@ function inviteFriend(data){
 
 function _setLocalstorage(values){
     values.forEach(value=>{
-        localStorage.setItem(value.kay, value.value);
+        localStorage.setItem(value.key, value.value);
     });
 }
 

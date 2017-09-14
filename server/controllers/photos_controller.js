@@ -1,6 +1,5 @@
 const Album = require('../models/album');
 const aws = require('aws-sdk');
-const updateUsedVolume = require('./upload_controller').updateUsedVolume;
 const s3 = new aws.S3({
         endpoint: 's3-eu-central-1.amazonaws.com',
         signatureVersion: 'v4',

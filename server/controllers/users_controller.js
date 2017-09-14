@@ -56,7 +56,8 @@ function getInfos(req,res,next){
 
 function signin(req,res,next){
     res.json({
-        token : createToken(req.user), 
+        token : createToken(req.user),
+        userId : req.user._id,
         isAdmin : req.user.admin,
         canWrite : req.user.canWrite,
         canDelete : req.user.canDelete
@@ -91,6 +92,7 @@ function signup(req,res,next){
                 if(err) return next(err);
                 mailer.welcome(user.email, user.firstname);
                 res.json({
+                    userId : req.user._id,
                     token : createToken(user),
                     isAdmin : user.admin,
                     canWrite : user.canWrite,

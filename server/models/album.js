@@ -5,6 +5,10 @@ const mongoose = require('mongoose'),
 
 const photoSchema = new mongoose.Schema({
     filename : String,
+    uploader : {
+      type: Schema.ObjectId,
+      ref: 'User'
+    },
     thumb : String,
     medium : String,
     original : String,
