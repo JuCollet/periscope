@@ -27,11 +27,11 @@ function photoDelete(albumId, photoId, filename, cb){
                 payload : album    
             });        
         })
-        .catch(_=>{
+        .catch(err=>{
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Oups, action impossible...",
+                    message : err.response.data,
                     type : "error"
                 }
             }); 
@@ -55,11 +55,11 @@ function photoUpdate(photoId, data, cb){
                 payload: album 
             });        
         })
-        .catch(_=>{
+        .catch(err=>{
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Oups, action impossible...",
+                    message : err.response.data,
                     type: "error"
                 }
             });                

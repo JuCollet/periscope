@@ -106,7 +106,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
@@ -995,7 +995,7 @@ var Landing = function (_Component) {
                                         return _this2.props.tilt(_this2.LandingBox);
                                     } });
                             } }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: "/signup/:friendId", render: function render(props) {
+                        _react2.default.createElement(_reactRouterDom.Route, { path: "/signup/:token/:sender", render: function render(props) {
                                 return _react2.default.createElement(_Signup2.default, { tilt: function tilt(_) {
                                         return _this2.props.tilt(_this2.LandingBox);
                                     } });
@@ -1140,7 +1140,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(51)(content, options);
+var update = __webpack_require__(52)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1172,7 +1172,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(51)(content, options);
+var update = __webpack_require__(52)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1201,7 +1201,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fileUpload = undefined;
 
-var _axios = __webpack_require__(38);
+var _axios = __webpack_require__(39);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1245,7 +1245,7 @@ function fileUpload(files, id, cb) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: err.response.data.error.message,
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -1477,7 +1477,7 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1914,13 +1914,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(15);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
-var _user = __webpack_require__(53);
+var _user = __webpack_require__(37);
 
-var _Loading = __webpack_require__(37);
+var _Loading = __webpack_require__(38);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -2084,7 +2084,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _redux = __webpack_require__(8);
+
+var _reactRedux = __webpack_require__(5);
+
+var _user = __webpack_require__(37);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2095,13 +2103,44 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MyFriends = function (_Component) {
     _inherits(MyFriends, _Component);
 
-    function MyFriends() {
+    function MyFriends(props) {
         _classCallCheck(this, MyFriends);
 
-        return _possibleConstructorReturn(this, (MyFriends.__proto__ || Object.getPrototypeOf(MyFriends)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (MyFriends.__proto__ || Object.getPrototypeOf(MyFriends)).call(this, props));
+
+        _this.state = {
+            friendName: "",
+            friendEmail: "",
+            canWrite: false,
+            canDelete: false
+        };
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.onSubmit = _this.onSubmit.bind(_this);
+        return _this;
     }
 
     _createClass(MyFriends, [{
+        key: "handleInputChange",
+        value: function handleInputChange(e) {
+            if (e.target.type === "checkbox") {
+                return this.setState(_defineProperty({}, e.target.name, !this.state[e.target.name]));
+            }
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
+        }
+    }, {
+        key: "onSubmit",
+        value: function onSubmit(e) {
+            e.preventDefault();
+            var _state = this.state,
+                friendName = _state.friendName,
+                friendEmail = _state.friendEmail,
+                canWrite = _state.canWrite,
+                canDelete = _state.canDelete;
+
+            var data = { friendName: friendName, friendEmail: friendEmail, canWrite: canWrite, canDelete: canDelete };
+            this.props.inviteFriend(data);
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -2109,13 +2148,58 @@ var MyFriends = function (_Component) {
                 null,
                 _react2.default.createElement(
                     "h3",
-                    null,
+                    { className: "margin-md-bottom" },
                     "Tes amis"
                 ),
                 _react2.default.createElement(
                     "h3",
-                    null,
-                    "Ajouter un ami"
+                    { className: "margin-md-bottom" },
+                    "Inviter un ami"
+                ),
+                _react2.default.createElement(
+                    "form",
+                    { onSubmit: this.onSubmit },
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-top margin-sm-bottom" },
+                        "Quel est son nom ?"
+                    ),
+                    _react2.default.createElement("input", { name: "friendName", type: "text", placeholder: "Pr\xE9nom", onChange: this.handleInputChange, value: this.state.friendName, className: "small-input" }),
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "margin-md-top margin-sm-bottom" },
+                        "Son adresse E-Mail ?"
+                    ),
+                    _react2.default.createElement("input", { name: "friendEmail", type: "email", placeholder: "Adresse E-mail", onChange: this.handleInputChange, value: this.state.friendEmail, className: "small-input" }),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "margin-sm-bottom margin-md-top" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "margin-sm-bottom" },
+                            _react2.default.createElement("input", { type: "checkbox", name: "canWrite", onChange: this.handleInputChange }),
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "canWrite", className: "txt-darkGrey margin-sm-left" },
+                                "Autoriser \xE0 ajouter des photos ou \xE0 \xE9diter les contenus"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            null,
+                            _react2.default.createElement("input", { type: "checkbox", name: "canDelete", onChange: this.handleInputChange }),
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "canDelete", className: "txt-darkGrey margin-sm-left" },
+                                "Autoriser \xE0 supprimer des photos ou des albums"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { type: "submit", className: "button button-small button-white button-hover-green margin-sm-top" },
+                        "Inviter"
+                    )
                 )
             );
         }
@@ -2124,7 +2208,17 @@ var MyFriends = function (_Component) {
     return MyFriends;
 }(_react.Component);
 
-exports.default = MyFriends;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ inviteFriend: _user.inviteFriend }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MyFriends);
 
 /***/ }),
 
@@ -2198,13 +2292,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _VolumeGauge = __webpack_require__(223);
 
 var _VolumeGauge2 = _interopRequireDefault(_VolumeGauge);
 
-var _Loading = __webpack_require__(37);
+var _Loading = __webpack_require__(38);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -2347,13 +2441,13 @@ var _search = __webpack_require__(77);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
-var _lodash = __webpack_require__(44);
+var _lodash = __webpack_require__(45);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Loading = __webpack_require__(37);
+var _Loading = __webpack_require__(38);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -2459,7 +2553,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _Dropbox = __webpack_require__(124);
 
@@ -2595,7 +2689,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _menu = __webpack_require__(122);
 
@@ -2681,7 +2775,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
@@ -2691,7 +2785,7 @@ var _photos = __webpack_require__(76);
 
 var _search = __webpack_require__(77);
 
-var _lodash = __webpack_require__(44);
+var _lodash = __webpack_require__(45);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -2796,11 +2890,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _reactRouterDom = __webpack_require__(15);
 
-var _user = __webpack_require__(53);
+var _user = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2962,9 +3056,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _user = __webpack_require__(53);
+var _user = __webpack_require__(37);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _reactRouterDom = __webpack_require__(15);
 
@@ -2994,7 +3088,8 @@ var Signup = function (_Component) {
             password: "",
             passwordValidation: "",
             error: null,
-            bucket: _this.props.match.params.friendId ? _this.props.match.params.friendId : null
+            token: _this.props.match.params.token ? _this.props.match.params.token : null,
+            sponsor: _this.props.match.params.sponsor ? _this.props.match.params.sponsor : null
         };
         return _this;
     }
@@ -3028,7 +3123,7 @@ var Signup = function (_Component) {
                 email = _state.email,
                 password = _state.password,
                 passwordValidation = _state.passwordValidation,
-                bucket = _state.bucket;
+                token = _state.token;
 
 
             if (!firstName || firstName.length < 2) {
@@ -3061,7 +3156,7 @@ var Signup = function (_Component) {
                     errorField: null
                 });
             }
-            this.props.signUpUser({ firstName: firstName, email: email, password: password, bucket: bucket }, this.props.history);
+            this.props.signUpUser({ firstName: firstName, email: email, password: password, token: token }, this.props.history);
         }
     }, {
         key: "renderStyle",
@@ -3229,7 +3324,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reduxForm = __webpack_require__(75);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _albums = __webpack_require__(31);
 
@@ -3607,7 +3702,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 __webpack_require__(594);
 
@@ -3702,13 +3797,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _reactHammerjs = __webpack_require__(74);
 
 var _reactHammerjs2 = _interopRequireDefault(_reactHammerjs);
 
-var _lodash = __webpack_require__(44);
+var _lodash = __webpack_require__(45);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -3720,7 +3815,7 @@ var _SmoothScroll2 = _interopRequireDefault(_SmoothScroll);
 
 var _albums = __webpack_require__(31);
 
-var _Loading = __webpack_require__(37);
+var _Loading = __webpack_require__(38);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -3892,7 +3987,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _Tags = __webpack_require__(54);
 
@@ -4298,7 +4393,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _photos = __webpack_require__(76);
 
@@ -4462,7 +4557,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _reactRouterDom = __webpack_require__(15);
 
@@ -4561,7 +4656,7 @@ var PhotoInfo = function (_Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "wrapper-padding wrapper-fullHeight bkg-white", ref: this.props.photoInfoDomElement },
+                { className: "wrapper-padding container-center wrapper-fullHeight bkg-white", ref: this.props.photoInfoDomElement },
                 _react2.default.createElement(
                     "div",
                     { className: "content-page" },
@@ -4642,9 +4737,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _redux = __webpack_require__(8);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
-var _axios = __webpack_require__(38);
+var _axios = __webpack_require__(39);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -4778,7 +4873,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
@@ -4788,7 +4883,7 @@ var _albums = __webpack_require__(31);
 
 var _search = __webpack_require__(77);
 
-var _Loading = __webpack_require__(37);
+var _Loading = __webpack_require__(38);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -4969,11 +5064,11 @@ var _redux = __webpack_require__(8);
 
 var _reactRouterDom = __webpack_require__(15);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _menu = __webpack_require__(122);
 
-var _user = __webpack_require__(53);
+var _user = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5117,7 +5212,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
@@ -5194,11 +5289,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(52);
+var _reactDom = __webpack_require__(53);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRedux = __webpack_require__(6);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(8);
 
@@ -5306,7 +5401,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(12);
 
-var _lodash = __webpack_require__(44);
+var _lodash = __webpack_require__(45);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -5430,7 +5525,7 @@ exports.default = function () {
 
 var _actiontypes = __webpack_require__(12);
 
-var _lodash = __webpack_require__(44);
+var _lodash = __webpack_require__(45);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -6355,7 +6450,7 @@ exports.searchAlbum = exports.deleteAlbum = exports.createAlbum = exports.albumT
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
 
-var _axios = __webpack_require__(38);
+var _axios = __webpack_require__(39);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -6396,7 +6491,7 @@ function albumsFetch() {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Albums introuvables...",
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -6418,11 +6513,11 @@ function albumFetch(id) {
                 type: _actiontypes.ALBUM_FETCH,
                 payload: album
             });
-        }).catch(function (_) {
+        }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Album introuvable...",
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -6470,11 +6565,11 @@ function createAlbum(album, cb) {
                     message: "Album créé !"
                 }
             });
-        }).catch(function (_) {
+        }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de créer cet album",
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -6496,11 +6591,11 @@ function deleteAlbum(albumId, cb) {
                     message: "Album supprimé !"
                 }
             });
-        }).catch(function (_) {
+        }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Impossible de supprimer cet album",
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -6540,6 +6635,179 @@ function searchAlbum(tags) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.inviteFriend = exports.signErrorReset = exports.signOutUser = exports.signUpUser = exports.signInUser = exports.getInfos = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
+
+var _actiontypes = __webpack_require__(12);
+
+var _axios = __webpack_require__(39);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.getInfos = getInfos;
+exports.signInUser = signInUser;
+exports.signUpUser = signUpUser;
+exports.signOutUser = signOutUser;
+exports.signErrorReset = signErrorReset;
+exports.inviteFriend = inviteFriend;
+
+
+var baseUrl = "/api/users/";
+
+function getInfos() {
+    return function (dispatch) {
+        dispatch({
+            type: _actiontypes.FETCHING,
+            payload: { isFetching: true }
+        });
+        _axios2.default.get(baseUrl + "infos", { headers: { authorization: localStorage.getItem('token') } }).then(function (res) {
+            dispatch({
+                type: _actiontypes.FETCHING,
+                payload: { isFetching: false }
+            });
+            dispatch({
+                type: _actiontypes.USER_GET_INFOS,
+                payload: res.data
+            });
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: err.response.data,
+                    type: "error"
+                }
+            });
+        });
+    };
+}
+
+function signInUser(_ref) {
+    var email = _ref.email,
+        password = _ref.password;
+
+    return function (dispatch) {
+        _axios2.default.post(baseUrl + "signin", { email: email.toLowerCase(), password: password }).then(function (res) {
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('isAdmin', res.data.isAdmin);
+            localStorage.setItem('canWrite', res.data.canWrite);
+            localStorage.setItem('canDelete', res.data.canDelete);
+            localStorage.setItem("customer", true);
+            dispatch({
+                type: _actiontypes.USER_AUTH,
+                payload: {
+                    authenticated: true,
+                    isAdmin: res.data.isAdmin,
+                    canWrite: res.data.canWrite,
+                    canDelete: res.data.canDelete
+                }
+            });
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.USER_SIGN_ERROR,
+                payload: {
+                    err: true,
+                    message: err.response.data
+                }
+            });
+        });
+    };
+}
+
+function signOutUser() {
+    return function (dispatch) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('canDelete');
+        localStorage.removeItem('canWrite');
+        dispatch({
+            type: _actiontypes.USER_UNAUTH
+        });
+    };
+}
+
+function signUpUser(user, history) {
+    var userWithLowerCaseEmail = _extends({}, user, { email: user.email.toLowerCase() });
+    return function (dispatch) {
+        _axios2.default.post(baseUrl + "signup", userWithLowerCaseEmail).then(function (res) {
+
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('isAdmin', res.data.isAdmin);
+            localStorage.setItem('canWrite', res.data.canWrite);
+            localStorage.setItem('canDelete', res.data.canDelete);
+            localStorage.setItem("customer", true);
+            dispatch({
+                type: _actiontypes.USER_AUTH,
+                payload: {
+                    authenticated: true,
+                    isAdmin: res.data.isAdmin,
+                    canWrite: res.data.canWrite,
+                    canDelete: res.data.canDelete
+                }
+            });
+            history.push('/app/albums');
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.USER_SIGN_ERROR,
+                payload: {
+                    err: true,
+                    message: err.response.data
+                }
+            });
+        });
+    };
+}
+
+function signErrorReset(message) {
+
+    var payload = {
+        err: false
+    };
+
+    if (message) {
+        payload = _extends({}, payload, { message: "" });
+    }
+
+    return {
+        type: _actiontypes.USER_RESET_ERROR,
+        payload: payload
+    };
+}
+
+function inviteFriend(data) {
+    return function (dispatch) {
+        _axios2.default.post(baseUrl + "invite", data, { headers: { authorization: localStorage.getItem('token') } }).then(function (_) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: "Invitation envoyée !"
+                }
+            });
+        }).catch(function (err) {
+            dispatch({
+                type: _actiontypes.NOTIFICATION_SEND,
+                payload: {
+                    message: err.response.data,
+                    type: "error"
+                }
+            });
+        });
+    };
+}
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 exports.default = Notification;
 
 var _react = __webpack_require__(1);
@@ -6567,7 +6835,7 @@ function Notification(props) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6577,7 +6845,7 @@ module.exports = __webpack_require__(257);
 
 /***/ }),
 
-/***/ 39:
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6660,7 +6928,7 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16110,11 +16378,11 @@ else if(freeModule){// Export for Node.js.
 (freeModule.exports=_)._=_;// Export for CommonJS support.
 freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121), __webpack_require__(50)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121), __webpack_require__(51)(module)))
 
 /***/ }),
 
-/***/ 51:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -16474,145 +16742,6 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 53:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.signErrorReset = exports.signOutUser = exports.signUpUser = exports.signInUser = exports.getInfos = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global localStorage*/
-
-var _actiontypes = __webpack_require__(12);
-
-var _axios = __webpack_require__(38);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.getInfos = getInfos;
-exports.signInUser = signInUser;
-exports.signUpUser = signUpUser;
-exports.signOutUser = signOutUser;
-exports.signErrorReset = signErrorReset;
-
-
-var baseUrl = "/api/users/";
-
-function getInfos() {
-    return function (dispatch) {
-        dispatch({
-            type: _actiontypes.FETCHING,
-            payload: { isFetching: true }
-        });
-        _axios2.default.get(baseUrl + "infos", { headers: { authorization: localStorage.getItem('token') } }).then(function (res) {
-            dispatch({
-                type: _actiontypes.FETCHING,
-                payload: { isFetching: false }
-            });
-            dispatch({
-                type: _actiontypes.USER_GET_INFOS,
-                payload: res.data
-            });
-        }).catch(function (_) {
-            dispatch({
-                type: _actiontypes.NOTIFICATION_SEND,
-                payload: {
-                    message: "Connection impossible",
-                    type: "error"
-                }
-            });
-        });
-    };
-}
-
-function signInUser(_ref) {
-    var email = _ref.email,
-        password = _ref.password;
-
-    return function (dispatch) {
-        _axios2.default.post(baseUrl + "signin", { email: email.toLowerCase(), password: password }).then(function (res) {
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('isAdmin', res.data.isAdmin);
-            localStorage.setItem('canWrite', res.data.canWrite);
-            localStorage.setItem('canDelete', res.data.canDelete);
-            localStorage.setItem("customer", true);
-            dispatch({
-                type: _actiontypes.USER_AUTH,
-                payload: {
-                    authenticated: true,
-                    isAdmin: res.data.isAdmin,
-                    canWrite: res.data.canWrite,
-                    canDelete: res.data.canDelete
-                }
-            });
-        }).catch(function (err) {
-            dispatch({
-                type: _actiontypes.USER_SIGN_ERROR,
-                payload: {
-                    err: true,
-                    message: err.response.data.error.message
-                }
-            });
-        });
-    };
-}
-
-function signOutUser() {
-    return function (dispatch) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('isAdmin');
-        localStorage.removeItem('canDelete');
-        localStorage.removeItem('canWrite');
-        dispatch({
-            type: _actiontypes.USER_UNAUTH
-        });
-    };
-}
-
-function signUpUser(user, history) {
-    var userWithLowerCaseEmail = _extends({}, user, { email: user.email.toLowerCase() });
-    return function (dispatch) {
-        _axios2.default.post(baseUrl + "signup", userWithLowerCaseEmail).then(function (res) {
-            dispatch({ type: _actiontypes.USER_AUTH });
-            localStorage.setItem("customer", true);
-            localStorage.setItem('token', res.data.token);
-            history.push('/app/albums');
-        }).catch(function (err) {
-            dispatch({
-                type: _actiontypes.USER_SIGN_ERROR,
-                payload: {
-                    err: true,
-                    message: err.response.data
-                }
-            });
-        });
-    };
-}
-
-function signErrorReset(message) {
-
-    var payload = {
-        err: false
-    };
-
-    if (message) {
-        payload = _extends({}, payload, { message: "" });
-    }
-
-    return {
-        type: _actiontypes.USER_RESET_ERROR,
-        payload: payload
-    };
-}
-
-/***/ }),
-
 /***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16800,7 +16929,7 @@ module.exports = function (css) {
 /***/ 583:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 
 
@@ -16815,7 +16944,7 @@ exports.push([module.i, "/*! normalize.css v7.0.0 | MIT License | github.com/nec
 /***/ 584:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 
 
@@ -16830,7 +16959,7 @@ exports.push([module.i, ".bulletNav {\n  list-style: none;\n  padding: 0px;\n}\n
 /***/ 585:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 
 
@@ -16845,7 +16974,7 @@ exports.push([module.i, ".volumeGaugeContainer {\n  overflow: hidden;\n  display
 /***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 
 
@@ -16860,7 +16989,7 @@ exports.push([module.i, ".notification-bubble {\n  display: -webkit-box;\n  disp
 /***/ 587:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)(undefined);
+exports = module.exports = __webpack_require__(40)(undefined);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);", ""]);
 
@@ -16914,7 +17043,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(51)(content, options);
+var update = __webpack_require__(52)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -16946,7 +17075,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(51)(content, options);
+var update = __webpack_require__(52)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -16978,7 +17107,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(51)(content, options);
+var update = __webpack_require__(52)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -17007,7 +17136,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.photoSearch = exports.photoUpdate = exports.photoDelete = undefined;
 
-var _axios = __webpack_require__(38);
+var _axios = __webpack_require__(39);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -17038,11 +17167,11 @@ function photoDelete(albumId, photoId, filename, cb) {
                 type: _actiontypes.PHOTO_DELETE,
                 payload: album
             });
-        }).catch(function (_) {
+        }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Oups, action impossible...",
+                    message: err.response.data,
                     type: "error"
                 }
             });
@@ -17064,11 +17193,11 @@ function photoUpdate(photoId, data, cb) {
                 type: _actiontypes.PHOTO_UPDATE,
                 payload: album
             });
-        }).catch(function (_) {
+        }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
                 payload: {
-                    message: "Oups, action impossible...",
+                    message: err.response.data,
                     type: "error"
                 }
             });

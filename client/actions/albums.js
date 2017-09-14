@@ -39,7 +39,7 @@ function albumsFetch(){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Albums introuvables...",
+                    message : err.response.data,
                     type: "error"
                 }
             });            
@@ -63,11 +63,11 @@ function albumFetch(id){
                 payload : album            
             });        
         })
-        .catch(_=>{
+        .catch(err=>{
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Album introuvable...",
+                    message : err.response.data,
                     type: "error"
                 }
             });            
@@ -119,11 +119,11 @@ function createAlbum(album, cb){
                 }
             });
         })
-        .catch(_=>{
+        .catch(err=>{
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de créer cet album",
+                    message : err.response.data,
                     type : "error"
                 }
             });    
@@ -147,11 +147,11 @@ function deleteAlbum(albumId, cb){
                 }
             });            
         })
-        .catch(_=>{
+        .catch(err=>{
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : "Impossible de supprimer cet album",
+                    message : err.response.data,
                     type : "error"
                 }
             });       

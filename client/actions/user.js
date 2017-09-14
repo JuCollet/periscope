@@ -8,7 +8,8 @@ export {
     signInUser,
     signUpUser,
     signOutUser,
-    signErrorReset
+    signErrorReset,
+    inviteFriend
 };
 
 const baseUrl = "/api/users/";
@@ -30,11 +31,11 @@ function getInfos(){
                     payload : res.data
                 });
             })
-            .catch(_=>{
+            .catch(err=>{
                 dispatch({
                     type: NOTIFICATION_SEND,
                     payload : {
-                        message : "Connection impossible",
+                        message : err.response.data,
                         type : "error"
                     }
                 });
@@ -66,7 +67,7 @@ function signInUser({email, password}){
                     type: USER_SIGN_ERROR,
                     payload: {
                         err : true,
-                        message : err.response.data.error.message
+                        message : err.response.data
                     }
                 });
             });
@@ -90,9 +91,21 @@ function signUpUser(user, history){
     return function(dispatch){
         axios.post(baseUrl+"signup", userWithLowerCaseEmail)
         .then(function(res){
-            dispatch({ type: USER_AUTH });
-            localStorage.setItem("customer",true);
+
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('isAdmin', res.data.isAdmin);
+            localStorage.setItem('canWrite', res.data.canWrite);
+            localStorage.setItem('canDelete', res.data.canDelete);
+            localStorage.setItem("customer",true);
+            dispatch({ 
+                type: USER_AUTH,
+                payload : {
+                    authenticated : true,
+                    isAdmin : res.data.isAdmin,
+                    canWrite : res.data.canWrite,
+                    canDelete : res.data.canDelete
+                }
+            });
             history.push('/app/albums');
         })
         .catch(function(err){
@@ -120,5 +133,28 @@ function signErrorReset(message){
     return {
         type: USER_RESET_ERROR,
         payload
+    };
+}
+
+function inviteFriend(data){
+    return function(dispatch){
+        axios.post(baseUrl+"invite", data, {headers : {authorization : localStorage.getItem('token')}})
+        .then(_=> {
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "Invitation envoyée !"
+                }
+            });
+        })
+        .catch(err=>{
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : err.response.data,
+                    type : "error"
+                }
+            });
+        });
     };
 }

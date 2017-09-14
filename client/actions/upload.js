@@ -38,7 +38,7 @@ function fileUpload(files, id, cb){
             dispatch({
                 type: NOTIFICATION_SEND,
                 payload : {
-                    message : err.response.data.error.message,
+                    message : err.response.data,
                     type: "error"
                 }
             });    

@@ -60,7 +60,7 @@ class PhotoInfo extends Component {
         const { url } = this.props.match;
 
         return (
-            <div className="wrapper-padding wrapper-fullHeight bkg-white" ref={this.props.photoInfoDomElement}>
+            <div className="wrapper-padding container-center wrapper-fullHeight bkg-white" ref={this.props.photoInfoDomElement}>
                 <div className="content-page">
                     <div className="content-page-sidemenu">
                         <h2 className="txt-darkBlueGrey margin-md-bottom">Photo</h2>

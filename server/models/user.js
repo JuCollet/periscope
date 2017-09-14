@@ -33,7 +33,13 @@ const userSchema = new Schema({
     canDelete : {
       type : Boolean,
       default : true
-    }
+    },
+    friends : [
+      {
+        friendName : String,
+        friendEmail : String
+      }
+    ]
 });
 
 userSchema.pre('save', function(next){

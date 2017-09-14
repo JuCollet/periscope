@@ -4,7 +4,7 @@ const Album = require('../models/album');
 const mailer = require('../mailer');
 
 module.exports = {
-    inviteFriend : inviteFriend,
+    inviteFriend : inviteFriend, // (friendName = String, friendEmail = String, canWrite = Boolean, canDelete = Boolean)
     getInfos : getInfos,
     signin : signin,
     signup : signup,
@@ -73,7 +73,7 @@ function signup(req,res,next){
             var decodedBucket, decodedCanWrite, decodedCanDelete;
             
             if(req.body.token){
-                const decodedToken = jwt.encode(req.body.token, process.env.JWT_SECRET);
+                const decodedToken = jwt.decode(req.body.token, process.env.JWT_SECRET);
                 decodedBucket = decodedToken.bucket;
                 decodedCanWrite = decodedToken.canWrite;
                 decodedCanDelete = decodedToken.canDelete;
@@ -89,9 +89,13 @@ function signup(req,res,next){
                 canDelete : decodedCanDelete
             }, function(err, user){
                 if(err) return next(err);
-                console.log(user);
                 mailer.welcome(user.email, user.firstname);
-                res.json({token : createToken(user)});
+                res.json({
+                    token : createToken(user),
+                    isAdmin : user.admin,
+                    canWrite : user.canWrite,
+                    canDelete : user.canDelete
+                });
             });
         }
     });
@@ -109,7 +113,7 @@ function inviteFriend(req,res,next){
         exp : timeStamp + 86400000
     };
     const token = jwt.encode(data, process.env.JWT_SECRET);
-    mailer.invite(req.user.firstName, req.body.destinationName, req.body.destinationEmail, token);
+    mailer.invite(req.user.firstname, req.body.friendName, req.body.friendEmail, token);
     res.json({status:"ok"});
 
 }

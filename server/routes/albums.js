@@ -8,8 +8,8 @@ const express = require('express'),
 
 albumRouter.route('/')
     .get(passportService.requireAuth, albumsController.getAlbums)
-    .post(passportService.requireAuth, albumsController.createAlbum)
-    .delete(passportService.requireAuth, albumsController.deleteAlbum);
+    .post(passportService.requireAuth, authorizations.canWrite, albumsController.createAlbum)
+    .delete(passportService.requireAuth, authorizations.canDelete, albumsController.deleteAlbum);
 
 albumRouter.route('/searchalbum/')
     .post(passportService.requireAuth, albumsController.searchAlbum);
