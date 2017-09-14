@@ -8,22 +8,58 @@ body(style="background-color:#f2f2f2")
     table(border="0" cellspacing="0" cellpadding="0" width="650" style="background-color:white; border-collapse:collapse;")
       tr
         th
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/PeriscopeHeader.png" alt="Periscope")
+          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_header.png" alt="Periscope")
       tr
-        td(align="center" style="color:white;background-color:#4EE898;padding-top:50px;padding-left:50px;padding-right:50px")
-          h1(style="font-size:2em;") Bienvenue #{name} !
+        td(align="center" style="color:white;background-color:#4EE898;padding-top:75px;padding-left:50px;padding-right:50px")
+          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bigbulletparty.png")
       tr
-        td(align="center" style="font-size:1em;font-weight:light;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
-          p Dorénavant, tu pourras sauvegarder toutes tes photos en ligne, les rechercher et les partager, très facilement.
+        td(align="center" style="color:white;background-color:#4EE898;padding-top:20px;padding-left:100px;padding-right:100px")
+          h1(style="font-size:3em;") <b> Bienvenue #{name}&nbsp;! </b>
+          p(style="color:white;font-size:16px;") Dorénavant, tu pourras sauvegarder toutes tes photos en ligne, les rechercher et les partager, très facilement.
       tr
-        td(align="center" style="font-size:1em;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
-          p Nous te souhaitons beaucoup de plaisir parmi nous !
+        td(align="center" style="color:white;background-color:#4EE898;padding-top:20px;padding-left:100px;padding-right:100px")
+          a(href="https://periscope.herokuapp.com/signin/" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#4EE898;text-decoration:none;border-radius:3px;background-color:white;border-top:12px solid white;border-bottom:12px solid white;border-right:18px solid white;border-left:18px solid white;display:inline-block;") Je me connecte
           p &nbsp;
       tr
-        td(align="center" style="font-weight:light;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
-          a(href="https://periscope.herokuapp.com" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#4EE898;text-decoration:none;border-radius:3px;background-color:white;border-top:12px solid white;border-bottom:12px solid white;border-right:18px solid white;border-left:18px solid white;display:inline-block;") Se connecter
-          p &nbsp;
+        td(align="center" style="font-size:16px;font-weight:light;color:white;background-color:#white;padding-top:50px;padding-left:150px;padding-right:150px")
+          tr(align="center")
+            td(style="display:inline-block;width:275px;")
+              img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/app_dropPhotos.png" width="200px")
+            td(valign="top" style="text-align:left;display:inline-block;width:300px;padding-right:30px;")
+              h2(style="color:#5A646E;font-size:24px;") Envoie tes photos
+              p(style="color:#5A646E;font-size:16px;") Après avoir créé un album, ajoute y des photos en glissant simplement tes fichiers (JPEG ou PNG) sur la carte de l'album.
+              p(style="color:#5A646E;font-size:16px;") Tu peux envoyer <b>jusqu'à 50 fichiers</b> à la fois, mais sois patient pendant le transfert et attends toujours la confirmation d'expédition avant de quitter la fenêtre.
+          tr
+            td(style="padding-top:20px;padding-bottom:20px;")
+              hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
+          tr(align="center")
+            td(style="display:inline-block;width:275px;")
+              img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_tagsSearch.png" width="175px")
+            td(valign="top" style="text-align:left;display:inline-block;width:300px;padding-right:30px;")
+              h2(style="color:#5A646E;font-size:24px;") Recherche par mot-clé
+              p(style="color:#5A646E;font-size:16px;") Dans ta gallerie d'albums, fais une recherche en précédant ton mot-clé par un <b>hashtag</b> ("#").
+              p(style="color:#5A646E;font-size:16px;") Tu rechercheras ainsi tous les albums dont au moins une photo contient ce mot-clé.
+          tr
+            td(style="padding-top:20px;padding-bottom:20px;")
+              hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
+          tr(align="center")
+            td(style="display:inline-block;width:275px;")
+              img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_sendphoto.png" width="175px")
+            td(valign="top" style="text-align:left;display:inline-block;width:300px;padding-right:30px;")
+              h2(style="color:#5A646E;font-size:24px;") Partage une image
+              p(style="color:#5A646E;font-size:16px;") Dans les options d'une image (bouton "info"), clique sur <b>"Envoyer par E-mail"</b> et tape le nom de ton contact, son adresse E-mail et rédige un petit message.
+              p(style="color:#5A646E;font-size:16px;") Nous lui enverrons alors E-mail contenant une miniature de la photo ainsi qu'un lien de téléchargement vers le fichier original.
+          tr
+            td(style="padding-top:20px;padding-bottom:20px;")
+              hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
+          tr
+            td(align="center" style="padding-top:20px;")
+              a(href="https://periscope.herokuapp.com/signin/" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:white;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") Je me connecte
+          tr
+            td(style="padding-top:40px")
+
+
       tr(align="center" style="background-color:#2e2e2e;font-size:12px;color:white;")
         td
           p <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
-      p &nbsp;
+  p &nbsp;

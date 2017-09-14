@@ -48,10 +48,10 @@ function signInUser({email, password}){
         axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
                 localStorage.setItem('token', res.data.token);
-                localStorage.setItem('isAdmin', res.data.isAdmin);
-                localStorage.setItem('canWrite', res.data.canWrite);
-                localStorage.setItem('canDelete', res.data.canDelete);
                 localStorage.setItem("customer",true);
+                sessionStorage.setItem('isAdmin', res.data.isAdmin);
+                sessionStorage.setItem('canWrite', res.data.canWrite);
+                sessionStorage.setItem('canDelete', res.data.canDelete);
                 dispatch({ 
                     type: USER_AUTH,
                     payload : {
@@ -67,7 +67,7 @@ function signInUser({email, password}){
                     type: USER_SIGN_ERROR,
                     payload: {
                         err : true,
-                        message : err.response.data
+                        message : err.response.data.error.message
                     }
                 });
             });
@@ -77,9 +77,9 @@ function signInUser({email, password}){
 function signOutUser(){
     return function(dispatch){
         localStorage.removeItem('token');
-        localStorage.removeItem('isAdmin');
-        localStorage.removeItem('canDelete');
-        localStorage.removeItem('canWrite');
+        sessionStorage.removeItem('isAdmin');
+        sessionStorage.removeItem('canDelete');
+        sessionStorage.removeItem('canWrite');
         dispatch({
             type: USER_UNAUTH
         });
@@ -91,12 +91,11 @@ function signUpUser(user, history){
     return function(dispatch){
         axios.post(baseUrl+"signup", userWithLowerCaseEmail)
         .then(function(res){
-
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('isAdmin', res.data.isAdmin);
-            localStorage.setItem('canWrite', res.data.canWrite);
-            localStorage.setItem('canDelete', res.data.canDelete);
-            localStorage.setItem("customer",true);
+            localStorage.setItem('customer',true);
+            sessionStorage.setItem('isAdmin', res.data.isAdmin);
+            sessionStorage.setItem('canWrite', res.data.canWrite);
+            sessionStorage.setItem('canDelete', res.data.canDelete);
             dispatch({ 
                 type: USER_AUTH,
                 payload : {

@@ -63,7 +63,7 @@ function invite(senderName, destinationName, destinationEmail, token){
         content = new helper.Content('text/html', pug.renderFile(path.join(__dirname, './views/invite.pug'), {
           senderName : senderName,
           destinationName : destinationName,
-          destinationLink : "https://periscope.herokuapp.com/signup/" + token + "/" + senderName
+          destinationLink : "https://periscope.herokuapp.com/signup/" + token + "/" + senderName + "/" + destinationName
         })),
         mail = new helper.Mail(from_email, subject, to_email, content);
 

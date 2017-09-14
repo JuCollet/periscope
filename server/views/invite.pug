@@ -8,23 +8,26 @@ body(style="background-color:#f2f2f2")
     table(border="0" cellspacing="0" cellpadding="0" width="650" style="background-color:white; border-collapse:collapse;")
       tr
         th
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/PeriscopeHeader.png" alt="Periscope")
+          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_header.png" alt="Periscope")
       tr
-        td(align="center" style="color:white;background-color:#4EE898;padding-top:50px;padding-left:50px;padding-right:50px")
-          h1(style="font-size:2em;") <b> Bonjour #{destinationName}, </b></br> #{senderName} voudrait t'inviter à rejoindre sa photothèque !
+        td(align="center" style="color:white;background-color:#4EE898;padding-top:75px;padding-left:50px;padding-right:50px")
+          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bigbulletfriend.png")
       tr
-        td(align="center" style="font-size:1.3em;font-weight:light;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
-          p En cliquant sur le bouton ci-dessous, tu pourras t'inscrire gratuitement sur Periscope et rejoindre la photothèque de #{senderName}
-          p Dépêche-toi, ce lien n'est valide que 24h !
+        td(align="center" style="color:white;background-color:#4EE898;padding-top:40px;padding-left:100px;padding-right:100px")
+          h1(style="font-size:2em;color:white;") <b> Bonjour #{destinationName}, </b>
+          h1(style="font-weight:400;color:white;") #{senderName} voudrait t'inviter à rejoindre sa photothèque !
       tr
-        td(align="center" style="font-size:1em;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
-          p Nous te souhaitons beaucoup de plaisir parmi nous !
-          p &nbsp;
+        td(align="center" style="font-size:16px;font-weight:light;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
+          p(style="color:white;font-size:16px;") Inscris-toi gratuitement et rejoins maintenant la photothèque de #{senderName} :
       tr
-        td(align="center" style="font-weight:light;color:white;background-color:#4EE898;padding-left:150px;padding-right:150px")
+        td(align="center" style="font-weight:light;color:white;background-color:#4EE898;padding-top:20px;padding-left:100px;padding-right:100px")
           a(href=destinationLink target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#4EE898;text-decoration:none;border-radius:3px;background-color:white;border-top:12px solid white;border-bottom:12px solid white;border-right:18px solid white;border-left:18px solid white;display:inline-block;") Je m'inscris
           p &nbsp;
+          p(style="color:white;font-size:16px;") <b>Dépêche-toi, ce lien n'est valide que 24h !</b>
+          p(style="color:white;font-size:16px;line-height:150%;") Nous te souhaitons beaucoup de plaisir parmi nous,<br/><i>l'équipe Periscope.</i>
+          p &nbsp;
+
       tr(align="center" style="background-color:#2e2e2e;font-size:12px;color:white;")
         td
-          p <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
-      p &nbsp;
+          p(style="color:white;") <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
+  p &nbsp;

@@ -28,7 +28,7 @@ const localLogin = new LocalStrategy({ usernameField : 'email'}, function(email,
                 } else {
                     return done(null, user);
                 }
-            });            
+            }); 
         } else {
             const err = new Error('Utilisateur introuvable');
             err.status = 404;            

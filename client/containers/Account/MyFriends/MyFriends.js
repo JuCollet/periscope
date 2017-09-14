@@ -37,7 +37,6 @@ class MyFriends extends Component {
     render(){
         return(
             <div>
-                <h3 className="margin-md-bottom">Tes amis</h3>
                 <h3 className="margin-md-bottom">Inviter un ami</h3>
                 <form onSubmit={this.onSubmit}>
                     <h4 className="margin-md-top margin-sm-bottom">Quel est son nom ?</h4>

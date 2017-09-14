@@ -12,7 +12,7 @@ class Signup extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.state = {
-            firstName : "",
+            firstName : this.props.match.params.name ? this.props.match.params.name : "",
             email : "",
             password : "",
             passwordValidation : "",
@@ -84,7 +84,6 @@ class Signup extends Component {
     }
 
     render(){
-        
         return(
             <div>
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>
@@ -95,6 +94,7 @@ class Signup extends Component {
                     <input value={this.state.password} style={this.renderStyle('password')} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Mot de passe" aria-label="mot de passe" onChange={this.onChangeHandler} />
                     <input value={this.state.passwordValidation} style={this.renderStyle('passwordValidation')} className="small-input margin-sm-bottom" name="passwordValidation" type="password" placeholder="Confirmez le mot de passe" aria-label="Confirmation du mot de passe" onChange={this.onChangeHandler} />
                     {this.state.error ? <div className="txt-red"> {this.state.error} </div> : this.props.error ? <div className="txt-red"> {this.props.error.message} </div> : null}
+                    {this.state.sponsor && this.state.sponsor !== "0" ? <div className="txt-mediumGrey margin-sm-top"><i className="fa fa-user-circle-o margin-sm-right"></i>Invité(e) par {this.state.sponsor} </div> : null }
                     <button className="button button-medium button-white button-animation margin-md-top" type="submit">je m'inscris</button>
                 </form>   
             </div>
