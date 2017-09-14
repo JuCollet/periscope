@@ -2,7 +2,6 @@
 
 const express = require('express'),
       Album = require('../models/album'),
-      User = require('../models/user'),      
       aws = require('aws-sdk'),
       fs = require('fs'),
       sharp = require('sharp'),
@@ -18,7 +17,8 @@ const express = require('express'),
       });
 
 module.exports = {
-    sendFiles : sendFiles
+    sendFiles : sendFiles,
+    checkSize : checkSize
 };
 
 function sendFiles (req,res,next){
@@ -103,4 +103,8 @@ function sendFiles (req,res,next){
         });             
             
     });
+}
+
+function checkSize(req,res,next){
+    next();
 }

@@ -177,8 +177,7 @@ var Dropbox = function (_Component) {
           data.append('photos', dt.files[i], dt.files[i].name);
         }
       }
-
-      this.props.fileUpload(data, id, callback);
+      this.props.fileUpload(data, id, dataSize, callback);
     }
   }, {
     key: "render",
@@ -207,11 +206,11 @@ var Dropbox = function (_Component) {
   return Dropbox;
 }(_react.Component);
 
-function mapDispacthToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return (0, _redux.bindActionCreators)({ fileUpload: _upload.fileUpload }, dispatch);
 }
 
-exports.default = (0, _reactRedux.connect)(null, mapDispacthToProps)(Dropbox);
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Dropbox);
 
 /***/ }),
 
@@ -1214,33 +1213,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.fileUpload = fileUpload;
 
 
-function fileUpload(files, id, cb) {
+var baseUrl = "/api/users/";
 
+function fileUpload(files, id, dataSize, cb) {
     return function (dispatch) {
-        (0, _axios2.default)({
-            url: "/api/upload/" + id,
-            method: 'put',
-            data: files,
-            headers: { 'Content-Type': 'multipart/form-data', authorization: localStorage.getItem('token') },
-            onUploadProgress: function onUploadProgress(progressEvent) {
-                document.getElementById(id + "-progress").style.height = progressEvent.loaded / progressEvent.total * 100 + "%";
-                if (progressEvent.loaded === progressEvent.total) {
-                    document.getElementById(id + "-icon").classList.remove("dropIconAnim", "fa-paper-plane");
-                    document.getElementById(id + "-icon").classList.add("fa-cog", "fa-spin", "txt-white");
-                }
+
+        _axios2.default.get(baseUrl + "infos", { headers: { authorization: localStorage.getItem('token') } }).then(function (res) {
+            // Check if remaining space of user is big enough for files he's trying to send;
+            if (res.data.volume - res.data.usedVolume < dataSize) {
+                return dispatch({
+                    type: _actiontypes.NOTIFICATION_SEND,
+                    payload: {
+                        message: "Espace insuffisant",
+                        type: "error"
+                    }
+                });
+            } else {
+                (0, _axios2.default)({
+                    url: "/api/upload/" + id,
+                    method: 'put',
+                    data: files,
+                    headers: { 'Content-Type': 'multipart/form-data', authorization: localStorage.getItem('token') },
+                    onUploadProgress: function onUploadProgress(progressEvent) {
+                        document.getElementById(id + "-progress").style.height = progressEvent.loaded / progressEvent.total * 100 + "%";
+                        if (progressEvent.loaded === progressEvent.total) {
+                            document.getElementById(id + "-icon").classList.remove("dropIconAnim", "fa-paper-plane");
+                            document.getElementById(id + "-icon").classList.add("fa-cog", "fa-spin", "txt-white");
+                        }
+                    }
+                }).then(function (res) {
+                    cb();
+                    dispatch({
+                        type: _actiontypes.UPLOAD_FILES,
+                        payload: res
+                    });
+                    dispatch({
+                        type: _actiontypes.NOTIFICATION_SEND,
+                        payload: {
+                            message: "Photos envoyées !"
+                        }
+                    });
+                }).catch(function (err) {
+                    dispatch({
+                        type: _actiontypes.NOTIFICATION_SEND,
+                        payload: {
+                            message: err.response.data,
+                            type: "error"
+                        }
+                    });
+                });
             }
-        }).then(function (res) {
-            cb();
-            dispatch({
-                type: _actiontypes.UPLOAD_FILES,
-                payload: res
-            });
-            dispatch({
-                type: _actiontypes.NOTIFICATION_SEND,
-                payload: {
-                    message: "Photos envoyées !"
-                }
-            });
         }).catch(function (err) {
             dispatch({
                 type: _actiontypes.NOTIFICATION_SEND,
@@ -1981,10 +2003,14 @@ var Account = function (_Component) {
                 label: "Infos personnelles"
             }, {
                 path: "friends",
-                label: "Mes amis"
+                label: "Mes amis",
+                isAdmin: true
             }];
 
             return links.map(function (link) {
+                if (link.isAdmin && !_this2.props.user.isAdmin) {
+                    return null;
+                }
                 return _react2.default.createElement(
                     "li",
                     { className: "margin-sm-bottom", style: _this2.renderLinkStyle(link), key: link.label },
@@ -2000,11 +2026,11 @@ var Account = function (_Component) {
         key: "render",
         value: function render() {
 
-            if (!this.props.userInfos) {
+            if (!this.props.user.infos) {
                 return _react2.default.createElement(_Loading2.default, null);
             }
 
-            var infos = this.props.userInfos;
+            var infos = this.props.user.infos;
             var path = this.props.match.path;
 
 
@@ -2060,7 +2086,7 @@ function mapDispatchToprops(dispatch) {
 
 function mapStateTopProps(state) {
     return {
-        userInfos: state.user.infos
+        user: state.user
     };
 }
 

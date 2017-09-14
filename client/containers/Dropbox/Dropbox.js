@@ -47,8 +47,7 @@ class Dropbox extends Component {
         data.append('photos', dt.files[i], dt.files[i].name);
       }
     }
-    
-    this.props.fileUpload(data, id, callback);
+    this.props.fileUpload(data, id, dataSize, callback);
     
   }
   
@@ -66,8 +65,8 @@ class Dropbox extends Component {
   }
 }
         
-    function mapDispacthToProps(dispatch){
+    function mapDispatchToProps(dispatch){
       return bindActionCreators({ fileUpload }, dispatch);
     }
     
-export default connect(null, mapDispacthToProps)(Dropbox);
+export default connect(null, mapDispatchToProps)(Dropbox);

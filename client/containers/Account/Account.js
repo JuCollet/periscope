@@ -36,12 +36,16 @@ class Account extends Component {
             },
             {
                 path : "friends",
-                label : "Mes amis"
+                label : "Mes amis",
+                isAdmin : true
             },            
         ];
         
         return (
             links.map(link=>{
+                if(link.isAdmin && !this.props.user.isAdmin){
+                    return null;
+                }
                 return <li className="margin-sm-bottom" style={this.renderLinkStyle(link)} key={link.label}><Link to={`${path}/${link.path}`}>{link.label}</Link></li>;
             })
         );
@@ -49,11 +53,11 @@ class Account extends Component {
     
     render(){
         
-        if(!this.props.userInfos){
+        if(!this.props.user.infos){
             return <Loading />;
         }
         
-        const infos = this.props.userInfos;
+        const { infos } = this.props.user;
         const { path } = this.props.match;
 
         return (
@@ -85,7 +89,7 @@ function mapDispatchToprops(dispatch){
 
 function mapStateTopProps(state){
     return {
-        userInfos : state.user.infos,
+        user : state.user,
     };
 }
 
