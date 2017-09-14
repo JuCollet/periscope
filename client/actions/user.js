@@ -47,11 +47,13 @@ function signInUser({email, password}){
     return function(dispatch){
         axios.post(baseUrl+"signin", {email : email.toLowerCase(), password})
             .then(function(res){
-                localStorage.setItem('token', res.data.token);
-                localStorage.setItem("customer",true);
-                sessionStorage.setItem('isAdmin', res.data.isAdmin);
-                sessionStorage.setItem('canWrite', res.data.canWrite);
-                sessionStorage.setItem('canDelete', res.data.canDelete);
+                _setLocalstorage([
+                    {key: "token",value: res.data.token},
+                    {key: "customer",value: true},
+                    {key: "isAdmin",value: res.data.isAdmin},
+                    {key: "canWrite",value: res.data.canWrite},
+                    {key: "canDelete",value: res.data.canDelete},
+                ]);
                 dispatch({ 
                     type: USER_AUTH,
                     payload : {
@@ -76,10 +78,7 @@ function signInUser({email, password}){
 
 function signOutUser(){
     return function(dispatch){
-        localStorage.removeItem('token');
-        sessionStorage.removeItem('isAdmin');
-        sessionStorage.removeItem('canDelete');
-        sessionStorage.removeItem('canWrite');
+        _removeFromLocalStorage(['token','isAdmin','canWrite','canDelete']);
         dispatch({
             type: USER_UNAUTH
         });
@@ -91,11 +90,13 @@ function signUpUser(user, history){
     return function(dispatch){
         axios.post(baseUrl+"signup", userWithLowerCaseEmail)
         .then(function(res){
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('customer',true);
-            sessionStorage.setItem('isAdmin', res.data.isAdmin);
-            sessionStorage.setItem('canWrite', res.data.canWrite);
-            sessionStorage.setItem('canDelete', res.data.canDelete);
+            _setLocalstorage([
+                {key: "token",value: res.data.token},
+                {key: "customer",value: true},
+                {key: "isAdmin",value: res.data.isAdmin},
+                {key: "canWrite",value: res.data.canWrite},
+                {key: "canDelete",value: res.data.canDelete},
+            ]);
             dispatch({ 
                 type: USER_AUTH,
                 payload : {
@@ -156,4 +157,16 @@ function inviteFriend(data){
             });
         });
     };
+}
+
+function _setLocalstorage(values){
+    values.forEach(value=>{
+        localStorage.setItem(value.kay, value.value);
+    });
+}
+
+function _removeFromLocalStorage(values){
+    values.forEach(value=>{
+        localStorage.removeItem(value);
+    });
 }

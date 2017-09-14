@@ -13,7 +13,7 @@ class Signup extends Component {
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.state = {
             firstName : this.props.match.params.name ? this.props.match.params.name : "",
-            email : "",
+            email : this.props.match.params.email ? this.props.match.params.email : "",
             password : "",
             passwordValidation : "",
             error : null,
