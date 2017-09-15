@@ -2,6 +2,9 @@ const Album = require('../models/album');
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const aws = require('aws-sdk');
+const fs = require('fs');
+const join = require('path').join;
+const s3zip = require('s3-zip');
 const s3 = new aws.S3({
         endpoint: 's3-eu-central-1.amazonaws.com',
         signatureVersion: 'v4',
@@ -16,6 +19,7 @@ aws.config.update({
 module.exports = {
     createAlbum : createAlbum,
     deleteAlbum : deleteAlbum,
+    downloadAlbum : downloadAlbum,
     getAlbum : getAlbum,
     getAlbums : getAlbums,
     searchAlbum : searchAlbum,
@@ -152,5 +156,33 @@ function updateAlbumThumb(req,res,next){
     Album.findByIdAndUpdate(req.body.id, {'$set':  {'albumThumb': req.body.albumThumb}}, { new : true }, function(err, album){
         if(err) return next(err);
         res.json(album);
+    });
+}
+
+function downloadAlbum(req,res,next){
+    
+    Album.findById(req.params.id, function(err, album){
+        if(err) return next(err);
+        const files = album.photos.map(photo => {
+            return "original" + photo.filename;
+        });
+        
+        
+        const filePath = join(__dirname, '../photosZip.zip');
+        const output = fs.createWriteStream(filePath);
+        
+        s3zip
+            .archive({
+            region : 'eu-central-1',
+            bucket : 'periscopefiles'
+            }, 'usersFiles/', files)
+            .pipe(output)
+            .on('finish', function(){
+                res.download(filePath, function(){
+                    fs.unlink(filePath, function(){
+                        console.log('File deleted');
+                    });
+                });
+            });
     });
 }

@@ -12,6 +12,20 @@ import Patchwork from "../../components/Patchwork/Patchwork";
 
 class Photos extends Component {
   
+  constructor(props){
+    super(props);
+    this.state = {
+      deleteConfirm : false
+    };
+    this.toggleDeleteConfirm = this.toggleDeleteConfirm.bind(this);
+  }
+  
+  toggleDeleteConfirm(){
+    this.setState({
+      deleteConfirm : !this.state.deleteConfirm
+    });
+  }
+  
   componentDidMount(){
     this.props.albumFetch(this.props.match.params.id);
     if(this.props.search.searchTerm.substr(0,1) !== "#"){
@@ -48,7 +62,7 @@ class Photos extends Component {
   render(){
     
     const { album } = this.props;
-    const { canDelete } = this.props.user; 
+    const { canDelete, canWrite } = this.props.user; 
 
     if(!album){
       return <Loading />;
@@ -62,7 +76,14 @@ class Photos extends Component {
         <span className="albumDescription">{album.description}</span>
         <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
         {this.renderPatchwork()}
-        {!canDelete ? null : <i className="fa fa-trash button-icon margin-md-bottom margin-sm-top" onClick={_ => this.deleteAlbum(album._id)}> <span>Effacer cet album</span></i>}
+        {!canDelete ? null : !this.state.deleteConfirm ? <i className="fa fa-trash button-icon" onClick={this.toggleDeleteConfirm}> <span>Effacer cet album</span></i> : null }
+        {this.state.deleteConfirm ?
+          <span>
+            <i className="fa fa-check button-icon txt-green" onClick={_ => this.deleteAlbum(album._id)}><span> Valider</span></i>
+            <i className="fa fa-times button-icon txt-red" onClick={this.toggleDeleteConfirm} ><span> Annuler</span></i>
+          </span>
+        : null}
+        {!canWrite ? null : <i className="fa fa-pencil-square button-icon"> <span>Editer cet album</span></i>}
       </div>
     );  
   }

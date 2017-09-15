@@ -17,8 +17,7 @@ const express = require('express'),
       });
 
 module.exports = {
-    sendFiles : sendFiles,
-    checkSize : checkSize
+    sendFiles : sendFiles
 };
 
 function sendFiles (req,res,next){
@@ -104,8 +103,4 @@ function sendFiles (req,res,next){
         });             
             
     });
-}
-
-function checkSize(req,res,next){
-    next();
 }

@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import { withRouter } from"react-router-dom";
 import { signInUser, signErrorReset } from "../../../actions/user";
 
+import LandingAnim from "../LandingAnim";
+
 class Signin extends Component {
 
     constructor(props){
@@ -99,4 +101,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signin));
+export default connect(mapStateToProps, mapDispatchToProps)(LandingAnim(withRouter(Signin)));

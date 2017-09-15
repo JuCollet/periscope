@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import NoPhoto from "../../components/NoPhoto/NoPhoto";
 import { albumsFetch } from "../../actions/albums";
 import { searchType } from "../../actions/search";
@@ -44,7 +43,7 @@ class Albums extends Component {
     return (
       <div className="wrapper-padding wrapper-fullHeight bkg-lightGrey flex-mobile-bottom">
         {_.map(this.props.albums, album => {
-          return <NavLink to={`/app/photos/${album._id}`} key={album._id}><Card album={album} /></NavLink>;
+          return <Card key={album._id} album={album} history={this.props.history} />;
         })}
       </div>
     );  

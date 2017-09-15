@@ -1,0 +1,28 @@
+.SlideIn-enter {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+.SlideIn-enter.SlideIn-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: .2s ease-in-out;
+}
+.SlideIn-appear {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+.SlideIn-appear.SlideIn-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: .2s ease-in-out;
+}
+
+.SlideIn-leave {
+    opacity: 1;
+    transform: translateX(0);
+}
+.SlideIn-leave.SlideIn-leave-active {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: .2s ease-in-out;
+}

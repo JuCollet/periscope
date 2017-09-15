@@ -6,6 +6,8 @@ import { signUpUser, signErrorReset } from "../../../actions/user";
 import { connect } from "react-redux";
 import { withRouter } from"react-router-dom";
 
+import LandingAnim from "../LandingAnim";
+
 class Signup extends Component {
     constructor(props){
         super(props);
@@ -18,7 +20,7 @@ class Signup extends Component {
             passwordValidation : "",
             error : null,
             token : this.props.match.params.token ? this.props.match.params.token : null,
-            sponsor : this.props.match.params.sponsor ? this.props.match.params.sponsor : null
+            sponsor : this.props.match.params.sponsor ? this.props.match.params.sponsor : null,
         };
     }
     
@@ -32,7 +34,7 @@ class Signup extends Component {
             this.props.tilt();
             this.props.signErrorReset();
         }
-    }    
+    }
     
     onChangeHandler(e){
         this.setState({
@@ -84,6 +86,7 @@ class Signup extends Component {
     }
 
     render(){
+        
         return(
             <div>
                 <h2 className="txt-darkBlueGrey margin-sm-bottom">Inscription</h2>
@@ -112,4 +115,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Signup));
+export default connect(mapStateToProps, mapDispatchToProps)(LandingAnim(withRouter(Signup)));

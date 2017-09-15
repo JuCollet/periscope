@@ -17,6 +17,6 @@ const express = require('express'),
       uploadRouter = express.Router();
 
 uploadRouter.route('/:id')
-    .put(passportService.requireAuth, authorizations.canWrite, uploadController.checkSize, upload.array('photos', 50), uploadController.sendFiles);
+    .put(passportService.requireAuth, authorizations.canWrite, upload.array('photos', 50), uploadController.sendFiles);
 
 module.exports = uploadRouter;
