@@ -64,7 +64,7 @@ class Card extends Component {
           <div className="card-body-text">{album.name.length > 22 ? album.description.length > 80 ? album.description.substr(0,80) + " ..." : album.description : album.description.length > 115 ? album.description.substr(0,115) + " ..." : album.description}</div>
         </div>
         <div className="card-buttons">
-          <i className={`fa ${this.state.isDownloading ? "fa fa-spinner fa-pulse" : "fa-arrow-down"}`} onClick={this.downloadAlbum}></i>
+          <i className={`fa ${this.state.isDownloading ? "fa fa-spinner fa-pulse txt-green" : "fa-arrow-down button-icon txt-isLight"}`} onClick={this.downloadAlbum}></i>
         </div>
       </div>
     );  
