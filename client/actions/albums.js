@@ -191,7 +191,7 @@ function downloadAlbum(albumId, cb){
         let emitNotificationDate = Date.now();
         
         axios({
-          url: `http://periscope-clean-julesbe.c9users.io/api/albums/download/${albumId}`,
+          url: `${baseUrl}download/${albumId}`,
           method : 'get',
           responseType : 'blob',
           headers : {authorization : localStorage.getItem('token')},
@@ -205,7 +205,7 @@ function downloadAlbum(albumId, cb){
                 });
                 firstEvent = false;
             }
-            if(Date.now() - startDownload >= 10000 && Date.now() >= emitNotificationDate + 10000){
+            if(Date.now() - startDownload >= 7000 && Date.now() >= emitNotificationDate + 7000){
                 dispatch({
                     type: NOTIFICATION_SEND,
                     payload : {

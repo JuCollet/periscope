@@ -7,7 +7,6 @@ import { getInfos } from "../../actions/user";
 import Loading from "../../components/Loading/Loading";
 
 import MyUsage from "./MyUsage/MyUsage";
-import Myinfos from "./MyInfos/MyInfos";
 import MyFriends from "./MyFriends/MyFriends";
 
 class Account extends Component {
@@ -29,10 +28,6 @@ class Account extends Component {
             {
                 path : "usage",
                 label : "Mon utilisation"
-            },
-            {
-                path : "infos",
-                label : "Infos personnelles"
             },
             {
                 path : "friends",
@@ -71,7 +66,6 @@ class Account extends Component {
                     </div>
                     <div className="content-page-content">
                     <Switch>
-                        <Route path={`${path}/infos`} render={props=> { return <Myinfos {...props} infos={infos} />}} />
                         <Route path={`${path}/usage`} render={props=> { return <MyUsage {...props} infos={infos} />}} />
                         <Route path={`${path}/friends`} render={props=> { return <MyFriends {...props} infos={infos} />}} />
                         <Redirect from={`${path}/`} to={`${path}/usage`} />
