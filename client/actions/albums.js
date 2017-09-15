@@ -13,6 +13,7 @@ export {
     createAlbum, // Create a new album - auth required
     downloadAlbum, // Download album photos in a zip file - auth required
     deleteAlbum, // Delete an existing album - auth required
+    updateAlbum, // Update the album infos - auth required
     searchAlbum // Search an album with album or photo tags - auth required
 };
 
@@ -231,3 +232,29 @@ function downloadAlbum(albumId, cb){
     };
 }
 
+function updateAlbum(albumId, data){
+    return function(dispatch){
+        axios.put(baseUrl, {albumId, data}, {headers : {authorization : localStorage.getItem('token')}})
+        .then(album => {
+            dispatch({
+                type : ALBUM_FETCH,
+                payload : album            
+            });            
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : "C'est fait !"
+                }
+            });    
+        })
+        .catch(err => {
+            dispatch({
+                type: NOTIFICATION_SEND,
+                payload : {
+                    message : err.response.data,
+                    type : "error"
+                }
+            });    
+        });
+    };
+}

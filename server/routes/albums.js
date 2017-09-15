@@ -24,6 +24,7 @@ albumRouter.route('/updateAlbumThumb/')
 albumRouter.route('/')
     .get(passportService.requireAuth, albumsController.getAlbums)
     .post(passportService.requireAuth, authorizations.canWrite, albumsController.createAlbum)
-    .delete(passportService.requireAuth, authorizations.canDelete, albumsController.deleteAlbum);    
+    .delete(passportService.requireAuth, authorizations.canDelete, albumsController.deleteAlbum)
+    .put(passportService.requireAuth, authorizations.canWrite, albumsController.updateAlbum);
 
 module.exports = albumRouter;

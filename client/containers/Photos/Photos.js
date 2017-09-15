@@ -10,14 +10,28 @@ import Loading from "../../components/Loading/Loading";
 import Tags from "../../components/Tags/Tags";
 import Patchwork from "../../components/Patchwork/Patchwork";
 
+import EditAlbum from "./EditAlbum/EditAlbum";
+
 class Photos extends Component {
   
   constructor(props){
     super(props);
     this.state = {
-      deleteConfirm : false
+      deleteConfirm : false,
+      showEditForm : false
     };
     this.toggleDeleteConfirm = this.toggleDeleteConfirm.bind(this);
+    this.toggleEditForm = this.toggleEditForm.bind(this);
+  }
+  
+  toggleEditForm(){
+    this.setState({
+      showEditForm : !this.state.showEditForm
+    }, function(){
+      if(this.state.showEditForm === true){
+        window.scrollTo(0,document.body.scrollHeight);
+      }
+    });
   }
   
   toggleDeleteConfirm(){
@@ -75,19 +89,21 @@ class Photos extends Component {
         <span className="albumPhotographer">{album.photographer ? 'par ' + album.photographer : null}</span>
         <span className="albumDescription">{album.description}</span>
         <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
-        {this.renderPatchwork()}
-        {!canDelete ? null : !this.state.deleteConfirm ? <i className="fa fa-trash button-icon" onClick={this.toggleDeleteConfirm}> <span>Effacer cet album</span></i> : null }
-        {this.state.deleteConfirm ?
-          <span>
-            <i className="fa fa-check button-icon txt-green" onClick={_ => this.deleteAlbum(album._id)}><span> Valider</span></i>
-            <i className="fa fa-times button-icon txt-red" onClick={this.toggleDeleteConfirm} ><span> Annuler</span></i>
-          </span>
-        : null}
-        {!canWrite ? null : <i className="fa fa-pencil-square button-icon"> <span>Editer cet album</span></i>}
+        <div className="margin-md-bottom">{this.renderPatchwork()}</div>
+        <div className="margin-md-bottom">
+          {!canDelete ? null : !this.state.deleteConfirm ? <i className="fa fa-trash button-icon" onClick={this.toggleDeleteConfirm}> <span>Effacer cet album</span></i> : null }
+          {this.state.deleteConfirm ?
+            <span>
+              <i className="fa fa-check button-icon txt-green" onClick={_ => this.deleteAlbum(album._id)}><span> Valider</span></i>
+              <i className="fa fa-times button-icon txt-red" onClick={this.toggleDeleteConfirm} ><span> Annuler</span></i>
+            </span>
+          : null}
+          {!canWrite ? null : <i className="fa fa-pencil-square button-icon" onClick={_=>this.toggleEditForm()}> <span>Editer cet album</span></i>}
+        </div>
+        {!this.state.showEditForm ? null : <EditAlbum album={album} toggleEditForm={this.toggleEditForm}/>}        
       </div>
     );  
   }
-  
 }
 
 function mapDispatchToProps(dispatch){

@@ -24,6 +24,7 @@ module.exports = {
     getAlbums : getAlbums,
     searchAlbum : searchAlbum,
     searchPhotos : searchPhotos,
+    updateAlbum : updateAlbum,
     updateAlbumThumb : updateAlbumThumb
 };
 
@@ -184,5 +185,15 @@ function downloadAlbum(req,res,next){
                     });
                 });
             });
+    });
+}
+
+function updateAlbum(req,res,next){
+    Album.findByIdAndUpdate(req.body.albumId, {'$set' : req.body.data}, { new : true }, function(err, album){
+        if(err){
+            err.message = "Mise à jour impossible";
+            return next(err);
+        }
+        res.json(album);
     });
 }
