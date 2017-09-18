@@ -66,7 +66,9 @@ function signin(req,res,next){
 
 function signup(req,res,next){
     User.findOne({ email: req.body.email}, function(err, user){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Impossible actuellement');
+        } 
         if(user){
             return res.status(422).send('Adresse déjà utilisée');
         } else {
@@ -92,7 +94,7 @@ function signup(req,res,next){
                 if(err) return next(err);
                 mailer.welcome(user.email, user.firstname);
                 res.json({
-                    userId : req.user._id,
+                    userId : user._id,
                     token : createToken(user),
                     isAdmin : user.admin,
                     canWrite : user.canWrite,
