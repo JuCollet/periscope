@@ -1,6 +1,5 @@
 const webpack = require("webpack");
-const autoprefixer = require('autoprefixer');
-
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry : {
@@ -25,18 +24,29 @@ module.exports = {
                 exclude : __dirname + 'node_modules',
                 loader : 'babel-loader'
             }, {
+                loader : ExtractTextPlugin.extract({
+                    loader: 'css-loader!postcss-loader!less-loader'
+                }),
                 test : /\.less$/,
-                use: ["style-loader", "css-loader", "postcss-loader", "less-loader"]
             }, {
+                loader : ExtractTextPlugin.extract({
+                    loader: 'css-loader'
+                }),
                 test : /\.css$/,
-                loader : "style-loader!css-loader"
             }, {
                 test : /\.(png|jpeg|jpg|gif|svg)$/,
-                loader: 'file-loader?name=img/[name].[ext]'
+                use : [
+                    {
+                        loader : "url-loader",
+                        options : { limit : 20000, name : "./img/[hash].[ext]"}
+                    },
+                    "image-webpack-loader"
+                ]
             }
         ]
     },
     plugins: [
+        new ExtractTextPlugin('styles/styles.css'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             filename: 'bundle.vendor.js'
