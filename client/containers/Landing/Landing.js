@@ -36,7 +36,7 @@ class Landing extends Component {
                         <BulletsNav pages={["/","/signup/","/signin"]} location={pathname} history={this.props.history}/>
                     </div>
                 </div>
-                {pathname === "/signin" ? <Link to="/signin" className="txt-white margin-md-top txt-isLight">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-white margin-md-top txt-isLight">Déjà inscrit ?</Link>}
+                {pathname === "/signin" ? <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Déjà inscrit ?</Link>}
             </div>
         );
     }

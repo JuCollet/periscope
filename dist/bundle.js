@@ -1155,11 +1155,11 @@ var Landing = function (_Component) {
                 ),
                 pathname === "/signin" ? _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: "/signin", className: "txt-white margin-md-top txt-isLight" },
+                    { to: "/signin", className: "txt-darkGrey margin-md-top txt-isLight" },
                     "Mot de passe oubli\xE9 ?"
                 ) : _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: "/signin", className: "txt-white margin-md-top txt-isLight" },
+                    { to: "/signin", className: "txt-darkGrey margin-md-top txt-isLight" },
                     "D\xE9j\xE0 inscrit ?"
                 )
             );
