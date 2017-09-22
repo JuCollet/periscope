@@ -1,44 +1,55 @@
 doctype html
+html
 head
-  title Periscope
-  style(type="text/css") @font-face {font-family: 'Lato';font-style: normal;font-weight: 400;src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;} body {font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;}
-body(style="background-color:#f2f2f2")
-  p &nbsp;
-  center
-    table(border="0" cellspacing="0" cellpadding="0" width="650" style="background-color:white; border-collapse:collapse;")
-      tr
-        th
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_header.png" alt="Periscope")
-      tr(height="300")
-        td(align="center" valign="top" background="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_greenbkg.png" style="padding-top:30px;font-size:20px;color:white;line-height:150%;")
-          p <b>Bonjour #{destinationName},</b><br/>#{senderName} voudrait partager cette photo avec toi :
-          img(src=imageUrl alt="Photo partagée" style="border-radius:3px;")
-      tr
-        td(align="center" style="color:#777777;padding-left:100px;padding-right:100px;font-size:16px;")
-          p <i>"#{message}"</i>
-      tr
-        td(align="center" style="padding-top:15px;padding-bottom:40px;")
-          a(href=downloadUrl target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#5A646E;border-top:12px solid #5A646E;border-bottom:12px solid #5A646E;border-right:18px solid #5A646E;border-left:18px solid #5A646E;display:inline-block;") Télécharger
-      tr
-        td(style="padding-bottom:20px;")
-          hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
-      tr
-        td(align="center" style="font-size:20px;color:#5A646E;padding-bottom:20px;")
-          p <b>Toi aussi, inscris-toi sur Periscope</b><br/>et reçois <b>5Go</b> de stockage.
-      tr(align="center" style="color:#5A646E;")
-        td(style="display:inline-block;width:150px;font-size:16px;")
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletsearch.png" alt="Recherche facile")
-          p Recherche <br/>par mots-clés
-        td(style="display:inline-block;width:150px;font-size:16px;")
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletshare.png" alt="Partage facile")
-          p Partage et collaboration
-        td(style="display:inline-block;width:150px;font-size:16px;")
-          img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletinfos.png" alt="Infos détaillées")
-          p Informations détaillées
-      tr(align="center")
-        td(style="padding-top:20px;padding-bottom:50px;")
-          a(href="https://periscope.herokuapp.com" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") Je m'inscris gratuitement
-      tr(align="center" style="background-color:#dedede;font-size:12px;color:#2e2e2e;")
-        td
-          p <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
+  meta(content="text/html; charset=utf-8" http-equiv="Content-Type")
+  meta(content="width=device-width, initial-scale=1.0" name="viewport")
+  meta(content="IE=edge" http-equiv="X-UA-Compatible")
+  style(type="text/css") body {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif; background-color:#f2f2f2; } #bgtable {width: 100% !important; height: 100% !important; margin: 0; padding: 0; background-color:#f2f2f2;} table, td {border-collapse: collapse;} table {mso-table-lspace: 0pt; mso-table-rspace: 0pt;} .ExternalClass {width: 100%;} .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} img {-ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: 0; text-decoration: none;} a img {border: 0;} @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v13/H2DMvhDLycM56KNuAtbJYA.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; } @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v13/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; } p, h1, h2, h3 {font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;}
+
+body(leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" offset="0")
+  table(id="bgtable" align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%")
+    tr
+      td(align="center" valign="top" style="padding-top:50px")
+        table(border="0" cellpadding="0" cellspacing="0" class="container" width="600" style="background-color:#ffffff;")
+          tr
+            td(align="left")
+              img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_header600.png")
+          tr(height="300")
+            td(align="center" valign="top" background="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_greenbkg.png" style="padding-top:30px;padding-bottom:15px;font-size:20px;color:#ffffff;line-height:150%;background-color:#4EE898;background-image:url('https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_greenbkg.png')")
+              p(style="color:#ffffff;") <b>Bonjour #{destinationName},</b><br/>#{senderName} voudrait partager cette photo avec toi :
+              img(src=imageUrl alt="Image indisponible :(" style="border-radius:3px;")
+          tr
+            td(align="center" style="color:#5A646E;padding-left:100px;padding-right:100px;font-size:16px;padding-top:25px;")
+              p <i>"#{message}"</i>
+          tr
+            td(align="center" style="padding-top:25px;")
+              a(href=downloadUrl target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#5A646E;border-top:12px solid #5A646E;border-bottom:12px solid #5A646E;border-right:18px solid #5A646E;border-left:18px solid #5A646E;display:inline-block;") Télécharger
+          tr
+            td(style="padding-top:25px;padding-bottom:25px;")
+              hr(style="border-style:solid;border-color:#efefef;width:300px;border-width:1px 0px 0px 0px;")
+          tr
+            td(align="center" style="font-size:20px;color:#5A646E;padding-bottom:20px;")
+              p <b>Toi aussi, inscris-toi sur Periscope</b><br/>et reçois <b>5Go</b> de stockage.
+          tr
+            td
+              table(align="center" border="0" cellpadding="0" cellspacing="0")
+                tr
+                  td(width="150" align="center")
+                    img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletsearch.png" alt="Recherche facile")
+                  td(width="150" align="center")
+                    img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletshare.png" alt="Partage facile")
+                  td(width="150" align="center")
+                    img(src="https://s3.eu-central-1.amazonaws.com/periscopefiles/appFiles/mail_bulletinfos.png" alt="Infos détaillées")
+                tr
+                  td(width="150" align="center" style="padding-top:20px;color:#5A646E;") Recherche <br/>par mots-clés
+                  td(width="150" align="center" style="padding-top:20px;color:#5A646E;") Partage <br/>et collaboration
+                  td(width="150" align="center" style="padding-top:20px;color:#5A646E;") Informations <br/>détaillées
+          tr
+            td(align="center" style="padding-top:50px;")
+              a(href="https://periscope.herokuapp.com" target="_blank" style="font-size:16px;font-weight:400;font-family:Lato, Arial, sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#4EE898;border-top:12px solid #4EE898;border-bottom:12px solid #4EE898;border-right:18px solid #4EE898;border-left:18px solid #4EE898;display:inline-block;") Je m'inscris gratuitement
+          tr
+            td(style="padding-top:50px")
+          tr(align="center" style="background-color:#2e2e2e;font-size:12px;color:white;")
+            td(style="padding-top:10px;padding-bottom:10px;")
+              p <b>® Periscope</b>, 2450 Park Blvd, Palo Alto, CA 94306
   p &nbsp;

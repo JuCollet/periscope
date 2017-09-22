@@ -23,16 +23,22 @@ function photoShare(data, senderName){
           imageUrl: data.imageUrl,
           downloadUrl: data.downloadUrl,
           message: data.message
-        })),
-        mail = new helper.Mail(from_email, subject, to_email, content);
+        }));
 
-  const sendMail = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON(),
+  premailer.prepare({html: content.value }, function(err, email) {
+    if(err) console.log(err);
+    
+    const mail = new helper.Mail(from_email, subject, to_email, {type : 'text/html', value : email.html});
+    
+    const sendMail = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
+    });
+    
+    sg.API(sendMail);
+    
   });
-
-  sg.API(sendMail);
 
 }
 
@@ -70,15 +76,21 @@ function invite(senderName, destinationName, destinationEmail, token){
           senderName : senderName,
           destinationName : destinationName,
           destinationLink : "https://periscope.herokuapp.com/signup/" + token + "/" + senderName + "/" + destinationName + "/" + destinationEmail
-        })),
-        mail = new helper.Mail(from_email, subject, to_email, content);
+        }));
 
-  const sendMail = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON(),
+  premailer.prepare({html: content.value }, function(err, email) {
+    if(err) console.log(err);
+    
+    const mail = new helper.Mail(from_email, subject, to_email, {type : 'text/html', value : email.html});
+    
+    const sendMail = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
+    });
+    
+    sg.API(sendMail);
+    
   });
-
-  sg.API(sendMail);
   
 }
