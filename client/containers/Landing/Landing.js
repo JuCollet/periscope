@@ -25,7 +25,7 @@ class Landing extends Component {
     render () {
         const { pathname } = this.props.location;
         return (
-            <div className="container flex-center bkg-random">
+            <div className="container flex-center bkg-pattern">
                 <div className="landing flex-center bkg-white" ref={(LandingBox) => { this.LandingBox = LandingBox; }}>
                     <Switch>
                         <Route path="/signin" render={(props) => (<Signin tilt={_ => this.props.tilt(this.LandingBox)}/>)} />

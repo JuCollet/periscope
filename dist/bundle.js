@@ -1126,7 +1126,7 @@ var Landing = function (_Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "container flex-center bkg-random" },
+                { className: "container flex-center bkg-pattern" },
                 _react2.default.createElement(
                     "div",
                     { className: "landing flex-center bkg-white", ref: function ref(LandingBox) {
