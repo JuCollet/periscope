@@ -3,7 +3,8 @@
 const helper = require('sendgrid').mail,
       pug = require('pug'),
       path = require('path'),
-      sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+      sg = require('sendgrid')(process.env.SENDGRID_API_KEY),
+      premailer = require('premailer-api');
       
 module.exports = {
     photoShare : photoShare,
@@ -42,17 +43,22 @@ function welcome(destinationEmail, name){
         subject = "Bienvenue sur Periscope !" ,
         content = new helper.Content('text/html', pug.renderFile(path.join(__dirname, './views/welcome.pug'), {
           name : name
-        })),
-        mail = new helper.Mail(from_email, subject, to_email, content);
-
-  const sendMail = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON(),
+        }));
+        
+  premailer.prepare({html: content.value }, function(err, email) {
+    if(err) console.log(err);
+    
+    const mail = new helper.Mail(from_email, subject, to_email, {type : 'text/html', value : email.html});
+    
+    const sendMail = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
+    });
+    
+    sg.API(sendMail);
+    
   });
-
-  sg.API(sendMail);
-
 }
 
 function invite(senderName, destinationName, destinationEmail, token){

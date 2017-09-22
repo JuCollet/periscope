@@ -25,7 +25,7 @@ class Landing extends Component {
     render () {
         const { pathname } = this.props.location;
         return (
-            <div className="container flex-center bkg-pattern">
+            <div className="container flex-center bkg-random">
                 <div className="landing flex-center bkg-white" ref={(LandingBox) => { this.LandingBox = LandingBox; }}>
                     <Switch>
                         <Route path="/signin" render={(props) => (<Signin tilt={_ => this.props.tilt(this.LandingBox)}/>)} />
@@ -36,7 +36,7 @@ class Landing extends Component {
                         <BulletsNav pages={["/","/signup/","/signin"]} location={pathname} history={this.props.history}/>
                     </div>
                 </div>
-                {pathname === "/signin" ? <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-darkGrey margin-md-top txt-isLight">Déjà inscrit ?</Link>}
+                {pathname === "/signin" ? <Link to="/signin" className="txt-white margin-md-top txt-isLight">Mot de passe oublié ?</Link> : <Link to="/signin" className="txt-white margin-md-top txt-isLight">Déjà inscrit ?</Link>}
             </div>
         );
     }
