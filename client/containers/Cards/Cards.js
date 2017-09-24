@@ -5,12 +5,11 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux"; 
 import { connect } from "react-redux";
-import axios from "axios";
 import Dropbox from "../Dropbox/Dropbox";
 
 import { downloadAlbum } from "../../actions/albums";
 
-import "./img/noPhotoInAlbum.png";
+import noPhotoInAlbum from "../../assets/noPhotoInAlbum.png";
 
 
 class Card extends Component {
@@ -31,7 +30,7 @@ class Card extends Component {
     }else if(this.props.album.photos && this.props.album.photos.length > 0 ){
       return { backgroundImage: 'url(' + this.props.album.photos[0].thumb + ')'};
     }else {
-      return { backgroundImage: 'url(/img/noPhotoInAlbum.png)'};
+      return { backgroundImage: `url(${noPhotoInAlbum})`};
     }
   };
 

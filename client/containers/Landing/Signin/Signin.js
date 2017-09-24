@@ -9,7 +9,7 @@ import { withRouter } from"react-router-dom";
 import { signInUser, signErrorReset } from "../../../actions/user";
 
 import LandingAnim from "../LandingAnim";
-import logo from "../../assets/logo.svg";
+import logo from "../../../assets/logo.svg";
 
 class Signin extends Component {
 

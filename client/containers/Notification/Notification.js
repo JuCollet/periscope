@@ -9,9 +9,11 @@ import { stopNotification } from "../../actions/notification";
 class Notification extends Component{
     
     renderNotification(){
-        const { type, message, newNotification} = this.props.notification;
+        const { type, newNotification} = this.props.notification;
+        let { message } = this.props.notification;
         if(this.props.notification && newNotification) {
             setTimeout( _ => {this.props.stopNotification();}, 2500);
+            if(message.length >= 35) message = "Une erreur est survenue...";
             return (
                 <div className={`notification ${type === "error" ? "bkg-red" : "bkg-green"}`}>
                     <div className="notification-bubble bkg-white"><i className={`fa ${type === "error" ? "fa-times txt-red" : "fa-check txt-green"}`}></i></div>
