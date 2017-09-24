@@ -4,6 +4,9 @@
   "description": "A simple digital asset manager build with React.",
   "main": "index.js",
   "scripts": {
+    "build": "npm run clean && webpack --progress",
+    "buildp": "NODE_ENV=production npm run clean && webpack -p --progress",
+    "clean" : "rimraf dist",
     "start": "node server/app.js"
   },
   "repository": {
@@ -26,9 +29,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
+    "rimraf": "^2.6.2",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1",

@@ -1,13 +1,14 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry : {
-        app: './client/index.js',
+        bundle: './client/index.js',
         vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom', 'react-hammerjs']
     },
     output : {
-        filename : 'bundle.js',
+        filename : '[name].[chunkhash].js',
         path : __dirname+"/dist"
     },
     devServer: {
@@ -48,8 +49,13 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('styles/styles.css'),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendors',
-            filename: 'bundle.vendor.js'
-        })
+            names: ['vendors', 'manifest']
+        }),
+        new htmlWebpackPlugin({
+            template: 'client/index.ejs',
+            files : {
+                css : ['styles/styles.css', ]
+            }
+        })        
     ]
 };
