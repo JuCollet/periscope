@@ -8,10 +8,10 @@
     height: 100%;
     border-radius: 4px 4px 0px 0px;
 
-    .dropLimits {
+    .fa {
         visibility: hidden;
     }
-    
+
 }
 
 .dropzone-progress {
@@ -25,29 +25,21 @@
 }
 
 .dragUploadDragHover {
+    overflow: hidden;
     height: 100%;
-    background-color: white;
+    background-color: @darkBlueGrey;
     
-    .dropLimits {
+    .fa {
         visibility: visible !important;
-        overflow: hidden;
-        position: relative;
-        width: calc(~"100% - 30px");
-        height: calc(~"100% - 30px");
-        border: 2px dotted @mediumGrey;
-        border-radius: 4px;
+        position: absolute;
+        z-index: 666;
+        top: calc(~"50% - 25px");
+        right: calc(~"50% - 25px");
         pointer-events: none;
-        
-        .fa {
-            position: absolute;
-            z-index: 666;
-            top: calc(~"50% - 25px");
-            right: calc(~"50% - 25px");
-            pointer-events: none;
-            color: @mediumGrey;
-            font-size: 50px;
-        }
-    }
+        color: #FFFFFF;
+        font-size: 50px;
+    }    
+    
 }
 
 .dropIconAnim {
