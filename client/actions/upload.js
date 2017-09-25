@@ -32,8 +32,10 @@ function fileUpload(files, id, dataSize, cb){
                         data: files,
                         headers:{'Content-Type':'multipart/form-data', authorization : localStorage.getItem('token')},
                         onUploadProgress: function (progressEvent) {
-                            document.getElementById(`${id}-progress`).style.height = ((progressEvent.loaded/progressEvent.total)*100)+"%";
-                            if(progressEvent.loaded === progressEvent.total) {
+                            if(document.getElementById(`${id}-progress`)){
+                                document.getElementById(`${id}-progress`).style.height = ((progressEvent.loaded/progressEvent.total)*100)+"%";
+                            }
+                            if(progressEvent.loaded === progressEvent.total && document.getElementById(`${id}-icon`)) {
                                 document.getElementById(`${id}-icon`).classList.remove("dropIconAnim", "fa-paper-plane");
                                 document.getElementById(`${id}-icon`).classList.add("fa-cog", "fa-spin", "txt-white");                
                             }

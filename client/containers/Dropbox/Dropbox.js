@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fileUpload } from "../../actions/upload";
-
+import { sendNotification } from "../../actions/notification";
+ 
 class Dropbox extends Component {
     
   onDragOver(e){
@@ -25,8 +26,9 @@ class Dropbox extends Component {
     const dt = e.dataTransfer;
     let data = new FormData();
     let dataSize = 0;
+    let fileCounter = 0;
     
-    const callback = function(){
+    const callback = function(delay = 1000){
 
       if(this.props.redirection){
         this.props.history.push(redirection);
@@ -38,13 +40,18 @@ class Dropbox extends Component {
         document.getElementById(`${id}-icon`).classList.remove("dropIconAnim", "fa-check", "txt-white");
         document.getElementById(`${id}-dropzone`).classList.remove("dragUploadDragHover");
         document.getElementById(`${id}-icon`).classList.add("fa-paper-plane");
-      }, 1000);
+      }, delay);
     }.bind(this);
 
     for (let i = 0; i < dt.files.length; i++) {
       if(dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png") {
+        if(fileCounter >= 50){
+          callback(0);
+          return this.props.sendNotification("50 fichiers maximum","error");
+        }
         dataSize += dt.files[i].size;
         data.append('photos', dt.files[i], dt.files[i].name);
+        fileCounter++;        
       }
     }
     this.props.fileUpload(data, id, dataSize, callback);
@@ -66,7 +73,7 @@ class Dropbox extends Component {
 }
         
     function mapDispatchToProps(dispatch){
-      return bindActionCreators({ fileUpload }, dispatch);
+      return bindActionCreators({ fileUpload, sendNotification }, dispatch);
     }
     
 export default connect(null, mapDispatchToProps)(Dropbox);
