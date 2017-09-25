@@ -81,7 +81,7 @@ class Signin extends Component {
     render(){
         return(
             <form onSubmit={this.onSubmit}>
-                <img src={logo} width="150" alt="Logo Periscope"/>
+                <img src={logo} width="150" height="150" alt="Logo Periscope"/>
                 <h1 className="margin-md-bottom margin-sm-top txt-darkBlueGrey">Periscope</h1>
                 <input value={this.state.email} style={this.renderStyle('email')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="email" type="text" placeholder="E-Mail" aria-label="e-mail" />
                 <input value={this.state.password} style={this.renderStyle('password')} onChange={this.onChangeHandler} className="small-input margin-sm-bottom" name="password" type="password" placeholder="Password" aria-label="password" />
