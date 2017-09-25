@@ -1,15 +1,17 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+require("babel-polyfill"); // Needed because of find ES6 method;
 
 module.exports = {
     entry : {
-        bundle: './client/index.js',
+        bundle: ['babel-polyfill', './client/index.js'],
         vendors: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form', 'react-router-dom', 'react-hammerjs']
     },
     output : {
         filename : '[name].[chunkhash].js',
-        path : __dirname+"/dist"
+        path : __dirname+"/dist",
+        publicPath: "/"
     },
     devServer: {
         historyApiFallback: true,
