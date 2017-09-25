@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && webpack --progress",
     "buildp": "NODE_ENV=production npm run clean && webpack -p --progress",
-    "clean" : "rimraf dist",
+    "clean": "rimraf dist",
     "start": "node server/app.js"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "downloadjs": "^1.4.7",
+    "es6-promise": "^4.1.1",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
     "jwt-simple": "^0.5.1",

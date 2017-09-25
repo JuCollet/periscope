@@ -2,6 +2,7 @@
 
 'use strict';
 
+import PromisePolyfill from "es6-promise/auto";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
