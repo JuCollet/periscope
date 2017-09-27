@@ -17,7 +17,7 @@ This is a personnal project made during learning ReactJS and Redux.
 - Search for albums or photos with keywords tags.
 - Simply share a file by email from the interface.
 - Invite a friend to collaborate with optionnals update/delete restrictions.
-- Code snippets to embed photos in blogs or other webstites.
+- Code snippets to embed photos in blogs or other websites.
 - Fully responsive interface.
 
 ## Security
@@ -48,6 +48,7 @@ This app didn't use any framework for UI nor any other javascript libraries than
 - Webpack 2
 - NodeJS
 - Express
+- Mongoose
 - Passport
 - JWT
 - Less
