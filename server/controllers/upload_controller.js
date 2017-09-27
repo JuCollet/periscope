@@ -70,7 +70,6 @@ function sendFiles (req,res,next){
     files.forEach(function(file){
         let counter = 0;
         const image = sharp(file.path).rotate();
-        console.dir(sharp.counters());
 
         const finalizeProcess = function(){
             image.metadata().then(function(metadata){
