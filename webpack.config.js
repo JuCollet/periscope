@@ -11,12 +11,12 @@ module.exports = {
     },
     output : {
         filename : '[name].[chunkhash].js',
-        path : path.join(__dirname, '/dist'),
+        path : path.join(__dirname, 'server/dist'),
         publicPath: "/"
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: __dirname + '/dist',
+        contentBase: __dirname + 'server/dist',
         host: process.env.IP,
         port: process.env.PORT,
         "public": "periscope-clean-julesbe.c9users.io"

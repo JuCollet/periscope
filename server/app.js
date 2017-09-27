@@ -27,16 +27,17 @@ app.all('/*', function(req,res,next){
   res.redirect('https://'+req.hostname+req.url);  
 });
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
-
 app.use('/api/albums', albumRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/users', userRouter);
 
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
+app.use(express.static(path.join(__dirname, '/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
+
 
 app.use(function(err,req,res,next){
   res.status(err.status || 500);
