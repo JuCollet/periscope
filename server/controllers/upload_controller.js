@@ -20,12 +20,15 @@ module.exports = {
     sendFiles : sendFiles
 };
 
+process.env.UV_THREADPOOL_SIZE = 1;
+sharp.concurrency(1);
+sharp.cache(50);
+
 function sendFiles (req,res,next){
 
     const files = req.files;
     const id = req.params.id;
-    let filesCounter = 0;
-    
+
     const sendToS3 = function(buffer, key){
         
         const params = {
@@ -61,17 +64,14 @@ function sendFiles (req,res,next){
                     console.error("unable to delete temp files");
                 }
             });
-            filesCounter++;                
-            if(filesCounter === files.length){
-                res.json(album);
-            }
         });
     };
     
     files.forEach(function(file){
         let counter = 0;
         const image = sharp(file.path).rotate();
-        
+        console.dir(sharp.counters());
+
         const finalizeProcess = function(){
             image.metadata().then(function(metadata){
 
@@ -103,4 +103,7 @@ function sendFiles (req,res,next){
         });             
             
     });
+    
+    res.json({status:"Traitement en cours..."});
+    
 }

@@ -13,7 +13,6 @@ export const PHOTO_SEARCH = "photo_search";
 export const SEARCH_TERM_UPDATE = "search_term_update";
 export const SEARCH_TYPE_TOGGLE = "search_type_toggle";
 export const TOGGLE_MENU = "toggle_menu";
-export const UPLOAD_FILES = "upload_files";
 export const USER_AUTH = "user_auth";
 export const USER_SIGN_ERROR = "user_auth_error";
 export const USER_GET_INFOS = "user_get_infos";

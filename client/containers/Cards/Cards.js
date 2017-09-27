@@ -52,7 +52,7 @@ class Card extends Component {
     
     return (
       <div className="card" onClick={_=>this.props.history.push(`/app/photos/${album._id}`)}>
-        { !canWrite ? null : <Dropbox id={album._id} height={150} />}
+        { !canWrite ? null : <Dropbox id={album._id} numberOfPhotos={album.numberOfPhotos} height={150} />}
         <div className="card-img-wrapper">
           <div className="card-img" style={this.cardStyle()}></div>
             {newBadge}

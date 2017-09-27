@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { albumFetch } from "../../actions/albums";
 import { fileUpload } from "../../actions/upload";
 import { sendNotification } from "../../actions/notification";
  
@@ -27,12 +28,31 @@ class Dropbox extends Component {
     let data = new FormData();
     let dataSize = 0;
     let fileCounter = 0;
+    let initialCounter = 0;
+    let targetCounter = 0;
     
     const callback = function(delay = 1000){
 
       const iconEl = document.getElementById(`${id}-icon`);
       const progressEl = document.getElementById(`${id}-progress`);
       const dropZoneEl = document.getElementById(`${id}-dropzone`);
+
+      // Toutes les 10 secondes, vérifier si le nombre de photos contenues dans l'album
+      // a augmenté du nombre de photos envoyées et notifier du changement.
+      
+      targetCounter = this.props.numberOfPhotos + fileCounter;
+      initialCounter = this.props.numberOfPhotos;
+      
+      const checkProgress = setInterval(function(){
+        this.props.albumFetch(this.props.id);
+        if(this.props.numberOfPhotos === targetCounter){
+          this.props.sendNotification(`Terminé ! ${fileCounter} photo${fileCounter < 2 ? "" : "s"}  ajoutée${fileCounter < 2 ? "" : "s"}.`);
+          clearInterval(checkProgress);
+        } else {
+          let status = this.props.numberOfPhotos - initialCounter;
+          this.props.sendNotification(`${status}/${fileCounter} photo${status < 2 ? "" : "s"} traitée${status < 2 ? "" : "s"}.`);
+        }
+      }.bind(this),5000);
 
       if(this.props.redirection){
         this.props.history.push(redirection);
@@ -69,7 +89,6 @@ class Dropbox extends Component {
   }
   
   render(){
-
     return(
         <div id={`${this.props.id}-dropzone`} style={{height:this.props.height}} className="dropzone" onDrop={e => this.onDrop(e)} onDragOver={e => this.onDragOver(e)} onDragLeave={e => this.onDragLeave(e)} >
             <i id={`${this.props.id}-icon`} className="fa fa-paper-plane"></i>
@@ -79,9 +98,9 @@ class Dropbox extends Component {
     );
   }
 }
-        
-    function mapDispatchToProps(dispatch){
-      return bindActionCreators({ fileUpload, sendNotification }, dispatch);
-    }
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ fileUpload, sendNotification, albumFetch }, dispatch);
+}
     
 export default connect(null, mapDispatchToProps)(Dropbox);

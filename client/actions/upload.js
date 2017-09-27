@@ -1,7 +1,7 @@
 /*global localStorage*/
 
 import axios from "axios";
-import { UPLOAD_FILES, NOTIFICATION_SEND } from "../actiontypes/";
+import { NOTIFICATION_SEND } from "../actiontypes/";
 
 export {
     fileUpload // Send file to server;
@@ -42,10 +42,6 @@ function fileUpload(files, id, dataSize, cb){
                         }
                     }).then( res => {
                         cb();
-                        dispatch({
-                            type: UPLOAD_FILES,
-                            payload: res
-                        });
                         dispatch({
                             type: NOTIFICATION_SEND,
                             payload : {

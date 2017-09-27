@@ -1,4 +1,4 @@
-import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_DELETE, ALBUMS_RESET_STATE, ALBUM_THUMB_UPDATE, PHOTO_DELETE, PHOTO_UPDATE, ALBUM_SEARCH, UPLOAD_FILES } from '../actiontypes/';
+import { ALBUMS_FETCH, ALBUM_FETCH, ALBUM_DELETE, ALBUMS_RESET_STATE, ALBUM_THUMB_UPDATE, PHOTO_DELETE, PHOTO_UPDATE, ALBUM_SEARCH } from '../actiontypes/';
 import _ from "lodash";
 
 export default function(state = {}, action){
@@ -17,8 +17,6 @@ export default function(state = {}, action){
             return {...state, [action.payload.data._id] : action.payload.data };
         case PHOTO_UPDATE :
             return {...state, [action.payload.data._id] : action.payload.data };
-        case UPLOAD_FILES :
-            return {...state, [action.payload.data._id] : action.payload.data };            
         default :
             return state;
     }
