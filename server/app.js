@@ -32,7 +32,8 @@ app.use('/api/upload', uploadRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/users', userRouter);
 
-app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+const publicPath = express.static(path.join(__dirname, '../dist'));
+app.use('/dist', publicPath);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
