@@ -2,7 +2,7 @@
 
 A simple photo manager build with React & Redux
 
-[periscope.herokuapp.com](https://periscope.herokuapp.com)
+[periscope.herokuapp.com](https://periscope.herokuapp.com) (Please wait for booting the server, this is a free one and he's not always on ;-))
 
 ***
 
@@ -63,3 +63,7 @@ This app didn't use any framework for UI nor any other javascript libraries than
 - mLab
 - Sendgrid
 - Github
+
+## Any comment or suggestions ?
+
+Any comments or suggestions are very very welcome. :) Feel free to use, clone this project or submit pull requests if you want to.
