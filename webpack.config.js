@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 require("babel-polyfill"); // Needed because of find ES6 method;
 
 module.exports = {
@@ -10,8 +11,8 @@ module.exports = {
     },
     output : {
         filename : '[name].[chunkhash].js',
-        path : __dirname+"/dist",
-        publicPath: "/dist/"
+        path : path.join(__dirname, '/dist'),
+        publicPath: "/"
     },
     devServer: {
         historyApiFallback: true,
