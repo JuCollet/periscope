@@ -27,12 +27,12 @@ app.all('/*', function(req,res,next){
   res.redirect('https://'+req.hostname+req.url);  
 });
 
+app.use(express.static(path.resolve(__dirname, '../dist')));
+
 app.use('/api/albums', albumRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/users', userRouter);
-
-app.use(express.static(path.join(__dirname, '..', '/dist')));
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
