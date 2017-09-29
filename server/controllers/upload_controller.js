@@ -39,7 +39,9 @@ function sendFiles (req,res,next){
         };
         
         s3.putObject(params, function(err, data) {
-            if(err) return next(err);
+            if(err) {
+                return res.status(500).send('Une erreur est survenue');
+            }
             buffer = null;
         });
     };
@@ -58,7 +60,9 @@ function sendFiles (req,res,next){
         };
         
         Album.findByIdAndUpdate(id, { $push: { photos: newPhoto }}, { new : true }, function(err, album){
-            if(err) return next(err);
+            if(err) {
+                return res.status(500).send('Une erreur est survenue');
+            }
             fs.unlink(filePath, function(err){
                 if(err){
                     console.error("unable to delete temp files");

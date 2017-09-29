@@ -39,7 +39,9 @@ function photoDelete(req,res,next){
     s3.deleteObjects(params, function(err, data){
         if(err) return next(err);
         Album.findByIdAndUpdate(req.body.albumId, {$pull : { photos : {_id : req.body.photoId}}}, { new : true }, function(err, album){
-            if(err) return next(err);
+            if(err) {
+                return res.status(500).send('Une erreur est survenue');
+            }
             res.json(album);
         });    
         
@@ -52,7 +54,9 @@ function photoUpdate(req,res,next){
         'photos.$.photographer': req.body.data.photographer,
         'photos.$.description': req.body.data.description,
     }}, { new : true }, function(err, album){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Mise à jour impossible');
+        }
         res.json(album);
     });
 }

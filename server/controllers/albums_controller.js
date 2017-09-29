@@ -45,8 +45,7 @@ function createAlbum(req, res, next){
     newAlbum.bucket = req.user.bucket;
     Album.create(newAlbum, function(err, album){
         if(err) {
-            err.message = "Impossible de créer cet album";
-            return next(err);
+            return res.status(500).send('Impossible actuellement');
         }
         res.json(album);
     });
@@ -55,8 +54,7 @@ function createAlbum(req, res, next){
 function deleteAlbum(req,res,next){
     Album.findByIdAndRemove(req.body.albumId, function(err, album){
         if(err) {
-            err.message = "Impossible de supprimer cet album";
-            return next(err);
+            return res.status(500).send('Impossible de supprimer cet album');
         }
         
         let files = [];
@@ -92,7 +90,8 @@ function deleteAlbum(req,res,next){
         };
 
         s3.deleteObjects(params, function(err, data){
-            if(err) return next(err);
+            if(err) 
+                return res.status(500).send("Une erreur est survenue...");
         });   
 
     }
@@ -109,7 +108,9 @@ function getAlbum(req, res, next){
         },
         {$project : Object.assign(aggregateConfig.$project, {photos: 1, photographer : 1, tags : 1})}
     ], function(err, albums){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Album introuvable');
+        }
         res.json(albums[0]);
     });
 }
@@ -119,7 +120,9 @@ function getAlbums(req, res, next){
             $match : { bucket : req.user.bucket }
         },
         aggregateConfig], function(err, albums){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Albums introuvables');
+        }
         res.json(albums);
     });
 }
@@ -133,7 +136,9 @@ function searchAlbum(req, res, next){
             }
         }, 
         aggregateConfig],function(err, albums){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Impossible actuellement');
+        }
         res.json(albums);
     });
 }
@@ -148,14 +153,18 @@ function searchPhotos(req, res, next){
         },
         aggregateConfig
     ],function(err, albums){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Une erreur est survenue...');
+        }
         res.json(albums);
     });
 }
 
 function updateAlbumThumb(req,res,next){
     Album.findByIdAndUpdate(req.body.id, {'$set':  {'albumThumb': req.body.albumThumb}}, { new : true }, function(err, album){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Impossible actuellement');
+        }
         res.json(album);
     });
 }
@@ -163,7 +172,10 @@ function updateAlbumThumb(req,res,next){
 function downloadAlbum(req,res,next){
     
     Album.findById(req.params.id, function(err, album){
-        if(err) return next(err);
+        if(err) {
+            return res.status(500).send('Impossible de recevoir cet album');
+        }
+            
         const files = album.photos.map(photo => {
             return "original" + photo.filename;
         });
@@ -191,8 +203,7 @@ function downloadAlbum(req,res,next){
 function updateAlbum(req,res,next){
     Album.findByIdAndUpdate(req.body.albumId, {'$set' : req.body.data}, { new : true }, function(err, album){
         if(err){
-            err.message = "Mise à jour impossible";
-            return next(err);
+            return res.status(500).send('Mise à jour impossible');
         }
         res.json(album);
     });
