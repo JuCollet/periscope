@@ -34,7 +34,7 @@ class EditAlbum extends Component {
     handleSubmit(e){
         e.preventDefault();
         const { name, photographer, description, tags } = this.state;
-        this.props.updateAlbum(this.props.album._id, {name, photographer, description, tags : this.props.tagsStringToArray(tags)});
+        this.props.updateAlbum(this.props.album._id, {name, photographer, description, tags : tags ? this.props.tagsStringToArray(tags) : [""]});
         this.props.toggleEditForm();
     }
     

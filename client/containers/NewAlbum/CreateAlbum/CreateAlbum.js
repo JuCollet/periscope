@@ -9,7 +9,7 @@ class CreateAlbum extends Component {
     
     constructor(props){
         super(props);
-        this.state = {tags:[]};
+        this.state = {tags:[""]};
         this.errors = {errors:false};
         this.renderTags = this.renderTags.bind(this);
         this.autoTags = this.autoTags.bind(this);
@@ -34,7 +34,7 @@ class CreateAlbum extends Component {
         if(values){
             const tags = this.props.tagsStringToArray(values.currentTarget.value, 0);
             this.setState({
-                tags: tags ? tags : []
+                tags: tags ? tags : [""]
             });
         }
     }
