@@ -7,7 +7,9 @@ export default function(ComposedComponent){
     class LandingAnim extends Component {
         render(){
             return(
-                <ReactCSSTransitionGroup 
+                <ReactCSSTransitionGroup
+                component="div"
+                className="reactCSSTransitionGroupDiv"
                 transitionAppear={true}
                 transitionAppearTimeout={500}                
                 transitionEnterTimeout={500}
