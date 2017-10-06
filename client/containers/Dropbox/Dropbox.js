@@ -28,7 +28,6 @@ class Dropbox extends Component {
     let data = new FormData();
     let dataSize = 0;
     let fileCounter = 0;
-    let initialCounter = 0;
     let targetCounter = 0;
     
     const callback = function(delay = 1000){
@@ -41,18 +40,16 @@ class Dropbox extends Component {
       // a augmenté du nombre de photos envoyées et notifier du changement.
       
       targetCounter = this.props.numberOfPhotos + fileCounter;
-      initialCounter = this.props.numberOfPhotos;
-      
+
       const checkProgress = setInterval(function(){
         this.props.albumFetch(this.props.id);
         if(this.props.numberOfPhotos === targetCounter){
-          this.props.sendNotification(`Terminé ! ${fileCounter} photo${fileCounter < 2 ? "" : "s"}  ajoutée${fileCounter < 2 ? "" : "s"}.`);
+          this.props.sendNotification(`${fileCounter} photo${fileCounter < 2 ? "" : "s"}  ajoutée${fileCounter < 2 ? "" : "s"} !`);
           clearInterval(checkProgress);
         } else {
-          let status = this.props.numberOfPhotos - initialCounter;
-          this.props.sendNotification(`${status}/${fileCounter} photo${status < 2 ? "" : "s"} traitée${status < 2 ? "" : "s"}.`);
+          this.props.sendNotification(`Traitement en cours...`);
         }
-      }.bind(this),5000);
+      }.bind(this),10000);
 
       if(this.props.redirection){
         this.props.history.push(redirection);

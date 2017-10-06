@@ -91,14 +91,14 @@ class Photos extends Component {
         <div className="margin-md-bottom">{this.props.renderTagsElement(album.tags)}</div>
         <div className="margin-md-bottom">{this.renderPatchwork()}</div>
         <div className="margin-md-bottom">
-          {!canDelete ? null : !this.state.deleteConfirm ? <i className="fa fa-trash button-icon margin-sm-right" onClick={this.toggleDeleteConfirm}> <span>Effacer cet album</span></i> : null }
+          {!canDelete ? null : !this.state.deleteConfirm ? <i className="fa fa-trash button-icon margin-sm-right" onClick={this.toggleDeleteConfirm}> <span>&nbsp;&nbsp;Effacer cet album</span></i> : null }
           {this.state.deleteConfirm ?
             <span>
               <i className="fa fa-check button-icon txt-green" onClick={_ => this.deleteAlbum(album._id)}><span> Valider</span></i>
               <i className="fa fa-times button-icon txt-red" onClick={this.toggleDeleteConfirm} ><span> Annuler</span></i>
             </span>
           : null}
-          {!canWrite ? null : <i className="fa fa-pencil-square button-icon margin-sm-right" onClick={_=>this.toggleEditForm()}> <span>Editer cet album</span></i>}
+          {!canWrite ? null : <i className="fa fa-pencil-square button-icon" onClick={_=>this.toggleEditForm()}> <span>&nbsp;&nbsp;Editer cet album</span></i>}
         </div>
         {!this.state.showEditForm ? null : <EditAlbum album={album} toggleEditForm={this.toggleEditForm}/>}        
       </div>
