@@ -29,6 +29,12 @@ class Signin extends Component {
             this.props.history.push('/app/albums');
         }
         // This action require a boolean to reset or not the error message.
+        if(this.props.match.params.demo === "demo"){
+            this.setState({
+                email: "demo@demo.com",
+                password: "demo"
+            });
+        }
         this.props.signErrorReset(true);
     }
     

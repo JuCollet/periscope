@@ -28,7 +28,7 @@ class Landing extends Component {
             <div className="container flex-center bkg-pattern">
                 <div className="landing flex-center bkg-white" ref={(LandingBox) => { this.LandingBox = LandingBox; }}>
                     <Switch>
-                        <Route path="/signin" render={(props) => (<Signin tilt={_ => this.props.tilt(this.LandingBox)}/>)} />
+                        <Route path="/signin/:demo?" render={(props) => (<Signin tilt={_ => this.props.tilt(this.LandingBox)}/>)} />
                         <Route path="/signup/:token?/:sponsor?/:name?/:email?" render={(props) => (<Signup tilt={_ => this.props.tilt(this.LandingBox)}/>)} />
                         <Route path ="/" component={Welcome} />
                     </Switch>
