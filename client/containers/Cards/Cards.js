@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import Dropbox from "../Dropbox/Dropbox";
 
 import { downloadAlbum } from "../../actions/albums";
+import { sendNotification } from "../../actions/notification";
 
 import noPhotoInAlbum from "../../assets/noPhotoInAlbum.png";
 
@@ -20,6 +21,15 @@ class Card extends Component {
       isDownloading : false
     };
     this.downloadAlbum = this.downloadAlbum.bind(this);
+  }
+  
+  componentWillReceiveProps(nextProps){
+    if(this.props.album.photos && nextProps.album.photos){
+      const newPhotos = nextProps.album.photos.length - this.props.album.photos.length;
+      if(newPhotos > 0){
+        this.props.sendNotification(`${newPhotos} photo${newPhotos > 1 ? "s" : ""} ajoutée${newPhotos > 1 ? "s" : ""} !`);
+      }  
+    }
   }
   
   cardStyle = _ => {
@@ -71,7 +81,7 @@ class Card extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ downloadAlbum }, dispatch);
+  return bindActionCreators({ downloadAlbum,  sendNotification }, dispatch);
 }
 
 function mapStateTopProps(state){

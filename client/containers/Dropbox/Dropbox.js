@@ -44,12 +44,9 @@ class Dropbox extends Component {
       const checkProgress = setInterval(function(){
         this.props.albumFetch(this.props.id);
         if(this.props.numberOfPhotos === targetCounter){
-          this.props.sendNotification(`${fileCounter} photo${fileCounter < 2 ? "" : "s"}  ajoutée${fileCounter < 2 ? "" : "s"} !`);
           clearInterval(checkProgress);
-        } else {
-          this.props.sendNotification(`Traitement en cours...`);
         }
-      }.bind(this),10000);
+      }.bind(this),5000);
 
       if(this.props.redirection){
         this.props.history.push(redirection);
@@ -81,7 +78,7 @@ class Dropbox extends Component {
         fileCounter++;        
       }
     }
-    this.props.fileUpload(data, id, dataSize, callback);
+    this.props.fileUpload(data, id, dataSize, callback, fileCounter);
     
   }
   
