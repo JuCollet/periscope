@@ -57,14 +57,14 @@ function albumsFetch(){
     };
 }
 
-function albumFetch(id){
+function albumFetch(id, cb){
     return function(dispatch){
         axios.get(baseUrl+"getalbum/"+id)
         .then(album => {
             dispatch({
                 type : ALBUM_FETCH,
                 payload : album            
-            });        
+            });
         })
         .catch(err=>{
             dispatch({

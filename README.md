@@ -2,7 +2,7 @@
 
 A simple photo manager build with React & Redux
 
-[periscope.herokuapp.com](https://periscope.herokuapp.com) (Please wait for booting the server, this is a free one and he's not always on ;-))
+[periscope.herokuapp.com](https://periscope.herokuapp.com) (Please wait during booting of the server, this is a free one and he's not always on ;-))
 
 ***
 
