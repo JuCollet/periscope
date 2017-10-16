@@ -9,7 +9,7 @@ export {
 
 const baseUrl = "/api/users/";
 
-function fileUpload(files, id, dataSize, cb, fileCounter){
+function fileUpload(files, id, dataSize, cb, checkProgress, fileCounter){
     return function(dispatch){
         
         axios.get(baseUrl+"infos", {headers : {authorization : localStorage.getItem('token')}})
@@ -41,6 +41,7 @@ function fileUpload(files, id, dataSize, cb, fileCounter){
                             }
                         }
                     }).then( res => {
+                        checkProgress();
                         cb();
                         dispatch({
                             type: NOTIFICATION_SEND,

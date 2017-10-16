@@ -36,17 +36,7 @@ class Dropbox extends Component {
       const progressEl = document.getElementById(`${id}-progress`);
       const dropZoneEl = document.getElementById(`${id}-dropzone`);
 
-      // Toutes les 10 secondes, vérifier si le nombre de photos contenues dans l'album
-      // a augmenté du nombre de photos envoyées et notifier du changement.
-      
       targetCounter = this.props.numberOfPhotos + fileCounter;
-
-      const checkProgress = setInterval(function(){
-        this.props.albumFetch(this.props.id);
-        if(this.props.numberOfPhotos === targetCounter){
-          clearInterval(checkProgress);
-        }
-      }.bind(this),5000);
 
       if(this.props.redirection){
         this.props.history.push(redirection);
@@ -66,6 +56,18 @@ class Dropbox extends Component {
         }
       }, delay);
     }.bind(this);
+    
+    const checkProgress = () => {
+      
+      // Toutes les 5 secondes, vérifier si le nombre de photos contenues dans l'album
+      // a augmenté du nombre de photos envoyées et notifier du changement.      
+      const checkInterval = setInterval(function(){
+        this.props.albumFetch(this.props.id);
+        if(this.props.numberOfPhotos === targetCounter){
+          clearInterval(checkInterval);
+        }
+      }.bind(this),5000);
+    };    
 
     for (let i = 0; i < dt.files.length; i++) {
       if(dt.files[i].type === "image/jpeg" || dt.files[i].type === "image/png") {
@@ -78,8 +80,13 @@ class Dropbox extends Component {
         fileCounter++;        
       }
     }
-    this.props.fileUpload(data, id, dataSize, callback, fileCounter);
     
+    if(fileCounter === 0){
+      callback(0);
+      return this.props.sendNotification("Aucune image à envoyer","error");
+    }
+    
+    this.props.fileUpload(data, id, dataSize, callback, checkProgress, fileCounter);
   }
   
   render(){
