@@ -58,12 +58,14 @@ class Dropbox extends Component {
     }.bind(this);
     
     const checkProgress = () => {
-      
+      let counterMax = 5; // Maximum iterations;
+              
       // Toutes les 5 secondes, vérifier si le nombre de photos contenues dans l'album
       // a augmenté du nombre de photos envoyées et notifier du changement.      
       const checkInterval = setInterval(function(){
         this.props.albumFetch(this.props.id);
-        if(this.props.numberOfPhotos === targetCounter){
+        counterMax--;
+        if(this.props.numberOfPhotos === targetCounter || counterMax === 0){
           clearInterval(checkInterval);
         }
       }.bind(this),5000);
