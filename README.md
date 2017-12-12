@@ -1,5 +1,4 @@
-![Periscope Screens]
-(https://github.com/JuCollet/periscope/blob/master/README_IMG.png)
+![Periscope Screens](https://github.com/JuCollet/periscope/blob/master/README_IMG.png)
 
 # Periscope
 
