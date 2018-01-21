@@ -1,3 +1,5 @@
+![Periscope Screens](https://github.com/JuCollet/periscope/blob/master/README_IMG.png)
+
 # Periscope
 
 A simple photo manager build with React & Redux
